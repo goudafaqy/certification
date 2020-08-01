@@ -136,6 +136,7 @@
         <script src="{{ asset('js/swiper.min.js') }}"></script>
         <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('js/slick.js') }}"></script>
+        <script src="{{ asset('js/datatables.min.js') }}"></script>
         <script src="{{ asset('js/wow.min.js') }}"></script>
         <script>new WOW().init();</script>
         <script src="{{ asset('js/store.min.js') }}"></script>
