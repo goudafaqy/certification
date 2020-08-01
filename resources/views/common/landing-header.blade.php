@@ -6,7 +6,7 @@
         <title>مركز التدريب العدلي </title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css')  }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/mukhtar.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style-login.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/new-style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/new-style1.css') }}">
     </head>
     <body>
         
@@ -281,7 +281,7 @@
                             <ul class="navbar-nav mr-auto setting-menu" style="">
                                 @auth
                                     <li class="nav-item">
-                                        <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->name_ar}}   </a>
+                                        <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->username}}   </a>
                                     </li>
                                 @else
                                     <li class="nav-item">
