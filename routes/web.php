@@ -32,6 +32,16 @@ Auth::routes();
         Route::post('update-user', 'UserController@edit')->name('update-user');
     });
 
+    // Categories routes ...
+    Route::prefix('categories')->group(function () {
+        Route::get('list', 'CategoryController@list')->name('categories-list');
+        Route::get('add', 'CategoryController@add')->name('categories-add');
+        Route::get('update/{id}', 'CategoryController@update')->name('categories-update');
+        Route::post('save-category', 'CategoryController@create')->name('save-category');
+        Route::get('delete-category/{id}', 'CategoryController@delete')->name('delete-category');
+        Route::post('update-category', 'CategoryController@edit')->name('update-category');
+    });
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
