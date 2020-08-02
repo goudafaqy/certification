@@ -32,6 +32,26 @@ Auth::routes();
         Route::post('update-user', 'UserController@edit')->name('update-user');
     });
 
+    // Categories routes ...
+    Route::prefix('categories')->group(function () {
+        Route::get('list', 'CategoryController@list')->name('categories-list');
+        Route::get('add', 'CategoryController@add')->name('categories-add');
+        Route::get('update/{id}', 'CategoryController@update')->name('categories-update');
+        Route::post('save-category', 'CategoryController@create')->name('save-category');
+        Route::get('delete-category/{id}', 'CategoryController@delete')->name('delete-category');
+        Route::post('update-category', 'CategoryController@edit')->name('update-category');
+    });
+
+    // Classifications routes ...
+    Route::prefix('classifications')->group(function () {
+        Route::get('list', 'ClassificationController@list')->name('classifications-list');
+        Route::get('add', 'ClassificationController@add')->name('classifications-add');
+        Route::get('update/{id}', 'ClassificationController@update')->name('classifications-update');
+        Route::post('save-classification', 'ClassificationController@create')->name('save-classification');
+        Route::get('delete-classification/{id}', 'ClassificationController@delete')->name('delete-classification');
+        Route::post('update-classification', 'ClassificationController@edit')->name('update-classification');
+    });
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

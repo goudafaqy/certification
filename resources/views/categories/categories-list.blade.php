@@ -1,5 +1,5 @@
 @include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'users-list'])
+@include('common.sidebar', ['active' => 'categories-list'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">قائمة المستخدمين</h3>
+                                <h3 class="widget-title">قائمة الفئات المستهدفة</h3>
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">
@@ -42,44 +42,20 @@
                                         <thead>
                                             <tr>
                                                 <th class="th-sm text-center">#</th>
-                                                <th class="th-sm text-center">الإسم بالعربي</th>
-                                                <th class="th-sm text-center">الإسم بالإنجليزي</th>
-                                                <th class="th-sm text-center">اسم المستخدم</th>
-                                                <th class="th-sm text-center">البريد الإلكتروني</th>
-                                                <th class="th-sm text-center">الدور الوظيفي</th>
-                                                <th class="th-sm text-center">الفاعلية</th>
+                                                <th class="th-sm text-center">العنوان باللغة العربية</th>
+                                                <th class="th-sm text-center">العنوان باللغة الإنجليزية</th>
                                                 <th class="th-sm text-center">الإجراءات</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $user)
+                                            @foreach ($categories as $category)
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
-                                                <td class="text-center">{{ $user->name_ar }}</td>
-                                                <td class="text-center">{{ $user->name_en }}</td>
-                                                <td class="text-center">{{ $user->username }}</td>
-                                                <td class="text-center">{{ $user->email }}</td>
+                                                <td class="text-center">{{ $category->title_ar }}</td>
+                                                <td class="text-center">{{ $category->title_en }}</td>
                                                 <td class="text-center">
-                                                    @if($user->role == 'admin')
-                                                        مدير النظام
-                                                    @elseif($user->role == 'instructor')
-                                                        مدرب
-                                                    @elseif($user->role == 'trainee')
-                                                        متدرب
-                                                    @elseif($user->role == 'editor')
-                                                        مسؤول محتوى
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    @if($user->active)
-                                                        <i style="font-size: 1.3em;" class="fa fa-check-circle text-success"></i>
-                                                    @else
-                                                        <i style="font-size: 1.3em;" class="fa fa-times-circle text-danger"></i>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <a class="btn btn-info" href="/users/update/<?php echo $user->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
-                                                    <a id="delete" href="/users/delete-user/<?php echo $user->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                    <a class="btn btn-info" href="/categories/update/<?php echo $category->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <a id="delete" href="/categories/delete-category/<?php echo $category->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -101,11 +77,11 @@
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
             "language": {
-                "lengthMenu": "عرض _MENU_ مستخدم في الصفحة الواحدة",
-                "zeroRecords": "لا يوجد مستخدمين",
+                "lengthMenu": "عرض _MENU_ فئة في الصفحة الواحدة",
+                "zeroRecords": "لا يوجد فئات مستهدفة",
                 "info": "الصفحة رقم _PAGE_ من _PAGES_",
                 "infoEmpty": "لا يوجد", 
-                "infoFiltered": "(نتيجة البحث من _MAX_ مستخدمين)",
+                "infoFiltered": "(نتيجة البحث من _MAX_ فئات مستهدفة)",
                 "search": "بحث  ",
                 "paginate": {
                     "next": "التالي",
