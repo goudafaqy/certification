@@ -23,7 +23,7 @@
                 </div>
             </nav>
         </div>
-        
+
         <!-- Categories views -->
         <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">
@@ -34,6 +34,21 @@
                     <div class="submenu-content">
                         <a href="{{ route('categories-list') }}" class="menu-item @if($active == 'categories-list') active @endif"><img src="{{ asset('images/list.png') }}" style="width: 20px"> قائمة الفئات المستهدفة </a>
                         <a href="{{ route('categories-add') }}" class="menu-item @if($active == 'categories-add') active @endif"> <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة فئة جديدة </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Classifications views -->
+        <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-item has-sub @if($active == 'classifications-list' || $active == 'classifications-add') open @endif">
+                    <a href="javascript:void(0)"><img src="{{ asset('images/classifications.png') }}" style="width: 22px">
+                        <span> تصنيفات الدورات </span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="{{ route('classifications-list') }}" class="menu-item @if($active == 'classifications-list') active @endif"><img src="{{ asset('images/list.png') }}" style="width: 20px"> قائمة التصنيفات </a>
+                        <a href="{{ route('classifications-add') }}" class="menu-item @if($active == 'classifications-add') active @endif"> <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة تصنيف جديد </a>
                     </div>
                 </div>
             </nav>

@@ -1,7 +1,7 @@
 
             <footer class="footer" style="text-align: center; color:#fff">
                 <div class="w-100 clearfix">
-                    <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1441هـ | 2020 .</span>
+                    <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1441هـ | 2020 م </span>
                 </div>
             </footer>
             <!-- <aside class="right-sidebar">
