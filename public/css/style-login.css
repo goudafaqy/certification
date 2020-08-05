@@ -1,0 +1,340 @@
+
+
+
+
+.auth-wrapper .bg2 {
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    
+}
+
+.auth-wrapper .bg3 {
+  height: 100%;
+  
+}
+
+.auth-wrapper .bg2 .overlay{
+    position: absolute;
+    width: 100%;
+        height: 100vh;
+
+   background: rgba(6, 12, 34, 0.8);
+    background: rgb(1,24,42);
+    background: radial-gradient(circle, rgba(0,0,0,0.7) 0%, rgba(1, 24, 42,0.8) 54%, rgba(1, 24, 42,1) 99%);
+    
+ left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .9
+}
+
+.auth-wrapper .bg3 .overlay{
+  height: 100%;
+  
+}
+
+
+.bg2 .logo-centered{
+    text-align: center;
+    z-index: 9999;
+}
+.bg2 .logo-centered p{
+    text-align: center;
+    z-index: 9999;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform:uppercase
+}
+.bg2 .social-links a {
+    display: inline-block;
+    padding: 5px;
+    width: 30px;
+    text-align: center;
+    line-height: 15px;
+    color: #f9982f;
+    border: 1px solid #9b99b0;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.bg2 .social-links a:hover {
+    background: #f9982f;
+    color: #fff;
+    border-color: #f9982f;
+}
+
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #C3A37E;
+}
+.custom-control-label::before {
+    position: absolute;
+}
+/*---------------------------------------------*/
+input {
+	outline: none;
+	border: none;
+}
+
+
+.wrap-login .logo-centered{
+    text-align: center;
+    z-index: 9999;
+    width: 260px; 
+    margin: 0px auto 30px auto
+}
+.wrap-login .logo-centered img{ width: 100%; height:auto}
+
+.logo-centered .text{font-weight: 600; font-size: 20px; margin-top: 10px; color: #fff}
+
+.custom-checkbox .custom-control-label {
+    line-height: 24px;
+    color: #273044;
+    font-size: 16px;
+}
+.container-login .text-right a {
+    line-height: 24px;
+    color: #273044;
+    font-size: 15px;
+}
+.container-login a.forget {
+    line-height: 24px;
+    color: #273044;
+    font-size: 15px;
+}
+.container-login {
+  width: 100%;  
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1; 
+        margin: 20px 0;
+}
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: #fff;}
+input:-moz-placeholder { color: #fff;}
+input::-moz-placeholder { color: #fff;}
+input:-ms-input-placeholder { color: #fff;}
+
+
+label {
+  margin: 0;
+  display: block;
+}
+
+/*---------------------------------------------*/
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+
+
+
+.wrap-login {
+        position: relative;
+
+  border-radius: 10px 80px 10px 80px;
+  overflow: hidden;
+  padding: 30px 40px;
+ 
+    background-image: url('../images/ba.jpg');
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+.login-form-title {
+  font-size: 25px;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+}
+
+
+/*------------------------------------------------------------------
+[ Input ]*/
+
+
+
+/*---------------------------------------------*/ 
+
+.login-form .input-group {
+width: 100%;
+position: relative;
+margin-bottom: 20px;
+}
+
+ .form-control {
+font-size: 16px;
+color: #fff;
+line-height: 1.2;
+display: block;
+width: 100%;
+height: 45px;
+background: #34405a;
+padding: 0 10px 0 10px;
+border: 0;
+
+-moz-transition: 0.5s ease-in-out;
+-o-transition: 0.5s ease-in-out;
+-webkit-transition: 0.5s ease-in-out;
+transition: 0.5s ease-in-out;
+box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
+border-radius: 5px;
+}
+
+.input-login::placeholder { color: #fff}
+
+.login-form .form-control:focus {
+padding-right: 5px;
+border-right: 5px solid #C3A37E;
+box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
+    background: #34405a;
+    color: #fff;
+
+
+
+
+}
+.login-form .label {
+
+  color: #C3A37E;
+    margin-bottom: 10px;
+    font-size: 16px
+  
+
+}
+
+.login-form .input-group .input-group-prepend .input-group-text {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #2e3950;
+  border-color: #2e3950;
+  color: #C3A37E;
+  padding-right: 13px;
+  height: 45px;
+  font-size: 18px;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
+
+}
+
+.login-form-btn {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.2;
+  padding: 15px 25px;
+  border-radius: 25px;
+    margin: 20px 0px ;
+  background: #273044;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+    font-weight: 600
+}
+
+
+
+.login-form-btn:hover {
+  color: #fff;
+    background:#C3A37E;
+}
+
+
+
+
+.jtc img { width: 75px; height: 75px; border-radius: 10%}
+.jtc h3 {color: #273044; font-size: 18px; text-align: center; margin-bottom: 10px; margin-top: 0}
+.jtc p {color: #273044; font-size: 14px; text-align: center; margin-top: 4px}
+
+.login-so { margin-top: 20px}
+
+.login-so p{ color: #273044; font-size: 14px ; margin: 1px}
+
+.login-so i {
+  width: 40px;
+    height: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center
+}
+
+.login-so i:hover {
+    opacity: 0.7;
+}
+
+.login-so .fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.login-so .fa-linkedin-in {
+  background: #007bb5;
+  color: white;
+}
+
+
+
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+@media (max-width: 960px) {
+  .logo-centered .img-b{width: 300px}
+
+}
+
+
+@media (max-width: 760px) {
+  .container-login {
+ margin-top: 0px
+  
+}
+    .auth-wrapper .bg2 {
+    height: 100%;
+ 
+    
+}
+
+.auth-wrapper .bg2 .overlay{
+        height: 100%;
+ 
+}
+    .jtc h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+    .login-form-btn {
+
+    padding: 15px 16px;
+  
+}
+}
