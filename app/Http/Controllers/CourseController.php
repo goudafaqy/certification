@@ -135,8 +135,9 @@ class CourseController extends Controller
         }else{
             if($request->file()) {
                 $image = $request->file('image');
-                $fileName = time().'_'.$image->getClientOriginalName();
-                $filePath = $image->storeAs('uploads', $fileName, 'public');
+                $fileName = $image->getClientOriginalName();
+                $fileExt = $image->getClientOriginalExtension();
+                $filePath = '/uploads/'.$fileName;
 
                 $image->move('uploads',$image->getClientOriginalName());
             }
