@@ -54,6 +54,7 @@
             </nav>
         </div>
 
+
         <!-- Courses views -->
         <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">

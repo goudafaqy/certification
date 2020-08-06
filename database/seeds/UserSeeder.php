@@ -12,13 +12,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name_ar' => 'أيمن البري',
-            'name_en' => 'Ayman Elbery',
-            'username' => 'أيمن البري',
-            'email' => 'ayman.bery@gmail.com',
+            'name_ar' => 'محمد ابوالجود',
+            'name_en' => 'Muhammed Goud',
+            'username' => 'Muhammed Goud',
+            'email' => 'mohgood2020@gmail.com',
             'role' => 'admin',
             'active' => true,
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('mohamed'),
         ]);
     }
 }
