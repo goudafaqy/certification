@@ -52,4 +52,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * Get the courses for the User.
+     */
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Course');
+    }
 }

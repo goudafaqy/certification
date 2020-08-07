@@ -8,7 +8,7 @@ interface MainEloquent {
 
     public function getById($id);
 
-    public function save($inputs);
+    public function save($inputs, $getId = false);
 
     public function update($inputs, $id);
 

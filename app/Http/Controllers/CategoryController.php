@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Eloquent\CategoryRepo;
+use App\Http\Repositories\Validation\CategoryRepoValidation;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Validator;
-
 class CategoryController extends Controller
 {
+    var $categoryRepo;
+    var $categoryValidation;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CategoryRepo $categoryRepo, CategoryRepoValidation $categoryValidation)
     {
+        $this->categoryRepo = $categoryRepo;
+        $this->categoryValidation = $categoryValidation;
         $this->middleware('auth');
     }
 
@@ -23,7 +26,7 @@ class CategoryController extends Controller
      */
     public function list()
     {
-        $categories = DB::table('categories')->get();
+        $categories = $this->categoryRepo->getAll();
         return view("categories.categories-list", ['categories' => $categories]);
     }
 
@@ -44,18 +47,11 @@ class CategoryController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'title_ar' => 'required',
-            'title_en' => 'required',
-        ]);
-        
+        $validator = $this->categoryValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
             return redirect('categories/add')->withErrors($validator)->withInput();
         }else{
-            $category = DB::table('categories')->insert([
-                'title_ar' => $inputs['title_ar'],
-                'title_en' => $inputs['title_en'],
-            ]);
+            $category = $this->categoryRepo->save($inputs);
             if($category){
                 return redirect('categories/list')->with('added', 'تمت إضافة فئة مستهدفة جديدة بنجاح');
             }
@@ -68,7 +64,7 @@ class CategoryController extends Controller
      */
     public function update($id)
     {
-        $category = DB::table('categories')->where('id', $id)->first();
+        $category = $this->categoryRepo->getById($id);
         return view("categories.categories-update", ['category' => $category]);
     }
 
@@ -79,18 +75,12 @@ class CategoryController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'title_ar' => 'required',
-            'title_en' => 'required',
-        ]);
-        
+        $validator = $this->categoryValidation->doValidate($inputs, 'update');
         if ($validator->fails()) {
             return redirect('categories/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
-            $category = DB::table('categories')->where('id', $inputs['id'])->update([
-                'title_ar' => $inputs['title_ar'],
-                'title_en' => $inputs['title_en'],
-            ]);
+            unset($inputs['_token']);
+            $category = $this->categoryRepo->update($inputs, $inputs['id']);
             if($category){
                 return redirect('categories/list')->with('updated', 'تمت تعديل بيانات الفئة بنجاح');
             }
@@ -103,7 +93,7 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        $result = DB::table('categories')->where('id', '=', $id)->delete();
+        $result = $this->categoryRepo->delete($id);
         if($result){
             return redirect('categories/list')->with('deleted', 'تم حذف الفئة بنجاح');
         }

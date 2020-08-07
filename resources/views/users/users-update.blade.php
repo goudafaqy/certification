@@ -66,10 +66,15 @@
                                                 @else
                                                     <option value="trainee">متدرب</option>
                                                 @endif
-                                                @if ($user->role == 'editor')
-                                                    <option value="editor" selected>مسؤول محتوى</option>
+                                                @if ($user->role == 'planner')
+                                                    <option value="planner" selected>مسؤول تخطيط</option>
                                                 @else
-                                                    <option value="editor">مسؤول محتوى</option>
+                                                    <option value="planner">مسؤول تخطيط</option>
+                                                @endif
+                                                @if ($user->role == 'support')
+                                                    <option value="support" selected>مسئول دعم فنى</option>
+                                                @else
+                                                    <option value="support">مسئول دعم فنى</option>
                                                 @endif
                                             </select>
                                         </div>

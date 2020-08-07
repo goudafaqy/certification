@@ -2,19 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Eloquent\CategoryRepo;
+use App\Http\Repositories\Validation\CourseRepoValidation;
+use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Helpers\FileHelper;
+use App\Http\Helpers\GenerateHelper;
+use App\Http\Repositories\Eloquent\ClassificationRepo;
 
 class CourseController extends Controller
 {
+    var $courseRepo;
+    var $userRepo;
+    var $categoryRepo;
+    var $classRepo;
+    var $courseValidation;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        CourseRepo $courseRepo, 
+        UserRepo $userRepo, 
+        CategoryRepo $categoryRepo,
+        ClassificationRepo $classRepo,
+        CourseRepoValidation $courseValidation
+    )
     {
+        $this->courseRepo = $courseRepo;
+        $this->userRepo = $userRepo;
+        $this->categoryRepo = $categoryRepo;
+        $this->classRepo = $classRepo;
+        $this->courseValidation = $courseValidation;
         $this->middleware('auth');
     }
 
@@ -23,13 +44,7 @@ class CourseController extends Controller
      */
     public function list()
     {
-        $courses = DB::table('courses')
-        ->join('users', 'courses.instructor_id', '=', 'users.id')
-        ->join('categories', 'courses.cat_id', '=', 'categories.id')
-        ->join('classifications', 'courses.class_id', '=', 'classifications.id')
-        ->select('courses.*', 'users.name_ar as instructor', 'categories.title_ar as category', 'classifications.title_ar as classification')
-        ->get();
-        
+        $courses = $this->courseRepo->getAll();
         return view("courses.courses-list", ['courses' => $courses]);
     }
 
@@ -39,8 +54,8 @@ class CourseController extends Controller
      */
     public function add()
     {
-        $instructors        = DB::table('users')->where('role', 'instructor')->get();
-        $categories         = DB::table('categories')->get();
+        $instructors        = $this->userRepo->getByRole('instructor');
+        $categories         = $this->categoryRepo->getAll();
         return view("courses.courses-add", [
             'categories'        => $categories,
             'instructors'       => $instructors
@@ -55,45 +70,20 @@ class CourseController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'title_ar' => 'required',
-            'overview' => 'required',
-            'type' => 'required',
-            'instructor_id' => 'required',
-            'cat_id' => 'required',
-            'class_id' => 'required',
-            'price' => 'required',
-            'discount' => 'required',
-        ]);
-        
+        $validator = $this->courseValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
             return redirect('courses/add')->withErrors($validator)->withInput();
         }else{
-
             if($request->file()) {
-                $image = $request->file('image');
-                $fileName = $image->getClientOriginalName();
-                $fileExt = $image->getClientOriginalExtension();
-                $filePath = '/uploads/'.$fileName;
-
-                $image->move('uploads',$image->getClientOriginalName());
+                $filePath = FileHelper::uploadFiles($request->file('image'), 'uploads/courses/');
             }
-
-            $courseId = DB::table('courses')->insertGetId([
-                'title_ar'      => $inputs['title_ar'],
-                'overview'      => $inputs['overview'],
-                'type'          => $inputs['type'],
-                'instructor_id' => $inputs['instructor_id'],
-                'cat_id'        => $inputs['cat_id'],
-                'class_id'      => $inputs['class_id'],
-                'price'         => $inputs['price'],
-                'discount'      => $inputs['discount'],
-                'image'         => $filePath
-            ]);
+            $inputs['image'] = $filePath;
+            unset($inputs['_token']);
+            $courseId = $this->courseRepo->save($inputs, true); 
             if($courseId){
-                DB::table('courses')->where('id', $courseId)->update([
-                    'code'      => $this->generateCode($courseId),
-                ]);
+                $this->courseRepo->update([
+                    'code'      => GenerateHelper::generateCourseCode($courseId),
+                ], $courseId);
                 return redirect('courses/list')->with('added', 'تمت إضافة دورة جديدة بنجاح');
             }
         }
@@ -105,9 +95,9 @@ class CourseController extends Controller
      */
     public function update($id)
     {
-        $instructors        = DB::table('users')->where('role', 'instructor')->get();
-        $categories         = DB::table('categories')->get();
-        $course = DB::table('courses')->where('id', $id)->first();
+        $instructors        = $this->userRepo->getByRole('instructor');
+        $categories         = $this->categoryRepo->getAll();
+        $course = $this->courseRepo->getById($id);
         return view("courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories]);
     }
 
@@ -118,40 +108,15 @@ class CourseController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'title_ar' => 'required',
-            'code' => 'required',
-            'overview' => 'required',
-            'type' => 'required',
-            'instructor_id' => 'required',
-            'cat_id' => 'required',
-            'class_id' => 'required',
-            'price' => 'required',
-            'discount' => 'required',
-        ]);
-        
+        $validator = $this->courseValidation->doValidate($inputs, 'update');
         if ($validator->fails()) {
             return redirect('courses/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
             if($request->file()) {
-                $image = $request->file('image');
-                $fileName = $image->getClientOriginalName();
-                $fileExt = $image->getClientOriginalExtension();
-                $filePath = '/uploads/'.$fileName;
-
-                $image->move('uploads',$image->getClientOriginalName());
+                $filePath = FileHelper::uploadFiles($request->file('image'), 'uploads/courses/');
             }
-            $course = DB::table('courses')->where('id', $inputs['id'])->update([
-                'title_ar'      => $inputs['title_ar'],
-                'overview'      => $inputs['overview'],
-                'type'          => $inputs['type'],
-                'instructor_id' => $inputs['instructor_id'],
-                'cat_id'        => $inputs['cat_id'],
-                'class_id'      => $inputs['class_id'],
-                'price'         => $inputs['price'],
-                'discount'      => $inputs['discount'],
-                'image'         => $filePath
-            ]);
+            unset($inputs['_token']);
+            $course = $this->courseRepo->update($inputs, $inputs['id']); 
             if($course){
                 return redirect('courses/list')->with('updated', 'تمت تعديل بيانات الدورة بنجاح');
             }
@@ -164,7 +129,7 @@ class CourseController extends Controller
      */
     public function delete($id)
     {
-        $result = DB::table('courses')->where('id', '=', $id)->delete();
+        $result = $this->courseRepo->delete($id);
         if($result){
             return redirect('courses/list')->with('deleted', 'تم حذف الدورة بنجاح');
         }
@@ -175,15 +140,8 @@ class CourseController extends Controller
      */
     public function getClassByCatId(Request $request){
         $inputs = $request->input();
-        $classifications = DB::table('classifications')->where('cat_id', $inputs['option'])->get();
+        $classifications = $this->classRepo->getByCat($inputs['option']);
         return $classifications;
-    }
-
-
-    private function generateCode($id){
-        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
-        $char = substr(str_shuffle($str_result), 0, 4); 
-        return $char . "-".$id;
     }
 
 }
