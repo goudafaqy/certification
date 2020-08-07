@@ -37,7 +37,8 @@ class ClassificationRepo implements ClassificationEloquent{
 
     public function delete($id)
     {
-        Classification::where('id', $id)->courses->delete();
+        $classification = Classification::find($id);
+        $classification->courses()->delete();
         return Classification::where('id', $id)->delete();
     }
 
