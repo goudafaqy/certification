@@ -30,7 +30,7 @@ class Category extends Model
      */
     public function classifications()
     {
-        return $this->hasMany('App\Models\Classification');
+        return $this->hasMany('App\Models\Classification', 'cat_id');
     }
 
     /**
@@ -38,6 +38,6 @@ class Category extends Model
      */
     public function courses()
     {
-        return $this->hasMany('App\Models\Course');
+        return $this->hasMany('App\Models\Course', 'cat_id');
     }
 }

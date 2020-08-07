@@ -39,6 +39,6 @@ class Classification extends Model
      */
     public function courses()
     {
-        return $this->hasMany('App\Models\Course');
+        return $this->hasMany('App\Models\Course', 'class_id');
     }
 }

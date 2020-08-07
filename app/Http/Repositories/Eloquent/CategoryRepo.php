@@ -32,8 +32,9 @@ class CategoryRepo implements CategoryEloquent{
 
     public function delete($id)
     {
-        Category::where('id', $id)->classifications->delete();
-        Category::where('id', $id)->courses->delete();
+        $category = Category::find($id);
+        $category->classifications()->delete();
+        $category->courses()->delete();
         return Category::where('id', $id)->delete();
     }
 
