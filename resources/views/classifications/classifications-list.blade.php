@@ -54,7 +54,7 @@
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $classification->title_ar }}</td>
                                                 <td class="text-center">{{ $classification->title_en }}</td>
-                                                <td class="text-center">{{ $classification->cat_title }}</td>
+                                                <td class="text-center">{{ $classification->category->title_ar }}</td>
                                                 <td class="text-center">
                                                     <a class="btn btn-info" href="/classifications/update/<?php echo $classification->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="/classifications/delete-classification/<?php echo $classification->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>

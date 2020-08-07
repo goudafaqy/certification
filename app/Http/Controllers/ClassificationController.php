@@ -2,19 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Eloquent\ClassificationRepo;
+use App\Http\Repositories\Eloquent\CategoryRepo;
+use App\Http\Repositories\Validation\ClassificationRepoValidation;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Validator;
 
 class ClassificationController extends Controller
 {
+    var $classRepo;
+    var $classValidation;
+
+    var $categoryRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        ClassificationRepo $classRepo, 
+        ClassificationRepoValidation $classValidation,
+        CategoryRepo $categoryRepo
+    )
     {
+        $this->classRepo = $classRepo;
+        $this->classValidation = $classValidation;
+        $this->categoryRepo = $categoryRepo;
         $this->middleware('auth');
     }
 
@@ -23,10 +35,7 @@ class ClassificationController extends Controller
      */
     public function list()
     {
-        $classifications = DB::table('classifications')
-            ->join('categories', 'classifications.cat_id', '=', 'categories.id')
-            ->select('classifications.*', 'categories.title_ar as cat_title')
-            ->get();
+        $classifications = $this->classRepo->getAll();
         return view("classifications.classifications-list", ['classifications' => $classifications]);
     }
 
@@ -36,7 +45,7 @@ class ClassificationController extends Controller
      */
     public function add()
     {
-        $categories = DB::table('categories')->get();
+        $categories = $this->categoryRepo->getAll();
         return view("classifications.classifications-add", ['categories' => $categories]);
     }
 
@@ -48,20 +57,11 @@ class ClassificationController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'title_ar'  => 'required',
-            'title_en'  => 'required',
-            'cat_id'    => 'required',
-        ]);
-        
+        $validator = $this->classValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
             return redirect('classifications/add')->withErrors($validator)->withInput();
         }else{
-            $classification = DB::table('classifications')->insert([
-                'title_ar'  => $inputs['title_ar'],
-                'title_en'  => $inputs['title_en'],
-                'cat_id'    => $inputs['cat_id'],
-            ]);
+            $classification = $this->classRepo->save($inputs);
             if($classification){
                 return redirect('classifications/list')->with('added', 'تم إضافة تصنيف جديد بنجاح');
             }
@@ -74,8 +74,8 @@ class ClassificationController extends Controller
      */
     public function update($id)
     {
-        $classification = DB::table('classifications')->where('id', $id)->first();
-        $categories = DB::table('categories')->get();
+        $classification = $this->classRepo->getById($id);
+        $categories = $this->categoryRepo->getAll();
         return view("classifications.classifications-update", ['classification' => $classification, 'categories' => $categories]);
     }
 
@@ -86,20 +86,12 @@ class ClassificationController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'title_ar'  => 'required',
-            'title_en'  => 'required',
-            'cat_id'    => 'required',
-        ]);
-        
+        $validator = $this->classValidation->doValidate($inputs, 'update');     
         if ($validator->fails()) {
             return redirect('classifications/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
-            $classification = DB::table('classifications')->where('id', $inputs['id'])->update([
-                'title_ar'  => $inputs['title_ar'],
-                'title_en'  => $inputs['title_en'],
-                'cat_id'    => $inputs['cat_id'],
-            ]);
+            unset($inputs['_token']);
+            $classification = $this->classRepo->update($inputs, $inputs['id']);
             if($classification){
                 return redirect('classifications/list')->with('updated', 'تمت تعديل بيانات التصنيف بنجاح');
             }
@@ -112,7 +104,7 @@ class ClassificationController extends Controller
      */
     public function delete($id)
     {
-        $result = DB::table('classifications')->where('id', '=', $id)->delete();
+        $result = $this->classRepo->delete($id);
         if($result){
             return redirect('classifications/list')->with('deleted', 'تم حذف التصنيف بنجاح');
         }

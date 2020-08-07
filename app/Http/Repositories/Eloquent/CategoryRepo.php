@@ -2,10 +2,10 @@
 
 namespace App\Http\Repositories\Eloquent;
 
-use App\Http\Interfaces\Eloquent\UserEloquent;
+use App\Http\Interfaces\Eloquent\CategoryEloquent;
 use App\Models\Category;
 
-class CategoryRepo implements UserEloquent{
+class CategoryRepo implements CategoryEloquent{
     
     public function getAll()
     {

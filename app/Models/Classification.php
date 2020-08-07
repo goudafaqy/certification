@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Classification extends Model
 {
 
-    protected $table = 'categories';
+    protected $table = 'classifications';
 
     protected $primaryKey = 'id';
 
@@ -21,15 +21,16 @@ class Category extends Model
     protected $fillable = [
         'title_ar',
         'title_en', 
+        'cat_id', 
         'created_at', 
         'updated_at',
     ];
 
     /**
-     * Get the classifications for the category.
+     * Get the category that owns the classification.
      */
-    public function classifications()
+    public function category()
     {
-        return $this->hasMany('App\Models\Classification');
+        return $this->belongsTo('App\Models\Category', 'cat_id');
     }
 }
