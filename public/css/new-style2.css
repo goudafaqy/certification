@@ -196,6 +196,33 @@ background: #fff;
     padding: 10px 50px;
 }
 
+.image-preview{
+    
+}
+
+#true-image{
+    position: absolute;
+    z-index: 5;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: red;
+    cursor: pointer;
+    display: block;
+    height: 35px;
+    width: 89%;
+    right: 12px;
+    top: 22px;
+}
+
+#fake-image{
+    position: relative;
+    overflow: hidden;
+    left: 3px;
+    height: 35px;
+    width: 100%;
+    top: 22px;
+}
 
 @media (min-width: 992px){
 	.navbar-light .dropdown-menu .dropdown-toggle:after{

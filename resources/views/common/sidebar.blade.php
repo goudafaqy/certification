@@ -53,5 +53,21 @@
                 </div>
             </nav>
         </div>
+
+
+        <!-- Courses views -->
+        <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-item has-sub @if($active == 'courses-list' || $active == 'courses-add') open @endif">
+                    <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
+                        <span> قائمة الدورات </span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="{{ route('courses-list') }}" class="menu-item @if($active == 'courses-list') active @endif"><img src="{{ asset('images/list.png') }}" style="width: 20px"> قائمة الدورات </a>
+                        <a href="{{ route('courses-add') }}" class="menu-item @if($active == 'courses-add') active @endif"> <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة دورة جديدة </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
 </div>

@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Eloquent\UserRepo;
+use App\Http\Repositories\Validation\UserRepoValidation;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    var $userRepo;
+    var $userValidation;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepo $userRepo, UserRepoValidation $userValidation)
     {
+        $this->userRepo         = $userRepo;
+        $this->userValidation   = $userValidation;
         $this->middleware('auth');
     }
 
@@ -24,7 +30,7 @@ class UserController extends Controller
      */
     public function list()
     {
-        $users = DB::table('users')->get();
+        $users = $this->userRepo->getAll();
         return view("users.users-list", ['users' => $users]);
     }
 
@@ -44,29 +50,15 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
-
-        $validator = Validator::make($inputs,[
-            'name_ar' => 'required',
-            'name_en' => 'required',
-            'username' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
-            'role' => 'required',
-        ]);
         
+        $validator = $this->userValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
             return redirect('users/add')->withErrors($validator)->withInput();
         }else{
-            $user = DB::table('users')->insert([
-                'name_ar' => $inputs['name_ar'],
-                'name_en' => $inputs['name_en'],
-                'username' => $inputs['username'],
-                'email' => $inputs['email'],
-                'password' => Hash::make($inputs['password']),
-                'role' => $inputs['role'],
-                'active' => isset($inputs['active']) ? true : false,
-            ]);
+            $inputs['active'] = isset($inputs['active']) ? true : false;
+            $inputs['password'] = Hash::make($inputs['password']);
+
+            $user = $this->userRepo->save($inputs);
             if($user){
                 return redirect('users/list')->with('added', 'تمت إضافة المستخدم بنجاح');
             }
@@ -79,7 +71,7 @@ class UserController extends Controller
      */
     public function update($id)
     {
-        $user = DB::table('users')->where('id', $id)->first();
+        $user = $this->userRepo->getById($id);
         return view("users.users-update", ['user' => $user]);
     }
 
@@ -90,28 +82,16 @@ class UserController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'name_ar' => 'required',
-            'name_en' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
-            'role' => 'required',
-        ]);
-        
+        $validator = $this->userValidation->doValidate($inputs, 'update');
         if ($validator->fails()) {
             return redirect('users/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
-            $user = DB::table('users')->where('id', $inputs['id'])->update([
-                'name_ar' => $inputs['name_ar'],
-                'name_en' => $inputs['name_en'],
-                'username' => $inputs['username'],
-                'email' => $inputs['email'],
-                'password' => Hash::make($inputs['password']),
-                'role' => $inputs['role'],
-                'active' => isset($inputs['active']) ? true : false,
-            ]);
+            $inputs['active'] = isset($inputs['active']) ? true : false;
+            $inputs['password'] = Hash::make($inputs['password']);
+            unset($inputs['_token']);
+            unset($inputs['password_confirmation']);
+            
+            $user = $this->userRepo->update($inputs, $inputs['id']);
             if($user){
                 return redirect('users/list')->with('updated', 'تمت تعديل بيانات المستخدم بنجاح');
             }
@@ -124,7 +104,7 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-        $result = DB::table('users')->where('id', '=', $id)->delete();
+        $result = $this->userRepo->delete($id);
         if($result){
             return redirect('users/list')->with('deleted', 'تم حذف المستخدم بنجاح');
         }

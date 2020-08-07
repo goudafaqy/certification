@@ -52,6 +52,29 @@ Auth::routes();
         Route::post('update-classification', 'ClassificationController@edit')->name('update-classification');
     });
 
+    // Course Materials routes ...
+    Route::prefix('materials')->group(function () {
+        Route::get('list', 'CourseMaterialsController@list')->name('materials-list');
+        Route::get('add', 'CourseMaterialsController@add')->name('materials-add');
+        Route::get('update/{id}', 'CourseMaterialsController@update')->name('materials-update');
+        Route::post('update', 'CourseMaterialsController@edit')->name('update-materials');
+        Route::post('save', 'CourseMaterialsController@create')->name('save-materials');
+        Route::get('delete/{id}', 'CourseMaterialsController@delete')->name('delete-materials');
+    });
+    
+
+
+    // Courses routes ...
+    Route::prefix('courses')->group(function () {
+        Route::get('list', 'CourseController@list')->name('courses-list');
+        Route::get('add', 'CourseController@add')->name('courses-add');
+        Route::get('update/{id}', 'CourseController@update')->name('courses-update');
+        Route::post('save-course', 'CourseController@create')->name('save-course');
+        Route::get('delete-course/{id}', 'CourseController@delete')->name('delete-course');
+        Route::post('update-course', 'CourseController@edit')->name('update-course');
+        Route::get('class-by-cat', 'CourseController@getClassByCatId')->name('class-by-cat');
+    });
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
