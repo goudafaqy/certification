@@ -53,7 +53,8 @@
                                                 <option value="admin">مدير النظام</option>
                                                 <option value="instructor">مدرب</option>
                                                 <option value="trainee">متدرب</option>
-                                                <option value="editor">مسؤول محتوى</option>
+                                                <option value="planner">مسؤول تخطيط</option>
+                                                <option value="support">مسئول دعم فنى</option>
                                             </select>
                                         </div>
                                         @error('role')

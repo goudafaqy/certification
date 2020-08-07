@@ -19,7 +19,7 @@ class CategoryRepo implements CategoryEloquent{
     }
 
 
-    public function save($inputs)
+    public function save($inputs, $getId = false)
     {
         return Category::create($inputs);
     }
@@ -32,6 +32,8 @@ class CategoryRepo implements CategoryEloquent{
 
     public function delete($id)
     {
+        Category::where('id', $id)->classifications->delete();
+        Category::where('id', $id)->courses->delete();
         return Category::where('id', $id)->delete();
     }
 

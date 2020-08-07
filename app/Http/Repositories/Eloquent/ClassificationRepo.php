@@ -18,8 +18,13 @@ class ClassificationRepo implements ClassificationEloquent{
         return Classification::where('id', $id)->first();
     }
 
+    public function getByCat($cat_id)
+    {
+        return Classification::where('cat_id', $cat_id)->get();
+    }
 
-    public function save($inputs)
+
+    public function save($inputs, $getId = false)
     {
         return Classification::create($inputs);
     }
@@ -32,6 +37,7 @@ class ClassificationRepo implements ClassificationEloquent{
 
     public function delete($id)
     {
+        Classification::where('id', $id)->courses->delete();
         return Classification::where('id', $id)->delete();
     }
 

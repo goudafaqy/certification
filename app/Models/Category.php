@@ -32,4 +32,12 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Classification');
     }
+
+    /**
+     * Get the courses for the category.
+     */
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Course');
+    }
 }

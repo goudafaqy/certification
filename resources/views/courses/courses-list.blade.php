@@ -61,13 +61,13 @@
                                                 <td class="text-center">{{ $course->code }}</td>
                                                 <td class="text-center">{{ $course->title_ar }}</td>
                                                 <td class="text-center">{{ $course->type }}</td>
-                                                <td class="text-center">{{ $course->instructor }}</td>
-                                                <td class="text-center">{{ $course->category }}</td>
-                                                <td class="text-center">{{ $course->classification }}</td>
+                                                <td class="text-center">{{ $course->instructor->name_ar }}</td>
+                                                <td class="text-center">{{ $course->category->title_ar }}</td>
+                                                <td class="text-center">{{ $course->classification->title_ar }}</td>
                                                 <td class="text-center">{{ $course->price }} ريال</td>
                                                 <td class="text-center">{{ $course->discount }} %</td>
                                                 <td class="text-center">
-                                                    <a href="{{$course->image}}" class="btn btn-default" target="_blanck"><i class="fa fa-link"></i></a>
+                                                    <a href="/{{$course->image}}" class="btn btn-default" target="_blanck"><i class="fa fa-link"></i></a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="btn btn-warning" href="/courses/materials/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="الملفات"><i style="position: relative; top: -2px; right: -4px" class="fa fa-file"></i></a>

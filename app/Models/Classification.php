@@ -33,4 +33,12 @@ class Classification extends Model
     {
         return $this->belongsTo('App\Models\Category', 'cat_id');
     }
+
+    /**
+     * Get the courses for the category.
+     */
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Course');
+    }
 }

@@ -18,8 +18,12 @@ class UserRepo implements UserEloquent{
         return User::where('id', $id)->first();
     }
 
+    public function getByRole($role)
+    {
+        return User::where('role', $role)->get();
+    }
 
-    public function save($inputs)
+    public function save($inputs, $getId = false)
     {
         return User::create($inputs);
     }
@@ -32,6 +36,7 @@ class UserRepo implements UserEloquent{
 
     public function delete($id)
     {
+        User::where('id', $id)->courses->delete();
         return User::where('id', $id)->delete();
     }
 

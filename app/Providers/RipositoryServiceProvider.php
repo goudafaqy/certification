@@ -31,6 +31,12 @@ class RipositoryServiceProvider extends ServiceProvider
             'App\Http\Interfaces\Validation\ClassificationValidation',
             'App\Http\Repositories\Validation\ClassificationRepoValidation',
         );
+        $this->app->bind(
+            'App\Http\Interfaces\Eloquent\CourseEloquent',
+            'App\Http\Repositories\Eloquent\CourseRepo',
+            'App\Http\Interfaces\Validation\CourseValidation',
+            'App\Http\Repositories\Validation\CourseRepoValidation',
+        );
     }
 
     /**
