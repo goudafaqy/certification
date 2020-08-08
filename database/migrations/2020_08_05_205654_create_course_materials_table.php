@@ -19,6 +19,8 @@ class CreateCourseMaterialsTable extends Migration
             $table->string('name_ar');
             $table->string('type');
             $table->string('source');
+            $table->integer("course_id");
+            $table->integer("status");
             $table->text("description");
             $table->timestamps();
         });
