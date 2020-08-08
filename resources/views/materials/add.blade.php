@@ -8,11 +8,11 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">إضافة تصنيف</h3>
+                                <h3 class="widget-title">إضافة عنصر</h3>
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">
-                            <form id="add-classification-form" action="{{ route('save-materials') }}" method="POST">
+                            <form id="add-classification-form" action="{{ $route }}" method="POST">
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
                                     <div class="col-md-6">
@@ -29,9 +29,9 @@
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="cat_id"> نوع المادة</label>
                                             <select class="form-control @error('cat_id') is-invalid @enderror" id="type" name="type">
-                                                <option value="">--</option>
-                                                @foreach($categories as $category)
-                                                <option value="{{$category}}">{{$category}}</option>
+                                                <option value="">أختر نوع المادة</option>
+                                                @foreach($types as $type)
+                                                <option value="{{$type}}">{{$type}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

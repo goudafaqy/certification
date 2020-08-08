@@ -8,9 +8,12 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">مواد الدورة</h3>
+                                <h3 class="widget-title">مواد الدورة </h3>
+                                <a href="{{route('materials-add',['course_id' => $course_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة عنصر  جديد </a>
+
                             </div>
                         </div>
+
                         <div class="card-body" style="padding: 0 15px">
                             <div class="row justify-content-center">
                                 <div class="col-md-12 table-container">
@@ -38,6 +41,7 @@
                                             </button>
                                         </div>
                                     @endif
+
                                     <table id="dtBasicExample" class="table" width="100%">
                                         <thead>
                                             <tr>
