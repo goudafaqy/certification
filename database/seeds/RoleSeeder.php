@@ -12,19 +12,24 @@ class RoleSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            'role' => 'مديري النظام',
+            'role' => 'مدير النظام',
+            'name' => 'admin',
         ]); 
         DB::table('roles')->insert([
-            'role' => 'المدربين',
+            'role' => 'مدرب',
+            'name' => 'instructor',
         ]);
         DB::table('roles')->insert([
-            'role' => 'مسؤلي التخطيط',
+            'role' => 'مسؤول التخطيط',
+            'name' => 'planner',
         ]);
         DB::table('roles')->insert([
-            'role' => 'مسؤلي الدعم الفني',
+            'role' => 'مسؤول الدعم الفني',
+            'name' => 'support',
         ]);
         DB::table('roles')->insert([
-            'role' => 'المتدربين',
+            'role' => 'متدرب',
+            'name' => 'trainee',
         ]);
     }
 }

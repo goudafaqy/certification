@@ -20,7 +20,11 @@ class UserRepo implements UserEloquent{
 
     public function getByRole($role)
     {
-        return User::where('role', $role)->get();
+        return User::whereHas(
+            'roles', function($q) use($role){
+                $q->where('name', $role);
+            }
+        )->get();
     }
 
     public function saveRoles($roles, $id)
