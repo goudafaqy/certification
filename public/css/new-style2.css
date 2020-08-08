@@ -196,8 +196,8 @@ background: #fff;
     padding: 10px 50px;
 }
 
-.image-preview{
-    
+.filter-option-inner-inner{
+    text-align: right;
 }
 
 #true-image{
@@ -222,6 +222,14 @@ background: #fff;
     height: 35px;
     width: 100%;
     top: 22px;
+}
+
+.role-label{
+    font-size: 0.8em;
+    padding: 5px 10px; 
+    background-color: #333; 
+    color: #FFF; 
+    border-radius: 3px;
 }
 
 @media (min-width: 992px){

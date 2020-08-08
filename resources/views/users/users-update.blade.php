@@ -49,33 +49,10 @@
 
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="role">الدور الوظيفي</label>
-                                            <select class="form-control @error('role') is-invalid @enderror" id="role" name="role">
-                                                <option value="">--</option>
-                                                @if ($user->role == 'admin')
-                                                    <option value="admin" selected>مدير النظام</option>
-                                                @else
-                                                    <option value="admin">مدير النظام</option>
-                                                @endif
-                                                @if ($user->role == 'instructor')
-                                                    <option value="instructor" selected>مدرب</option>
-                                                @else
-                                                    <option value="instructor">مدرب</option>
-                                                @endif
-                                                @if ($user->role == 'trainee')
-                                                    <option value="trainee" selected>متدرب</option>
-                                                @else
-                                                    <option value="trainee">متدرب</option>
-                                                @endif
-                                                @if ($user->role == 'planner')
-                                                    <option value="planner" selected>مسؤول تخطيط</option>
-                                                @else
-                                                    <option value="planner">مسؤول تخطيط</option>
-                                                @endif
-                                                @if ($user->role == 'support')
-                                                    <option value="support" selected>مسئول دعم فنى</option>
-                                                @else
-                                                    <option value="support">مسئول دعم فنى</option>
-                                                @endif
+                                            <select multiple title="لا يوجد" class="form-control selectpicker @error('role') is-invalid @enderror" id="role" name="role[]">
+                                                @foreach($roles as $role)
+                                                <option @if(in_array($role->id, $selectedRoles)) selected @endif value="{{ $role->id }}">{{ $role->role }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         @error('role')
