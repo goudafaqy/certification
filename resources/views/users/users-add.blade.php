@@ -48,13 +48,10 @@
 
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="role">الدور الوظيفي</label>
-                                            <select class="form-control @error('role') is-invalid @enderror" id="role" name="role">
-                                                <option value="">--</option>
-                                                <option value="admin">مدير النظام</option>
-                                                <option value="instructor">مدرب</option>
-                                                <option value="trainee">متدرب</option>
-                                                <option value="planner">مسؤول تخطيط</option>
-                                                <option value="support">مسئول دعم فنى</option>
+                                            <select multiple title="لا يوجد" class="form-control selectpicker @error('role') is-invalid @enderror" id="role" name="role[]">
+                                                @foreach($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->role }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         @error('role')

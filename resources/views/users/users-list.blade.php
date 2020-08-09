@@ -60,14 +60,12 @@
                                                 <td class="text-center">{{ $user->username }}</td>
                                                 <td class="text-center">{{ $user->email }}</td>
                                                 <td class="text-center">
-                                                    @if($user->role == 'admin')
-                                                        مدير النظام
-                                                    @elseif($user->role == 'instructor')
-                                                        مدرب
-                                                    @elseif($user->role == 'trainee')
-                                                        متدرب
-                                                    @elseif($user->role == 'editor')
-                                                        مسؤول محتوى
+                                                    @if(count($user->roles) == 0)
+                                                        لا يوجد
+                                                    @else
+                                                        @foreach($user->roles as $role)
+                                                        <span class="role-label">{{$role->role}}</span>
+                                                        @endforeach
                                                     @endif
                                                 </td>
                                                 <td class="text-center">

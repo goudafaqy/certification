@@ -65,12 +65,12 @@ Auth::routes();
 
     // Course Materials routes ...
     Route::prefix('materials')->group(function () {
-        Route::get('list', 'CourseMaterialsController@list')->name('materials-list');
-        Route::get('add', 'CourseMaterialsController@add')->name('materials-add');
-        Route::get('update/{id}', 'CourseMaterialsController@update')->name('materials-update');
+        Route::get('{course_id}', 'CourseMaterialsController@list')->name('materials-list');
+        Route::get('add/{course_id}', 'CourseMaterialsController@add')->name('materials-add');
+        Route::get('update/{id}/{course_id}', 'CourseMaterialsController@update')->name('materials-update');
         Route::post('update', 'CourseMaterialsController@edit')->name('update-materials');
         Route::post('save', 'CourseMaterialsController@create')->name('save-materials');
-        Route::get('delete/{id}', 'CourseMaterialsController@delete')->name('delete-materials');
+        Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
     });
 
 Auth::routes();

@@ -9,23 +9,34 @@ class UserRepo implements UserEloquent{
     
     public function getAll()
     {
-        return User::all();
+        return User::with('roles')->get();
     }
 
 
     public function getById($id)
     {
-        return User::where('id', $id)->first();
+        return User::where('id', $id)->with('roles')->first();
     }
 
     public function getByRole($role)
     {
-        return User::where('role', $role)->get();
+        return User::whereHas(
+            'roles', function($q) use($role){
+                $q->where('name', $role);
+            }
+        )->get();
+    }
+
+    public function saveRoles($roles, $id)
+    {
+        $user = User::find($id);
+        $user->roles()->detach();
+        $user->roles()->attach($roles);
     }
 
     public function save($inputs, $getId = false)
     {
-        return User::create($inputs);
+        return ($getId) ? User::insertGetId($inputs) : User::create($inputs) ;
     }
 
     public function update($inputs, $id)

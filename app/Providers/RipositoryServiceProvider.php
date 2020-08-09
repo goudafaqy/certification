@@ -20,6 +20,12 @@ class RipositoryServiceProvider extends ServiceProvider
             'App\Http\Repositories\Validation\UserRepoValidation',
         );
         $this->app->bind(
+            'App\Http\Interfaces\Eloquent\RoleEloquent',
+            'App\Http\Repositories\Eloquent\RoleRepo',
+            'App\Http\Interfaces\Validation\RoleValidation',
+            'App\Http\Repositories\Validation\RoleRepoValidation',
+        );
+        $this->app->bind(
             'App\Http\Interfaces\Eloquent\CategoryEloquent',
             'App\Http\Repositories\Eloquent\CategoryRepo',
             'App\Http\Interfaces\Validation\CategoryValidation',

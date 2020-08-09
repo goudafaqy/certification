@@ -1,43 +1,52 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Repositories\Eloquent\MaterialRepo;
+use App\Http\Repositories\Validation\MaterialRepoValidation;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Helpers\FileHelper;
+use App\Http\Helpers\GenerateHelper;
 
 class CourseMaterialsController extends Controller
 {
+    var $validation;
+    var $MaterialRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+
+        MaterialRepoValidation $validation,
+        MaterialRepo $MaterialRepo
+    )
     {
+        $this->validation = $validation;
+        $this->MaterialRepo = $MaterialRepo;
         $this->middleware('auth');
     }
 
     /**
      * List the application classification ...
      */
-    public function list()
+    public function list($course_id)
     {
-        $materials = DB::table('course_materials')->get();
-        
-        $categories = ['Trainee guide','Instructor Guide','Book','Extra recourses','Image','Video'];
-            
-        return view("materials.list", ['materials' => $materials , 'categories' => $categories]);
+        $materials = $this->MaterialRepo->getAll($course_id);
+        return view("materials.list", ['materials' => $materials  ,'course_id'=>$course_id]);
     }
 
 
     /**
      * Get add classification page ...
      */
-    public function add()
+    public function add($course_id)
     {
-        $categories = ['Trainee guide','Instructor Guide','Book','Extra recourses','Image','Video'];
-        return view("materials.add", ['categories' => $categories]);
+        $material = new $this->MaterialRepo();
+        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
+        $title = __('app.New Material'); 
+        $route = route('save-materials',['course_id'=>$course_id]);
+        return view("materials.form", ['types' => $types ,'route'=>$route ,'title'=>$title ,'material' => $material ,'course_id' =>$course_id]);
     }
 
 
@@ -48,26 +57,20 @@ class CourseMaterialsController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'name_ar'  => 'required',
-            'name_en'  => 'required',
-            'type'    => 'required',
-            'description'    => 'required',
-            'source'    => 'required'
-        ]);
+        
+        $validator = $this->validation->doValidate($inputs, 'insert');
         
         if ($validator->fails()) {
-            return redirect('materials/add')->withErrors($validator)->withInput();
+            
+            return redirect('materials/add/'.$inputs['course_id'])->withErrors($validator)->withInput();
         }else{
-            $classification = DB::table('course_materials')->insert([
-                'name_ar'  => $inputs['name_ar'],
-                'name_en'  => $inputs['name_en'],
-                'type'    => $inputs['type'],
-                'description'    => $inputs['description'],
-                'source'    => $inputs['source']
-            ]);
-            if($classification){
-                return redirect('materials/list')->with('added', 'تم إضافة المادة  بنجاح');
+            if($request->file()) {
+                $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
+            }
+            $inputs['source'] = $filePath;
+            $material = $this->MaterialRepo->save($inputs);
+            if($material){
+                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Auccessfully'));
             }
         }
     }
@@ -78,9 +81,11 @@ class CourseMaterialsController extends Controller
      */
     public function update($id)
     {
-        $material = DB::table('course_materials')->where('id', $id)->first();
-        $categories = ['Trainee guide','Instructor Guide','Book','Extra recourses','Image','Video'];
-        return view("materials.update", ['material' => $material, 'categories' => $categories]);
+        $material = $this->MaterialRepo->getById($id);
+        $route = route('update-materials',['course_id'=> $material->course_id ,'id'=>$id]);
+        $title = __('app.Update Material'); 
+        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
+        return view("materials.form", ['material' => $material, 'types' => $types , 'route' => $route, 'title' =>  $title ,'course_id'=>$material->course_id]);
     }
 
     /**
@@ -90,26 +95,19 @@ class CourseMaterialsController extends Controller
     {
         $inputs = $request->input();
 
-        $validator = Validator::make($inputs,[
-            'name_ar'  => 'required',
-            'name_en'  => 'required',
-            'type'    => 'required',
-            'description'    => 'required',
-            'source'    => 'required'
-        ]);
-        
+        $validator = $this->validation->doValidate($inputs, 'update');     
         if ($validator->fails()) {
             return redirect('materials/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
-            $classification = DB::table('materials')->where('id', $inputs['id'])->update([
-                'name_ar'  => $inputs['name_ar'],
-                'name_en'  => $inputs['name_en'],
-                'type'    => $inputs['type'],
-                'description'    => $inputs['description'],
-                'source'    => $inputs['source'],
-            ]);
+            $filePath = '';
+            if($request->file()) {
+                $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
+            }
+            $inputs['source'] = $filePath;
+            unset($inputs['_token']);
+            $classification = $this->MaterialRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('materials/list')->with('updated', 'تمت تعديل بيانات المادة بنجاح');
+                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Auccessfully'));
             }
         }
     }
@@ -118,11 +116,11 @@ class CourseMaterialsController extends Controller
     /**
      * Delete classification date ...
      */
-    public function delete($id)
+    public function delete($id,$course_id)
     {
-        $result = DB::table('course_materials')->where('id', '=', $id)->delete();
+        $result = $this->MaterialRepo->delete($id);
         if($result){
-            return redirect('materials/list')->with('deleted', 'تم حذف المادة بنجاح');
+            return redirect('materials/'.$course_id)->with('deleted', __('app.Material Deleted Auccessfully'));
         }
     }
 }
