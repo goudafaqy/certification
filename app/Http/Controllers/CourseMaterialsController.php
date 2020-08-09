@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Validation\MaterialRepoValidation;
 use Illuminate\Http\Request;
+use App\Http\Helpers\FileHelper;
+use App\Http\Helpers\GenerateHelper;
 
 class CourseMaterialsController extends Controller
 {
@@ -40,9 +42,11 @@ class CourseMaterialsController extends Controller
      */
     public function add($course_id)
     {
-        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image','Video'];
+        $material = new $this->MaterialRepo();
+        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
+        $title = __('app.New Material'); 
         $route = route('save-materials',['course_id'=>$course_id]);
-        return view("materials.add", ['types' => $types ,'route'=>$route]);
+        return view("materials.form", ['types' => $types ,'route'=>$route ,'title'=>$title ,'material' => $material ,'course_id' =>$course_id]);
     }
 
 
@@ -60,9 +64,13 @@ class CourseMaterialsController extends Controller
             
             return redirect('materials/add/'.$inputs['course_id'])->withErrors($validator)->withInput();
         }else{
-            $classification = $this->MaterialRepo->save($inputs);
-            if($classification){
-                return redirect('materials/list')->with('added', __('app.Material Added Auccessfully'));
+            if($request->file()) {
+                $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
+            }
+            $inputs['source'] = $filePath;
+            $material = $this->MaterialRepo->save($inputs);
+            if($material){
+                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Auccessfully'));
             }
         }
     }
@@ -73,9 +81,11 @@ class CourseMaterialsController extends Controller
      */
     public function update($id)
     {
-        $classification = $this->MaterialRepo->getById($id);
-        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image','Video'];
-        return view("materials.update", ['classification' => $classification, 'types' => $types]);
+        $material = $this->MaterialRepo->getById($id);
+        $route = route('update-materials',['course_id'=> $material->course_id ,'id'=>$id]);
+        $title = __('app.Update Material'); 
+        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
+        return view("materials.form", ['material' => $material, 'types' => $types , 'route' => $route, 'title' =>  $title ,'course_id'=>$material->course_id]);
     }
 
     /**
@@ -89,10 +99,15 @@ class CourseMaterialsController extends Controller
         if ($validator->fails()) {
             return redirect('materials/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
+            $filePath = '';
+            if($request->file()) {
+                $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
+            }
+            $inputs['source'] = $filePath;
             unset($inputs['_token']);
             $classification = $this->MaterialRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('materials/list')->with('updated', 'تمت تعديل بيانات التصنيف بنجاح');
+                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Auccessfully'));
             }
         }
     }
@@ -101,11 +116,11 @@ class CourseMaterialsController extends Controller
     /**
      * Delete classification date ...
      */
-    public function delete($id)
+    public function delete($id,$course_id)
     {
         $result = $this->MaterialRepo->delete($id);
         if($result){
-            return redirect('materials/list')->with('deleted', 'تم حذف التصنيف بنجاح');
+            return redirect('materials/'.$course_id)->with('deleted', __('app.Material Deleted Auccessfully'));
         }
     }
 }

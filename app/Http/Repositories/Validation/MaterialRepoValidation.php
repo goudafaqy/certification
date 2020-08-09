@@ -2,10 +2,10 @@
 
 namespace App\Http\Repositories\Validation;
 
-use App\Http\Interfaces\Validation\CourseValidation;
+use App\Http\Interfaces\Validation\MaterialValidation;
 use Illuminate\Support\Facades\Validator;
 
-class MaterialRepoValidation implements CourseValidation{
+class MaterialRepoValidation implements MaterialValidation{
     
     private function getRules(){
         return [
@@ -14,7 +14,7 @@ class MaterialRepoValidation implements CourseValidation{
                 'name_en' => 'required',
                 'type' => 'required',
                 'course_id' => 'required',
-                'source' => 'required',
+                'source' => '',
                 'description' => 'required'
             ],
             'update' => [
@@ -22,7 +22,7 @@ class MaterialRepoValidation implements CourseValidation{
                 'name_en' => 'required',
                 'type' => 'required',
                 'course_id' => 'required',
-                'source' => 'required',
+                'source' => '',
                 'description' => 'required'
             ],
         ];
