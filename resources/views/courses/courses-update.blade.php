@@ -92,6 +92,105 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="row" style="padding: 10px 50px;">
+                                    <div class="col-md-4">
+                                        <div class="form-group" style="margin-top: 20px;">
+                                            <label for="pass_grade">درجة النجاح</label>
+                                            <input value="{{ $course->pass_grade }}" type="number" class="form-control @error('pass_grade') is-invalid @enderror" id="pass_grade" name="pass_grade">
+                                        </div>
+                                        @error('pass_grade')
+                                            <span class="text-danger err-msg-pass_grade" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-check radio-grade">
+                                            @if($course->pass_unit == 'p')
+                                                <input class="form-check-input" type="radio" name="pass_unit" id="percent" value="p" checked>
+                                            @else
+                                                <input class="form-check-input" type="radio" name="pass_unit" id="percent" value="p">
+                                            @endif
+                                            <label class="form-check-label" for="percent">
+                                                نسبة %
+                                            </label>
+                                        </div>
+                                        <div class="form-check radio-grade">
+                                            @if($course->pass_unit == 'n')
+                                                <input class="form-check-input" type="radio" name="pass_unit" id="number" value="n" checked>
+                                            @else
+                                                <input class="form-check-input" type="radio" name="pass_unit" id="number" value="n">
+                                            @endif
+                                            <label class="form-check-label" for="number">
+                                                رقم
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" style="margin-top: 15px;">
+                                            <label for="skill_level">مستوى الدورة</label>
+                                            <select class="form-control @error('skill_level') is-invalid @enderror" id="skill_level" name="skill_level">
+                                                <option @if($course->skill_level == 'b') selected @endif value="b">مبتدئ</option>
+                                                <option @if($course->skill_level == 'm') selected @endif value="m">متوسط</option>
+                                                <option @if($course->skill_level == 'a') selected @endif value="a">متقدم</option>
+                                            </select>
+                                        </div>
+                                        @error('skill_level')
+                                            <span class="text-danger err-msg-skill_level" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-check" style="display: inline-block; position: relative; top: 45px">
+                                            @if($course->assi_check)
+                                                <input checked style="cursor: pointer;" type="checkbox" class="form-check-input" id="assi_check" name="assi_check">
+                                            @else
+                                                <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="assi_check" name="assi_check">
+                                            @endif
+                                            <label style="font-size: 0.9em;" class="form-check-label" for="assi_check">واجبات</label>
+                                        </div>
+                                        <div class="form-check" style="margin-right: 10px; display: inline-block; position: relative; top: 45px">
+                                            @if($course->exam_check)
+                                                <input checked style="cursor: pointer;" type="checkbox" class="form-check-input" id="exam_check" name="exam_check">
+                                            @else
+                                                <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="exam_check" name="exam_check">
+                                            @endif
+                                            <label style="font-size: 0.9em;" class="form-check-label" for="exam_check">إمتحانات</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 10px 50px;">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="reg_start_date">تاريخ بدء التسجيل</label>
+                                            <div class="date" data-provide="datepicker">
+                                                <input value="{{ $course->reg_start_date }}" type="text" class="form-control @error('reg_start_date') is-invalid @enderror" id="reg_start_date" name="reg_start_date">
+                                            </div>
+                                            
+                                            @error('reg_start_date')
+                                                <span class="text-danger err-msg-reg_start_date" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div> 
+                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="reg_end_date">تاريخ نهاية التسجيل</label>
+                                            <div class="date" data-provide="datepicker">
+                                                <input value="{{ $course->reg_end_date }}" type="text" class="form-control @error('reg_end_date') is-invalid @enderror" id="reg_end_date" name="reg_end_date">
+                                            </div>
+                                            
+                                            @error('reg_end_date')
+                                                <span class="text-danger err-msg-reg_end_date" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div> 
+                                    </div>
+                                </div>
                                 <div class="row" style="padding: 5px 50px;">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -108,16 +207,17 @@
                                 <div class="row justify-content-center" style="padding: 5px 50px;">
                                     <div class="col-md-3">
                                         <div class="form-group" style="margin-top: 5px;">
-                                            <label for="class_id">نوع الدورة</label>
-                                            <select class="form-control @error('class_id') is-invalid @enderror" id="type" name="type">
+                                            <label for="type">نوع الدورة</label>
+                                            <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
                                                 <option value="">--</option>
                                                 <option <?php if($course->type == 'recorded'){ ?> selected <?php } ?> value="recorded">دورة مسجلة</option>
                                                 <option <?php if($course->type == 'face_to_face'){ ?> selected <?php } ?> value="face_to_face">حضور فعلي</option>
                                                 <option <?php if($course->type == 'live'){ ?> selected <?php } ?> value="live">حضور أونلاين</option>
+                                                <option <?php if($course->type == 'blended'){ ?> selected <?php } ?> value="blended">تعليم مدمج</option>
                                             </select>
                                         </div>
-                                        @error('class_id')
-                                            <span class="text-danger err-msg-class_id" role="alert">
+                                        @error('type')
+                                            <span class="text-danger err-msg-type" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -153,20 +253,36 @@
 @include('common.dashboard-footer')
 
 <script>
+    $('#reg_start_date').on('change', function(ev){
+        $('.datepicker-inline').hide();
+    });
+    $('#reg_end_date').on('change', function(ev){
+        $('.datepicker-inline').hide();
+    });
     $(document).ready(function () {
+        $('.datepicker').datepicker({
+            inline: true,
+            sideBySide: false,
+            format: 'mm/dd/yyyy',
+            startDate: '-3d'
+        });
         $("#title_ar").keypress(function(){
             $(".err-msg-title_ar").hide();
             $("#title_ar").removeClass("is-invalid");
         });
-        $("#instructor_id").keypress(function(){
+        $("#instructor_id").change(function(){
             $(".err-msg-instructor_id").hide();
             $("#instructor_id").removeClass("is-invalid");
         });
-        $("#cat_id").keypress(function(){
+        $("#cat_id").change(function(){
             $(".err-msg-cat_id").hide();
             $("#cat_id").removeClass("is-invalid");
         });
-        $("#class_id").keypress(function(){
+        $("#type").change(function(){
+            $(".err-msg-type").hide();
+            $("#type").removeClass("is-invalid");
+        });
+        $("#class_id").change(function(){
             $(".err-msg-class_id").hide();
             $("#class_id").removeClass("is-invalid");
         });
@@ -182,6 +298,22 @@
             $(".err-msg-discount").hide();
             $("#discount").removeClass("is-invalid");
         });
+        $("#pass_grade").keypress(function(){
+            $(".err-msg-pass_grade").hide();
+            $("#pass_grade").removeClass("is-invalid");
+        });
+        $("#skill_level").change(function(){
+            $(".err-msg-skill_level").hide();
+            $("#skill_level").removeClass("is-invalid");
+        });
+        $("#reg_end_date").change(function(){
+            $(".err-msg-reg_end_date").hide();
+            $("#reg_end_date").removeClass("is-invalid");
+        });
+        $("#reg_start_date").change(function(){
+            $(".err-msg-reg_start_date").hide();
+            $("#reg_start_date").removeClass("is-invalid");
+        });
         $('#true-image').change(function(e){ 
             var fileName = e.target.files[0].name;
             $("#imageName").show();
@@ -189,7 +321,6 @@
             $(".err-msg-image").hide();
         });
     });
-
     $(document).on("change", '#cat_id', function () {
         var stateUrl = "{{ route('class-by-cat') }}";
 

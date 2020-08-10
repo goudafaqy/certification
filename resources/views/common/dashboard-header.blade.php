@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/simple-calendar.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>    <link rel="stylesheet" href="{{ asset('css/theme-dashboard.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new-style2.css') }}">
     <!-- End Style -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CategoryRepo;
 use App\Http\Repositories\Validation\CourseRepoValidation;
 use App\Http\Repositories\Eloquent\CourseRepo;
@@ -79,6 +80,11 @@ class CourseController extends Controller
             }
             $inputs['image'] = $filePath;
             unset($inputs['_token']);
+            $inputs['assi_check'] = (isset($inputs['assi_check']) && $inputs['assi_check'] == 'on') ? 1 : 0;
+            $inputs['exam_check'] = (isset($inputs['exam_check']) && $inputs['exam_check'] == 'on') ? 1 : 0;
+            $inputs['reg_start_date'] = DateHelper::getDateFormate($inputs['reg_start_date']);
+            $inputs['reg_end_date'] = DateHelper::getDateFormate($inputs['reg_end_date']);
+
             $courseId = $this->courseRepo->save($inputs, true); 
             if($courseId){
                 $this->courseRepo->update([
@@ -115,7 +121,13 @@ class CourseController extends Controller
             if($request->file()) {
                 $filePath = FileHelper::uploadFiles($request->file('image'), 'uploads/courses/');
             }
+            $inputs['image'] = $filePath;
             unset($inputs['_token']);
+            $inputs['assi_check'] = (isset($inputs['assi_check']) && $inputs['assi_check'] == 'on') ? 1 : 0;
+            $inputs['exam_check'] = (isset($inputs['exam_check']) && $inputs['exam_check'] == 'on') ? 1 : 0;
+            $inputs['reg_start_date'] = DateHelper::getDateFormate($inputs['reg_start_date']);
+            $inputs['reg_end_date'] = DateHelper::getDateFormate($inputs['reg_end_date']);
+
             $course = $this->courseRepo->update($inputs, $inputs['id']); 
             if($course){
                 return redirect('courses/list')->with('updated', 'تمت تعديل بيانات الدورة بنجاح');

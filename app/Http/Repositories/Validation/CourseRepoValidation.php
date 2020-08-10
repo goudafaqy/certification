@@ -18,6 +18,10 @@ class CourseRepoValidation implements CourseValidation{
                 'class_id' => 'required',
                 'price' => 'required',
                 'discount' => 'required',
+                'pass_grade' => 'required',
+                'skill_level' => 'required',
+                'reg_start_date' => 'required',
+                'reg_end_date' => 'required',
             ],
             'update' => [
                 'title_ar' => 'required',
@@ -29,6 +33,10 @@ class CourseRepoValidation implements CourseValidation{
                 'class_id' => 'required',
                 'price' => 'required',
                 'discount' => 'required',
+                'pass_grade' => 'required',
+                'skill_level' => 'required',
+                'reg_start_date' => 'required',
+                'reg_end_date' => 'required',
             ],
         ];
     }
