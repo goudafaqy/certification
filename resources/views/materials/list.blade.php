@@ -60,8 +60,8 @@
                                                 <td class="text-center">{{ $material->name_en }}</td>
                                                 <td class="text-center">{{ $material->type }}</td>
                                                 <td class="text-center">
-                                                    <a class="btn btn-info" href="/materials/update/<?php echo $material->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
-                                                    <a id="delete" href="/materials/delete/<?php echo $material->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                    <a class="btn btn-info" href="{{route('materials-update',['course_id' => $material->course_id ,'id' => $material->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <a id="delete" href="{{route('delete-materials',['course_id' => $material->course_id ,'id' => $material->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

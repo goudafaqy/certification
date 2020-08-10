@@ -2,10 +2,10 @@
 
 namespace App\Http\Repositories\Eloquent;
 
-use App\Http\Interfaces\Eloquent\CourseEloquent;
+use App\Http\Interfaces\Eloquent\MaterialEloquent;
 use App\Models\Material;
 
-class MaterialRepo implements CourseEloquent{
+class MaterialRepo implements MaterialEloquent{
     
     public function getAll($course_id = '')
     {
