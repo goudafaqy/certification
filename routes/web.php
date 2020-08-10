@@ -73,6 +73,31 @@ Auth::routes();
         Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
     });
 
+
+     // Course Sections routes ...
+     Route::prefix('sections')->group(function () {
+
+        Route::get('{course_id}', 'CourseSectionsController@list')->name('sections-list');
+        Route::get('add/{course_id}', 'CourseSectionsController@add')->name('sections-add');
+        Route::get('update/{id}/{course_id}', 'CourseSectionsController@update')->name('sections-update');
+        Route::post('update', 'CourseSectionsController@edit')->name('update-sections');
+        Route::post('save', 'CourseSectionsController@create')->name('save-sections');
+        Route::get('delete/{id}/{course_id}', 'CourseSectionsController@delete')->name('delete-sections');
+    });
+
+    // Course Units routes ...
+    Route::prefix('units')->group(function () {
+
+        Route::get('{section_id}', 'CourseUnitsController@list')->name('units-list');
+        Route::get('add/{section_id}', 'CourseUnitsController@add')->name('units-add');
+        Route::get('update/{id}/{section_id}', 'CourseUnitsController@update')->name('units-update');
+        Route::post('update', 'CourseUnitsController@edit')->name('update-units');
+        Route::post('save', 'CourseUnitsController@create')->name('save-units');
+        Route::get('delete/{id}/{section_id}', 'CourseUnitsController@delete')->name('delete-units');
+    
+    });
+
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
