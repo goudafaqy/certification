@@ -68,6 +68,7 @@ class CourseMaterialsController extends Controller
                 $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
             }
             $inputs['source'] = $filePath;
+            $inputs['status'] = 1;
             $material = $this->MaterialRepo->save($inputs);
             if($material){
                 return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Auccessfully'));
@@ -105,6 +106,7 @@ class CourseMaterialsController extends Controller
             }
             $inputs['source'] = $filePath;
             unset($inputs['_token']);
+            $inputs['status'] = 0;
             $classification = $this->MaterialRepo->update($inputs, $inputs['id']);
             if($classification){
                 return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Auccessfully'));

@@ -23,6 +23,7 @@ class Material extends Model
         'name_en',
         'type', 
         'source', 
+        'status', 
         'course_id',
         'description',
         'created_at', 

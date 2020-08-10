@@ -21,7 +21,7 @@ class MaterialRepo implements MaterialEloquent{
 
     public function save($inputs, $getId = false)
     {
-        return ($getId) ? Material::insertGetId($inputs) : Material::create($inputs) ;
+        return ($getId) ? Material::insertGetId($inputs) : Material::create($inputs);
     }
 
     public function update($inputs, $id)
