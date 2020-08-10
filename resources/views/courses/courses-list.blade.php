@@ -60,7 +60,17 @@
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $course->code }}</td>
                                                 <td class="text-center">{{ $course->title_ar }}</td>
-                                                <td class="text-center">{{ $course->type }}</td>
+                                                <td class="text-center">
+                                                    @if($course->type == 'recorded')
+                                                        دورة مسجلة
+                                                    @elseif($course->type == 'face_to_face')
+                                                        حضور فعلي   
+                                                    @elseif($course->type == 'live')
+                                                        حضور أونلاين
+                                                    @else
+                                                        تعليم مدمج
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">{{ $course->instructor->name_ar }}</td>
                                                 <td class="text-center">{{ $course->category->title_ar }}</td>
                                                 <td class="text-center">{{ $course->classification->title_ar }}</td>

@@ -232,6 +232,21 @@ background: #fff;
     border-radius: 3px;
 }
 
+.radio-grade{
+    display: inline-block;
+    margin-right: 5px;
+    position: relative;
+    top: 48px;
+}
+.date div{
+    position: absolute;
+    z-index: 10;
+    background-color: lavender;
+}
+.radio-grade input{
+    cursor: pointer;
+}
+
 @media (min-width: 992px){
 	.navbar-light .dropdown-menu .dropdown-toggle:after{
 		border-top: .3em solid transparent;
