@@ -71,7 +71,7 @@ class CourseMaterialsController extends Controller
             $inputs['status'] = 1;
             $material = $this->MaterialRepo->save($inputs);
             if($material){
-                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Auccessfully'));
+                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Element Added Auccessfully'));
             }
         }
     }
@@ -106,10 +106,9 @@ class CourseMaterialsController extends Controller
             }
             $inputs['source'] = $filePath;
             unset($inputs['_token']);
-            $inputs['status'] = 0;
             $classification = $this->MaterialRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Auccessfully'));
+                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Element Updated Auccessfully'));
             }
         }
     }
@@ -122,7 +121,7 @@ class CourseMaterialsController extends Controller
     {
         $result = $this->MaterialRepo->delete($id);
         if($result){
-            return redirect('materials/'.$course_id)->with('deleted', __('app.Material Deleted Auccessfully'));
+            return redirect('materials/'.$course_id)->with('deleted', __('app.Element Deleted Auccessfully'));
         }
     }
 }

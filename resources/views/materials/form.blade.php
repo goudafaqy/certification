@@ -1,5 +1,5 @@
 @include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'classifications-add'])
+@include('common.sidebar', ['active' => 'materials-add'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -20,7 +20,7 @@
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name_ar">الاسم باللغة العربية</label>
+                                            <label for="name_ar">{{__('app.Arabic Title')}}</label>
                                             <input type="text" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" value="{{$material->name_ar??''}}">
                                         </div>
                                         @error('name_ar')
@@ -30,9 +30,9 @@
                                         @enderror
 
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <label for="cat_id"> نوع المادة</label>
+                                            <label for="cat_id">{{__('app.Material Type')}}</label>
                                             <select class="form-control @error('cat_id') is-invalid @enderror" id="type" name="type">
-                                                <option value="">أختر نوع المادة</option>
+                                                <option value="">{{__('app.Material Type')}}</option>
                                                 @foreach($types as $type)
                                                  <option <?php if( (isset($material->type)) && $material->type == $type){ ?> selected <?php } ?> value="{{$type}}">{{$type}}</option>
                                                 @endforeach
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name_en">الاسم باللغة الإنجليزية</label>
+                                            <label for="name_en">{{__('app.English Title')}}</label>
                                             <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en" value="{{$material->name_en??''}}">
                                         </div>
                                         @error('name_en')
@@ -56,7 +56,7 @@
                                         @enderror
 
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <label for="description">التفاصيل</label>
+                                            <label for="description">{{__('app.Details')}}</label>
                                             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{$material->description??''}}</textarea>
                                         </div>
                                         @error('description')
@@ -70,7 +70,7 @@
                                         <div class="form-group">
                                             
                                             <input type="file" class="form-control-file" id="true-image" name="source">
-                                            <button class="btn btn-success" type="button" id="fake-image">رفع المصدر</button>
+                                            <button class="btn btn-success" type="button" id="fake-image">{{__('app.Upload Source')}}</button>
                                            
                                         </div>
 
@@ -98,7 +98,7 @@
                                     </div>
 
                                     
-                                    <button style="width: 25%; margin-top: 50px;" type="submit" class="btn btn-primary">حفظ</button>
+                                    <button style="width: 25%; margin-top: 50px;" type="submit" class="btn btn-primary">{{__('app.Save')}}</button>
                                 </div>
                             </form>
                         </div>
