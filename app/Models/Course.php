@@ -30,6 +30,7 @@ class Course extends Model
         'discount', 
         'type', 
         'image', 
+        'seats', 
         'created_at', 
         'updated_at',
     ];
@@ -56,5 +57,13 @@ class Course extends Model
     public function instructor()
     {
         return $this->belongsTo('App\Models\User', 'instructor_id');
+    }
+
+    /**
+     * Get the appointments for the course.
+     */
+    public function appointments()
+    {
+        return $this->hasMany('App\Models\CourseAppintment');
     }
 }

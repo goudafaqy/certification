@@ -190,6 +190,17 @@
                                 <div class="row justify-content-center" style="padding: 5px 50px;">
                                     <div class="col-md-3">
                                         <div class="form-group" style="margin-top: 5px;">
+                                            <label for="seats">عدد المقاعد</label>
+                                            <input value="{{ old('seats') }}" type="number" class="form-control @error('seats') is-invalid @enderror" id="seats" name="seats">
+                                        </div>
+                                        @error('seats')
+                                            <span class="text-danger err-msg-seats" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group" style="margin-top: 5px;">
                                             <label for="type">نوع الدورة</label>
                                             <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
                                                 <option value="">--</option>
@@ -211,7 +222,7 @@
                                             <button class="btn btn-success" type="button" id="fake-image">رفع الصورة</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="image-preview">
                                             <span id="imageName" style="display: none; position: relative; top: 35px; left: 20px; background-color: #888; color: #FFF; padding: 7px 20px; border-radius: 5px;"></span>
                                         @error('image')
@@ -277,6 +288,10 @@
         $("#price").keypress(function(){
             $(".err-msg-price").hide();
             $("#price").removeClass("is-invalid");
+        });
+        $("#seats").keypress(function(){
+            $(".err-msg-seats").hide();
+            $("#seats").removeClass("is-invalid");
         });
         $("#discount").keypress(function(){
             $(".err-msg-discount").hide();

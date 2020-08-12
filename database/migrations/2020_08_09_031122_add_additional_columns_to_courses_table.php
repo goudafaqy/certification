@@ -35,7 +35,16 @@ class AddAdditionalColumnsToCoursesTable extends Migration
     public function down()
     {
         Schema::table('courses', function (Blueprint $table) {
-            //
+            $table->dropColumn('pass_unit');
+            $table->dropColumn('pass_grade');
+            $table->dropColumn('skill_level');
+            $table->dropColumn('reg_start_date');
+            $table->dropColumn('reg_end_date');
+            $table->dropColumn('lec_num');
+            $table->dropColumn('course_hours');
+            $table->dropColumn('course_days');
+            $table->dropColumn('assi_check');
+            $table->dropColumn('exam_check');
         });
     }
 }
