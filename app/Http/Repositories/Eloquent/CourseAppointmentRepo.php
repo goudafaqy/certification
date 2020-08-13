@@ -15,7 +15,7 @@ class CourseAppointmentRepo implements CourseAppointmentEloquent{
 
     public function getById($id)
     {
-        return CourseAppintment::where('id', $id)->first();
+        return CourseAppintment::find($id);
     }
 
 
