@@ -114,6 +114,14 @@
                         <div class="card-body" style="padding: 30px 20px">
                             <div class="row" style="padding: 0 15px">
                                 <div class="col-md-12">
+                                    @if (session('deleted'))
+                                        <div class="alert alert-success alert-dismissible fade show">
+                                            {{ session('deleted') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
                                     <table id="dtBasicExample" class="table" width="100%">
                                         <thead>
                                             <tr>
@@ -148,7 +156,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a id="delete" href="/course/appointments/delete/<?php echo $appointment->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                    <a id="delete" href="/courses/appointments/delete/<?php echo $appointment->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

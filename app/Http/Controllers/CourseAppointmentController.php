@@ -71,4 +71,17 @@ class CourseAppointmentController extends Controller
         }
         return ($this->courseAppRepo->saveBulk($data)) ? true : false ;
     }
+
+    /**
+     * Delete appointment ...
+     */
+    public function delete($id)
+    {
+        $appointment = $this->courseAppRepo->getById($id);
+        $course_id = $appointment->course_id;
+        $result = $appointment->delete($id);
+        if($result){
+            return redirect('courses/appointments/'.$course_id)->with('deleted', 'تم حذف الموعد بنجاح');
+        }
+    }
 }
