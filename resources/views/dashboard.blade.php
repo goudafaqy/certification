@@ -54,7 +54,7 @@
                                     <div class="owl-carousel basic">
                                         <div class="card">
                                             <div class="news">
-                                                <img src="images/albom2.jpg" alt="" class="img-thumbnail">
+                                                <img src="{{ asset('images/albom2.jpg') }}" alt="" class="img-thumbnail">
                                                 <div class="details">
                                                     <h3>
                                                         <a href="#">مركز التدريب العدلي</a>

@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide" data-test-set="test" style="background-image:url(images/slider/2.jpg)">
+                        <div class="swiper-slide" data-test-set="test" style="background-image:url({{ asset('images/slider/2.jpg') }})">
                             <div class="cover">
                                 <div class="container">
                                     <div class="header-content">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         
-                        <div class="swiper-slide" data-test-set="test" style="background-image:url(images/slider/3.jpg)">
+                        <div class="swiper-slide" data-test-set="test" style="background-image:url({{ asset('images/slider/3.jpg') }})">
                             <div class="cover">
                                 <div class="container">
                                     <div class="header-content">
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         
-                        <div class="swiper-slide" data-test-set="test" style="background-image:url(images/slider/4.jpg)">
+                        <div class="swiper-slide" data-test-set="test" style="background-image:url({{ asset('images/slider/4.jpg') }})">
                             <div class="cover">
                                 <div class="container">
                                     <div class="header-content">
@@ -83,7 +83,7 @@
                                 <div class="smicon-box iconbox-left">
                                     <div class="boxes-icon"><a class="icon-box-link" target="_self" href="#"><span
                                             class="inner-icon"><span class="icon icon-images">
-                                        <img src="images/hours.svg" alt=""></span></span></a>
+                                        <img src="{{ asset('images/hours.svg') }}" alt=""></span></span></a>
                                     </div>
                                     <div class="content-inner">
                                         <div><h3><a class="smicon-box-link" target="_self" href="#"> الساعات </a></h3></div>
@@ -100,7 +100,7 @@
                                 <div class="smicon-box iconbox-left">
                                     <div class="boxes-icon"><a class="icon-box-link" target="_self" href="#"><span
                                             class="inner-icon"><span class="icon icon-images">
-                                        <img src="images/participates.svg" alt=""></span></span></a>
+                                        <img src="{{ asset('images/participates.svg') }}" alt=""></span></span></a>
                                     </div>
                                     <div class="content-inner">
                                         <div><h3><a class="smicon-box-link" target="_self" href="#"> المشاركين</a></h3></div>
@@ -117,7 +117,7 @@
                                 <div class="smicon-box iconbox-left">
                                     <div class="boxes-icon"><a class="icon-box-link" target="_self" href="#"><span
                                             class="inner-icon"><span class="icon icon-images">
-                                        <img src="images/programs.svg" alt=""></span></span></a>
+                                        <img src="{{ asset('images/programs.svg') }}" alt=""></span></span></a>
                                     </div>
                                     <div class="content-inner">
                                         <div><h3><a class="smicon-box-link" target="_self" href="#"> البرامج </a></h3></div>
@@ -134,7 +134,7 @@
                                 <div class="smicon-box iconbox-left">
                                     <div class="boxes-icon"><a class="icon-box-link" target="_self" href="#"><span
                                             class="inner-icon"><span class="icon icon-images">
-                                        <img src="images/suitecase.svg"></span></span></a>
+                                        <img src="{{ asset('images/suitecase.svg') }}"></span></span></a>
                                     </div>
                                     <div class="content-inner">
                                         <div><h3><a class="smicon-box-link" target="_self" href="#"> الحقائب </a></h3></div>
@@ -188,13 +188,13 @@
                         <div class="item">
                             <div class="course-item-wrapper">
                                 <div class="course-thumbnail">
-                                    <a href="#"><img src="images/2.jpg" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/2.jpg') }}" alt=""></a>
                                     <div class="price">$55.00</div>
                                 </div>
                                 <div class="thim-course-content">
                                     <div class="course-author">
                                         <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
+                                            <img alt="" src="{{ asset('images/face.png') }}" class="avatar avatar-96 photo">
                                             <div class="author-contain">
                                                 <label>المعلم</label>
                                                 <div class="value" itemprop="name">
@@ -226,7 +226,7 @@
                                 <div class="thim-course-content">
                                     <div class="course-author">
                                         <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
+                                            <img alt="" src="{{ asset('images/face.png') }}" class="avatar avatar-96 photo">
                                             <div class="author-contain">
                                                 <label>المعلم</label>
                                                 <div class="value" itemprop="name">
@@ -258,7 +258,7 @@
                                 <div class="thim-course-content">
                                     <div class="course-author">
                                         <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
+                                            <img alt="" src="{{ asset('images/face.png') }}" class="avatar avatar-96 photo">
                                             <div class="author-contain">
                                                 <label>المعلم</label>
                                                 <div class="value" itemprop="name">
@@ -284,13 +284,13 @@
                         <div class="item">
                             <div class="course-item-wrapper">
                                 <div class="course-thumbnail">
-                                    <a href="#"><img src="images/gr.png" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/gr.png') }}" alt=""></a>
                                     <div class="price">$55.00</div>
                                 </div>
                                 <div class="thim-course-content">
                                     <div class="course-author">
                                         <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
+                                            <img alt="" src="{{ asset('images/face.png') }}" class="avatar avatar-96 photo">
                                             <div class="author-contain">
                                                 <label>المعلم</label>
                                                 <div class="value" itemprop="name">
@@ -336,7 +336,7 @@
                                         <ul class="column-3">
                                             <li>
                                                 <a href="/tracks/e2fc581a-4bf8-4b55-b13b-dbbe50d95ffd/about/" class="d-flex">
-                                                    <img src="images/0000_logo-react-32x32.png"
+                                                    <img src="{{ asset('images/0000_logo-react-32x32.png') }}"
                                                     alt="Web Design and Development Program" title="course-9" width="32"
                                                     height="32">
                                                     برنامج تجريبي
@@ -344,7 +344,7 @@
                                             </li>
                                             <li>
                                                 <a href="/tracks/0678993c-5dc3-47ec-a359-717f1bc3068b/about/" class="d-flex">
-                                                    <img src="images/0002_logo-asp-net-32x32.png"
+                                                    <img src="{{ asset('images/0002_logo-asp-net-32x32.png') }}"
                                                     alt="Web Design and Development Program" title="course-9" width="32"
                                                     height="32">
                                                     برنامج المحامي
@@ -687,7 +687,7 @@
                         <div class="col-lg">
                             <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             <div class="side"
-                                style="background-image:url(images/gmail.png);background-size: 350px 350px; background-repeat: no-repeat;  background-position: center">
+                                style="background-image:url({{ asset('images/gmail.png') }});background-size: 350px 350px; background-repeat: no-repeat;  background-position: center">
                                 
                                 <div class="subscribe">
                                     <div class="new-card2">
@@ -714,7 +714,7 @@
 
                         <div class="col-lg">
                             <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                            <div class="side" style="background-image:url(images/twitter-256.png);">
+                            <div class="side" style="background-image:url({{ asset('images/twitter-256.png') }});">
                                 <div id="carouselExampleIndicators2" class="carousel slide twitter">
 
                                     <div class="carousel-inner">
