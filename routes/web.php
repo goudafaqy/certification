@@ -66,7 +66,7 @@ Auth::routes();
     // Course Appointments routes ...
     Route::prefix('courses')->group(function () {
         Route::get('appointments/{course_id}', 'CourseAppointmentController@list')->name('appointments-list');
-        Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('save-appointment');
+        Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
     });
 

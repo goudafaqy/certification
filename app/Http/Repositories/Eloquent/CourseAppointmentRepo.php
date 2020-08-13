@@ -9,7 +9,7 @@ class CourseAppointmentRepo implements CourseAppointmentEloquent{
     
     public function getAll()
     {
-        return CourseAppintment::all();
+        return CourseAppintment::all()->orderBy('date', 'asc');
     }
 
 
@@ -22,6 +22,11 @@ class CourseAppointmentRepo implements CourseAppointmentEloquent{
     public function save($inputs, $getId = false)
     {
         return ($getId) ? CourseAppintment::insertGetId($inputs) : CourseAppintment::create($inputs) ;
+    }
+
+    public function saveBulk($inputs)
+    {
+        return CourseAppintment::insert($inputs) ;
     }
 
     public function update($inputs, $id)

@@ -19,7 +19,6 @@ class CourseAppintment extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
         'title', 
         'date', 
         'day', 
