@@ -77,8 +77,8 @@ class CourseController extends Controller
         }else{
             if($request->file()) {
                 $filePath = FileHelper::uploadFiles($request->file('image'), 'uploads/courses/');
+                $inputs['image'] = $filePath;
             }
-            $inputs['image'] = $filePath;
             unset($inputs['_token']);
             $inputs['assi_check'] = (isset($inputs['assi_check']) && $inputs['assi_check'] == 'on') ? 1 : 0;
             $inputs['exam_check'] = (isset($inputs['exam_check']) && $inputs['exam_check'] == 'on') ? 1 : 0;
@@ -120,8 +120,8 @@ class CourseController extends Controller
         }else{
             if($request->file()) {
                 $filePath = FileHelper::uploadFiles($request->file('image'), 'uploads/courses/');
+                $inputs['image'] = $filePath;
             }
-            $inputs['image'] = $filePath;
             unset($inputs['_token']);
             $inputs['assi_check'] = (isset($inputs['assi_check']) && $inputs['assi_check'] == 'on') ? 1 : 0;
             $inputs['exam_check'] = (isset($inputs['exam_check']) && $inputs['exam_check'] == 'on') ? 1 : 0;

@@ -63,6 +63,13 @@ Auth::routes();
         Route::get('class-by-cat', 'CourseController@getClassByCatId')->name('class-by-cat');
     });
 
+    // Course Appointments routes ...
+    Route::prefix('courses')->group(function () {
+        Route::get('appointments/{course_id}', 'CourseAppointmentController@list')->name('appointments-list');
+        Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
+        Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
+    });
+
     // Course Materials routes ...
     Route::prefix('materials')->group(function () {
         Route::get('{course_id}', 'CourseMaterialsController@list')->name('materials-list');
@@ -73,8 +80,7 @@ Auth::routes();
         Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
     });
 
-
-     // Course Sections routes ...
+    // Course Sections routes ...
      Route::prefix('sections')->group(function () {
 
         Route::get('{course_id}', 'CourseSectionsController@list')->name('sections-list');

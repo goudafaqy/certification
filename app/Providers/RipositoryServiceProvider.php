@@ -43,6 +43,12 @@ class RipositoryServiceProvider extends ServiceProvider
             'App\Http\Interfaces\Validation\CourseValidation',
             'App\Http\Repositories\Validation\CourseRepoValidation',
         );
+        $this->app->bind(
+            'App\Http\Interfaces\Eloquent\CourseAppointmentEloquent',
+            'App\Http\Repositories\Eloquent\CourseAppointmentRepo',
+            'App\Http\Interfaces\Validation\CourseAppointmentValidation',
+            'App\Http\Repositories\Validation\CourseAppointmentRepoValidation',
+        );
     }
 
     /**

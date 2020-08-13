@@ -22,8 +22,8 @@ class CreateCoursesTable extends Migration
             $table->integer('instructor_id');
             $table->integer('class_id');
             $table->integer('cat_id');
-            $table->integer('price');
-            $table->integer('discount');
+            $table->integer('price')->nullable();
+            $table->integer('discount')->nullable();
             $table->string('type');
             $table->string('image')->nullable();
             $table->timestamps();

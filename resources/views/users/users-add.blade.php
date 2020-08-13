@@ -18,7 +18,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name_ar">الإسم باللغة العربية</label>
-                                            <input type="text" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar">
+                                            <input type="text" class="form-control @error('name_ar') is-invalid @enderror" value="{{ old('name_ar') }}" id="name_ar" name="name_ar">
                                         </div>
                                         @error('name_ar')
                                             <span class="text-danger err-msg-name_ar" role="alert">
@@ -28,7 +28,7 @@
 
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="username">اسم المستخدم</label>
-                                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username">
+                                            <input type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" id="username" name="username">
                                         </div>
                                         @error('username')
                                             <span class="text-danger err-msg-username" role="alert">
@@ -63,7 +63,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name_en">الإسم باللغة الإنجليزية</label>
-                                            <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en">
+                                            <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en" value="{{ old('name_en') }}" name="name_en">
                                         </div>
                                         @error('name_en')
                                             <span class="text-danger err-msg-name_en" role="alert">
@@ -73,7 +73,7 @@
 
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="email">البريد الإلكتروني</label>
-                                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email">
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" name="email">
                                         </div>
                                         @error('email')
                                             <span class="text-danger err-msg-email" role="alert">
@@ -92,7 +92,7 @@
                                         @enderror
 
                                         <div class="form-check" style="margin-top: 40px;">
-                                            <input style="width: 30px; height: 30px; cursor: pointer;" type="checkbox" class="form-check-input" id="active" name="active">
+                                            <input style="width: 30px; height: 30px; cursor: pointer;" type="checkbox" class="form-check-input" value="{{ old('active') }}" id="active" name="active">
                                             <label style="position: relative; top: 10px; right: 20px" class="form-check-label" for="active">الفاعلية على النظام</label>
                                         </div>
                                     </div>

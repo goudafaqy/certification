@@ -48,9 +48,7 @@
                                                 <th class="th-sm text-center">المدرب</th>
                                                 <th class="th-sm text-center">الفئة</th>
                                                 <th class="th-sm text-center">التصنيف</th>
-                                                <th class="th-sm text-center">السعر</th>
-                                                <th class="th-sm text-center">الخصم</th>
-                                                <th class="th-sm text-center">صورة</th>
+                                                <th class="th-sm text-center">المقاعد</th>
                                                 <th class="th-sm text-center">الإجراءات</th>
                                             </tr>
                                         </thead>
@@ -74,16 +72,13 @@
                                                 <td class="text-center">{{ $course->instructor->name_ar }}</td>
                                                 <td class="text-center">{{ $course->category->title_ar }}</td>
                                                 <td class="text-center">{{ $course->classification->title_ar }}</td>
-                                                <td class="text-center">{{ $course->price }} ريال</td>
-                                                <td class="text-center">{{ $course->discount }} %</td>
+                                                <td class="text-center">{{ $course->seats }}</td>
                                                 <td class="text-center">
-                                                    <a href="/{{$course->image}}" class="btn btn-default" target="_blanck"><i class="fa fa-link"></i></a>
-                                                </td>
-                                                <td class="text-center">
-                                                <a class="btn btn-info" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الاجزاء"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
-
+                                                    <a class="btn btn-info" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الاجزاء"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
                                                     <a class="btn btn-warning" href="{{route('materials-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الملفات"><i style="position: relative; top: -2px; right: -4px" class="fa fa-file"></i></a>
-                                                    <a class="btn btn-warning" href="/courses/appointments/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="المواعيد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-clock"></i></a>
+                                                    @if($course->type == 'face_to_face' || $course->type == 'live')
+                                                    <a class="btn btn-success" href="/courses/appointments/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="المواعيد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-clock"></i></a>
+                                                    @endif
                                                     <a class="btn btn-info" href="/courses/update/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="/courses/delete-course/<?php echo $course->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>

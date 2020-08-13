@@ -15,7 +15,7 @@ class CourseRepo implements CourseEloquent{
 
     public function getById($id)
     {
-        return Course::where('id', $id)->first();
+        return Course::find($id);
     }
 
 
