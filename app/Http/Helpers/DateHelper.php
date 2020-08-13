@@ -25,11 +25,16 @@ class DateHelper{
 
     public static function getLastWeekDay($startDateWeek, $days){
         sort($days);
+        $result = [];
         for ($i=0; $i < count($days); $i++) { 
             if ($days[$i] > $startDateWeek) {
-                return ($i == 0) ? $days[$i] : $days[$i - 1];
+                $result[] = ($i == 0) ? $days[$i] : $days[$i - 1];
             }
         }
+        if (count($result) == 0) {
+            $result[] = $days[count($days) - 1];
+        }
+        return $result[0];
     }
 
     public static function getActualDates($daysArr, $startDateInput, $endDateInput){

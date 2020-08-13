@@ -68,6 +68,7 @@ Auth::routes();
         Route::get('appointments/{course_id}', 'CourseAppointmentController@list')->name('appointments-list');
         Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
+        Route::get('appointments/reset/{id}', 'CourseAppointmentController@reset')->name('reset-appointment');
     });
 
     // Course Materials routes ...
