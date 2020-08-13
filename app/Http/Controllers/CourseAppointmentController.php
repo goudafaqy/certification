@@ -55,7 +55,6 @@ class CourseAppointmentController extends Controller
         $endDate = DateHelper::getEndDate($inputs['start_date'], $numOfRepeats, $lastWeekDay);
         $daysArr = $inputs['week_days'];
         $actualDates = DateHelper::getActualDates($daysArr, $inputs['start_date'], $endDate);
-
         $data = [];
         foreach ($actualDates as $day => $dates) {
             $row = [];
@@ -70,6 +69,17 @@ class CourseAppointmentController extends Controller
             }
         }
         return ($this->courseAppRepo->saveBulk($data)) ? true : false ;
+    }
+
+    /**
+     * Delete appointment ...
+     */
+    public function reset($course_id)
+    {
+        $result = $this->courseAppRepo->deleteByCourseId($course_id);
+        if($result){
+            return redirect('courses/appointments/'.$course_id)->with('deleted', 'تم حذف الموعد بنجاح');
+        }
     }
 
     /**

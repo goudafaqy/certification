@@ -40,4 +40,9 @@ class CourseAppointmentRepo implements CourseAppointmentEloquent{
         return CourseAppintment::where('id', $id)->delete();
     }
 
+    public function deleteByCourseId($course_id)
+    {
+        return CourseAppintment::where('course_id', $course_id)->delete();
+    }
+
 }

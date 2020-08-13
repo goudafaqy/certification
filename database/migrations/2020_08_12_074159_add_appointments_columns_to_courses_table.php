@@ -15,11 +15,11 @@ class AddAppointmentsColumnsToCoursesTable extends Migration
     {
         Schema::table('courses', function (Blueprint $table) {
             $table->integer('seats');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('from_time');
-            $table->string('to_time');
-            $table->text('week_days');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('from_time')->nullable();
+            $table->string('to_time')->nullable();
+            $table->text('week_days')->nullable();
             $table->integer('repeat')->default(0);
             $table->integer('num_of_repeat')->default(0);
         });

@@ -108,6 +108,7 @@
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">المواعيد الفعلية</h3>
+                                <a href="/courses/appointments/reset/<?php echo $course->id; ?>" style="color: #FFF" class="btn btn-primary">إعادة إستخراج مواعيد الدورة <i class="fa fa-sync-alt"></i></a>
                                 <a style="font-size: 1.1em;" href="{{ route('courses-list') }}" class="widget-title">قائمة الدورات <i class="fa fa-arrow-left"></i></a>
                             </div>
                         </div>
@@ -156,7 +157,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a id="delete" href="/courses/appointments/delete/<?php echo $appointment->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                    <a id="delete" href="/courses/appointments/delete/<?php echo $appointment->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="إلغاء الموعد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
