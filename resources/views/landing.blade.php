@@ -5,7 +5,7 @@
 
                 <div id="swiper" class="swiper-container loading no-printme">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" data-test-set="test" style="background-image:url(images/slider/1.jpg)">
+                        <div class="swiper-slide" data-test-set="test" style="background-image:url({{ asset('images/slider/1.jpg') }})">
                             <div class="cover">
                                 <div class="container">
                                     <div class="header-content">
@@ -220,7 +220,7 @@
                         <div class="item">
                             <div class="course-item-wrapper">
                                 <div class="course-thumbnail">
-                                    <a href="#"><img src="images/3.png" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/3.png') }}" alt=""></a>
                                     <div class="price">$55.00</div>
                                 </div>
                                 <div class="thim-course-content">
@@ -252,7 +252,7 @@
                         <div class="item">
                             <div class="course-item-wrapper">
                                 <div class="course-thumbnail">
-                                    <a href="#"><img src="images/4.png" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/4.png') }}" alt=""></a>
                                     <div class="price">$55.00</div>
                                 </div>
                                 <div class="thim-course-content">
@@ -585,7 +585,7 @@
                                                 </div>
                                                 <div class="author">
                                                     <div class="image">
-                                                        <img src="images/t1_bfxoncA.jpg" alt="" width="100" height="100">
+                                                        <img src="{{ asset('images/t1_bfxoncA.jpg') }}" alt="" width="100" height="100">
                                                     </div>
                                                     <div class="info">
                                                         <h3 class="title">‫حبیب‬ ‫رؤؤف‬</h3>
@@ -610,7 +610,7 @@
                                                 </div>
                                                 <div class="author">
                                                     <div class="image">
-                                                        <img src="images/t2_ZWaKnz7.jpg" alt="" width="100" height="100">
+                                                        <img src="{{ asset('images/t2_ZWaKnz7.jpg') }}" alt="" width="100" height="100">
                                                     </div>
                                                     <div class="info">
                                                         <h3 class="title">‫رضا‬ ‫محمود‬ ‫احمد‬</h3>
@@ -634,7 +634,7 @@
                                                 </div>
                                                 <div class="author">
                                                     <div class="image">
-                                                        <img src="images/t3_OOsOKDS.jpg" alt="" width="100" height="100">
+                                                        <img src="{{ asset('images/t3_OOsOKDS.jpg') }}" alt="" width="100" height="100">
                                                     </div>
                                                     <div class="info">
                                                         <h3 class="title">‫على‬ ‫معوض‬</h3>
@@ -658,7 +658,7 @@
                                                 </div>
                                                 <div class="author">
                                                     <div class="image">
-                                                        <img src="images/t4_Svl3e3S.jpg" alt="" width="100" height="100">
+                                                        <img src="{{ asset('images/t4_Svl3e3S.jpg') }}" alt="" width="100" height="100">
                                                     </div>
                                                     <div class="info">
                                                         <h3 class="title">‫احمد‬ ‫عمر‬ ‫محمد‬</h3>
