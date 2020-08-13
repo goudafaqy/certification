@@ -8,8 +8,8 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title"> {{__('app.Sections')}}</h3>
-                                <a href="{{route('sections-add',['course_id' => $course_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة عنصر  جديد </a>
+                                <h3 class="widget-title"> {{__('app.Units')}}</h3>
+                                <a href="{{route('units-add',['section_id' => $section_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة عنصر  جديد </a>
 
                             </div>
                         </div>
@@ -48,6 +48,8 @@
                                                 <th class="th-sm text-center">#</th>
                                                 <th class="th-sm text-center">{{__('app.Arabic Title')}}</th>
                                                 <th class="th-sm text-center">{{__('app.English Title')}}</th>
+                                                <th class="th-sm text-center">{{__('app.Type')}}</th>
+
                                                 <th class="th-sm text-center">{{__('app.Actions')}}</th>
                                             </tr>
                                         </thead>
@@ -57,12 +59,13 @@
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $item->title_ar }}</td>
                                                 <td class="text-center">{{ $item->title_en }}</td>
+                                                <td class="text-center">{{ $item->source_type }}</td>
+
                                                 <td class="text-center">
 
-                                                <a class="btn btn-info" href="{{route('units-list',['section_id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="الوحدات"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
 
-                                                    <a class="btn btn-info" href="{{route('sections-update',['course_id' => $item->course_id ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
-                                                    <a id="delete" href="{{route('delete-sections',['course_id' => $item->course_id ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                    <a class="btn btn-info" href="{{route('units-update',['section_id' => $item->section_id ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <a id="delete" href="{{route('delete-units',['section_id' => $item->section_id ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
