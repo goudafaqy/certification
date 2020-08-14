@@ -55,7 +55,15 @@ class CourseAppointmentController extends Controller
         $endDate = DateHelper::getEndDate($inputs['start_date'], $numOfRepeats, $lastWeekDay);
         $daysArr = $inputs['week_days'];
         $actualDates = DateHelper::getActualDates($daysArr, $inputs['start_date'], $endDate);
+        
+        $from_time = $inputs['from_time'];
+        $to_time = $inputs['to_time'];
+        $num_of_repeat = $numOfRepeats;
+        $lecDuration = DateHelper::getDiffTime($from_time, $to_time);
         $data = [];
+        $lec_num = 0;
+        $course_days = 0;
+        
         foreach ($actualDates as $day => $dates) {
             $row = [];
             for ($i=0; $i < count($dates); $i++) { 
@@ -66,8 +74,24 @@ class CourseAppointmentController extends Controller
                 $row['to_time']     = $inputs['to_time'];
                 $row['course_id']   = $inputs['course_id'];
                 $data[] = $row;
+                $lec_num++;
+                $course_days++;
             }
         }
+        $course_hours = $lecDuration * $lec_num;
+        $endDateArr = explode("-", $endDate);
+        $endDateStr = $endDateArr[1]."/".$endDateArr[2]."/".$endDateArr[0];
+        $dataCourse = [
+            'from_time'       => $inputs['from_time'],
+            'to_time'         => $inputs['to_time'],
+            'lec_num'         => $lec_num,
+            'course_hours'    => $course_hours,
+            'course_days'     => $course_days,
+            'start_date'      => DateHelper::getDateFormate($inputs['start_date']),
+            'end_date'        => DateHelper::getDateFormate($endDateStr),
+            'num_of_repeat'   => $num_of_repeat,
+        ];
+        $this->courseRepo->update($dataCourse, $inputs['course_id']);
         return ($this->courseAppRepo->saveBulk($data)) ? true : false ;
     }
 
