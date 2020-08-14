@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Eloquent\UnitRepo;
 use App\Http\Repositories\Validation\UnitRepoValidation;
 use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\Section;
 
 class CourseUnitsController extends Controller
 {
@@ -31,7 +33,9 @@ class CourseUnitsController extends Controller
     public function list($section_id)
     {
         $items  = $this->UnitRepo->getAll($section_id);
-        return view("units.list", ['items' => $items   ,'section_id'=>$section_id]);
+        $section = Section::find($section_id);
+        $course = Course::find($section->course_id);
+        return view("units.list", ['items' => $items , 'course'=>$course ,  'section_id'=>$section_id]);
     }
 
 
@@ -41,9 +45,11 @@ class CourseUnitsController extends Controller
     public function add($section_id)
     {
         $item = new $this->UnitRepo();
-        $title = __('app.New Element'); 
+        $title = __('app.New Unit'); 
         $route = route('save-units',['section_id'=>$section_id]);
-        return view("units.form", ['route'=> $route ,'title'=>$title ,'item' => $item ,'section_id' =>$section_id]);
+        $section = Section::find($section_id);
+        $course = Course::find($section->course_id);
+        return view("units.form", ['route'=> $route ,'title'=>$title ,  'course'=>$course , 'item' => $item ,'section_id' =>$section_id]);
     }
 
 
@@ -61,7 +67,7 @@ class CourseUnitsController extends Controller
            
             $Section = $this->UnitRepo->save($inputs);
             if($Section){
-                return redirect('units/'.$inputs['section_id'])->with('added', __('app.Element Added Auccessfully'));
+                return redirect('units/'.$inputs['section_id'])->with('added', __('app.Unit Added Auccessfully'));
             }
         }
     }
@@ -74,8 +80,10 @@ class CourseUnitsController extends Controller
     {
         $item = $this->UnitRepo->getById($id);
         $route = route('update-units',['section_id'=> $item->section_id ,'id'=>$id]);
-        $title = __('app.Update Element'); 
-        return view("units.form", ['item' => $item,  'route' => $route, 'title' =>  $title ,'section_id'=>$item->section_id]);
+        $title = __('app.Update Unit'); 
+        $section = Section::find($item->section_id);
+        $course = Course::find($section->course_id);
+        return view("units.form", ['item' => $item,  'route' => $route,'course'=>$course, 'title' =>  $title ,'section_id'=>$item->section_id]);
     }
 
     /**
@@ -93,7 +101,7 @@ class CourseUnitsController extends Controller
             unset($inputs['_token']);
             $classification = $this->UnitRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('units/'.$inputs['section_id'])->with('updated', __('app.Element Updated Auccessfully'));
+                return redirect('units/'.$inputs['section_id'])->with('updated', __('app.Unit Updated Auccessfully'));
             }
         }
     }
@@ -106,7 +114,7 @@ class CourseUnitsController extends Controller
     {
         $result = $this->UnitRepo->delete($id);
         if($result){
-            return redirect('units/'.$section_id)->with('deleted', __('app.Element Deleted Auccessfully'));
+            return redirect('units/'.$section_id)->with('deleted', __('app.Unit Deleted Auccessfully'));
         }
     }
 }

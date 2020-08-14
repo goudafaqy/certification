@@ -5,7 +5,7 @@ use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Validation\MaterialRepoValidation;
 use Illuminate\Http\Request;
 use App\Http\Helpers\FileHelper;
-use App\Http\Helpers\GenerateHelper;
+use App\Models\Course;
 
 class CourseMaterialsController extends Controller
 {
@@ -32,8 +32,9 @@ class CourseMaterialsController extends Controller
      */
     public function list($course_id)
     {
+        $course = Course::find($course_id);
         $materials = $this->MaterialRepo->getAll($course_id);
-        return view("materials.list", ['materials' => $materials  ,'course_id'=>$course_id]);
+        return view("materials.list", ['materials' => $materials  ,'course_id'=>$course_id ,'course'=>$course]);
     }
 
 
@@ -45,8 +46,10 @@ class CourseMaterialsController extends Controller
         $material = new $this->MaterialRepo();
         $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
         $title = __('app.New Material'); 
+        $course = Course::find($course_id);
+
         $route = route('save-materials',['course_id'=>$course_id]);
-        return view("materials.form", ['types' => $types ,'route'=>$route ,'title'=>$title ,'material' => $material ,'course_id' =>$course_id]);
+        return view("materials.form", ['types' => $types , 'course'=>$course , 'route'=>$route ,'title'=>$title ,'material' => $material ,'course_id' =>$course_id]);
     }
 
 
@@ -68,10 +71,9 @@ class CourseMaterialsController extends Controller
                 $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
             }
             $inputs['source'] = $filePath;
-            $inputs['status'] = 1;
             $material = $this->MaterialRepo->save($inputs);
             if($material){
-                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Element Added Auccessfully'));
+                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Auccessfully'));
             }
         }
     }
@@ -85,8 +87,9 @@ class CourseMaterialsController extends Controller
         $material = $this->MaterialRepo->getById($id);
         $route = route('update-materials',['course_id'=> $material->course_id ,'id'=>$id]);
         $title = __('app.Update Material'); 
+        $course = Course::find($material->course_id);
         $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
-        return view("materials.form", ['material' => $material, 'types' => $types , 'route' => $route, 'title' =>  $title ,'course_id'=>$material->course_id]);
+        return view("materials.form", ['material' => $material,'course'=>$course, 'types' => $types , 'route' => $route, 'title' =>  $title ,'course_id'=>$material->course_id]);
     }
 
     /**
@@ -108,7 +111,7 @@ class CourseMaterialsController extends Controller
             unset($inputs['_token']);
             $classification = $this->MaterialRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Element Updated Auccessfully'));
+                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Auccessfully'));
             }
         }
     }
@@ -121,7 +124,7 @@ class CourseMaterialsController extends Controller
     {
         $result = $this->MaterialRepo->delete($id);
         if($result){
-            return redirect('materials/'.$course_id)->with('deleted', __('app.Element Deleted Auccessfully'));
+            return redirect('materials/'.$course_id)->with('deleted', __('app.Material Deleted Auccessfully'));
         }
     }
 }
