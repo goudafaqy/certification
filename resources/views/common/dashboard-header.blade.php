@@ -34,6 +34,7 @@
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
+                        @if(!isset($role) || $role == 1)
                         <a type="" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></a>
                         <div class="nav-item dropdown">
                             <a class=" dropdown-toggle" href="#" data-toggle="dropdown">
@@ -70,6 +71,7 @@
                                 المسارات
                             </a>
                         </div>
+                        @endif
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         <div class="input-group md-form form-sm form-2 pl-0 searchclass">

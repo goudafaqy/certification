@@ -1,5 +1,5 @@
-@include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'dashboards.instructor'])
+@include('common.dashboard-header', ['role' => 2])
+@include('common.sidebar_instructor', ['active' => 'dashboards.instructor'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
