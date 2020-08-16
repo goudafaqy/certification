@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Eloquent\SectionRepo;
 use App\Http\Repositories\Validation\SectionRepoValidation;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseSectionsController extends Controller
 {
@@ -31,7 +32,9 @@ class CourseSectionsController extends Controller
     public function list($course_id)
     {
         $items  = $this->SectionRepo->getAll($course_id);
-        return view("sections.list", ['items' => $items   ,'course_id'=>$course_id]);
+        $course = Course::find($course_id);
+
+        return view("sections.list", ['items' => $items,'course'=>$course, 'course_id'=>$course_id]);
     }
 
 
@@ -42,8 +45,9 @@ class CourseSectionsController extends Controller
     {
         $item = new $this->SectionRepo();
         $title = __('app.New Section'); 
+        $course = Course::find($course_id);
         $route = route('save-sections',['course_id'=>$course_id]);
-        return view("sections.form", ['route'=> $route ,'title'=>$title ,'item' => $item ,'course_id' =>$course_id]);
+        return view("sections.form", ['route'=> $route ,'course'=>$course,'title'=>$title ,'item' => $item ,'course_id' =>$course_id]);
     }
 
 
@@ -73,9 +77,10 @@ class CourseSectionsController extends Controller
     public function update($id)
     {
         $item = $this->SectionRepo->getById($id);
+        $course = Course::find($item->course_id);
         $route = route('update-sections',['course_id'=> $item->course_id ,'id'=>$id]);
         $title = __('app.Update Section'); 
-        return view("sections.form", ['item' => $item,  'route' => $route, 'title' =>  $title ,'course_id'=>$item->course_id]);
+        return view("sections.form", ['item' => $item,'course'=>$course,  'route' => $route, 'title' =>  $title ,'course_id'=>$item->course_id]);
     }
 
     /**

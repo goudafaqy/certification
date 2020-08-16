@@ -11,7 +11,6 @@ class MaterialRepoValidation implements MaterialValidation{
         return [
             'insert' => [
                 'name_ar' => 'required',
-                'name_en' => 'required',
                 'type' => 'required',
                 'course_id' => 'required',
                 'source' => '',
@@ -19,7 +18,6 @@ class MaterialRepoValidation implements MaterialValidation{
             ],
             'update' => [
                 'name_ar' => 'required',
-                'name_en' => 'required',
                 'type' => 'required',
                 'course_id' => 'required',
                 'source' => '',

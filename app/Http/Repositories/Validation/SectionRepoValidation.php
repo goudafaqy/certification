@@ -11,12 +11,10 @@ class SectionRepoValidation implements SectionValidation{
         return [
             'insert' => [
                 'title_ar' => 'required',
-                'title_en' => 'required',
                 'course_id' => 'required'
             ],
             'update' => [
                 'title_ar' => 'required',
-                'title_en' => 'required',
                 'course_id' => 'required'
             ],
         ];

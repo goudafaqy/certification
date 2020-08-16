@@ -1,5 +1,5 @@
 @include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'sections-list'])
+@include('common.sidebar', ['active' => 'courses-list'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -8,8 +8,15 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title"> {{__('app.Units')}}</h3>
-                                <a href="{{route('units-add',['section_id' => $section_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة عنصر  جديد </a>
+
+                            <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{route('courses-update',['id' => $course->id])}}">{{$course->title_ar}}</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"> <a href="{{route('sections-list',['course_id' => $course->id])}}" >{{__('app.Sections')}}</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{__('app.Units')}}</li>
+
+                            </ol>
+
+                                <a href="{{route('units-add',['section_id' => $section_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> {{__('app.New Unit')}} </a>
 
                             </div>
                         </div>

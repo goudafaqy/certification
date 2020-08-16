@@ -1,15 +1,24 @@
 @include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'materials-add'])
+@include('common.sidebar', ['active' => 'courses-list'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="widget">
                     <div class="card">
+                        
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">{{ $title }}</h3>
-                                <a href="{{route('materials-list',['course_id' => $course_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> {{__('app.Materials')}} </a>
+                             
+                           
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('courses-update',['id' => $course_id])}}">{{$course->title_ar}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('materials-list',['course_id' => $course_id])}}">{{__('app.Materials')}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+
+                            </ol>
+
 
                             </div>
 
@@ -32,7 +41,7 @@
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="cat_id">{{__('app.Material Type')}}</label>
                                             <select class="form-control @error('cat_id') is-invalid @enderror" id="type" name="type">
-                                                <option value="">{{__('app.Material Type')}}</option>
+                                                <option>{{__('app.Material Type')}}</option>
                                                 @foreach($types as $type)
                                                  <option <?php if( (isset($material->type)) && $material->type == $type){ ?> selected <?php } ?> value="{{$type}}">{{$type}}</option>
                                                 @endforeach
@@ -67,31 +76,29 @@
 
 
                                         <div class="col-md-3" style="margin-top: 5px;">
-                                        <div class="form-group">
-                                            
-                                            <input type="file" class="form-control-file" id="true-image" name="source">
-                                            <button class="btn btn-success" type="button" id="fake-image">{{__('app.Upload Source')}}</button>
-                                           
+                                            <div class="form-group">
+                                                <input type="file" class="form-control-file" id="true-image" name="source">
+                                                <button class="btn btn-success" type="button" id="fake-image">{{__('app.Upload Source')}}</button>
+                                            </div>
                                         </div>
 
-                                        
-                                    </div>
+                                        <div class="col-md-6" style="margin-top: 5px;">
+                                            <div class="image-preview">
+                                                <span id="imageName" style="display: none; position: relative; top: 35px; left: 20px; background-color: #888; color: #FFF; padding: 7px 20px; border-radius: 5px;"></span>
+                                            @error('image')
+                                                <span class="text-danger err-msg-image" role="alert" style="position: relative; top: 33px; left: 20px">
+                                                    <strong>يجب رفع (الملف) للدورة</strong>
+                                                </span>
+                                            @enderror
+                                            </div>
+                                        </div>
 
-                                    <br> <br>
+                                    
 
                                     @if(isset($material->source))
                                        <a href="{{url($material->source)}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
                                     @endif
-                                    <div class="col-md-6">
-                                        <div class="image-preview">
-                                            <span id="imageName" style="display: none; position: relative; top: 35px; left: 20px; background-color: #888; color: #FFF; padding: 7px 20px; border-radius: 5px;"></span>
-                                            @error('source')
-                                            <span class="text-danger err-msg-source" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                        </div>
-                                    </div>
+                                    
                                        
 
 
@@ -123,6 +130,13 @@
         $("#cat_id").keypress(function(){
             $(".err-msg-cat_id").hide();
             $("#cat_id").removeClass("is-invalid");
+        });
+
+        $('#true-image').change(function(e){ 
+            var fileName = e.target.files[0].name;
+            $("#imageName").show();
+            $("#imageName").text(fileName);
+            $(".err-msg-image").hide();
         });
     })
 </script>
