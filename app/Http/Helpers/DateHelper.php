@@ -25,16 +25,13 @@ class DateHelper{
 
     public static function getLastWeekDay($startDateWeek, $days){
         sort($days);
-        $result = [];
+        $result = 0; 
         for ($i=0; $i < count($days); $i++) { 
             if ($days[$i] > $startDateWeek) {
-                $result[] = ($i == 0) ? $days[$i] : $days[$i - 1];
+                $result = $days[$i]; //($i == 0) ? $days[$i] : $days[$i - 1];
             }
         }
-        if (count($result) == 0) {
-            $result[] = $days[count($days) - 1];
-        }
-        return $result[0];
+        return ($result == 0) ? $days[count($days) - 1] : $result ;
     }
 
     public static function getActualDates($daysArr, $startDateInput, $endDateInput){
@@ -74,5 +71,27 @@ class DateHelper{
             'السبت',
         ];
         return $days[$n];
+    }
+
+    public static function getDiffTime($from, $to){
+        $fromArr = explode(" ", $from);
+        $fromHr = explode(":", $fromArr[0])[0];
+        $fromDur = $fromArr[1];
+
+        $toArr = explode(" ", $to);
+        $toHr = explode(":", $toArr[0])[0];
+        $toDur = $toArr[1];
+
+        $startHour = DateHelper::get24TimeFormat($fromHr, $fromDur);
+        $endHour = DateHelper::get24TimeFormat($toHr, $toDur);
+
+        return $endHour - $startHour;
+    }
+
+    private static function get24TimeFormat($time, $dur){
+        if ($time == '12' && $dur == 'PM') {
+            $time = 0;
+        }
+        return ($dur == 'AM') ? (int)$time : (int)($time) + 12 ;
     }
 }
