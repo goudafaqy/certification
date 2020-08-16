@@ -105,6 +105,18 @@ Auth::routes();
     });
 
 
+        // Course Units routes ...
+        Route::prefix('notifications')->group(function () {
+
+            Route::get('/', 'NotificationsSettingsController@list')->name('notify-list');
+            Route::get('add', 'NotificationsSettingsController@add')->name('notify-add');
+            Route::get('update/{id}', 'NotificationsSettingsController@update')->name('notify-update');
+            Route::post('update', 'NotificationsSettingsController@edit')->name('update-notify');
+            Route::post('save', 'NotificationsSettingsController@create')->name('save-notify');
+            Route::get('delete/{id}', 'NotificationsSettingsController@delete')->name('delete-notify');
+        
+        });
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

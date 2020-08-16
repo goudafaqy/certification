@@ -31,4 +31,11 @@ return [
     'Type' =>'النوع',
     'New Unit' => 'أضافة وحدة جديد',
     'Update Unit' => 'تحديث الوحدة',
+    'Notifications' =>'اعدادات الاشعارات',
+    'Notification Added Successfully' => 'تم اضافة الاشعار  بنجاح',
+    'Notification Updated Successfully' => 'تم تحديث الاشعار بنجاح',
+    'Notification Deleted Successfully' => 'تم حذف الاشعار بنجاح',
+    'Message_ar' =>'الرسالة باللغة العربية',
+    'Message_en' =>'الرسالة باللغة الانجليزية',
+    'New Notification'=>'اشعار جديد'
 ];
