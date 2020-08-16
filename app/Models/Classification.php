@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Classification extends Model
 {
@@ -20,9 +21,9 @@ class Classification extends Model
      */
     protected $fillable = [
         'title_ar',
-        'title_en', 
-        'cat_id', 
-        'created_at', 
+        'title_en',
+        'cat_id',
+        'created_at',
         'updated_at',
     ];
 
@@ -40,5 +41,9 @@ class Classification extends Model
     public function courses()
     {
         return $this->hasMany('App\Models\Course', 'class_id');
+    }
+
+    public function getTitleAttribute(){
+        return $this["title_".App::getLocale()];
     }
 }
