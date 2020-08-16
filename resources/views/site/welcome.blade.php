@@ -181,7 +181,7 @@
                             <div class="item">
                                 <div class="course-item-wrapper">
                                     <div class="course-thumbnail">
-                                        <a href="#"><img src="{{asset($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                        <a href="{{url('course/'.$course->id)}}"><img src="{{asset($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
                                         <div class="price">{{$course->price}} SR</div>
                                     </div>
                                     <div class="thim-course-content">
@@ -191,19 +191,19 @@
                                                 <div class="author-contain">
                                                     <label>المعلم</label>
                                                     <div class="value" itemprop="name">
-                                                        <a href="#">{{$course->instructor->name}}</a>
+                                                        <a href="{{url('course/'.$course->id)}}">{{$course->instructor->name}}</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <h2 class="course-title">
-                                            <a href="#">{{$course->title}}</a>
+                                            <a href="{{url('course/'.$course->id)}}">{{$course->title}}</a>
                                         </h2>
                                         <div class="course-meta">
                                             <span> <i class="fa fa-user"></i>94 متدرب</span>
                                             <span>
                               <i class="fa fa-tag"></i>
-                              <a href="#">{{$course->category->title}}</a>
+                              <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
                           </span>
                                             <span class="star"><i class="fa fa-star"></i> 3</span>
                                         </div>

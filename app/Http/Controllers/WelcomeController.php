@@ -42,6 +42,7 @@ class WelcomeController extends Controller
      */
     public function course($id){
         $course = Course::find($id);
-        return view('site.course',compact('course'));
+        $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
+        return view('site.course',compact('course','related_courses'));
     }
 }

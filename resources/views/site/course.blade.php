@@ -840,134 +840,41 @@
                                 <h3 class="p-header">كورسات ذات صله</h3><span class="pull-left"></span>
                                 <div class="clear">
                                     <div   class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
-                                        <div class="item">
-                                            <div class="course-item-wrapper">
-                                                <div class="course-thumbnail">
-                                                    <a href="#"><img src="{{asset('site-assets/images/2.jpg')}}" alt=""></a>
-                                                    <div class="price">$55.00</div>
-                                                </div>
-                                                <div class="thim-course-content">
-                                                    <div class="course-author">
-                                                        <div class="course-author-content">
-                                                            <img alt="" src="{{asset('site-assets/images/face.png')}}" class="avatar avatar-96 photo">
-                                                            <div class="author-contain">
-                                                                <label>المعلم</label>
-                                                                <div class="value" itemprop="name">
-                                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
+
+                                        @foreach($related_courses as $course)
+                                            <div class="item">
+                                                <div class="course-item-wrapper">
+                                                    <div class="course-thumbnail">
+                                                        <a href="{{url('course/'.$course->id)}}"><img src="{{asset($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                                        <div class="price">{{$course->price}} SR</div>
+                                                    </div>
+                                                    <div class="thim-course-content">
+                                                        <div class="course-author">
+                                                            <div class="course-author-content">
+                                                                <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                                <div class="author-contain">
+                                                                    <label>المعلم</label>
+                                                                    <div class="value" itemprop="name">
+                                                                        <a href="{{url('course/'.$course->id)}}">{{$course->instructor->name}}</a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <h2 class="course-title">
-                                                        <a href="#">المنازعات التجاريه</a>
-                                                    </h2>
-                                                    <div class="course-meta">
-                                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                                        <span>
-                                                <i class="fa fa-tag"></i>
-                                                <a href="#">القانون التجاري</a>
-                                            </span>
-                                                        <span class="star"><i class="fa fa-star"></i> 3</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="course-item-wrapper">
-                                                <div class="course-thumbnail">
-                                                    <a href="#"><img src="{{asset('site-assets/images/law3.jpg')}}" alt=""></a>
-                                                    <div class="price">$55.00</div>
-                                                </div>
-                                                <div class="thim-course-content">
-                                                    <div class="course-author">
-                                                        <div class="course-author-content">
-                                                            <img alt="" src="{{asset('site-assets/images/face.png')}}" class="avatar avatar-96 photo">
-                                                            <div class="author-contain">
-                                                                <label>المعلم</label>
-                                                                <div class="value" itemprop="name">
-                                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                                </div>
-                                                            </div>
+                                                        <h2 class="course-title">
+                                                            <a href="{{url('course/'.$course->id)}}">{{$course->title}}</a>
+                                                        </h2>
+                                                        <div class="course-meta">
+                                                            <span> <i class="fa fa-user"></i>94 متدرب</span>
+                                                            <span>
+                                                          <i class="fa fa-tag"></i>
+                                                          <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
+                                                      </span>
+                                                            <span class="star"><i class="fa fa-star"></i> 3</span>
                                                         </div>
                                                     </div>
-                                                    <h2 class="course-title">
-                                                        <a href="#">المنازعات التجاريه</a>
-                                                    </h2>
-                                                    <div class="course-meta">
-                                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                                        <span>
-                                                <i class="fa fa-tag"></i>
-                                                <a href="#">القانون التجاري</a>
-                                            </span>
-                                                        <span class="star"><i class="fa fa-star"></i> 4</span>
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="course-item-wrapper">
-                                                <div class="course-thumbnail">
-                                                    <a href="#"><img src="{{asset('site-assets/images/law3.jpg')}}" alt=""></a>
-                                                    <div class="price">$55.00</div>
-                                                </div>
-                                                <div class="thim-course-content">
-                                                    <div class="course-author">
-                                                        <div class="course-author-content">
-                                                            <img alt="" src="{{asset('site-assets/images/face.png')}}" class="avatar avatar-96 photo">
-                                                            <div class="author-contain">
-                                                                <label>المعلم</label>
-                                                                <div class="value" itemprop="name">
-                                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <h2 class="course-title">
-                                                        <a href="#">قضاء الشركات</a>
-                                                    </h2>
-                                                    <div class="course-meta">
-                                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                                        <span>
-                                                <i class="fa fa-tag"></i>
-                                                <a href="#">القانون التجاري</a>
-                                            </span>
-                                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="course-item-wrapper">
-                                                <div class="course-thumbnail">
-                                                    <a href="#"><img src="{{asset('site-assets/images/gr.png')}}" alt=""></a>
-                                                    <div class="price">$55.00</div>
-                                                </div>
-                                                <div class="thim-course-content">
-                                                    <div class="course-author">
-                                                        <div class="course-author-content">
-                                                            <img alt="" src="{{asset('site-assets/images/face.png')}}" class="avatar avatar-96 photo">
-                                                            <div class="author-contain">
-                                                                <label>المعلم</label>
-                                                                <div class="value" itemprop="name">
-                                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <h2 class="course-title">
-                                                        <a href="#">الأوراق التجارية ومنازعاتها</a>
-                                                    </h2>
-                                                    <div class="course-meta">
-                                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                                        <span>
-                                                <i class="fa fa-tag"></i>
-                                                <a href="#">القانون التجاري</a>
-                                            </span>
-                                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -1009,43 +916,45 @@
                                             <ul>
                                                 <li class="lectures-feature">
                                                     <img src="{{asset('site-assets/images/agenda (1).png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="value">5</span>
+                                                    <span class="value">{{$course->appointments()->count()}}</span>
                                                     <span class="label">محاضرات</span>
                                                 </li>
                                                 <li class="quizzes-feature">
                                                     <img src="{{asset('site-assets/images/exam.png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="value">0</span>
-                                                    <span class="label">الإختبارات</span>
+                                                    <span class="value">{{$course->exam_check == 1 ? "يوجد":"لا يوجد"}}</span>
+                                                    <span class="label">إختبارات</span>
                                                 </li>
                                                 <li class="duration-feature">
                                                     <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="label">Enrollment starts</span>
+                                                    <span class="label">{{$course->start_date}}</span>
                                                     <span class="value">
-                                                    --
+
                                                     </span>
                                                 </li>
                                                 <li class="duration-feature">
                                                     <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="label">Enrollment closes</span>
+                                                    <span class="label">{{$course->end_date}}</span>
                                                     <span class="value">
-                                                    --
+
                                                     </span>
                                                 </li>
-                                                <li class="skill-feature">
-                                                    <img src="{{asset('site-assets/images/schedule.png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="label">المدة الزمنية</span>
-                                                    <span class="value">٢ ساعات ٣٠ الدقائق</span>
-                                                </li>
+{{--                                                <li class="skill-feature">--}}
+{{--                                                    <img src="{{asset('site-assets/images/schedule.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+{{--                                                    <span class="label">المدة الزمنية</span>--}}
+{{--                                                    <span class="value">٢ ساعات ٣٠ الدقائق</span>--}}
+{{--                                                </li>--}}
                                                 <li class="skill-feature">
                                                     <img src="{{asset('site-assets/images/teaching.png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="label">مستوى المهارة</span>
+                                                    @if($course->skill_level == "m")
+                                                    <span class="label">متوسظة</span>
+                                                    @elseif($course->skill_level == "l")
+                                                        <span class="label">منخفضة</span>
+                                                    @else
+                                                        <span class="label">عالية</span>
+                                                    @endif
                                                     <span class="value"></span>
                                                 </li>
-                                                <li class="language-feature">
-                                                    <img src="{{asset('site-assets/images/world.png')}}" width="20" class="im-fluid" style="width:20px !important">
-                                                    <span class="value">العربية</span>
-                                                    <span class="label">اللغة</span>
-                                                </li>
+
                                                 <li class="students-feature">
                                                     <img src="{{asset('site-assets/images/man.png')}}" width="20" class="im-fluid" style="width:20px !important">
                                                     <span class="value"></span>
