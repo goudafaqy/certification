@@ -1,5 +1,5 @@
 @include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'courses-list'])
+@include('common.sidebar', ['active' => 'sections-list'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -8,10 +8,13 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">قائمة الدورات المتاحة</h3>
+                                <h3 class="widget-title"> {{__('app.Units')}}</h3>
+                                <a href="{{route('units-add',['section_id' => $section_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة عنصر  جديد </a>
+
                             </div>
                         </div>
-                        <div class="card-body" style="padding: 0 5px">
+
+                        <div class="card-body" style="padding: 0 15px">
                             <div class="row justify-content-center">
                                 <div class="col-md-12 table-container">
                                     @if (session('added'))
@@ -38,49 +41,31 @@
                                             </button>
                                         </div>
                                     @endif
+
                                     <table id="dtBasicExample" class="table" width="100%">
                                         <thead>
                                             <tr>
                                                 <th class="th-sm text-center">#</th>
-                                                <th class="th-sm text-center">رمز الدورة</th>
-                                                <th class="th-sm text-center">العنوان</th>
-                                                <th class="th-sm text-center">النوع</th>
-                                                <th class="th-sm text-center">المدرب</th>
-                                                <th class="th-sm text-center">الفئة</th>
-                                                <th class="th-sm text-center">التصنيف</th>
-                                                <th class="th-sm text-center">المقاعد</th>
-                                                <th class="th-sm text-center">الإجراءات</th>
+                                                <th class="th-sm text-center">{{__('app.Arabic Title')}}</th>
+                                                <th class="th-sm text-center">{{__('app.English Title')}}</th>
+                                                <th class="th-sm text-center">{{__('app.Type')}}</th>
+
+                                                <th class="th-sm text-center">{{__('app.Actions')}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($courses as $course)
+                                            @foreach ($items as  $item)
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
-                                                <td class="text-center">{{ $course->code }}</td>
-                                                <td class="text-center">{{ $course->title_ar }}</td>
+                                                <td class="text-center">{{ $item->title_ar }}</td>
+                                                <td class="text-center">{{ $item->title_en }}</td>
+                                                <td class="text-center">{{ $item->source_type }}</td>
+
                                                 <td class="text-center">
-                                                    @if($course->type == 'recorded')
-                                                        دورة مسجلة
-                                                    @elseif($course->type == 'face_to_face')
-                                                        حضور فعلي   
-                                                    @elseif($course->type == 'live')
-                                                        حضور أونلاين
-                                                    @else
-                                                        تعليم مدمج
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">{{ $course->instructor->name_ar }}</td>
-                                                <td class="text-center">{{ $course->category->title_ar }}</td>
-                                                <td class="text-center">{{ $course->classification->title_ar }}</td>
-                                                <td class="text-center">{{ $course->seats }}</td>
-                                                <td class="text-center">
-                                                    <a class="btn btn-info" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الاجزاء"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
-                                                    <a class="btn btn-warning" href="{{route('materials-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الملفات"><i style="position: relative; top: -2px; right: -4px" class="fa fa-file"></i></a>
-                                                    @if($course->type == 'face_to_face' || $course->type == 'live')
-                                                    <a class="btn btn-success" href="/courses/appointments/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="المواعيد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-clock"></i></a>
-                                                    @endif
-                                                    <a class="btn btn-info" href="/courses/update/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
-                                                    <a id="delete" href="/courses/delete-course/<?php echo $course->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+
+
+                                                    <a class="btn btn-info" href="{{route('units-update',['section_id' => $item->section_id ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <a id="delete" href="{{route('delete-units',['section_id' => $item->section_id ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -102,11 +87,11 @@
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
             "language": {
-                "lengthMenu": "عرض _MENU_ دورة في الصفحة الواحدة",
-                "zeroRecords": "لا يوجد دورات",
+                "lengthMenu": "عرض _MENU_ تصنيف في الصفحة الواحدة",
+                "zeroRecords": "لا يوجد مواد",
                 "info": "الصفحة رقم _PAGE_ من _PAGES_",
                 "infoEmpty": "لا يوجد", 
-                "infoFiltered": "(نتيجة البحث من _MAX_  دورات)",
+                "infoFiltered": "(نتيجة البحث من _MAX_ تصنيفات)",
                 "search": "بحث  ",
                 "paginate": {
                     "next": "التالي",

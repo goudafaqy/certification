@@ -58,6 +58,9 @@
                                                 <td class="text-center">{{ $item->title_ar }}</td>
                                                 <td class="text-center">{{ $item->title_en }}</td>
                                                 <td class="text-center">
+
+                                                <a class="btn btn-info" href="{{route('units-list',['section_id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="الوحدات"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
+
                                                     <a class="btn btn-info" href="{{route('sections-update',['course_id' => $item->course_id ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="{{route('delete-sections',['course_id' => $item->course_id ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>

@@ -1,5 +1,5 @@
 @include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'dashboard'])
+@include('common.sidebar', ['active' => 'dashboards.admin'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -54,14 +54,14 @@
                                     <div class="owl-carousel basic">
                                         <div class="card">
                                             <div class="news">
-                                                <img src="images/albom2.jpg" alt="" class="img-thumbnail">
+                                                <img src="{{ asset('images/albom2.jpg') }}" alt="" class="img-thumbnail">
                                                 <div class="details">
                                                     <h3>
                                                         <a href="#">مركز التدريب العدلي</a>
                                                     </h3>
                                                     <div class="social">
                                                         <p style="text-align: center; margin-top: 10px; color: #fff">
-                                                            <i class="far fa-calendar-alt" style="color: #A58661"></i> 09.10.2019 
+                                                            <i class="far fa-calendar-alt" style="color: #A58661"></i> 09.10.2019
                                                         </p>
                                                     </div>
                                                 </div>

@@ -16,12 +16,11 @@ class CourseRepoValidation implements CourseValidation{
                 'instructor_id' => 'required',
                 'cat_id' => 'required',
                 'class_id' => 'required',
-                'price' => 'required',
-                'discount' => 'required',
                 'pass_grade' => 'required',
                 'skill_level' => 'required',
                 'reg_start_date' => 'required',
                 'reg_end_date' => 'required',
+                'seats' => 'required',
             ],
             'update' => [
                 'title_ar' => 'required',
@@ -31,12 +30,11 @@ class CourseRepoValidation implements CourseValidation{
                 'instructor_id' => 'required',
                 'cat_id' => 'required',
                 'class_id' => 'required',
-                'price' => 'required',
-                'discount' => 'required',
                 'pass_grade' => 'required',
                 'skill_level' => 'required',
                 'reg_start_date' => 'required',
                 'reg_end_date' => 'required',
+                'seats' => 'required',
             ],
         ];
     }
