@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/','WelcomeController@index');
+Route::get('/{by}/{by_id}/courses','WelcomeController@courses');
+Route::get('/course/{id}','WelcomeController@course');
 
 Auth::routes();
 
@@ -101,9 +101,20 @@ Auth::routes();
         Route::post('update', 'CourseUnitsController@edit')->name('update-units');
         Route::post('save', 'CourseUnitsController@create')->name('save-units');
         Route::get('delete/{id}/{section_id}', 'CourseUnitsController@delete')->name('delete-units');
-    
+
     });
 
+    // Zoom routes ...
+    Route::prefix('zoom')->group(function () {
+
+        Route::get('create-webinar', 'ZoomController@create')->name('create-webinar');
+        Route::post('store-webinar', 'ZoomController@store')->name('store-webinar');
+        Route::get('webinars-list', 'ZoomController@index')->name('webinars-list');
+    });
+
+Route::get('test', function (){
+    return view('site.course');
+});
 
         // Course Units routes ...
         Route::prefix('notifications')->group(function () {

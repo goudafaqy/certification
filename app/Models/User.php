@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\App;
 
 class User extends Authenticatable
 {
@@ -26,11 +27,11 @@ class User extends Authenticatable
         'name_en',
         'role',
         'active',
-        'email', 
-        'email_verified_at', 
-        'created_at', 
-        'updated_at', 
-        'username', 
+        'email',
+        'email_verified_at',
+        'created_at',
+        'updated_at',
+        'username',
         'remember_token',
         'password',
     ];
@@ -68,5 +69,9 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function getNameAttribute(){
+        return $this["name_".App::getLocale()];
     }
 }
