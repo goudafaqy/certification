@@ -18,6 +18,15 @@ class UserSeeder extends Seeder
             'email' => 'ayman@gmail.com',
             'active' => true,
             'password' => Hash::make('123456'),
-        ]); 
+        ]);
+
+        DB::table('users')->insert([
+            'name_ar' => 'ابراهيم نجم',
+            'name_en' => 'Ibrahim Negm',
+            'username' => 'negm',
+            'email' => 'negm@gmail.com',
+            'active' => true,
+            'password' => Hash::make('123456'),
+        ]);
     }
 }
