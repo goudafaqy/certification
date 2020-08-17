@@ -1,4 +1,4 @@
-@include('common.landing-header')
+@include('cp.common.landing-header')
     <div class="auth-wrapper">
         <div class="container-fluid ">
             <div class="row flex-row h-100">
@@ -75,4 +75,4 @@
             </div>
         </div>
     </div>
-@include('common.landing-footer')
+@include('cp.common.landing-footer')
