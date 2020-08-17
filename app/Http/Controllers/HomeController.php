@@ -42,7 +42,7 @@ class HomeController extends Controller
 
         $categories = DB::table('categories')->get();
 
-        return view('/dashboards/admin', ['categories' => $categories]);
+        return view('/cp/dashboards/admin', ['categories' => $categories]);
     }
 
 
@@ -50,6 +50,6 @@ class HomeController extends Controller
 
         $categories = DB::table('categories')->get();
 
-        return view('/dashboards/instructor', ['categories' => $categories]);
+        return view('/cp/dashboards/instructor', ['categories' => $categories]);
     }
 }

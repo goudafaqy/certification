@@ -39,7 +39,7 @@ class CourseAppointmentController extends Controller
     {
         $course         = $this->courseRepo->getById($course_id);
         $appointments   = $course->appointments;
-        return view("appointments.appointments-list", ['course' => $course, 'appointments' => $appointments]);
+        return view("cp.appointments.appointments-list", ['course' => $course, 'appointments' => $appointments]);
     }
 
 

@@ -1,5 +1,5 @@
 
-            @include('common.landing-header')
+            @include('cp.common.landing-header')
             <section class="intro">
 
 
@@ -781,4 +781,4 @@
                 </div>
             </section>
 
-            @include('common.landing-footer')
+            @include('cp.common.landing-footer')

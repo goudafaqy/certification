@@ -46,7 +46,7 @@ class CourseController extends Controller
     public function list()
     {
         $courses = $this->courseRepo->getAll();
-        return view("courses.courses-list", ['courses' => $courses]);
+        return view("cp.courses.courses-list", ['courses' => $courses]);
     }
 
 
@@ -57,7 +57,7 @@ class CourseController extends Controller
     {
         $instructors        = $this->userRepo->getByRole('instructor');
         $categories         = $this->categoryRepo->getAll();
-        return view("courses.courses-add", [
+        return view("cp.courses.courses-add", [
             'categories'        => $categories,
             'instructors'       => $instructors
         ]);
@@ -104,7 +104,7 @@ class CourseController extends Controller
         $instructors        = $this->userRepo->getByRole('instructor');
         $categories         = $this->categoryRepo->getAll();
         $course = $this->courseRepo->getById($id);
-        return view("courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories]);
+        return view("cp.courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories]);
     }
 
     /**
