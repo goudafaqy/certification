@@ -22,6 +22,7 @@ class NotificationSetting extends Model
         'title_ar',
         'title_en',
         'type', 
+        'code', 
         'message_ar',
         'message_en',
         'created_at', 

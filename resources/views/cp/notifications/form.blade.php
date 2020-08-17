@@ -25,10 +25,23 @@
                             <form id="add-classification-form" action="{{ $route }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                            <label for="code">{{__('app.Code')}}</label>
+                                            <input type="text" class="form-control @error('code') is-invalid @enderror" placeholder="EX : notify_instructor_course" id="code" name="code" value="{{$item->code??''}}">
+                                        </div>
+                                        @error('code')
+                                            <span class="text-danger err-msg-code" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                </div>   
+                                <div class="col-md-6" >
+                                   
+
+                                        <div class="form-group" style="margin-top: 20px;">
                                             <label for="title_ar">{{__('app.Arabic Title')}}</label>
-                                            <input type="text" class="form-control @error('title_ar') is-invalid @enderror" id="title_ar" name="title_ar" value="{{$item->title_ar??''}}">
+                                            <input type="text" class="form-control @error('title_ar') is-invalid @enderror" id="title_ar"  placeholder="EX : لديك دورة جديدة رقم" name="title_ar" value="{{$item->title_ar??''}}">
                                         </div>
                                         @error('title_ar')
                                             <span class="text-danger err-msg-title_ar" role="alert">
@@ -38,7 +51,7 @@
 
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="message_ar">{{__('app.Message_ar')}}</label>
-                                            <textarea class="form-control @error('message_ar') is-invalid @enderror" id="message_ar" name="message_ar">{{$item->message_ar??''}}</textarea>
+                                            <textarea class="form-control @error('message_ar') is-invalid @enderror" placeholder="EX : لديك دورة جديدة رقم #course# تبدأ من #date#  الى #date#"  id="message_ar" name="message_ar">{{$item->message_ar??''}}</textarea>
                                         </div>
                                         @error('message_ar')
                                             <span class="text-danger err-msg-message_ar" role="alert">
@@ -49,9 +62,9 @@
                                       
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: 20px;">
                                             <label for="title_en">{{__('app.English Title')}}</label>
-                                            <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{$item->title_en??''}}">
+                                            <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" placeholder="EX : You have new course" name="title_en" value="{{$item->title_en??''}}">
                                         </div>
                                         @error('title_en')
                                             <span class="text-danger err-msg-title_en" role="alert">
@@ -64,7 +77,7 @@
 
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="message_en">{{__('app.Message_en')}}</label>
-                                            <textarea class="form-control @error('message_en') is-invalid @enderror" id="message_en" name="message_en">{{$item->message_en??''}}</textarea>
+                                            <textarea class="form-control @error('message_en') is-invalid @enderror" id="message_en" placeholder="EX : You have new course #course# start from #date# to #date#" name="message_en">{{$item->message_en??''}}</textarea>
                                         </div>
                                         @error('message_en')
                                             <span class="text-danger err-msg-message_en" role="alert">
