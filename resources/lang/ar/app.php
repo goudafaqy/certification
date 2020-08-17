@@ -37,5 +37,6 @@ return [
     'Notification Deleted Successfully' => 'تم حذف الاشعار بنجاح',
     'Message_ar' =>'الرسالة باللغة العربية',
     'Message_en' =>'الرسالة باللغة الانجليزية',
-    'New Notification'=>'اشعار جديد'
+    'New Notification'=>'اشعار جديد',
+    'Code'=>'كود الاشعار'
 ];
