@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use DB;
 use Facade\FlareClient\Http\Exceptions\NotFound;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HomeController extends Controller
 {
@@ -22,19 +24,21 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
+     * @throws NotFoundHttpException
      */
     public function dashboard()
     {
         $role = Auth::user()->roles? Auth::user()->roles[0]: null;
 
         if(!$role)
-            throwException(new NotFound());
+            throw new NotFoundHttpException();
 
-        if($role->id == 1) //admin
+        if($role->name == 'admin') //admin
             return $this->adminDashboard();
-        elseif ($role->id == 2)
+        elseif ($role->name == 'instructor')
             return $this->instructorDashboard();
-
+        else
+            throw new NotFoundHttpException();
     }
 
 
@@ -48,8 +52,12 @@ class HomeController extends Controller
 
     private function instructorDashboard(){
 
-        $categories = DB::table('categories')->get();
+        $courses = DB::table('courses')
+            ->where('instructor_id', Auth::id())
+            ->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('/cp/dashboards/instructor', ['categories' => $categories]);
+        //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
+
+        return view('/dashboards/instructor', ['courses' => $courses->chunk(2)]);
     }
 }

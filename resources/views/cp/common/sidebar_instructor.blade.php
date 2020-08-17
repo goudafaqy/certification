@@ -2,15 +2,15 @@
 
     <div class="nav-container">
         <nav id="main-menu-navigation" class="navigation-main">
-            <div class="nav-item has-sub @if($active == 'courses-list' || $active == 'courses-list2') open @endif">
+            <div class="nav-item has-sub @if($active == 'instructor-courses-current' || $active == 'instructor-courses-past') open @endif">
                 <a href="javascript:void(0)">
                     <img src="{{ asset('images/training.png') }}" style="width: 22px">
                     <span>  الدورات التدريبية </span>
                 </a>
                 <div class="submenu-content">
-                    <a href="javascript:void(0)" class="menu-item @if($active == 'courses-list') active @endif">
+                    <a href="{{route('instructor-courses-list', ['type' => 'current'])}}" class="menu-item @if($active == 'instructor-courses-current') active @endif">
                         <img src="{{ asset('images/cou.png') }}" style="width: 20px"> الدورات التدريبية الحالية </a>
-                    <a href="javascript:void(0)" class="menu-item @if($active == 'courses-list2') active @endif">
+                    <a href="{{route('instructor-courses-list', ['type' => 'past'])}}" class="menu-item @if($active == 'instructor-courses-past') active @endif">
                         <img src="{{ asset('images/back.png') }}" style="width: 20px"> الدورات التدريبية السابقة </a>
                 </div>
             </div>
