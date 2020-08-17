@@ -33,7 +33,7 @@ class NotificationsSettingsController extends Controller
     public function list()
     {
         $notifications = $this->NotificationRepo->getAll();
-        return view("notifications.list", ['items' => $notifications ]);
+        return view("cp.notifications.list", ['items' => $notifications ]);
     }
 
 
@@ -46,7 +46,7 @@ class NotificationsSettingsController extends Controller
         $title = __('app.New Notification'); 
         $route = route('save-notify');
         $types =  ['info','success','warning'];
-        return view("notifications.form", [ 'route'=>$route ,'types'=>$types,'title'=>$title ,'item' => $item ]);
+        return view("cp.notifications.form", [ 'route'=>$route ,'types'=>$types,'title'=>$title ,'item' => $item ]);
     }
 
 
@@ -82,7 +82,7 @@ class NotificationsSettingsController extends Controller
         $route = route('update-notify',['id'=>$id]);
         $title = __('app.Update Notification'); 
         $types =  ['info','success','warning'];
-        return view("notifications.form", ['item' => $item  ,'types'=>$types , 'route' => $route, 'title' =>  $title ]);
+        return view("cp.notifications.form", ['item' => $item  ,'types'=>$types , 'route' => $route, 'title' =>  $title ]);
     }
 
     /**

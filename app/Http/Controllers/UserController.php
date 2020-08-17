@@ -38,7 +38,7 @@ class UserController extends Controller
     public function list()
     {
         $users = $this->userRepo->getAll();
-        return view("users.users-list", ['users' => $users]);
+        return view("cp.users.users-list", ['users' => $users]);
     }
 
 
@@ -48,7 +48,7 @@ class UserController extends Controller
     public function add()
     {
         $roles = $this->roleRepo->getAll();
-        return view("users.users-add", ['roles' => $roles]);
+        return view("cp.users.users-add", ['roles' => $roles]);
     }
 
 
@@ -88,7 +88,7 @@ class UserController extends Controller
         foreach ($user->roles as $role) {
             array_push($selectedRoles, $role->id);
         }
-        return view("users.users-update", ['user' => $user, 'roles' => $roles, 'selectedRoles' => $selectedRoles]);
+        return view("cp.users.users-update", ['user' => $user, 'roles' => $roles, 'selectedRoles' => $selectedRoles]);
     }
 
     /**
