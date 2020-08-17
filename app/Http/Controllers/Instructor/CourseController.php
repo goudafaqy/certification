@@ -50,7 +50,7 @@ class CourseController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return view("instructor.courses.list", ['courses' => $courses, 'type' => $type]);
+        return view("cp.instructor.courses.list", ['courses' => $courses, 'type' => $type]);
     }
 
 
@@ -68,34 +68,34 @@ class CourseController extends Controller
     }
 
     private function sessions($course){
-        return view("instructor.courses.view", ['course' => $course, 'tab' => 'sessions']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'sessions']);
     }
 
     private function materials($course){
-        return view("instructor.courses.view", ['course' => $course, 'tab' => 'materials']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'materials']);
     }
 
     private function books($course){
-        return view("instructor.courses.view", ['course' => $course, 'tab' => 'books']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'books']);
     }
 
     private function updates($course){
-        return view("instructor.courses.view", ['course' => $course, 'tab' => 'updates']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'updates']);
     }
 
     private function exams($course){
 
         $exams = [];
 
-        return view("instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'exams']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'exams']);
     }
 
     private function evaluation($course){
-        return view("instructor.courses.view", ['course' => $course, 'tab' => 'evaluation']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'evaluation']);
     }
 
     private function trainees($course){
-        return view("instructor.courses.view", ['course' => $course, 'tab' => 'trainees']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'trainees']);
     }
 
 }

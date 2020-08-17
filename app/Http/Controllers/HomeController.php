@@ -58,6 +58,6 @@ class HomeController extends Controller
 
         //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('/dashboards/instructor', ['courses' => $courses->chunk(2)]);
+        return view('cp.dashboards.instructor', ['courses' => $courses->chunk(2)]);
     }
 }

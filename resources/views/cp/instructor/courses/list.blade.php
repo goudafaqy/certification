@@ -1,5 +1,5 @@
-@include('common.dashboard-header', ['role' => 2])
-@include('common.sidebar_instructor', ['active' => 'instructor-courses-'.$type])
+@include('cp.common.dashboard-header', ['role' => 2])
+@include('cp.common.sidebar_instructor', ['active' => 'instructor-courses-'.$type])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-@include('common.dashboard-footer')
+@include('cp.common.dashboard-footer')
 
 <script>
     $(document).ready(function () {
