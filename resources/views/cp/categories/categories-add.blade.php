@@ -1,5 +1,5 @@
-@include('common.dashboard-header')
-@include('common.sidebar', ['active' => 'categories-add'])
+@include('cp.common.dashboard-header')
+@include('cp.common.sidebar', ['active' => 'categories-add'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -47,7 +47,7 @@
         </div>
     </div>
 </div>
-@include('common.dashboard-footer')
+@include('cp.common.dashboard-footer')
 
 <script>
     $(document).ready(function () {

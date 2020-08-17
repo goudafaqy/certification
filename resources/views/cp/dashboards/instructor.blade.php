@@ -1,5 +1,5 @@
-@include('common.dashboard-header', ['role' => 2])
-@include('common.sidebar_instructor', ['active' => 'dashboards.instructor'])
+@include('cp.common.dashboard-header', ['role' => 2])
+@include('cp.common.sidebar_instructor', ['active' => 'dashboards.instructor'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -409,4 +409,4 @@
         </div>
     </div>
 </div>
-@include('common.dashboard-footer')
+@include('cp.common.dashboard-footer')
