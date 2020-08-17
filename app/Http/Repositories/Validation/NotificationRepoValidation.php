@@ -2,20 +2,23 @@
 
 namespace App\Http\Repositories\Validation;
 
-use App\Http\Interfaces\Validation\SectionValidation;
+use App\Http\Interfaces\Validation\NotificationValidation;
 use Illuminate\Support\Facades\Validator;
 
-class SectionRepoValidation implements SectionValidation{
+class NotificationRepoValidation implements NotificationValidation{
     
     private function getRules(){
         return [
             'insert' => [
                 'title_ar' => 'required',
-                'course_id' => 'required'
+                'type' => 'required',
+                'message_ar' => 'required',
+               
             ],
             'update' => [
                 'title_ar' => 'required',
-                'course_id' => 'required'
+                'type' => 'required',
+                'message_ar' => 'required',
             ],
         ];
     }
