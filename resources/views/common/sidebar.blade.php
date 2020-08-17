@@ -101,6 +101,26 @@
             </nav>
         </div>
     </div>
+
+
+
+        <!-- Notifiction views -->
+        <div class="nav-container">
+        <nav id="main-menu-navigation" class="navigation-main">
+            <div class="nav-item has-sub @if($active == 'notify-list' || $active == 'notify-add') open @endif">
+                <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
+                    <span> قائمة  الاشعارات </span>
+                </a>
+                <div class="submenu-content">
+                    <a href="{{ route('notify-list') }}"
+                       class="menu-item @if($active == 'notify-list') active @endif"><img
+                            src="{{ asset('images/list.png') }}" style="width: 20px">  قائمة  الاشعارات </a>
+                    <a href="{{ route('notify-add') }}" class="menu-item @if($active == 'notify-add') active @endif">
+                        <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة اشعار جديدة </a>
+                </div>
+            </div>
+        </nav>
+    </div>
 </div>
 
 
