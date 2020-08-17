@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+  
     'Material Added Successfully' => 'تم اضافة الملف  بنجاح',
     'Material Updated Successfully' => 'تم تحديث الملف بنجاح',
     'Material Deleted Successfully' => 'تم حذف الملف بنجاح',

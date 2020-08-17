@@ -82,7 +82,24 @@
                         <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة دورة جديدة </a>
                 </div>
             </div>
-        </nav>
+            </nav>
+        </div>
+
+
+        <!-- Courses views -->
+        <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-item has-sub @if($active == 'create-webinar' || $active == 'zoom') open @endif">
+                    <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
+                        <span>Zoom</span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="{{ route('create-webinar') }}" class="menu-item @if($active == 'create-webinar') active @endif"><img src="{{ asset('images/list.png') }}" style="width: 20px"> Create Webinar </a>
+                        <a href="{{ route('webinars-list') }}" class="menu-item @if($active == 'webinars-list') active @endif"> <img src="{{ asset('images/add.png') }}" style="width: 20px"> Webinars </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
 
 
@@ -105,4 +122,5 @@
         </nav>
     </div>
 </div>
-</div>
+
+
