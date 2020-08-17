@@ -101,7 +101,6 @@ Auth::routes();
         Route::post('update', 'CourseUnitsController@edit')->name('update-units');
         Route::post('save', 'CourseUnitsController@create')->name('save-units');
         Route::get('delete/{id}/{section_id}', 'CourseUnitsController@delete')->name('delete-units');
-
     });
 
     // Zoom routes ...
@@ -125,9 +124,17 @@ Auth::routes();
         Route::post('update', 'NotificationsSettingsController@edit')->name('update-notify');
         Route::post('save', 'NotificationsSettingsController@create')->name('save-notify');
         Route::get('delete/{id}', 'NotificationsSettingsController@delete')->name('delete-notify');
-    
+
     });
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::prefix('instructor')->group(function (){
+    Route::prefix('courses')->namespace('instructor')->group(function () {
+        Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
+        Route::get('view/{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
+    });
+});
