@@ -1,5 +1,5 @@
 @include('cp.common.dashboard-header')
-@include('cp.common.sidebar', ['active' => 'dashboards.admin'])
+@include('cp.common.sidebar', ['active' => 'dashboard'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">

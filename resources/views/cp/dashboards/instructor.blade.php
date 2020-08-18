@@ -1,5 +1,5 @@
 @include('cp.common.dashboard-header', ['role' => 2])
-@include('cp.common.sidebar_instructor', ['active' => 'dashboards.instructor'])
+@include('cp.common.sidebar_instructor', ['active' => 'dashboard'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -8,118 +8,36 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title"> الخدمات الإلكترونية</h3>
-                            </div>
-                        </div>
-                        <div class="card-body" style="padding: 0 15px">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4 new-ser">
-                                    <a target="" href="">
-                                        <img src="images/prof.png">
-                                        طلب إفادة
-                                    </a>
-                                </div>
-                                <div class="col-md-4 new-ser">
-                                    <a target="" href="">
-                                        <img src="images/cancel.png">
-                                        طلب حذف دورة
-                                    </a>
-                                </div>
-                                <div class="col-md-4 new-ser">
-                                    <a target="" href="">
-                                        <img src="images/cancel2.png">
-                                        طلب إلغاء تسجيل دورة
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget">
-                    <div class="card">
-                        <div class="widget-header">
-                            <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">الدورات الأخيرة</h3>
-                                <a href="#" class="btn btn-all"> المزيد</a>
+                                <a href="{{route('instructor-courses-list', ['type' => 'past'])}}" class="btn btn-all"> المزيد</a>
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">
-                            <div class="row odd">
-                                <div class="col-xl-6 col-md-6">
-                                    <div class="proj-progress-card d-flex align-items-center">
-                                        <img src="images/albom1.jpg">
-                                        <div>
-                                            <h6>أساسيات وسائل التواصل الاجتماعي</h6>
-                                            <div class="row align-items-center justify-content-around">
-                                                <div class="col">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-green" style="width:100%"></div>
+
+                            @foreach($courses as $chunk)
+                                <div class="row odd">
+                                    @foreach($chunk as $course)
+                                        <div class="col-xl-6 col-md-6">
+                                            <div class="proj-progress-card d-flex align-items-center">
+                                                <img src="{{asset($course->image)}}">
+                                                <div>
+                                                    <h6>{{$course->title_ar}}</h6>
+                                                    <div class="row align-items-center justify-content-around">
+                                                        <div class="col">
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-green" style="width:100%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h6 class="mb-0 text-success font-weight-bold">100%</h6>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="mb-0 text-success font-weight-bold">100%</h6>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <div class="proj-progress-card d-flex align-items-center">
-                                        <img src="images/albom2.jpg">
-                                        <div>
-                                            <h6> اساسيات التعلم عن بعد </h6>
-                                            <div class="row align-items-center justify-content-around">
-                                                <div class="col">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-blue" style="width:75%"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="mb-0 text-info font-weight-bold">75%</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row odd">
-                                <div class="col-xl-6 col-md-6">
-                                    <div class="proj-progress-card d-flex align-items-center">
-                                        <img src="images/albom7.jpg">
-                                        <div>
-                                            <h6> اساسيات التعلم عن بعد </h6>
-                                            <div class="row align-items-center justify-content-around">
-                                                <div class="col">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-yellow" style="width:50%"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="mb-0 text-warning font-weight-bold">50%</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-md-6">
-                                    <div class="proj-progress-card d-flex align-items-center">
-                                        <img src="images/law3.jpg">
-                                        <div>
-                                            <h6> اساسيات التعلم عن بعد </h6>
-                                            <div class="row align-items-center justify-content-around">
-                                                <div class="col">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-red" style="width:25%"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="mb-0 text-danger font-weight-bold">25%</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
