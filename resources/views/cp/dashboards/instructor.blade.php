@@ -1,5 +1,5 @@
 @include('cp.common.dashboard-header', ['role' => 2])
-@include('cp.common.sidebar_instructor', ['active' => 'dashboards.instructor'])
+@include('cp.common.sidebar_instructor', ['active' => 'dashboard'])
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">

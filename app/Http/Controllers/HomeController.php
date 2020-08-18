@@ -29,7 +29,6 @@ class HomeController extends Controller
     public function dashboard()
     {
         $role = Auth::user()->roles? Auth::user()->roles[0]: null;
-
         if(!$role)
             throw new NotFoundHttpException();
 

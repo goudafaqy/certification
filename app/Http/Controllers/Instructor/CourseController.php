@@ -54,48 +54,47 @@ class CourseController extends Controller
     }
 
 
-    public function view($id, $tab = 'sessions')
+    public function view($type, $id , $tab = 'sessions')
     {
-
         $course = $this->courseRepo->getById($id);
 
         if (!method_exists($this, $tab)) {
             throw new NotFoundHttpException();
         }
 
-        return $this->$tab($course);
+        return $this->$tab($course, $type);
 
     }
 
-    private function sessions($course){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'sessions']);
+    private function sessions($course, $type){
+        return view("cp.instructor.courses.view", ['course' => $course, 'type' => $type, 'tab' => 'sessions']);
     }
 
-    private function materials($course){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'materials']);
+    private function materials($course, $type){
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'materials', 'type' => $type]);
     }
 
-    private function books($course){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'books']);
+    private function books($course, $type){
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'books', 'type' => $type]);
     }
 
-    private function updates($course){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'updates']);
+    private function updates($course, $type){
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'updates', 'type' => $type]);
     }
 
-    private function exams($course){
+    private function exams($course, $type){
 
         $exams = [];
 
-        return view("cp.instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'exams']);
+        return view("cp.instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'exams', 'type' => $type]);
     }
 
-    private function evaluation($course){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'evaluation']);
+    private function evaluation($course, $type){
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'evaluation', 'type' => $type]);
     }
 
-    private function trainees($course){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'trainees']);
+    private function trainees($course, $type){
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'trainees', 'type' => $type]);
     }
 
 }

@@ -48,7 +48,7 @@
                                                 <td class="text-center">{{ $course->classification->title_ar }}</td>
                                                 <td class="text-center">{{ $course->seats }}</td>
                                                 <td class="text-center">
-                                                    <a class="btn btn-info" href="{{route('instructor-courses-view',['id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="تفاصيل الدورة"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
+                                                    <a class="btn btn-info" href="{{route('instructor-courses-view',['id' => $course->id, 'type' => $type])}}" data-toggle="tooltip" data-placement="top" title="تفاصيل الدورة"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
