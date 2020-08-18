@@ -38,5 +38,7 @@ return [
     'Message_ar' =>'الرسالة باللغة العربية',
     'Message_en' =>'الرسالة باللغة الانجليزية',
     'New Notification'=>'اشعار جديد',
-    'Code'=>'كود الاشعار'
+    'Code'=>'كود الاشعار',
+    'Adly Training Center'=>'مركز التدريب العدلي',
+    'You have new account'=>'لديك حساب جديد'
 ];
