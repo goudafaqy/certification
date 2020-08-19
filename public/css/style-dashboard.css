@@ -829,6 +829,7 @@ background: #303b58;
   overflow: hidden;
   margin-bottom: 10px;
     border-radius: 15px;
+    height: 30vh;
      
  box-shadow: 0 10px 25px 0 rgba(50,50,93,.07), 0 5px 15px 0 rgba(0,0,0,.07);
 
@@ -1430,8 +1431,8 @@ background: rgba(220, 169, 132,.8);
         .btn-primary:focus
         {
             border:1px solid #a58661 !important;
-            background-color:#fff !important;
-            color:#a58661 !important;
+            background-color:#a58661 !important;
+            color:#FFF !important;
             outline: none !important;
         }
         
@@ -1620,7 +1621,7 @@ background: rgba(220, 169, 132,.8);
 .searchclass > .form-control:focus{
  
     border-radius: 8px;
-    border: 0;
+    /* border: 0; */
 box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06); 
     transition: .4s 
 }
@@ -1629,7 +1630,7 @@ box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
     border-radius: 8px
 }
 .form-control:focus{
-  border:0;
+  /* border:0; */
 }
 .register-form h6{
   text-align: right;

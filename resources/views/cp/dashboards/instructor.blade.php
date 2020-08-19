@@ -17,20 +17,20 @@
                         <div class="card-body">
                             <div class="row">
                                 @foreach($currentCourses as $course)
-                                <div class="col-md-6 ">
-                                    <div class=" course-box">
+                                <div class="col-md-6">
+                                    <div class="course-box">
                                         <img src="{{asset($course->image)}}" alt="" class="img-thumbnail">
                                         <div class="details">
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
                                                 @if($course->type == 'live')
-                                                <h6>أونلاين</h6>
+                                                <h6 style="padding-right: 10px;">حضور أونلاين</h6>
                                                 @elseif($course->type == 'recorded')
-                                                <h6>دورة مسجلة</h6>
+                                                <h6 style="padding-right: 10px;">دورة مسجلة</h6>
                                                 @elseif($course->type == 'face_to_face')
-                                                <h6>حضور فعلي</h6>
+                                                <h6 style="padding-right: 10px;">حضور فعلي</h6>
                                                 @else
-                                                <h6>تعليم مدمج</h6>
+                                                <h6 style="padding-right: 10px;">تعليم مدمج</h6>
                                                 @endif
                                             </div>
                                         </div>
