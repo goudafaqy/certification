@@ -6,6 +6,7 @@ use App\Http\Repositories\Validation\NotificationRepoValidation;
 use Illuminate\Http\Request;
 use App\Http\Helpers\FileHelper;
 use App\Models\NotificationSetting;
+use Illuminate\Support\Facades\Mail;
 
 class NotificationsSettingsController extends Controller
 {
@@ -32,6 +33,10 @@ class NotificationsSettingsController extends Controller
      */
     public function list()
     {
+
+        $to_name = 'Monako';
+        $to_email = 'mohgood2020@gmail.com';
+        $data = array('name'=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
         $notifications = $this->NotificationRepo->getAll();
         return view("cp.notifications.list", ['items' => $notifications ]);
     }

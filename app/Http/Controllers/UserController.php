@@ -8,6 +8,9 @@ use App\Http\Repositories\Validation\UserRepoValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use App\Mail\InstructorAccount;
+use Illuminate\Support\Facades\Mail;
+
 class UserController extends Controller
 {
 
@@ -57,20 +60,42 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+
+         
+
         $inputs = $request->input();
         $validator = $this->userValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
             return redirect('users/add')->withErrors($validator)->withInput();
         }else{
             $inputs['active'] = isset($inputs['active']) ? true : false;
+            $pass = $inputs['password'];
             $inputs['password'] = Hash::make($inputs['password']);
             $roles = $inputs['role'];
             unset($inputs['role']);
             unset($inputs['_token']);
+            
             unset($inputs['password_confirmation']);
             $userId = $this->userRepo->save($inputs, true);
             if($userId){
-                $userId = $this->userRepo->saveRoles($roles, $userId);
+                 $this->userRepo->saveRoles($roles, $userId);
+ 
+                 if(in_array('2',$roles)){
+                   // Send Mail Notification To Instructor
+                    $inputs['password'] = $pass;
+                    $email = new InstructorAccount($inputs , __('app.Adly Training Center') ,__('app.You have new account'));
+                    Mail::to($inputs['email'])->send($email);
+                    $data = [
+                        'title_ar'=>   __('app.You have new account'),
+                        'title_en'=>   __('app.You have new account'),
+                        'message_ar'=> __('app.You have new account'),
+                        'message_en'=> __('app.You have new account'),
+                        'user_id'=>    $userId,
+                        'type'=>'info'
+                    ];
+                    $this->add_notification($data);
+
+                }
                 return redirect('users/list')->with('added', 'تمت إضافة المستخدم بنجاح');
             }
         }
