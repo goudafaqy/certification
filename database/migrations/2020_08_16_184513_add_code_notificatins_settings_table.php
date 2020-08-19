@@ -13,7 +13,7 @@ class AddCodeNotificatinsSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('notificatins_settings', function (Blueprint $table) {
+        Schema::table('notifications_settings', function (Blueprint $table) {
             $table->string('code');
         });
     }
@@ -25,6 +25,6 @@ class AddCodeNotificatinsSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notificatins_settings');
+        Schema::dropIfExists('notifications_settings');
     }
 }
