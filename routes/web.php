@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','WelcomeController@index');
 Route::get('/{by}/{by_id}/courses','WelcomeController@courses');
 Route::get('/course/{id}','WelcomeController@course');
+Route::get('/profile/{id}','WelcomeController@instructorProfile');
+Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
 
 Auth::routes();
 
@@ -101,7 +103,6 @@ Auth::routes();
         Route::post('update', 'CourseUnitsController@edit')->name('update-units');
         Route::post('save', 'CourseUnitsController@create')->name('save-units');
         Route::get('delete/{id}/{section_id}', 'CourseUnitsController@delete')->name('delete-units');
-
     });
 
     // Zoom routes ...
@@ -112,10 +113,31 @@ Auth::routes();
         Route::get('webinars-list', 'ZoomController@index')->name('webinars-list');
     });
 
-Route::get('test', function (){
-    return view('site.profile');
-});
+
+    Route::get('test', function (){
+        return view('site.course');
+    });
+
+    // Course Units routes ...
+    Route::prefix('notifications')->group(function () {
+
+        Route::get('/', 'NotificationsSettingsController@list')->name('notify-list');
+        Route::get('add', 'NotificationsSettingsController@add')->name('notify-add');
+        Route::get('update/{id}', 'NotificationsSettingsController@update')->name('notify-update');
+        Route::post('update', 'NotificationsSettingsController@edit')->name('update-notify');
+        Route::post('save', 'NotificationsSettingsController@create')->name('save-notify');
+        Route::get('delete/{id}', 'NotificationsSettingsController@delete')->name('delete-notify');
+
+    });
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::prefix('instructor')->group(function (){
+    Route::prefix('courses')->namespace('instructor')->group(function () {
+        Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
+        Route::get('view/{id}/{type?}', 'CourseController@view')->name('instructor-courses-view');
+    });
+});

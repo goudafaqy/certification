@@ -34,7 +34,7 @@ class CourseMaterialsController extends Controller
     {
         $course = Course::find($course_id);
         $materials = $this->MaterialRepo->getAll($course_id);
-        return view("materials.list", ['materials' => $materials  ,'course_id'=>$course_id ,'course'=>$course]);
+        return view("cp.materials.list", ['materials' => $materials  ,'course_id'=>$course_id ,'course'=>$course]);
     }
 
 
@@ -49,7 +49,7 @@ class CourseMaterialsController extends Controller
         $course = Course::find($course_id);
 
         $route = route('save-materials',['course_id'=>$course_id]);
-        return view("materials.form", ['types' => $types , 'course'=>$course , 'route'=>$route ,'title'=>$title ,'material' => $material ,'course_id' =>$course_id]);
+        return view("cp.materials.form", ['types' => $types , 'course'=>$course , 'route'=>$route ,'title'=>$title ,'material' => $material ,'course_id' =>$course_id]);
     }
 
 
@@ -89,7 +89,7 @@ class CourseMaterialsController extends Controller
         $title = __('app.Update Material'); 
         $course = Course::find($material->course_id);
         $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
-        return view("materials.form", ['material' => $material,'course'=>$course, 'types' => $types , 'route' => $route, 'title' =>  $title ,'course_id'=>$material->course_id]);
+        return view("cp.materials.form", ['material' => $material,'course'=>$course, 'types' => $types , 'route' => $route, 'title' =>  $title ,'course_id'=>$material->course_id]);
     }
 
     /**

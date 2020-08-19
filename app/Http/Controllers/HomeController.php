@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Eloquent\CourseRepo;
+use Carbon\Carbon;
 use DB;
 use Facade\FlareClient\Http\Exceptions\NotFound;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HomeController extends Controller
 {
+    var $courseRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        CourseRepo $courseRepo
+    )
     {
+        $this->courseRepo = $courseRepo;
         $this->middleware('auth');
     }
 
@@ -22,19 +29,20 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
+     * @throws NotFoundHttpException
      */
     public function dashboard()
     {
         $role = Auth::user()->roles? Auth::user()->roles[0]: null;
-
         if(!$role)
-            throwException(new NotFound());
+            throw new NotFoundHttpException();
 
-        if($role->id == 1) //admin
+        if($role->name == 'admin') //admin
             return $this->adminDashboard();
-        elseif ($role->id == 2)
+        elseif ($role->name == 'instructor')
             return $this->instructorDashboard();
-
+        else
+            throw new NotFoundHttpException();
     }
 
 
@@ -42,14 +50,17 @@ class HomeController extends Controller
 
         $categories = DB::table('categories')->get();
 
-        return view('/dashboards/admin', ['categories' => $categories]);
+        return view('/cp/dashboards/admin', ['categories' => $categories]);
     }
 
 
     private function instructorDashboard(){
 
-        $categories = DB::table('categories')->get();
+        $instructor_id = Auth::id();
+        $currentCourses = $this->courseRepo->getCurrentByInstructor($instructor_id);
+        $previousCourses = $this->courseRepo->getPastByInstructor($instructor_id);
+        //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('/dashboards/instructor', ['categories' => $categories]);
+        return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses]);
     }
 }

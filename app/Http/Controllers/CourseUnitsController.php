@@ -35,7 +35,7 @@ class CourseUnitsController extends Controller
         $items  = $this->UnitRepo->getAll($section_id);
         $section = Section::find($section_id);
         $course = Course::find($section->course_id);
-        return view("units.list", ['items' => $items , 'course'=>$course ,  'section_id'=>$section_id]);
+        return view("cp.units.list", ['items' => $items , 'course'=>$course ,  'section_id'=>$section_id]);
     }
 
 
@@ -49,7 +49,7 @@ class CourseUnitsController extends Controller
         $route = route('save-units',['section_id'=>$section_id]);
         $section = Section::find($section_id);
         $course = Course::find($section->course_id);
-        return view("units.form", ['route'=> $route ,'title'=>$title ,  'course'=>$course , 'item' => $item ,'section_id' =>$section_id]);
+        return view("cp.units.form", ['route'=> $route ,'title'=>$title ,  'course'=>$course , 'item' => $item ,'section_id' =>$section_id]);
     }
 
 
@@ -83,7 +83,7 @@ class CourseUnitsController extends Controller
         $title = __('app.Update Unit'); 
         $section = Section::find($item->section_id);
         $course = Course::find($section->course_id);
-        return view("units.form", ['item' => $item,  'route' => $route,'course'=>$course, 'title' =>  $title ,'section_id'=>$item->section_id]);
+        return view("cp.units.form", ['item' => $item,  'route' => $route,'course'=>$course, 'title' =>  $title ,'section_id'=>$item->section_id]);
     }
 
     /**

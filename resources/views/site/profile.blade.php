@@ -5,7 +5,7 @@
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">
-                <h2>الملف الشخصي للمدرب</h2>
+                <h2> الملف الشخصي {{$mr->name}}</h2>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                         <div class="card-header">
                             <div class="card-cover"></div>
                             <img class="card-avatar" src="{{asset('site-assets/images/Dr_Image.jpg')}}" alt="avatar" />
-                            <h1 class="card-fullname">ناريش ماكوانا</h1>
+                            <h1 class="card-fullname">{{$mr->name}}</h1>
                             <h2 class="card-jobtitle">مستشار بمركز التدريب العدلي بوزارة العدل</h2>
                         </div>
                         <div class="card-main">
@@ -42,7 +42,7 @@
                                     </p>
                                     <p class="card-desc">
 
-                                        <a><span><i class="fa fa-envelope-open"></i> Johnsmith@domain.com</span></a>
+                                        <a><span><i class="fa fa-envelope-open"></i> {{$mr->email}}</span></a>
                                     </p>
                                 </div>
                                 <div class="card-social">

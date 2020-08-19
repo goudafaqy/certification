@@ -294,17 +294,17 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="#">انضم كمدرب   </a>
+                                <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
                             </li>
                         @endauth
 
 
-                        <li class="nav-item mr-2" >
-                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>
-                        </li>
+{{--                        <li class="nav-item mr-2" >--}}
+{{--                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>--}}
+{{--                        </li>--}}
 
-                        <li class="nav-item mr-2" >
-                            <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('images/login-top.fdbd5b58a1fa.png') }}" style="width: 26px" caption="تسجيل الدخول"></a>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول"></a>
                         </li>
 
                         <li class="nav-item">
@@ -323,7 +323,7 @@
 
     @yield('content')
 
-    <!-- start  section of footer -->
+<!-- start  section of footer -->
     <section class="footer no-printme">
         <div class="footer-img">
             <div class="container">
@@ -343,12 +343,15 @@
                             <li>
                                 <a href="#"><img src="{{asset('site-assets/images/phone-center.png')}}" class="img-fluid">+001 2233 456</a>
                             </li>
+                            <li class="support"><a href="#"><img src="{{asset('site-assets/images/customer-service.png')}}" class="img-fluid">دعم</a></li>
                         </ul>
+
                         <!-- class bottom-footer -->
                         <ul class="bottom-footer">
                             <li><a href="#"><img src="{{asset('site-assets/images\title-center.png')}}" class="img-fluid" width="32"></a></li>
                             <li><a href="#"> <img src="{{asset('site-assets/images\play.png')}}" class="img-fluid" width="100"> </a></li>
                             <li><a href="#"><img src="{{asset('site-assets/images\apple.png')}}" class="img-fluid"  width="90"></a></li>
+
                         </ul>
 
                     </div>
@@ -468,6 +471,6 @@
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
 
-
+@yield('script')
 </body>
 </html>

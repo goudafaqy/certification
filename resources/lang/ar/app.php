@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+  
     'Material Added Successfully' => 'تم اضافة الملف  بنجاح',
     'Material Updated Successfully' => 'تم تحديث الملف بنجاح',
     'Material Deleted Successfully' => 'تم حذف الملف بنجاح',
@@ -31,4 +31,14 @@ return [
     'Type' =>'النوع',
     'New Unit' => 'أضافة وحدة جديد',
     'Update Unit' => 'تحديث الوحدة',
+    'Notifications' =>'اعدادات الاشعارات',
+    'Notification Added Successfully' => 'تم اضافة الاشعار  بنجاح',
+    'Notification Updated Successfully' => 'تم تحديث الاشعار بنجاح',
+    'Notification Deleted Successfully' => 'تم حذف الاشعار بنجاح',
+    'Message_ar' =>'الرسالة باللغة العربية',
+    'Message_en' =>'الرسالة باللغة الانجليزية',
+    'New Notification'=>'اشعار جديد',
+    'Code'=>'كود الاشعار',
+    'Adly Training Center'=>'مركز التدريب العدلي',
+    'You have new account'=>'لديك حساب جديد'
 ];

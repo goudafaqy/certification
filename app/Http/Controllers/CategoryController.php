@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function list()
     {
         $categories = $this->categoryRepo->getAll();
-        return view("categories.categories-list", ['categories' => $categories]);
+        return view("cp.categories.categories-list", ['categories' => $categories]);
     }
 
 
@@ -36,7 +36,7 @@ class CategoryController extends Controller
      */
     public function add()
     {
-        return view("categories.categories-add");
+        return view("cp.categories.categories-add");
     }
 
 
@@ -65,7 +65,7 @@ class CategoryController extends Controller
     public function update($id)
     {
         $category = $this->categoryRepo->getById($id);
-        return view("categories.categories-update", ['category' => $category]);
+        return view("cp.categories.categories-update", ['category' => $category]);
     }
 
     /**

@@ -36,7 +36,7 @@ class ClassificationController extends Controller
     public function list()
     {
         $classifications = $this->classRepo->getAll();
-        return view("classifications.classifications-list", ['classifications' => $classifications]);
+        return view("cp.classifications.classifications-list", ['classifications' => $classifications]);
     }
 
 
@@ -46,7 +46,7 @@ class ClassificationController extends Controller
     public function add()
     {
         $categories = $this->categoryRepo->getAll();
-        return view("classifications.classifications-add", ['categories' => $categories]);
+        return view("cp.classifications.classifications-add", ['categories' => $categories]);
     }
 
 
@@ -76,7 +76,7 @@ class ClassificationController extends Controller
     {
         $classification = $this->classRepo->getById($id);
         $categories = $this->categoryRepo->getAll();
-        return view("classifications.classifications-update", ['classification' => $classification, 'categories' => $categories]);
+        return view("cp.classifications.classifications-update", ['classification' => $classification, 'categories' => $categories]);
     }
 
     /**
