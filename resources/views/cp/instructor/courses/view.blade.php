@@ -295,16 +295,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-10">
-                                                            <div class="wrapper">
-                                                                <div class="progress-tooltip" style="position: relative; bottom: 30px; margin-right: 5%;">
-                                                                    <span class="progress-tooltip-info" style="left: 35%;">45%</span>
-                                                                    <progress class="progress" value="45" max="100">45%</progress>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -365,12 +355,10 @@
                             </nav>
                             <section style="background: #fafcfd; padding:10px;">
                                 <div class="tab1 Tab-form">
-
-                                    <button type="button" class="btn btn-primaryy mt-2 mx-auto">أضف محتوي <i class="fa fa-plus"></i></button>
                                     <div class="outer-container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <table style="overflow-x:auto; font-size: 1.2em;">
+                                                <table class="course-view-table" style="overflow-x:auto;">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">المحاضرة</th>
@@ -380,7 +368,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="priority-200">
+                                                        <tr style="color: #FFF">
                                                             <th class="text-center" scope="row">1</th>
                                                             <td class="priority text-center">المحاضرة</td>
                                                             <td class="priority text-center">السبت</td>
