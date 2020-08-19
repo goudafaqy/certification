@@ -224,36 +224,32 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                 <i class="fas fa-bars"></i>
                                 الفئات المستهدفة
                             </a>
-                            <div class="menu sidebar">
 
-                                <ul class="dropdown-menu  sidebar__menu">
-                                    <div class="sidebar__profile">
-                                    </div>
+
+                                <ul class="dropdown-menu first-menu">
 
                                     @foreach($categories as $category)
-                                    <li class="sidebar__item {{count($category->classifications) > 0 ?"has-children":""}} ">
-                                        <a class="dropdown-item  sidebar__link " href="{{url('category/'.$category->id.'/courses')}}">
-                                            <img src="{{asset('site-assets/images/judge.png')}}" class="img-fluid" width="20">
+                                    <li class="link-menu {{count($category->classifications) > 0 ?"has-children":""}} ">
+                                        <a class="dropdown-item {{count($category->classifications) > 0 ?"item-first":""}}" href="{{url('category/'.$category->id.'/courses')}}">
+                                            <img src="{{asset('site-assets/images/balance.png')}}" class="img-fluid" width="20">
                                            {{$category->title}}
 
                                         </a>
                                         @if(count($category->classifications) > 0)
-                                        <svg class="sidebar__icon" viewBox="0 0 24 24">
-                                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-                                        </svg>
 
-                                        <ul class="submenu dropdown-menu sub-menu">
-                                            <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="40" style="margin:auto;display:table">
+
+                                        <ul class="submenu dropdown-menu">
+
                                             @foreach($category->classifications as $classification)
                                             <li>
                                                 <a class="dropdown-item" href="{{url('classification/'.$classification->id.'/courses')}}">
-                                                    <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="20">{{$classification->title}}
+                                                    <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="18"> {{$classification->title}}
                                                 </a>
                                             </li>
                                            @endforeach
@@ -265,11 +261,11 @@
                                         @endforeach
 
                                 </ul>
-                            </div>
                         </li>
 
 
 
+                    </ul>
                     </ul>
                     <ul class="navbar-nav mr-auto ">
 

@@ -113,7 +113,7 @@ Auth::routes();
     });
 
 Route::get('test', function (){
-    return view('site.course');
+    return view('site.profile');
 });
 
 Auth::routes();
