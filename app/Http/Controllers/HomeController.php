@@ -36,6 +36,8 @@ class HomeController extends Controller
             return $this->adminDashboard();
         elseif ($role->name == 'instructor')
             return $this->instructorDashboard();
+        elseif ($role->name == 'trainee')
+            return $this->traineeDashboard();
         else
             throw new NotFoundHttpException();
     }
@@ -50,6 +52,17 @@ class HomeController extends Controller
 
 
     private function instructorDashboard(){
+
+        $courses = DB::table('courses')
+            ->where('instructor_id', Auth::id())
+            ->orderBy('id', 'DESC')->limit(4)->get();
+
+        //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
+
+        return view('cp.dashboards.instructor', ['courses' => $courses->chunk(2)]);
+    }
+
+    private function traineeDashboard(){
 
         $courses = DB::table('courses')
             ->where('instructor_id', Auth::id())

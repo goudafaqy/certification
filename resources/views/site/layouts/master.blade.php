@@ -296,20 +296,27 @@
                             <li class="nav-item">
                                 <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->username}}   </a>
                             </li>
+
+                            <li class="nav-item mr-2" >
+                                <a class="nav-link" href="{{ url('logout') }} " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <img src="{{ asset('images/logout.png') }}" style="width: 26px" caption="تسجيل الخروج"></a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         @else
                             <li class="nav-item">
                                 <a class="nav-link btn btn-outline-success" href="#">انضم كمدرب   </a>
                             </li>
+
+                            <li class="nav-item mr-2" >
+                                <a class="nav-link" href="{{ url('register') }}"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>
+                            </li>
+
+                            <li class="nav-item mr-2" >
+                                <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('images/login-top.fdbd5b58a1fa.png') }}" style="width: 26px" caption="تسجيل الدخول"></a>
+                            </li>
                         @endauth
 
-
-                        <li class="nav-item mr-2" >
-                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>
-                        </li>
-
-                        <li class="nav-item mr-2" >
-                            <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('images/login-top.fdbd5b58a1fa.png') }}" style="width: 26px" caption="تسجيل الدخول"></a>
-                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#"> <img src="{{ asset('images\2030.png') }}" class="img-fluid vision"></a>

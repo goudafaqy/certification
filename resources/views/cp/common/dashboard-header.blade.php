@@ -121,7 +121,8 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
+                                <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
