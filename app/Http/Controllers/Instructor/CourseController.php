@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CategoryRepo;
+use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Validation\CourseRepoValidation;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
@@ -20,9 +21,7 @@ class CourseController extends Controller
 {
     var $courseRepo;
     var $userRepo;
-    var $categoryRepo;
-    var $classRepo;
-    var $courseValidation;
+    var $examRepo;
 
     /**
      * Create a new controller instance.
@@ -31,11 +30,13 @@ class CourseController extends Controller
      */
     public function __construct(
         CourseRepo $courseRepo,
-        UserRepo $userRepo
+        UserRepo $userRepo,
+        ExamRepo $examRepo
     )
     {
         $this->courseRepo = $courseRepo;
         $this->userRepo = $userRepo;
+        $this->examRepo = $examRepo;
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -54,8 +55,9 @@ class CourseController extends Controller
     }
 
 
-    public function view($id, $type, $tab = 'sessions')
+    public function view($id, $tab = 'guide')
     {
+        $type = \request('type');
         $course = $this->courseRepo->getById($id);
 
         if (!method_exists($this, $tab)) {
@@ -65,35 +67,52 @@ class CourseController extends Controller
         return $this->$tab($course, $type);
     }
 
-    private function sessions($course, $type){
-        return view("cp.instructor.courses.view", ['course' => $course, 'type' => $type, 'tab' => 'sessions']);
+    private function guide($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab1', 'type' => $type]);
     }
 
-    private function materials($course, $type){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'materials', 'type' => $type]);
+    private function files($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab2', 'type' => $type]);
     }
 
-    private function books($course, $type){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'books', 'type' => $type]);
+    private function sessions($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab3', 'type' => $type]);
     }
 
-    private function updates($course, $type){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'updates', 'type' => $type]);
+    private function questionnaires($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type]);
     }
 
-    private function exams($course, $type){
-
-        $exams = [];
-
-        return view("cp.instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'exams', 'type' => $type]);
+    private function ads($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab5', 'type' => $type]);
     }
 
-    private function evaluation($course, $type){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'evaluation', 'type' => $type]);
+    private function exams($course, $type)
+    {
+
+        $exams = $this->examRepo->getAll($course->id);
+
+        return view("cp.instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'tab6', 'type' => $type]);
     }
 
-    private function trainees($course, $type){
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'trainees', 'type' => $type]);
+    private function evaluations($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab7', 'type' => $type]);
+    }
+
+    private function trainees($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type]);
+    }
+
+    private function support($course, $type)
+    {
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab9', 'type' => $type]);
     }
 
 }
