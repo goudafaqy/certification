@@ -19,7 +19,7 @@
                                 @foreach($currentCourses as $course)
                                 <div class="col-md-6">
                                     <div class="course-box">
-                                        <img src="{{asset($course->image)}}" alt="" class="img-thumbnail">
+                                        <img src="{{url($course->image)}}" alt="" class="img-thumbnail">
                                         <div class="details">
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
