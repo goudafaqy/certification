@@ -105,13 +105,13 @@
                                     <div class="col-md-2">
                                         <div class="form-check radio-grade">
                                             <input class="form-check-input" type="radio" name="pass_unit" id="percent" value="p" checked>
-                                            <label class="form-check-label" for="percent">
+                                            <label class="form-check-label" for="percent" style="position: relative; bottom: 1px; right: 5px;">
                                                 نسبة %
                                             </label>
                                         </div>
                                         <div class="form-check radio-grade">
                                             <input class="form-check-input" type="radio" name="pass_unit" id="number" value="n">
-                                            <label class="form-check-label" for="number">
+                                            <label class="form-check-label" for="number" style="position: relative; bottom: 1px; right: 5px;">
                                                 رقم
                                             </label>
                                         </div>
@@ -135,11 +135,11 @@
                                     <div class="col-md-2">
                                         <div class="form-check" style="display: inline-block; position: relative; top: 45px">
                                             <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="assi_check" name="assi_check">
-                                            <label style="font-size: 0.9em;" class="form-check-label" for="assi_check">واجبات</label>
+                                            <label style="font-size: 0.9em; position: relative; bottom: 1px; right: 5px;" class="form-check-label" for="assi_check">واجبات</label>
                                         </div>
                                         <div class="form-check" style="margin-right: 10px; display: inline-block; position: relative; top: 45px">
                                             <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="exam_check" name="exam_check">
-                                            <label style="font-size: 0.9em;" class="form-check-label" for="exam_check">إمتحانات</label>
+                                            <label style="font-size: 0.9em; position: relative; bottom: 1px; right: 5px;" class="form-check-label" for="exam_check">إمتحانات</label>
                                         </div>
                                     </div>
                                 </div>

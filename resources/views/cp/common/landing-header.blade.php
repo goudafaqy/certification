@@ -204,7 +204,6 @@
             </ul>
         </div>
         <!-- end social_media and setting -->
-
         <div class="full-body">
             <header>
                 <nav class="navbar navbar-expand-lg fixed-top navbar-light header-border-bottom">
@@ -216,11 +215,8 @@
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto ">
-
-                                
                                 <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown">
                                     <i class="fas fa-book-open"></i>
@@ -248,19 +244,14 @@
                                     <li><a class="dropdown-item" href="#"> <i class="fa fa-address-book"></i> الملازمون </a> </li>
                                     <li><a class="dropdown-item" href="#">  <i class="fa fa-outdent"></i> الموثقين </a> </li>
                                     <li><a class="dropdown-item" href="#">  <i class="fa fa-balance-scale"></i> كتاب العدل  </a> </li>
-
                                     </ul>
                                 </li>
-                            
-                    
                                 <li class="nav-item">
                                     <a class="nav-link " href="#">
                                         <i class="fas fa-landmark"></i>
                                         المسارات
                                     </a>
                                 </li>
-                            
-
                                 <li class="nav-item">
                                     <div class="input-group md-form form-sm form-2 pl-0 searchclass">
                                         <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث"
@@ -271,14 +262,9 @@
                                     <i class="fa fa-search" aria-hidden="true"></i></span>
                                         </div>
                                         </a>
-                                        
                                     </div>
                                 </li>
-
-
                             </ul>
-                            
-                
                             <ul class="navbar-nav mr-auto setting-menu" style="">
                                 @auth
                                     <li class="nav-item">
@@ -289,8 +275,6 @@
                                         <a class="nav-link btn btn-outline-success" href="#">انضم كمدرب   </a>
                                     </li>
                                 @endauth
-                                
-                                
                                 <li class="nav-item mr-2" >
                                     <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>
                                 </li>
@@ -302,13 +286,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"> <img src="{{ asset('images\2030.png') }}" class="img-fluid vision"></a>
                                 </li>
-                                
-
                             </ul>
-
-
                         </div>
-                    
                     </div>
                 </nav>
             </header>

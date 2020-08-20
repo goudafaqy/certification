@@ -3,20 +3,12 @@
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Helpers\DateHelper;
-use App\Http\Repositories\Eloquent\CategoryRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
-use App\Http\Repositories\Validation\CourseRepoValidation;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use App\Http\Repositories\Validation\ExamRepoValidation;
 use Illuminate\Http\Request;
-use App\Http\Helpers\FileHelper;
-use App\Http\Helpers\GenerateHelper;
-use App\Http\Repositories\Eloquent\ClassificationRepo;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class CourseExamsController extends Controller
 {

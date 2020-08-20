@@ -258,6 +258,13 @@ background: #fff;
 }
 div.bootstrap-datetimepicker-widget table{
     text-align: center !important;
+    font-size: 1.3em;
+}
+
+div.bootstrap-datetimepicker-widget table .btn-primary{
+    padding: 5px 10px;
+    height: auto;
+    width: auto; 
 }
 
 .spanner{
@@ -365,6 +372,24 @@ div.bootstrap-datetimepicker-widget table{
 
 .swal2-popup{
     font-size: 1.1em !important;
+}
+
+table.table-condensed{
+    color: #000 !important;
+}
+.actions-btns{
+    padding: 5px 10px;
+    height: auto;
+    width: auto; 
+}
+
+.input-group .date1 .btn .btn-primary{
+    padding: 5px 10px;
+    height: auto;
+    width: auto; 
+}
+button[role="combobox"]{
+    height: 40px !important;
 }
 
 @media (min-width: 992px){
