@@ -20,7 +20,10 @@ Route::get('/course/{id}','WelcomeController@course');
 Auth::routes();
 
     // Home routes ...
-    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', 'HomeController@dashboard')->name('dashboard');
+    });
+
 
     // Users routes ...
     Route::prefix('users')->group(function () {
