@@ -22,7 +22,6 @@ Auth::routes();
     // Home routes ...
     Route::prefix('dashboard')->group(function () {
         Route::get('/', 'HomeController@dashboard')->name('dashboard');
-        Route::get('change-password', 'HomeController@dashboard')->name('dashboard');
     });
 
 
