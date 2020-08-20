@@ -11,7 +11,7 @@
                                 <div class="container register">
                                     <div class="row">
                                         <div class="col-md-3 register-left">
-                                            <img src="{{asset($course->image)}}" class="img-fluid" width="60" alt=""
+                                            <img src="{{url($course->image)}}" class="img-fluid" width="60" alt=""
                                                  style="width:200px !important">
                                             <h3>{{$course->title_ar}}</h3>
                                         </div>
