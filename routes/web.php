@@ -139,7 +139,7 @@ Auth::routes();
 
 
 Route::prefix('instructor')->group(function (){
-    Route::prefix('courses')->namespace('instructor')->group(function () {
+    Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
         Route::get('view/{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
 
