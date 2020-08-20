@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','WelcomeController@index');
 Route::get('/{by}/{by_id}/courses','WelcomeController@courses');
 Route::get('/course/{id}','WelcomeController@course');
+Route::get('/profile/{id}','WelcomeController@instructorProfile');
+Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
 
 Auth::routes();
 
@@ -114,6 +116,7 @@ Auth::routes();
         Route::get('webinars-list', 'ZoomController@index')->name('webinars-list');
     });
 
+
     Route::get('test', function (){
         return view('site.course');
     });
@@ -138,6 +141,15 @@ Auth::routes();
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('instructor')->group(function () {
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
-        Route::get('view/{id}/{type?}', 'CourseController@view')->name('instructor-courses-view');
+        Route::get('view/{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
+
+        Route::get('view/{id}/exam/add', 'CourseExamsController@add')->name('instructor-course-exam-add');
+        Route::get('view/{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
+        Route::post('view/{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
+        Route::get('view/{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
+        Route::get('view/{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
+        Route::post('view/{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
+
+
     });
 });

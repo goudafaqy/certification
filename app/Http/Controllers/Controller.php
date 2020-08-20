@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Notification;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -14,6 +15,14 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+        //share website nav
+        $categories = Category::with("classifications")->get();
+
+        // Sharing is caring
+        View::share('categories', $categories);
+    }
 
     function add_notification($data){
 

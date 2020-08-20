@@ -42,8 +42,8 @@
                                             <label for="cat_id">{{__('app.Material Type')}}</label>
                                             <select class="form-control @error('cat_id') is-invalid @enderror" id="type" name="type">
                                                 <option>{{__('app.Material Type')}}</option>
-                                                @foreach($types as $type)
-                                                 <option <?php if( (isset($material->type)) && $material->type == $type){ ?> selected <?php } ?> value="{{$type}}">{{$type}}</option>
+                                                @foreach($types as $type => $val)
+                                                 <option <?php if( (isset($material->type)) && $material->type == $type){ ?> selected <?php } ?> value="{{$type}}">{{$val}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
