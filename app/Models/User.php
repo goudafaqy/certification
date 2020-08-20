@@ -34,6 +34,11 @@ class User extends Authenticatable
         'username',
         'remember_token',
         'password',
+        'national_id',
+        'mobile',
+        'birth_date',
+        'gender',
+        'education'
     ];
 
     /**
