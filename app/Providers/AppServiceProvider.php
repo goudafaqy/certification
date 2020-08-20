@@ -25,11 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //share website nav
-        $categories = Category::with("classifications")->get();
-
-        // Sharing is caring
-        View::share('categories', $categories);
 
     }
 }

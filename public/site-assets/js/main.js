@@ -238,16 +238,16 @@ $(function () {
 //   );
 // });
 
-$( document ).ready(function() {
-  $('.has-children').on('click', function(){
+// $( document ).ready(function() {
+//   $('.has-children').on('click', function(){
 
-  if ($('.has-children').hasClass('open')) {
-     $(this).removeClass('open');
-   } else {
-      $(this).addClass('open');
-   }
-  });  
-});
+//   if ($('.has-children').hasClass('open')) {
+//      $(this).removeClass('open');
+//    } else {
+//       $(this).addClass('open');
+//    }
+//   });  
+// });
 
 //chat
 $(document).ready(function(){

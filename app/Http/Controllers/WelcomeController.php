@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classification;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -44,5 +45,14 @@ class WelcomeController extends Controller
         $course = Course::find($id);
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
         return view('site.course',compact('course','related_courses'));
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function instructorProfile($id){
+        $mr = User::find($id);
+        return view('site.profile',compact('mr'));
     }
 }

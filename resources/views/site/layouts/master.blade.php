@@ -224,36 +224,32 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                 <i class="fas fa-bars"></i>
                                 الفئات المستهدفة
                             </a>
-                            <div class="menu sidebar">
 
-                                <ul class="dropdown-menu  sidebar__menu">
-                                    <div class="sidebar__profile">
-                                    </div>
+
+                                <ul class="dropdown-menu first-menu">
 
                                     @foreach($categories as $category)
-                                    <li class="sidebar__item {{count($category->classifications) > 0 ?"has-children":""}} ">
-                                        <a class="dropdown-item  sidebar__link " href="{{url('category/'.$category->id.'/courses')}}">
-                                            <img src="{{asset('site-assets/images/judge.png')}}" class="img-fluid" width="20">
+                                    <li class="link-menu {{count($category->classifications) > 0 ?"has-children":""}} ">
+                                        <a class="dropdown-item {{count($category->classifications) > 0 ?"item-first":""}}" href="{{url('category/'.$category->id.'/courses')}}">
+                                            <img src="{{asset('site-assets/images/balance.png')}}" class="img-fluid" width="20">
                                            {{$category->title}}
 
                                         </a>
                                         @if(count($category->classifications) > 0)
-                                        <svg class="sidebar__icon" viewBox="0 0 24 24">
-                                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-                                        </svg>
 
-                                        <ul class="submenu dropdown-menu sub-menu">
-                                            <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="40" style="margin:auto;display:table">
+
+                                        <ul class="submenu dropdown-menu">
+
                                             @foreach($category->classifications as $classification)
                                             <li>
                                                 <a class="dropdown-item" href="{{url('classification/'.$classification->id.'/courses')}}">
-                                                    <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="20">{{$classification->title}}
+                                                    <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="18"> {{$classification->title}}
                                                 </a>
                                             </li>
                                            @endforeach
@@ -265,11 +261,11 @@
                                         @endforeach
 
                                 </ul>
-                            </div>
                         </li>
 
 
 
+                    </ul>
                     </ul>
                     <ul class="navbar-nav mr-auto ">
 
@@ -298,17 +294,17 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="#">انضم كمدرب   </a>
+                                <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
                             </li>
                         @endauth
 
 
-                        <li class="nav-item mr-2" >
-                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>
-                        </li>
+{{--                        <li class="nav-item mr-2" >--}}
+{{--                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>--}}
+{{--                        </li>--}}
 
-                        <li class="nav-item mr-2" >
-                            <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('images/login-top.fdbd5b58a1fa.png') }}" style="width: 26px" caption="تسجيل الدخول"></a>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول"></a>
                         </li>
 
                         <li class="nav-item">
@@ -327,7 +323,7 @@
 
     @yield('content')
 
-    <!-- start  section of footer -->
+<!-- start  section of footer -->
     <section class="footer no-printme">
         <div class="footer-img">
             <div class="container">
@@ -347,12 +343,15 @@
                             <li>
                                 <a href="#"><img src="{{asset('site-assets/images/phone-center.png')}}" class="img-fluid">+001 2233 456</a>
                             </li>
+                            <li class="support"><a href="#"><img src="{{asset('site-assets/images/customer-service.png')}}" class="img-fluid">دعم</a></li>
                         </ul>
+
                         <!-- class bottom-footer -->
                         <ul class="bottom-footer">
                             <li><a href="#"><img src="{{asset('site-assets/images\title-center.png')}}" class="img-fluid" width="32"></a></li>
                             <li><a href="#"> <img src="{{asset('site-assets/images\play.png')}}" class="img-fluid" width="100"> </a></li>
                             <li><a href="#"><img src="{{asset('site-assets/images\apple.png')}}" class="img-fluid"  width="90"></a></li>
+
                         </ul>
 
                     </div>
@@ -472,6 +471,6 @@
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
 
-
+@yield('script')
 </body>
 </html>

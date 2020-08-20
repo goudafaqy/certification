@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','WelcomeController@index');
 Route::get('/{by}/{by_id}/courses','WelcomeController@courses');
 Route::get('/course/{id}','WelcomeController@course');
+Route::get('/profile/{id}','WelcomeController@instructorProfile');
+Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
 
 Auth::routes();
 
@@ -110,6 +112,7 @@ Auth::routes();
         Route::post('store-webinar', 'ZoomController@store')->name('store-webinar');
         Route::get('webinars-list', 'ZoomController@index')->name('webinars-list');
     });
+
 
     Route::get('test', function (){
         return view('site.course');
