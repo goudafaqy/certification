@@ -54,7 +54,7 @@ class CourseController extends Controller
     }
 
 
-    public function view($type, $id , $tab = 'sessions')
+    public function view($id, $type, $tab = 'sessions')
     {
         $course = $this->courseRepo->getById($id);
 
@@ -63,7 +63,6 @@ class CourseController extends Controller
         }
 
         return $this->$tab($course, $type);
-
     }
 
     private function sessions($course, $type){

@@ -493,7 +493,14 @@ div.pub-ser2{ padding: 0}
 .form-input-label img{
     margin-top:-6px;
 }
-.tooltip-arrow , .tooltip > .tooltip-inner {background-color: #000440; font-size: 13px;font-family: changa}
+.dataTables_length{
+  display: none !important;
+}
+.tooltip-arrow, .tooltip > .tooltip-inner {
+  background-color: #000440;
+  font-size: 13px;
+  font-family: changa;
+}
 .wrapper .page-wrap .app-sidebar.colored .sidebar-content .nav-container .navigation-main .nav-item a i {
     color: #cfb177;
     float: right;
@@ -661,9 +668,6 @@ select.form-control {
     font-size: 11px;
     margin-bottom: 0
 }
-.form-control{
-
-}
 .descr{text-align: left}
 .ser-state p { text-align: center; color: #1c2172}
 
@@ -791,8 +795,8 @@ background: #303b58;
 .header-inner h4 { margin: 10px 10px 20px 10px}
 
 .dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus {
-    background-color: #283045 !important;
-    color: #ffffff;
+    background-color: #FFF !important;
+    color: #000;
 }
 .card .odd { border-bottom: 1px solid #c4c4c4}
 .card .odd:last-child { border-bottom: none}
@@ -825,6 +829,7 @@ background: #303b58;
   overflow: hidden;
   margin-bottom: 10px;
     border-radius: 15px;
+    height: 30vh;
      
  box-shadow: 0 10px 25px 0 rgba(50,50,93,.07), 0 5px 15px 0 rgba(0,0,0,.07);
 
@@ -1426,8 +1431,8 @@ background: rgba(220, 169, 132,.8);
         .btn-primary:focus
         {
             border:1px solid #a58661 !important;
-            background-color:#fff !important;
-            color:#a58661 !important;
+            background-color:#a58661 !important;
+            color:#FFF !important;
             outline: none !important;
         }
         
@@ -1616,7 +1621,7 @@ background: rgba(220, 169, 132,.8);
 .searchclass > .form-control:focus{
  
     border-radius: 8px;
-    border: 0;
+    /* border: 0; */
 box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06); 
     transition: .4s 
 }
@@ -1625,7 +1630,7 @@ box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
     border-radius: 8px
 }
 .form-control:focus{
-  border:0;
+  /* border:0; */
 }
 .register-form h6{
   text-align: right;
@@ -1879,11 +1884,25 @@ table th, table td {
     text-align: right;
 }
 table tbody tr {
-    background-color: var(--table-background);
+  color: #000;
+  font-size: 1.6em;
+  font-weight: bold;
+    /* background-color: var(--table-background); */
 }
 table tbody tr:hover {
-    background-color: var(--table-background-hover);
+    background-color: #e2e2e22f;
     box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+table.course-view-table thead tr{
+  background-color: #A1825C;
+  color: #FFF
+}
+table.course-view-table thead tr th{
+  font-size: 1.7em !important;
+}
+table.course-view-table tbody tr:hover {
+  background-color: #a1825c32;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
 table tbody tr td:first-of-type {
     border-top-left-radius: 0.3125rem;

@@ -13,7 +13,7 @@ class CreateNotificatinsSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notificatins_settings', function (Blueprint $table) {
+        Schema::create('notifications_settings', function (Blueprint $table) {
             $table->id();
             $table->string('title_ar');
             $table->string('title_en')->nullable();
@@ -32,6 +32,6 @@ class CreateNotificatinsSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notificatins_settings');
+        Schema::dropIfExists('notifications_settings');
     }
 }
