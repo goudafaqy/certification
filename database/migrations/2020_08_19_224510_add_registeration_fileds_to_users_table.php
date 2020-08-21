@@ -14,7 +14,7 @@ class AddRegisterationFiledsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('national_id');
+            $table->bigInteger('national_id')->nullable();
             $table->bigInteger('mobile');
             $table->date('birth_date')->default(now());
             $table->tinyInteger('gender');

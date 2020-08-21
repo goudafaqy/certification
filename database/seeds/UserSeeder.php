@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             'email' => 'ayman@gmail.com',
             'active' => true,
             'password' => Hash::make('123456'),
+            'mobile' => '123123123',
+            'gender' => 1
         ]);
 
         DB::table('users')->insert([
@@ -27,6 +29,8 @@ class UserSeeder extends Seeder
             'email' => 'negm@gmail.com',
             'active' => true,
             'password' => Hash::make('123456'),
+            'mobile' => '123123123',
+            'gender' => 1
         ]);
     }
 }
