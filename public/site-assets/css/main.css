@@ -2324,11 +2324,11 @@ section.programs ul.nav-pills{
 		right: 0; }
 	.thim-widget-testimonials .swiper-container .swiper-slide.swiper-slide-active .item-wrapper .content:before {
 		content: none; } }
-    .navbar-expand-lg .navbar-nav .dropdown-menu{
+    /* .navbar-expand-lg .navbar-nav .dropdown-menu{
       border-top: 3px solid #a58661;
       margin-top: 1rem;
       transition: all 0.7s ease 0s;
-    }
+    } */
 
     .blog {
       background: var(--blog-color);

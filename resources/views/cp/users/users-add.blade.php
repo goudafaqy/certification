@@ -92,8 +92,8 @@
                                         @enderror
 
                                         <div class="form-check" style="margin-top: 40px;">
-                                            <input style="width: 30px; height: 30px; cursor: pointer;" type="checkbox" class="form-check-input" value="{{ old('active') }}" id="active" name="active">
-                                            <label style="position: relative; top: 10px; right: 20px" class="form-check-label" for="active">الفاعلية على النظام</label>
+                                            <input style="width: 30px; height: 30px; cursor: pointer;" type="checkbox" class="form-check-input" @if(old('active') == 'on') checked @endif id="active" name="active">
+                                            <label style="position: relative; top: 10px; right: 30px" class="form-check-label" for="active">الفاعلية على النظام</label>
                                         </div>
                                     </div>
                                     <button style="width: 25%; margin-top: 50px;" type="submit" class="btn btn-primary">حفظ</button>

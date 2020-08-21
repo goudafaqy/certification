@@ -68,6 +68,16 @@ class Course extends Model
         return $this->hasMany('App\Models\CourseAppintment');
     }
 
+    /**
+     * Get the students for the course.
+     */
+    public function students()
+    {
+        return $this->belongsToMany('App\Models\User','course_user');
+    }
+    /**
+     * Get the the title localized.
+     */
     public function getTitleAttribute(){
         return $this["title_".App::getLocale()];
     }

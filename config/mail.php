@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => 'smtp',
 
     /*
     |--------------------------------------------------------------------------
@@ -36,9 +36,9 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'host' =>  'smtp.gmail.com',
+            'port' => 587,
+            'encryption' =>  'tls',
             'username' => 'adlytmscenter@gmail.com',
             'password' => 'Adly2020',
             'timeout' => null,
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'adlytmscenter@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'العادلى للدورات التدريبة'),
+        'address' =>  'adlytmscenter@gmail.com',
+        'name' =>'العادلى للدورات التدريبة',
     ],
 
     /*

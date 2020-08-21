@@ -1,0 +1,186 @@
+/*
+ * Font size style declarations for each variation.
+ *
+ * Observation: Note that the amount of classes here
+ * rely on how many variations you set on $.rvFontsize() call.
+ * 
+ * This classes are required to make rv font size jquery plugin works.
+ */
+
+
+
+
+
+
+
+.rvfs-4  h2,
+.rvfs-4  h4,
+.rvfs-4  h6,
+.rvfs-4  h1,
+.rvfs-4  h3,
+.rvfs-4  h5,
+.rvfs-4  p,
+.rvfs-4  input,
+.rvfs-4  select,
+.rvfs-4  textarea,
+.rvfs-4  .container .content span,
+.rvfs-4 .btn,
+.rvfs-4 .item span,
+.rvfs-4 strong,
+.rvfs-4 .single-box,
+.rvfs-4 .path-tab li,
+.rvfs-4 .condations p span,
+.rvfs-4 .condations p #title
+{
+     font-size: 100%
+}
+.rvfs-5  h2,
+.rvfs-5  h4,
+.rvfs-5  h6,
+.rvfs-5  h1,
+.rvfs-5  h3,
+.rvfs-5  h5,
+.rvfs-5  p,
+.rvfs-5  input,
+.rvfs-5  select,
+.rvfs-5  textarea,
+.rvfs-5  .container .content span,
+.rvfs-5  .btn,
+.rvfs-5 .item span,
+.rvfs-5 strong,
+.rvfs-5 .single-box,
+.rvfs-5 .path-tab li,
+.rvfs-5 .condations p span,
+.rvfs-5 .condations p #title
+
+{
+    font-size: 110% !important
+}
+.rvfs-6  h2,
+.rvfs-6  h4,
+.rvfs-6  h6,
+.rvfs-6  h1,
+.rvfs-6  h3,
+.rvfs-6  h5,
+.rvfs-6  p,
+.rvfs-6  input,
+.rvfs-6  select,
+.rvfs-6  textarea,
+.rvfs-6  .container .content span,
+.rvfs-6 .btn,
+.rvfs-6 .item span,
+.rvfs-6 strong,
+.rvfs-6 .single-box,
+.rvfs-6 .path-tab li,
+.rvfs-6 .condations p span,
+.rvfs-6 .condations p #title
+{
+    font-size: 120% !important
+}
+.rvfs-7  h2,
+.rvfs-7  h4,
+.rvfs-7  h6,
+.rvfs-7  h1,
+.rvfs-7  h3,
+.rvfs-7  h5,
+.rvfs-7  p,
+.rvfs-7  input,
+.rvfs-7  select,
+.rvfs-7  textarea,
+.rvfs-7  .container .content span,
+.rvfs-7 .btn,
+.rvfs-7 .item span,
+.rvfs-7 strong,
+.rvfs-7 .single-box,
+.rvfs-7 .path-tab li,
+.rvfs-7 .condations p span,
+.rvfs-7 .condations p #title
+{
+    font-size: 130% !important
+}
+
+.rvfs-4 a, .rvfs-4 li a{ font-size: 100% }
+.rvfs-5 a, .rvfs-5 li a{ font-size: 105% !important}
+.rvfs-6 a, .rvfs-6 li a{ font-size: 110% !important}
+.rvfs-7 a, .rvfs-7 li a{ font-size: 120% !important}
+
+/* .rvfs-1 .nav-link{ font-size: 98.7% !important}
+.rvfs-2 .nav-link{ font-size: 99.8% !important}
+.rvfs-3 .nav-link{ font-size: 99.9% !important}   */
+.rvfs-4 .navbar-light .navbar-nav .nav-link{ font-size: 100%}
+.rvfs-5 .navbar-light .navbar-nav .nav-link{ font-size: 108% !important}
+.rvfs-6 .navbar-light .navbar-nav .nav-link{ font-size: 110% !important}
+.rvfs-7 .navbar-light .navbar-nav .nav-link{ font-size: 115% !important}
+
+.rvfs-4 .background-image h2,
+.rvfs-4 .background-image h1,
+.rvfs-4 .swiper-slide .cover .header-content h2
+{ font-size: 40px}
+.rvfs-5 .background-image h2,
+.rvfs-5 .background-image h1,
+.rvfs-5 .swiper-slide .cover .header-content h2
+{ font-size: 55px !important}
+.rvfs-6 .background-image h2,
+.rvfs-6 .background-image h1,
+.rvfs-6 .swiper-slide .cover .header-content h2
+{ font-size: 60px !important}
+.rvfs-7 .background-image h2,
+.rvfs-7 .background-image h1,
+.rvfs-7 .swiper-slide .cover .header-content h2
+{ font-size: 70px !important}
+
+.rvfs-4 .p-header,
+.rvfs-4 .swiper-slide .header-content h6,
+.rvfs-4 .footer .container .Important_links h4
+{ font-size: 28px}
+.rvfs-5 .p-header,
+.rvfs-5 .swiper-slide .header-content h6,
+.rvfs-5 .footer .container .Important_links h4
+{ font-size: 30px !important}
+.rvfs-6 .p-header,
+.rvfs-6 .swiper-slide .header-content h6,
+.rvfs-6 .footer .container .Important_links h4
+{ font-size: 33px !important}
+.rvfs-7 .p-header,
+.rvfs-7 .swiper-slide .header-content h6,
+.rvfs-7 .footer .container .Important_links h4
+{ font-size: 36px !important}
+
+
+
+.rvfs-4 .about_center .container .top-image1 h4,
+.rvfs-4 .about_center .container .top-image2 h4
+{ font-size: 33px}
+
+.rvfs-5 .about_center .container .top-image1 h4,
+.rvfs-5 .about_center .container .top-image2 h4
+{ font-size: 35px !important}
+
+.rvfs-6 .about_center .container .top-image1 h4,
+.rvfs-6 .about_center .container .top-image2 h4
+{ font-size: 37px !important}
+
+.rvfs-7 .about_center .container .top-image1 h4,
+.rvfs-7 .about_center .container .top-image2 h4
+{ font-size: 40px !important}
+
+
+.rvfs-4 .nav-pills .nav-link
+
+
+{ font-size: 14px}
+
+.rvfs-5 .nav-pills .nav-link
+
+
+{ font-size: 16px !important}
+
+.rvfs-6 .nav-pills .nav-link
+
+
+{ font-size: 19px !important}
+
+.rvfs-7 .nav-pills .nav-link
+
+
+{ font-size: 23px !important}
