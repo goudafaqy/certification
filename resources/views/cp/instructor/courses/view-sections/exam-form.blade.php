@@ -6,7 +6,7 @@
 
             <form id="exam-form"
                   action="{{ route('instructor-course-exam-create', ['id' => $id, 'type' => $type, 'examType' => $examType]) }}"
-                  method="POST">
+                  method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row justify-content-center" style="padding: 20px 50px;">
                     <div class="col-md-6">

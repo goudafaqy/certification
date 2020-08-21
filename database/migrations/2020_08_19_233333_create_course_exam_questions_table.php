@@ -20,9 +20,9 @@ class CreateCourseExamQuestionsTable extends Migration
             $table->enum('type', ['MC', 'TF', 'OC']);
             $table->string('question_en');
             $table->string('question_ar');
-            $table->text('answer_MC');
-            $table->string('answer_TF');
-            $table->enum('type_OC', ['FT', 'FU']);
+            $table->text('answer_MC')->nullable();
+            $table->boolean('answer_TF')->nullable();
+            $table->enum('type_OC', ['FT', 'FU'])->nullable();
             $table->timestamps();
         });
     }

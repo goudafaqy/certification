@@ -21,6 +21,8 @@ class UserSeeder extends Seeder
             'mobile' => 2155553337,
             'gender' => 3,
             'password' => Hash::make('123456'),
+            'mobile' => '123123123',
+            'gender' => 1
         ]);
             
         DB::table('users')->insert([
@@ -33,6 +35,8 @@ class UserSeeder extends Seeder
             'mobile' => 21555587,
             'gender' => 1,
             'password' => Hash::make('123456'),
+            'mobile' => '123123123',
+            'gender' => 1
         ]);
     }
 }
