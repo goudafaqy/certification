@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class NotificationSetting extends Model
 {
 
-    protected $table = 'notificatins_settings';
+    protected $table = 'notifications_settings';
 
     protected $primaryKey = 'id';
 
@@ -21,10 +21,15 @@ class NotificationSetting extends Model
     protected $fillable = [
         'title_ar',
         'title_en',
-        'type', 
-        'code', 
         'message_ar',
         'message_en',
+        'roles',
+        'users',
+        'courses',
+        'type', 
+        'link',
+        'extra_text',
+        'sending_to', 
         'created_at', 
         'updated_at',
     ];

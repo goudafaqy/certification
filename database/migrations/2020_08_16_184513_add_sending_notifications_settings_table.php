@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCodeNotificatinsSettingsTable extends Migration
+class AddSendingNotificationsSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddCodeNotificatinsSettingsTable extends Migration
     public function up()
     {
         Schema::table('notifications_settings', function (Blueprint $table) {
-            $table->string('code');
+            $table->string('sending_to')->nullable();
+           
         });
     }
 

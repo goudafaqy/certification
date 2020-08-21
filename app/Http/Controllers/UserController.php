@@ -83,17 +83,23 @@ class UserController extends Controller
                  if(in_array('2',$roles)){
                    // Send Mail Notification To Instructor
                     $inputs['password'] = $pass;
-                    $email = new InstructorAccount($inputs , __('app.Adly Training Center') ,__('app.You have new account'));
-                    Mail::to($inputs['email'])->send($email);
+                    $instructor =  $this->userRepo->getById($userId);
                     $data = [
                         'title_ar'=>   __('app.You have new account'),
                         'title_en'=>   __('app.You have new account'),
-                        'message_ar'=> __('app.You have new account'),
-                        'message_en'=> __('app.You have new account'),
-                        'user_id'=>    $userId,
-                        'type'=>'info'
+                        'message_ar'=>    '   لقد تم انشاء حساب لكم كمدرب دورات لدي مركز التدريب العدلى بالبيانات الاتية',
+                        'message_en'=> '  New Account Created For You With The Following Data :',
+                        'user_id'=>     $userId,
+                        'type'=>       'info',
+                        'name'=>       $instructor->name,
+                        'email'=>      $instructor->email,
+                        'link' =>       url('login'),
+                        'extra_text'=> '',
+                        'password' => $pass
+                        
                     ];
-                    $this->add_notification($data);
+                    $not = new NotificationsController();
+                    $not->Send_Notification_And_Email($data, 'instructor_account_notification');
 
                 }
                 return redirect('users/list')->with('added', 'تمت إضافة المستخدم بنجاح');
