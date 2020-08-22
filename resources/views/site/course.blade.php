@@ -178,7 +178,7 @@
                                     <div class="right-col__wrapper">
                                         <div class="course-thumbnail">
                                             <img
-                                                src="{{asset($course->image)}}"
+                                                src="{{url($course->image)}}"
                                                 class="attachment-full size-full wp-post-image img-fluid" alt="">
                                         </div>
                                         <div class="course-payment">
