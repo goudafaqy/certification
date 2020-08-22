@@ -268,7 +268,7 @@
                             <ul class="navbar-nav mr-auto setting-menu" style="">
                                 @auth
                                     <li class="nav-item">
-                                        <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->username}}   </a>
+                                        <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>
                                     </li>
                                 @else
                                     <li class="nav-item">

@@ -215,7 +215,7 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('site-assets/images/logo-green.png')}}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -271,17 +271,18 @@
 
 
                         <li class="nav-item">
-
+                            <form action="{{route('courses')}}">
                             <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
-                                <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                                <a href="#">
+                                <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
+                                <button type="submit" id="submit">
                                     <div class="input-group-append">
                          <span class="input-group-text" id="basic-text1">
                         <i class="fa fa-search" aria-hidden="true"></i></span>
                                     </div>
-                                </a>
+                                </button>
 
                             </div>
+                            </form>
                         </li>
 
 
@@ -290,12 +291,12 @@
                     <ul class="navbar-nav mr-auto setting-menu" style="">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->username}}   </a>
+                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>
                             </li>
                         @else
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
-                            </li>
+                            </li> -->
                         @endauth
 
 
@@ -464,6 +465,7 @@
 <script src="{{asset('site-assets/js/swiper.min.js')}}"></script>
 <script src="{{asset('site-assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('site-assets/js/slick.js')}}"></script>
+<script src="{{asset('site-assets/js/jquery.sticky-kit.min.js')}}"></script>
 <script src="{{asset('site-assets/js/wow.min.js')}}"></script>
 <script>new WOW().init();</script>
 <script src="{{asset('site-assets/js/store.min.js')}}"></script>

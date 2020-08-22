@@ -223,6 +223,7 @@
 
         $('[data-toggle="tooltip"]').tooltip();
         $('#dtBasicExample').DataTable({
+            "searching": false ,
             "language": {
                 "lengthMenu": "عرض _MENU_ موعد في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواعيد",

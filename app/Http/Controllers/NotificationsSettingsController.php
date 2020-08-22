@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Helpers\FileHelper;
 use App\Models\NotificationSetting;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Notification;
+use App\Models\CourseUser;
+use App\Models\RoleUser;
+
+use App\Http\Repositories\Eloquent\RoleRepo;
+use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\UserRepo;
 
 class NotificationsSettingsController extends Controller
 {
@@ -20,11 +27,17 @@ class NotificationsSettingsController extends Controller
     public function __construct(
 
         NotificationRepoValidation $validation,
-        NotificationRepo $NotificationRepo
+        NotificationRepo $NotificationRepo,
+        RoleRepo $roleRepo,
+        CourseRepo $courseRepo,
+        UserRepo $userRepo
     )
     {
+        $this->RoleRepo = $roleRepo;
         $this->validation = $validation;
         $this->NotificationRepo = $NotificationRepo;
+        $this->courseRepo = $courseRepo;
+        $this->userRepo = $userRepo;
         $this->middleware('auth');
     }
 
@@ -34,9 +47,7 @@ class NotificationsSettingsController extends Controller
     public function list()
     {
 
-        $to_name = 'Monako';
-        $to_email = 'mohgood2020@gmail.com';
-        $data = array('name'=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
+       
         $notifications = $this->NotificationRepo->getAll();
         return view("cp.notifications.list", ['items' => $notifications ]);
     }
@@ -51,7 +62,11 @@ class NotificationsSettingsController extends Controller
         $title = __('app.New Notification'); 
         $route = route('save-notify');
         $types =  ['info','success','warning'];
-        return view("cp.notifications.form", [ 'route'=>$route ,'types'=>$types,'title'=>$title ,'item' => $item ]);
+        $roles = $this->RoleRepo->getAll();
+        $courses = $this->courseRepo->getAll();
+        $users = $this->userRepo->getAll();
+        return view("cp.notifications.form", [ 'route'=>$route ,'types'=>$types,
+        'title'=>$title ,'item' => $item, 'roles'=>$roles, 'courses'=>$courses, 'users'=>$users ]);
     }
 
 
@@ -61,10 +76,31 @@ class NotificationsSettingsController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
+       // $this->add_notification( $inputs, 'notifications');
+        if($inputs['sending_to'] == 'users' ){
+
+            
+            $inputs['users'] =  implode(',',$inputs['users']);
+            $inputs['courses'] = '';
+            $inputs['roles'] = '';
+        }
+        elseif($inputs['sending_to'] == 'courses' ){
+
+            
+            $inputs['courses'] =  implode(',',$inputs['courses']);
+            $inputs['users'] = '';
+            $inputs['roles'] = '';
+        }
+        elseif($inputs['sending_to'] == 'roles' ){
+
+            $inputs['roles'] =  implode(',',$inputs['roles']);
+            $inputs['users'] = '';
+            $inputs['courses'] = '';
+        }
 
         
+        $inputs['created_by'] = \Auth::user()->id;
         $validator = $this->validation->doValidate($inputs, 'insert');
-        
         if ($validator->fails()) {
             
             return redirect('notifications/add')->withErrors($validator)->withInput();
@@ -87,7 +123,10 @@ class NotificationsSettingsController extends Controller
         $route = route('update-notify',['id'=>$id]);
         $title = __('app.Update Notification'); 
         $types =  ['info','success','warning'];
-        return view("cp.notifications.form", ['item' => $item  ,'types'=>$types , 'route' => $route, 'title' =>  $title ]);
+        $roles = $this->RoleRepo->getAll();
+        $courses = $this->courseRepo->getAll();
+        $users = $this->userRepo->getAll();
+        return view("cp.notifications.form", ['item' => $item  ,'types'=>$types , 'route' => $route, 'title' =>  $title, 'roles'=>$roles, 'courses'=>$courses, 'users'=>$users ]);
     }
 
     /**
@@ -121,4 +160,46 @@ class NotificationsSettingsController extends Controller
             return redirect('notifications')->with('deleted', __('app.Notification Deleted Successfully'));
         }
     }
+
+    function add_notification($data){
+
+
+        if($data['sending_to'] == 'users' ){
+            $users = $this->userRepo->getByIds($data['users']);
+           
+        }
+        elseif($data['sending_to'] == 'courses' ){
+    
+            $coursesUsers = CourseUser::whereIn('course_id', $data['courses'])->pluck('user_id')->toArray();
+            $users = $this->userRepo->getByIds($coursesUsers);
+        }
+        elseif($data['sending_to'] == 'roles' ){
+           
+            $rolesUsers = RoleUser::whereIn('role_id', $data['roles'])->pluck('user_id')->toArray();
+            $users = $this->userRepo->getByIds($rolesUsers);
+          
+        }
+        foreach( $users as $user){
+
+            $data_notifications = [
+
+                'title_ar'=>     $data['title_ar'],
+                'title_en'=>     $data['title_en'],
+                'message_ar'=>   $data['message_ar'],
+                'message_en'=>   $data['message_en'],
+                'user_id'=>      $user->id,
+                'type'=>         $data['type'],
+                'name'=>         $user->name_ar,
+                'email'=>        $user->email,
+                'link' =>        $data['link'],
+                'extra_text'=>   $data['extra_text']
+                
+            ];
+            $not = new NotificationsController();
+            $not->Send_Notification_And_Email($data_notifications, 'notification');
+        }
+
+        
+    }
+
 }

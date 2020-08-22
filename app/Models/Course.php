@@ -75,6 +75,7 @@ class Course extends Model
     {
         return $this->belongsToMany('App\Models\User','course_user');
     }
+    
     /**
      * Get the the title localized.
      */

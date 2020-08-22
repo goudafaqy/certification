@@ -2403,4 +2403,7 @@ table tbody tr:hover .delete-btn {
     display: block;
 }
 
-
+.tooltip  {
+  top: -12% !important;
+  
+}
