@@ -88,27 +88,21 @@
                             <span class="badge bg-success">0</span></button>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" data-toggle="dropdown">
-                                <i class="ik ik-bell"></i><span class="badge bg-danger">0</span></a>
+                            <?php
+                              $notifications =\App\Models\Notification::where('is_read',0)->where('user_id',Auth::user()->id )->get();
+                            ?>
+                                <i class="ik ik-bell"></i><span class="badge bg-danger">{{count($notifications)}}</span></a>
                             <div class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <h4 class="header">الإشعارات</h4>
                                 <div class="notifications-wrap">
+                                @foreach($notifications as $notification)
                                     <a href="#" class="media">
                                         <span class="d-flex"><i class="ik ik-check"></i> </span>
                                         <span class="media-body">
-                                            <span class="heading-font-family media-heading">تمت الموافقه ع طلبك</span>
+                                            <span class="heading-font-family media-heading">{{$notification->title_ar}}</span>
                                         </span>
                                     </a>
-                                    <a href="#" class="media">
-                                        <span class="d-flex"><i class="ik ik-check"></i> </span>
-                                        <span class="media-body">
-                                            <span class="heading-font-family media-heading">لديك خبر جديد</span>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="media"> <span class="d-flex"><i class="ik ik-check"></i> </span>
-                                        <span class="media-body">
-                                            <span class="heading-font-family media-heading">لديك خبر جديد</span>
-                                        </span>
-                                    </a>
+                                @endforeach    
                                 </div>
                                 <div class="footer"><a href="">كل الإشعارات</a></div>
                             </div>

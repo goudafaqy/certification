@@ -12,14 +12,14 @@ class NotificationRepoValidation implements NotificationValidation{
             'insert' => [
                 'title_ar' => 'required',
                 'type' => 'required',
-                'code' => 'required',
+                'sending_to' => 'required',
                 'message_ar' => 'required',
                
             ],
             'update' => [
                 'title_ar' => 'required',
                 'type' => 'required',
-                'code' => 'required',
+                'sending_to' => 'required',
                 'message_ar' => 'required',
             ],
         ];

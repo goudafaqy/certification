@@ -18,6 +18,17 @@ class UserRepo implements UserEloquent{
         return User::where('id', $id)->with('roles')->first();
     }
 
+
+    public function getByIds($ids)
+    {
+        return User::whereIn('id', $ids)->get();
+    }
+
+    public function getByRoleIds($ids)
+    {
+        return User::whereIn('id', [$ids])->first();
+    }
+
     public function getByRole($role)
     {
         return User::whereHas(

@@ -67,7 +67,7 @@ class CourseUnitsController extends Controller
            
             $Section = $this->UnitRepo->save($inputs);
             if($Section){
-                return redirect('units/'.$inputs['section_id'])->with('added', __('app.Unit Added Auccessfully'));
+                return redirect('units/'.$inputs['section_id'])->with('added', __('app.Unit Added Successfully'));
             }
         }
     }
@@ -101,7 +101,7 @@ class CourseUnitsController extends Controller
             unset($inputs['_token']);
             $classification = $this->UnitRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('units/'.$inputs['section_id'])->with('updated', __('app.Unit Updated Auccessfully'));
+                return redirect('units/'.$inputs['section_id'])->with('updated', __('app.Unit Updated Successfully'));
             }
         }
     }
@@ -114,7 +114,7 @@ class CourseUnitsController extends Controller
     {
         $result = $this->UnitRepo->delete($id);
         if($result){
-            return redirect('units/'.$section_id)->with('deleted', __('app.Unit Deleted Auccessfully'));
+            return redirect('units/'.$section_id)->with('deleted', __('app.Unit Deleted Successfully'));
         }
     }
 }

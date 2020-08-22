@@ -9,10 +9,7 @@
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
 
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active" aria-current="page">{{__('app.Notifications')}}</li>
-                            </ol>
-
+                            <h3 class="widget-title">{{__('app.Notifications')}}</h3>
                             </div>
                         </div>
 
@@ -49,7 +46,7 @@
                                             <tr>
                                                 <th class="th-sm text-center">#</th>
                                                 <th class="th-sm text-center">{{__('app.Arabic Title')}}</th>
-                                                <th class="th-sm text-center">{{__('app.Code')}}</th>
+                                                <th class="th-sm text-center">{{__('app.Sending_to')}}</th>
                                                 <th class="th-sm text-center"> {{__('app.Type')}}</th>
                                                 <th class="th-sm text-center">{{__('app.Actions')}}</th>
                                             </tr>
@@ -59,7 +56,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $item->title_ar }}</td>
-                                                <td class="text-center">{{ $item->code }}</td>
+                                                <td class="text-center">{{ $item->sending_to }}</td>
                                                 <td class="text-center">{{ $item->type }}</td>
                                                 <td class="text-center">
                                                     <a class="btn btn-info" href="{{route('notify-update',['id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
