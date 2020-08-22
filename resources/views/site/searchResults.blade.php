@@ -1,7 +1,7 @@
 @extends('site.layouts.master')
 
 @section('content')
-    <div class="top_site_main" style="color: #ffffff;background-image:url(images/header-2.png);">
+    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/header-2.png')}});">
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">
@@ -92,7 +92,7 @@
                                         </form>
                                     </aside>
                                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-9">
 {{--                                        <div class="thim-course-top switch-layout-container ">--}}
 {{--                                            <div class="course-index">--}}
 {{--                                                <span>Showing 1-3 of 3 results</span>--}}
@@ -164,5 +164,6 @@
                 </div>
             </div>
         </div>
+    </div>
 
 @endsection
