@@ -181,7 +181,7 @@
                             <div class="item">
                                 <div class="course-item-wrapper">
                                     <div class="course-thumbnail">
-                                        <a href="{{url('course/'.$course->id)}}"><img src="{{asset($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                        <a href="{{url('course/'.$course->id)}}"><img src="{{url($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
                                         <div class="price">{{$course->price}} SR</div>
                                     </div>
                                     <div class="thim-course-content">
