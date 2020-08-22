@@ -87,7 +87,7 @@
 
 
         <!-- Courses views -->
-        <div class="nav-container">
+        <!-- <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">
                 <div class="nav-item has-sub @if($active == 'create-webinar' || $active == 'zoom') open @endif">
                     <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </nav>
-        </div>
+        </div> -->
     
 
 

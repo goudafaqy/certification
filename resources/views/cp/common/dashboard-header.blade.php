@@ -136,7 +136,7 @@
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
                     <a id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></a>
-                    <a class="header-brand" href="{{ route('dashboard') }}">
+                    <a class="header-brand" href="{{ url('/') }}">
                         <div class="logo-img">
                             <img src="{{ asset('images/new-logo.png') }}" class="header-brand-img" alt="jtc">
                         </div>
