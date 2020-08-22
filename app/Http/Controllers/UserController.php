@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\RoleRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use App\Http\Repositories\Validation\UserRepoValidation;
@@ -72,6 +73,7 @@ class UserController extends Controller
             $pass = $inputs['password'];
             $inputs['password'] = Hash::make($inputs['password']);
             $roles = $inputs['role'];
+            $inputs['birth_date'] = DateHelper::getDateFormate($inputs['birth_date']);
             unset($inputs['role']);
             unset($inputs['_token']);
             
@@ -137,6 +139,7 @@ class UserController extends Controller
             $inputs['password'] = Hash::make($inputs['password']);
             unset($inputs['_token']);
             unset($inputs['password_confirmation']);
+            $inputs['birth_date'] = DateHelper::getDateFormate($inputs['birth_date']);
             $roles = $inputs['role'];
             unset($inputs['role']);
             
