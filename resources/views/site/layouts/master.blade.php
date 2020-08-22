@@ -271,17 +271,18 @@
 
 
                         <li class="nav-item">
-
+                            <form action="{{route('courses')}}">
                             <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
-                                <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                                <a href="#">
+                                <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
+                                <button type="submit">
                                     <div class="input-group-append">
                          <span class="input-group-text" id="basic-text1">
                         <i class="fa fa-search" aria-hidden="true"></i></span>
                                     </div>
-                                </a>
+                                </button>
 
                             </div>
+                            </form>
                         </li>
 
 

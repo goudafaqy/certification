@@ -18,6 +18,7 @@ Route::get('/{by}/{by_id}/courses','WelcomeController@courses');
 Route::get('/course/{id}','WelcomeController@course');
 Route::get('/profile/{id}','WelcomeController@instructorProfile');
 Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
+Route::get('/courses','WelcomeController@searchResults')->name('courses');
 
 Auth::routes();
 
