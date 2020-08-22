@@ -98,6 +98,7 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
+            "searching": false ,
             "language": {
                 "lengthMenu": "عرض _MENU_ مستخدم في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مستخدمين",

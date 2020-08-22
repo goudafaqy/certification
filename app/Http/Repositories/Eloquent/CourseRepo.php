@@ -56,10 +56,9 @@ class CourseRepo implements CourseEloquent
             ->where('end_date', '<', Carbon::now())->get();
     }
 
-    public function getStudentsByCourses($courses)
+    public function getAllTrainees($course_id)
     {
-        return Course::where('instructor_id', $instructor_id)
-            ->where('end_date', '<', Carbon::now())->get();
+        return Course::find($course_id)->students;
     }
 
 }

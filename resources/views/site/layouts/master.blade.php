@@ -215,7 +215,7 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('site-assets/images/logo-green.png')}}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -290,7 +290,7 @@
                     <ul class="navbar-nav mr-auto setting-menu" style="">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->username}}   </a>
+                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>
                             </li>
                         @else
                             <li class="nav-item">
@@ -313,6 +313,7 @@
 
 
                     </ul>
+
 
 
                 </div>

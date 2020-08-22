@@ -81,6 +81,7 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
+            "searching": false ,
             "language": {
                 "lengthMenu": "عرض _MENU_ تصنيف في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواد",

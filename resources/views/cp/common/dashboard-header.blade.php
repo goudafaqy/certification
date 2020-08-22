@@ -115,7 +115,8 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
+                                <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -129,7 +130,7 @@
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
                     <a id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></a>
-                    <a class="header-brand" href="{{ route('dashboard') }}">
+                    <a class="header-brand" href="{{ url('/') }}">
                         <div class="logo-img">
                             <img src="{{ asset('images/new-logo.png') }}" class="header-brand-img" alt="jtc">
                         </div>

@@ -34,6 +34,11 @@ class User extends Authenticatable
         'username',
         'remember_token',
         'password',
+        'national_id',
+        'mobile',
+        'birth_date',
+        'gender',
+        'education'
     ];
 
     /**
@@ -61,6 +66,14 @@ class User extends Authenticatable
     public function courses()
     {
         return $this->hasMany('App\Models\Course', 'instructor_id');
+    }
+
+    /**
+     * Get the courses for the User.
+     */
+    public function courses_s()
+    {
+        return $this->belongsToMany('App\Models\Course', 'course_user');
     }
 
     /**

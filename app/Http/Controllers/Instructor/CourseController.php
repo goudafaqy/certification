@@ -3,25 +3,21 @@
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Helpers\DateHelper;
-use App\Http\Repositories\Eloquent\CategoryRepo;
+use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
-use App\Http\Repositories\Validation\CourseRepoValidation;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
-use Illuminate\Http\Request;
-use App\Http\Helpers\FileHelper;
-use App\Http\Helpers\GenerateHelper;
-use App\Http\Repositories\Eloquent\ClassificationRepo;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class CourseController extends Controller
 {
     var $courseRepo;
     var $userRepo;
     var $examRepo;
+    var $materialRepo;
+    var $appointmentRepo;
 
     /**
      * Create a new controller instance.
@@ -31,12 +27,16 @@ class CourseController extends Controller
     public function __construct(
         CourseRepo $courseRepo,
         UserRepo $userRepo,
-        ExamRepo $examRepo
+        ExamRepo $examRepo,
+        MaterialRepo $materialRepo,
+        CourseAppointmentRepo $appointmentRepo
     )
     {
         $this->courseRepo = $courseRepo;
         $this->userRepo = $userRepo;
         $this->examRepo = $examRepo;
+        $this->materialRepo = $materialRepo;
+        $this->appointmentRepo = $appointmentRepo;
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -69,17 +69,20 @@ class CourseController extends Controller
 
     private function guide($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab1', 'type' => $type]);
+        $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_i");
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab1', 'type' => $type, 'guide' => $guide]);
     }
 
     private function files($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab2', 'type' => $type]);
+        $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_i");
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
     }
 
     private function sessions($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab3', 'type' => $type]);
+        $sessions = $this->appointmentRepo->getAll($course->id);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions]);
     }
 
     private function questionnaires($course, $type)
@@ -107,7 +110,8 @@ class CourseController extends Controller
 
     private function trainees($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type]);
+        $trainees = $this->courseRepo->getAllTrainees($course->id);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type, 'trainees' => $trainees]);
     }
 
     private function support($course, $type)

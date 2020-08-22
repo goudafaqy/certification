@@ -207,7 +207,7 @@ box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
 border-radius: 5px;
 }
 
-.input-login::placeholder { color: #fff}
+.form-control::placeholder { color: #fff}
 
 .login-form .form-control:focus {
 padding-right: 5px;
@@ -248,7 +248,7 @@ box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
   line-height: 1.2;
   padding: 15px 25px;
   border-radius: 25px;
-    margin: 20px 0px ;
+    margin: 10px 0px ;
   background: #273044;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -267,7 +267,7 @@ box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
 
 
 
-.jtc img { width: 75px; height: 75px; border-radius: 10%}
+.jtc img { width:100%;  border-radius: 10%}
 .jtc h3 {color: #273044; font-size: 18px; text-align: center; margin-bottom: 10px; margin-top: 0}
 .jtc p {color: #273044; font-size: 14px; text-align: center; margin-top: 4px}
 
@@ -337,4 +337,135 @@ box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
     padding: 15px 16px;
   
 }
+}
+.alert-box p{
+  color: #34405a;
+  transition: 0.5s ease-in-out;
+  font-family: "ArbFONTS-PNU-Bold.ttf";
+}
+.input-group-text{
+  border-radius:none !important;
+}
+
+input[type="date"] {
+  display:block;
+  position:relative;
+ 
+  border-radius:5px !important;
+  font-size:1rem;
+  font-family:monospace;
+  border-top-right-radius:25px;
+  border-bottom-right-radius:25px;
+ outline:0 !important;
+margin-top:0rem !important;
+  border-radius:0.25rem;
+  /* background:
+    white
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='white' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E")
+    right 1rem
+    center
+    no-repeat; */
+   
+  cursor:pointer;
+ 
+}
+input[type="date"]:focus {
+  outline:none;
+ 
+ 
+}
+
+::-webkit-datetime-edit {}
+::-webkit-datetime-edit-fields-wrapper {}
+::-webkit-datetime-edit-month-field:hover,
+::-webkit-datetime-edit-day-field:hover,
+::-webkit-datetime-edit-year-field:hover {
+  background:rgba(0, 120, 250, 0.1);
+}
+::-webkit-datetime-edit-text {
+  opacity:0;
+}
+::-webkit-clear-button,
+::-webkit-inner-spin-button {
+  display:none !important;
+}
+::-webkit-calendar-picker-indicator {
+  position:absolute;
+
+  height:100%;
+  top:0;
+  right:0;
+  bottom:0;
+  
+  opacity:0 !important;
+  cursor:pointer;
+ 
+  /* color:#fafcfd;
+  background:#34405a; */
+ 
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator { opacity:1;}
+input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity:1;}
+
+.register-form .form-group .input-group-text{
+  background-color: #aeb3bd30;
+  border-top-right-radius:10px !important;
+  border-bottom-right-radius:10px;
+}
+
+.icon-date{
+  background: #000;
+  z-index: 999;
+  pointer-events: none;
+  font-size: 20px;
+  /* margin-top: 5px; */
+  background-color: #34405a;
+  padding: 7px 10px;
+  position: absolute;
+  /* padding: 17px; */
+  /* border-radius: 0rem !important; */
+border-radius:5px !important;
+  cursor: pointer;
+ 
+}
+.login-link{
+  font-weight: bold;
+    color: #34405a;
+    border-bottom:1px solid #34405a;
+}
+.login-link:hover{
+  color:rgb(32, 24, 15)
+}
+
+.icon-date i{
+  /* position: absolute; */
+  z-index: 999;
+  color: #c3a37e;
+
+  cursor: pointer;
+  
+}
+.valid{
+  color: #dc3545;
+  text-align: center;
+  background:#fff;
+  border-right:3px solid #dc3545; 
+   padding:1px;
+  width:70%; 
+  margin: auto;
+  display: table;
+  margin-top:-18px;
+  margin-bottom:3px;
+  border-top-left-radius:10px;
+  border-bottom-left-radius:10px;
+  position: relative;
+  
+  
+}
+.valid a{
+  color:#dc3545;
+  font-family: "ArbFONTS-PNU-Bold.ttf";
+  font-size:14px;
+  font-weight: 600;
 }

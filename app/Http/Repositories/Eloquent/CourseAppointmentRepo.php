@@ -9,7 +9,7 @@ class CourseAppointmentRepo implements CourseAppointmentEloquent{
     
     public function getAll()
     {
-        return CourseAppintment::all()->orderBy('date', 'asc');
+        return CourseAppintment::all()->sortBy('date');
     }
 
 

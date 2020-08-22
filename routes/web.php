@@ -22,7 +22,10 @@ Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
 Auth::routes();
 
     // Home routes ...
-    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', 'HomeController@dashboard')->name('dashboard');
+    });
+
 
     // Users routes ...
     Route::prefix('users')->group(function () {
@@ -132,11 +135,10 @@ Auth::routes();
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
-
+// Instructor dashboard routes ...
 Route::prefix('instructor')->group(function (){
-    Route::prefix('courses')->namespace('instructor')->group(function () {
+    Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
         Route::get('view/{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
 
@@ -146,7 +148,13 @@ Route::prefix('instructor')->group(function (){
         Route::get('view/{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
         Route::get('view/{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
         Route::post('view/{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
+    });
+});
 
-
+// Trainee dashboard routes ...
+Route::prefix('trainee')->group(function (){
+    Route::prefix('courses')->namespace('Trainee')->group(function () {
+        Route::get('/list', 'CourseController@list')->name('trainee-courses');
+        Route::get('view/{id}/{tab?}', 'CourseController@view')->name('trainee-courses-view');
     });
 });

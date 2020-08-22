@@ -63,4 +63,9 @@ class UserRepo implements UserEloquent{
         return User::where('id', $id)->delete();
     }
 
+    public function getTraineeCourses($trainee_id)
+    {
+        return User::find($trainee_id)->courses_s;
+    }
+
 }
