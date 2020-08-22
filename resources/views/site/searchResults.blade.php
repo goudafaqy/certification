@@ -115,7 +115,7 @@
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="row">
                             @foreach($courses as $course)
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="course-item-wrapper">
                                         <div class="course-thumbnail">
                                             <a href="{{url('course/'.$course->id)}}"><img src="{{asset($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
