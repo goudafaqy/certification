@@ -110,7 +110,8 @@ class CourseController extends Controller
 
     private function trainees($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type]);
+        $trainees = $this->courseRepo->getAllTrainees($course->id);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type, 'trainees' => $trainees]);
     }
 
     private function support($course, $type)

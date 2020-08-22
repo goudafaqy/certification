@@ -69,6 +69,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the courses for the User.
+     */
+    public function courses_s()
+    {
+        return $this->belongsToMany('App\Models\Course', 'course_user');
+    }
+
+    /**
      * The roles that belong to the user.
      */
     public function roles()

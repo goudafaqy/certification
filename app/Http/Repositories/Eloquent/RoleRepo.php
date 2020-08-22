@@ -17,6 +17,11 @@ class RoleRepo implements RoleEloquent{
         return Role::where('id', $id)->first();
     }
 
+    public function getByIds($id)
+    {
+        return Role::whereIn('id', $id)->pluck('user_id');
+    }
+
     public function getByName($name)
     {
         return Role::query()->where('name', $name)->first();

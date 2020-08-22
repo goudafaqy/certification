@@ -149,49 +149,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="widget ">
-                    <div class="widget-header">
-                        <div class=" d-flex justify-content-between">
-                            <h3 class="widget-title"> الشهادات التدريبة</h3>
-                            <img src="{{ asset('images/certificate.png') }}" style="width: 25px; height: 25px">
-                        </div>
-                    </div>
-                    <div class="widget-body">
-                        <div class="row">
-                            <div class="col-md-12 ">
-                                <div class="owl-container">
-                                    <div class="owl-carousel certi">
-                                        <div class="card">
-                                            <div class="news">
-                                                <img src="{{ asset('images/cup.png') }}" alt="" class="img-thumbnail">
-                                                <div class="details">
-                                                    <h3><a href="#">تهانينا نتيجة الدورة التدريبية </a></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="news">
-                                                <img src="{{ asset('images/cup.png') }}" alt="" class="img-thumbnail">
-                                                <div class="details">
-                                                    <h3><a href="#">تهانينا نتيجة الدورة التدريبية </a></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slider-nav text-center">
-                                        <a href="#" class="left-arrow owl-prev">
-                                            <i class="ik ik-chevron-right"></i>
-                                        </a>
-                                        <div class="slider-dot-container"></div>
-                                        <a href="#" class="right-arrow owl-next">
-                                            <i class="ik ik-chevron-left"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
