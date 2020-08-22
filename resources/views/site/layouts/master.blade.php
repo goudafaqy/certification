@@ -294,9 +294,9 @@
                                 <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>
                             </li>
                         @else
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
-                            </li>
+                            </li> -->
                         @endauth
 
 
