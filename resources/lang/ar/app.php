@@ -1,7 +1,7 @@
 <?php
 
 return [
-  
+
     'Material Added Successfully' => 'تم اضافة الملف  بنجاح',
     'Material Updated Successfully' => 'تم تحديث الملف بنجاح',
     'Material Deleted Successfully' => 'تم حذف الملف بنجاح',
@@ -50,5 +50,6 @@ return [
     'Sending_to' =>'نوع الارسال',
     'Save & Send' =>'حفظ وارسال ',
     'Extra Data' =>' بيانات أضافية ',
-    'You have choosen to new course' => 'لقد تم اختيارك لدورة بمركز التدريب العادلى'
+    'You have choosen to new course' => 'لقد تم اختيارك لدورة بمركز التدريب العادلى',
+    'Update done successfully' => 'تم التحديث بنجاح'
 ];
