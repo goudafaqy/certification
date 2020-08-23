@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\UserRepo;
 use Carbon\Carbon;
 use DB;
 use Facade\FlareClient\Http\Exceptions\NotFound;
@@ -12,16 +13,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class HomeController extends Controller
 {
     var $courseRepo;
+    var $userRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        CourseRepo $courseRepo
+        CourseRepo $courseRepo,
+        UserRepo $userRepo
     )
     {
         $this->courseRepo = $courseRepo;
+        $this->userRepo = $userRepo;
         $this->middleware('auth');
     }
 
@@ -67,7 +71,8 @@ class HomeController extends Controller
     }
 
     private function traineeDashboard(){
-
-        return view('cp.dashboards.trainee');
+        $trainee_id = Auth::id();
+        $courses = $this->userRepo->getTraineeCourses($trainee_id);
+        return view('cp.dashboards.trainee', ['courses' => $courses]);
     }
 }

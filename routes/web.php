@@ -18,6 +18,7 @@ Route::get('/{by}/{by_id}/courses','WelcomeController@courses');
 Route::get('/course/{id}','WelcomeController@course');
 Route::get('/profile/{id}','WelcomeController@instructorProfile');
 Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
+Route::get('/courses','WelcomeController@searchResults')->name('courses');
 
 Auth::routes();
 
@@ -137,9 +138,8 @@ Auth::routes();
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
-
+// Instructor dashboard routes ...
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
@@ -151,7 +151,13 @@ Route::prefix('instructor')->group(function (){
         Route::get('view/{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
         Route::get('view/{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
         Route::post('view/{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
+    });
+});
 
-
+// Trainee dashboard routes ...
+Route::prefix('trainee')->group(function (){
+    Route::prefix('courses')->namespace('Trainee')->group(function () {
+        Route::get('/list', 'CourseController@list')->name('trainee-courses');
+        Route::get('view/{id}/{tab?}', 'CourseController@view')->name('trainee-courses-view');
     });
 });

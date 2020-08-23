@@ -55,4 +55,22 @@ class WelcomeController extends Controller
         $mr = User::find($id);
         return view('site.profile',compact('mr'));
     }
+
+
+    public function searchResults(Request $request){
+        $classifications  = Classification::all();
+        $categories = Category::all();
+        $query = Course::query();
+        if ($request->has('q'))
+            $query->where('title_ar','LIKE','%'.$request->get('q').'%');
+
+        if ($request->has('classifications'))
+            $query->whereIn('class_id',$request->get('classifications'));
+
+        if ($request->has('categories'))
+            $query->whereIn('cat_id	',$request->get('categories'));
+
+        $courses = $query->paginate(12)->appends(['q'=>$request->get('q')]);
+        return view('site.searchResults',compact('courses','categories','classifications'));
+    }
 }

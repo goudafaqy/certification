@@ -12,6 +12,10 @@ use App\Http\Helpers\FileHelper;
 use App\Http\Helpers\GenerateHelper;
 use App\Http\Repositories\Eloquent\ClassificationRepo;
 
+use App\Mail\InstructorCourse;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+
 class CourseController extends Controller
 {
     var $courseRepo;
@@ -90,6 +94,26 @@ class CourseController extends Controller
                 $this->courseRepo->update([
                     'code'      => GenerateHelper::generateCourseCode($courseId),
                 ], $courseId);
+                
+                    $course = $this->courseRepo->getById($courseId);
+                    $instructor = $this->userRepo->getById( $course->instructor_id);
+                    $data = [
+                        'title_ar'=>   __('app.You have choosen to new course'),
+                        'title_en'=>   __('app.You have choosen to new course'),
+                        'message_ar'=>   ' لقد تم اختياركم لدورة    '.$course->title_ar .'  والتى نبدأ من   '. $course->reg_start_date.'  والتى تنتهى فى ' . $course->reg_end_date,
+                        'message_en'=> ' Your are showen for new course  '.$course->code .'  and will start in  '. $course->reg_start_date.' and will end in ' . $course->reg_end_date,
+                        'user_id'=>    $course->instructor_id,
+                        'type'=>       'info',
+                        'name'=>       $instructor->name,
+                        'email'=>      $instructor->email,
+                        'link' =>      '',
+                        'extra_text'=> ''
+                        
+                    ];
+                    $not = new NotificationsController();
+                    $not->Send_Notification_And_Email($data, 'instructor_course_notification');
+
+
                 return redirect('courses/list')->with('added', 'تمت إضافة دورة جديدة بنجاح');
             }
         }
