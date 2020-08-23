@@ -37,7 +37,7 @@
                                 <form class="login-form" action="{{ route('login') }}" method="POST">
                                     @csrf
                                     <div class="logo-centered">
-                                        <a href="index.html">
+                                        <a href="{{ url('/') }}">
                                             <img src="{{asset('site-assets/images/new-logo.png')}}" class="" alt="">
                                         </a>
                                     </div>
