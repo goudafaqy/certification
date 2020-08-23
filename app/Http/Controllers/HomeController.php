@@ -71,10 +71,8 @@ class HomeController extends Controller
     }
 
     private function traineeDashboard(){
-
         $trainee_id = Auth::id();
         $courses = $this->userRepo->getTraineeCourses($trainee_id);
-
         return view('cp.dashboards.trainee', ['courses' => $courses]);
     }
 }
