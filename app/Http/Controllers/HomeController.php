@@ -68,12 +68,6 @@ class HomeController extends Controller
 
     private function traineeDashboard(){
 
-        $courses = DB::table('courses')
-            ->where('instructor_id', Auth::id())
-            ->orderBy('id', 'DESC')->limit(4)->get();
-
-        //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
-
-        return view('cp.dashboards.admin', ['courses' => $courses->chunk(2)]);
+        return view('cp.dashboards.trainee');
     }
 }

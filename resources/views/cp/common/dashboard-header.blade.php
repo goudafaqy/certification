@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new-style2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
+
     <!-- End Style -->
 </head>
 
@@ -120,7 +121,7 @@
                                 <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->username }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
+                                <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
