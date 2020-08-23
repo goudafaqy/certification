@@ -2318,6 +2318,10 @@ button, input[type=submit]{
     margin: auto;
     display: table;
 }
+.nav-item form .input-group button{
+    background-color:#ffff !important;
+    overflow: hidden;
+}
 .sticky-sidebar{
     background: #f9f9f985;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.16);
