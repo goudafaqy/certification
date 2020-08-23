@@ -42,7 +42,7 @@
                     <div class="widget-header">
                         <div class=" d-flex justify-content-between">
                             <h3 class="widget-title"> الإعلانات</h3>
-                            <img src="images/speaker.png" style="width: 25px; height: 25px">
+                            <img src="{{ asset('images/speaker.png') }}" style="width: 25px; height: 25px">
 
                         </div>
                     </div>
