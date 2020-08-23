@@ -167,7 +167,7 @@
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
                                                             <textarea class="ui-form-input" id="word-count-input"></textarea>
-                                                            <span class="form-input-label"><img src="images/training.png" style="width: 22px"><span data-repeater-delete type="button" value="Delete" class="delet">&times;</span></span>
+                                                            <span class="form-input-label"><img src="{{ asset('images/training.png') }}" style="width: 22px"><span data-repeater-delete type="button" value="Delete" class="delet">&times;</span></span>
                                                         </label>
 
                                                     </div>
@@ -194,7 +194,7 @@
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
                                                             <textarea class="ui-form-input" id="word-count-input"></textarea>
-                                                            <span class="form-input-label"><img src="images/certificate.png" style="width: 22px"><span data-repeater-delete type="button" value="Delete" class="delet">&times;</span></span>
+                                                            <span class="form-input-label"><img src="{{ asset('images/certificate.png') }}" style="width: 22px"><span data-repeater-delete type="button" value="Delete" class="delet">&times;</span></span>
                                                         </label>
                                                     </div>
                                                 </div>
