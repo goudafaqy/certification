@@ -17,15 +17,9 @@ class UserSeeder extends Seeder
             'username' => 'Ayman',
             'email' => 'ayman@gmail.com',
             'active' => true,
-<<<<<<< HEAD
             'national_id' => 215555,
             'mobile' => 2155553337,
             'gender' => 3,
-=======
-            'national_id' => 215588787,
-            'mobile' => 21555587,
-            'gender' => 1,
->>>>>>> 979e6d407bfc32e130c412662266adbf13b5e980
             'password' => Hash::make('123456'),
         ]);
             
