@@ -18,6 +18,17 @@ class UserRepo implements UserEloquent{
         return User::where('id', $id)->with('roles')->first();
     }
 
+
+    public function getByIds($ids)
+    {
+        return User::whereIn('id', $ids)->get();
+    }
+
+    public function getByRoleIds($ids)
+    {
+        return User::whereIn('id', [$ids])->first();
+    }
+
     public function getByRole($role)
     {
         return User::whereHas(
@@ -50,6 +61,11 @@ class UserRepo implements UserEloquent{
         $user = User::find($id);
         $user->courses()->delete();
         return User::where('id', $id)->delete();
+    }
+
+    public function getTraineeCourses($trainee_id)
+    {
+        return User::find($trainee_id)->courses_s;
     }
 
 }

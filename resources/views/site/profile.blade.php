@@ -1,7 +1,7 @@
 @extends('site.layouts.master')
 
 @section('content')
-    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/header-2.png')}});">
+    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/profile.jpg')}});">
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">

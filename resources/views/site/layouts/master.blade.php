@@ -215,7 +215,7 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('site-assets/images/logo-green.png')}}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -224,64 +224,65 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                                <i class="fas fa-bars"></i>
-                                الفئات المستهدفة
-                            </a>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <i class="fas fa-bars"></i>
+                                    الفئات المستهدفة
+                                </a>
 
 
                                 <ul class="dropdown-menu first-menu">
 
                                     @foreach($categories as $category)
-                                    <li class="link-menu {{count($category->classifications) > 0 ?"has-children":""}} ">
-                                        <a class="dropdown-item {{count($category->classifications) > 0 ?"item-first":""}}" href="{{url('category/'.$category->id.'/courses')}}">
-                                            <img src="{{asset('site-assets/images/balance.png')}}" class="img-fluid" width="20">
-                                           {{$category->title}}
+                                        <li class="link-menu {{count($category->classifications) > 0 ?"has-children":""}} ">
+                                            <a class="dropdown-item {{count($category->classifications) > 0 ?"item-first":""}}" href="{{url('category/'.$category->id.'/courses')}}">
+                                                <img src="{{asset('site-assets/images/balance.png')}}" class="img-fluid" width="20">
+                                                {{$category->title}}
 
-                                        </a>
-                                        @if(count($category->classifications) > 0)
+                                            </a>
+                                            @if(count($category->classifications) > 0)
 
 
-                                        <ul class="submenu dropdown-menu">
+                                                <ul class="submenu dropdown-menu">
 
-                                            @foreach($category->classifications as $classification)
-                                            <li>
-                                                <a class="dropdown-item" href="{{url('classification/'.$classification->id.'/courses')}}">
-                                                    <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="18"> {{$classification->title}}
-                                                </a>
-                                            </li>
-                                           @endforeach
-                                        </ul>
+                                                    @foreach($category->classifications as $classification)
+                                                        <li>
+                                                            <a class="dropdown-item" href="{{url('classification/'.$classification->id.'/courses')}}">
+                                                                <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="18"> {{$classification->title}}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
 
-                                        @endif
-                                    </li>
+                                            @endif
+                                        </li>
 
-                                        @endforeach
+                                    @endforeach
 
                                 </ul>
-                        </li>
+                            </li>
 
 
 
-                    </ul>
+                        </ul>
                     </ul>
                     <ul class="navbar-nav mr-auto ">
 
 
                         <li class="nav-item">
                             <form action="{{route('courses')}}">
-                            <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
-                                <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                                <button type="submit">
-                                    <div class="input-group-append">
+                                <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
+                                    <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
+                                    <button type="submit">
+                                        <div class="input-group-append">
+
                          <span class="input-group-text" id="basic-text1">
                         <i class="fa fa-search" aria-hidden="true"></i></span>
-                                    </div>
-                                </button>
+                                        </div>
+                                    </button>
 
-                            </div>
+                                </div>
                             </form>
                         </li>
 
@@ -291,18 +292,18 @@
                     <ul class="navbar-nav mr-auto setting-menu" style="">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="#"> {{Auth::user()->username}}   </a>
+                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>
                             </li>
                         @else
-                            <li class="nav-item">
+                        <!-- <li class="nav-item">
                                 <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
-                            </li>
+                            </li> -->
                         @endauth
 
 
-{{--                        <li class="nav-item mr-2" >--}}
-{{--                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item mr-2" >--}}
+                        {{--                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>--}}
+                        {{--                        </li>--}}
 
                         <li class="nav-item" >
                             <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول"></a>
@@ -316,13 +317,14 @@
                     </ul>
 
 
+
                 </div>
 
             </div>
         </nav>
     </header>
 
-    @yield('content')
+@yield('content')
 
 <!-- start  section of footer -->
     <section class="footer no-printme">
@@ -464,6 +466,7 @@
 <script src="{{asset('site-assets/js/swiper.min.js')}}"></script>
 <script src="{{asset('site-assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('site-assets/js/slick.js')}}"></script>
+<script src="{{asset('site-assets/js/jquery.sticky-kit.min.js')}}"></script>
 <script src="{{asset('site-assets/js/wow.min.js')}}"></script>
 <script>new WOW().init();</script>
 <script src="{{asset('site-assets/js/store.min.js')}}"></script>

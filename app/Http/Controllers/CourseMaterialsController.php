@@ -44,7 +44,13 @@ class CourseMaterialsController extends Controller
     public function add($course_id)
     {
         $material = new $this->MaterialRepo();
-        $types =  ['Trainee guide','Instructor Guide','Book','Extra recourses','Image'];
+        $types =  [
+            'guide_t'   => 'الكتيب التدريبي للمتدرب',
+            'guide_i'   => 'الكتيب التدريبي للمدرب',
+            'book'      => 'كتاب',
+            'extra'     => 'مصادر إضافية',
+            'img'       => 'صورة',
+        ];
         $title = __('app.New Material'); 
         $course = Course::find($course_id);
 
@@ -71,9 +77,10 @@ class CourseMaterialsController extends Controller
                 $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
             }
             $inputs['source'] = $filePath;
+            $inputs['status'] = 0;
             $material = $this->MaterialRepo->save($inputs);
             if($material){
-                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Auccessfully'));
+                return redirect('materials/'.$inputs['course_id'])->with('added', __('app.Material Added Successfully'));
             }
         }
     }
@@ -108,10 +115,11 @@ class CourseMaterialsController extends Controller
                 $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
             }
             $inputs['source'] = $filePath;
+            $inputs['status'] = 0;
             unset($inputs['_token']);
             $classification = $this->MaterialRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Auccessfully'));
+                return redirect('materials/'.$inputs['course_id'])->with('updated', __('app.Material Updated Successfully'));
             }
         }
     }

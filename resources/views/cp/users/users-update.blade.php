@@ -38,11 +38,31 @@
                                         @enderror
 
                                         <div class="form-group" style="margin-top: 20px;">
+                                            <label for="mobile">رقم الجوال</label>
+                                            <input type="number" class="form-control @error('mobile') is-invalid @enderror" value="{{$user->mobile}}" id="mobile" name="mobile">
+                                        </div>
+                                        @error('mobile')
+                                            <span class="text-danger err-msg-mobile" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                        <div class="form-group" style="margin-top: 20px;">
                                             <label for="password">كلمة المرور</label>
                                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                                         </div>
                                         @error('password')
                                             <span class="text-danger err-msg-password" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                        <div class="form-group" style="margin-top: 20px;">
+                                            <label for="national_id">رقم الهوية</label>
+                                            <input type="number" class="form-control @error('national_id') is-invalid @enderror" value="{{$user->national_id}}" id="national_id" name="national_id">
+                                        </div>
+                                        @error('national_id')
+                                            <span class="text-danger err-msg-national_id" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -82,6 +102,18 @@
                                             </span>
                                         @enderror
 
+                                        <div class="form-group">
+                                            <label for="birth_date">تاريخ الميلاد</label>
+                                            <div class="date" data-provide="datepicker">
+                                                <input value="{{ $user->birth_date }}" type="text" class="form-control @error('birth_date') is-invalid @enderror" id="birth_date" name="birth_date">
+                                            </div>
+                                            @error('birth_date')
+                                                <span class="text-danger err-msg-birth_date" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
                                         <div class="form-group" style="margin-top: 20px;">
                                             <label for="password_confirmation">تأكيد كلمة المرور</label>
                                             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation">
@@ -91,6 +123,20 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+
+                                        <div class="form-group">
+                                            <label for="gender">النوع</label>
+                                            <select class="form-control" id="gender" name="gender">
+                                                <option @if($user->gender == 1) selected @endif value="1">ذكر</option>
+                                                <option @if($user->gender == 0) selected @endif value="0">أنثى</option>
+                                            </select>
+
+                                            @error('gender')
+                                                <span class="text-danger err-msg-gender" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
 
                                         <div class="form-check" style="margin-top: 40px;">
                                             @if($user->active)

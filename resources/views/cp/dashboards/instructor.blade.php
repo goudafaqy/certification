@@ -19,7 +19,7 @@
                                 @foreach($currentCourses as $course)
                                 <div class="col-md-6">
                                     <div class="course-box">
-                                        <img src="{{asset($course->image)}}" alt="" class="img-thumbnail">
+                                        <img src="{{url($course->image)}}" alt="" class="img-thumbnail">
                                         <div class="details">
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
@@ -63,7 +63,7 @@
                                 @foreach($previousCourses as $course)
                                 <div class="col-md-6 ">
                                     <div class=" course-box">
-                                        <img src="{{asset($course->image)}}" alt="" class="img-thumbnail">
+                                        <img src="{{url($course->image)}}" alt="" class="img-thumbnail">
                                         <div class="details">
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
@@ -98,7 +98,7 @@
                     <div class="widget-header">
                         <div class=" d-flex justify-content-between">
                             <h3 class="widget-title"> الإعلانات</h3>
-                            <img src="images/speaker.png" style="width: 25px; height: 25px">
+                            <img src="{{ asset('images/speaker.png') }}" style="width: 25px; height: 25px">
                         </div>
                     </div>
                     <div class="widget-body">
@@ -108,7 +108,7 @@
                                     <div class="owl-carousel basic">
                                         <div class="card">
                                             <div class="news">
-                                                <img src="images/albom1.jpg" alt="" class="img-thumbnail">
+                                                <img src="{{ asset('images/albom1.jpg') }}" alt="" class="img-thumbnail">
                                                 <div class="details">
                                                     <h3><a href="#">مركز التدريب العدلي مركز التدريب العدلي</a></h3>
                                                     <div class="social">
@@ -122,7 +122,7 @@
                                         </div>
                                         <div class="card">
                                             <div class="news">
-                                                <img src="images/albom2.jpg" alt="" class="img-thumbnail">
+                                                <img src="{{ asset('images/albom2.jpg') }}" alt="" class="img-thumbnail">
                                                 <div class="details">
                                                     <h3><a href="#">مركز التدريب العدلي مركز التدريب العدلي</a></h3>
                                                     <div class="social">
@@ -131,49 +131,6 @@
                                                             09.10.2019
                                                         </p>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slider-nav text-center">
-                                        <a href="#" class="left-arrow owl-prev">
-                                            <i class="ik ik-chevron-right"></i>
-                                        </a>
-                                        <div class="slider-dot-container"></div>
-                                        <a href="#" class="right-arrow owl-next">
-                                            <i class="ik ik-chevron-left"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget ">
-                    <div class="widget-header">
-                        <div class=" d-flex justify-content-between">
-                            <h3 class="widget-title"> الشهادات التدريبة</h3>
-                            <img src="images/certificate.png" style="width: 25px; height: 25px">
-                        </div>
-                    </div>
-                    <div class="widget-body">
-                        <div class="row">
-                            <div class="col-md-12 ">
-                                <div class="owl-container">
-                                    <div class="owl-carousel certi">
-                                        <div class="card">
-                                            <div class="news">
-                                                <img src="images/cup.png" alt="" class="img-thumbnail">
-                                                <div class="details">
-                                                    <h3><a href="#">تهانينا نتيجة الدورة التدريبية </a></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="news">
-                                                <img src="images/cup.png" alt="" class="img-thumbnail">
-                                                <div class="details">
-                                                    <h3><a href="#">تهانينا نتيجة الدورة التدريبية </a></h3>
                                                 </div>
                                             </div>
                                         </div>

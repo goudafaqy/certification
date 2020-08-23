@@ -1,7 +1,7 @@
 @extends('site.layouts.master')
 
 @section('content')
-    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/header-2.png')}});">
+    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/law3.jpg')}});">
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">
@@ -118,7 +118,7 @@
                                 <div class="col-sm-4">
                                     <div class="course-item-wrapper">
                                         <div class="course-thumbnail">
-                                            <a href="{{url('course/'.$course->id)}}"><img src="{{asset($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                            <a href="{{url('course/'.$course->id)}}"><img src="{{url($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
                                             <div class="price">{{$course->price}} SR</div>
                                         </div>
                                         <div class="thim-course-content">

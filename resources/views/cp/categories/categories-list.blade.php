@@ -76,6 +76,7 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
+            "searching": false ,
             "language": {
                 "lengthMenu": "عرض _MENU_ فئة في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد فئات مستهدفة",

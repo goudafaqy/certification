@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class InstructorAccount extends Mailable
+class InstructorCourse extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,7 +18,7 @@ class InstructorAccount extends Mailable
      *
      * @return void
      */
-    public function __construct($data,$title ,$subject)
+    public function __construct($data, $title, $subject)
     {
         $this->data = $data;
         $this->title = $title;

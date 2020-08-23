@@ -63,7 +63,19 @@
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $material->name_ar }}</td>
                                                 <td class="text-center">{{ $material->name_en }}</td>
-                                                <td class="text-center">{{ $material->type }}</td>
+                                                <td class="text-center">
+                                                    @if($material->type == 'guide_t')
+                                                    {{__('app.Material guide_t')}}
+                                                    @elseif($material->type == 'guide_i')
+                                                    {{__('app.Material guide_i')}}
+                                                    @elseif($material->type == 'img')
+                                                    {{__('app.Material img')}}
+                                                    @elseif($material->type == 'extra')
+                                                    {{__('app.Material extra')}}
+                                                    @else
+                                                    {{__('app.Material book')}}
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     <a class="btn btn-info" href="{{route('materials-update',['course_id' => $material->course_id ,'id' => $material->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="{{route('delete-materials',['course_id' => $material->course_id ,'id' => $material->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
@@ -87,6 +99,7 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
+            "searching": false ,
             "language": {
                 "lengthMenu": "عرض _MENU_ تصنيف في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواد",

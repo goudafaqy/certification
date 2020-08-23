@@ -18,6 +18,11 @@ return [
     'English Title' => 'العنوان باللغة الانجليزية',
     'Details' => 'التفاصيل',
     'Material Type' => 'نوع المادة',
+    'Material guide_i' => 'الكتيب التدريبي للمدرب',
+    'Material guide_t' => 'الكتيب التدريبي للمتدرب',
+    'Material img' => 'صورة',
+    'Material book' => 'كتاب',
+    'Material extra' => 'مصادر إضافية',
     'Upload Source' => 'رفع المصدر',
     'Save' => 'حفظ',
     'Actions' => 'الاعدادات',
@@ -39,6 +44,11 @@ return [
     'Message_en' =>'الرسالة باللغة الانجليزية',
     'New Notification'=>'اشعار جديد',
     'Code'=>'كود الاشعار',
+    'Update Notification'=> 'تحديث الاشعار',
     'Adly Training Center'=>'مركز التدريب العدلي',
-    'You have new account'=>'لديك حساب جديد'
+    'You have new account'=>'لديك حساب جديد',
+    'Sending_to' =>'نوع الارسال',
+    'Save & Send' =>'حفظ وارسال ',
+    'Extra Data' =>' بيانات أضافية ',
+    'You have choosen to new course' => 'لقد تم اختيارك لدورة بمركز التدريب العادلى'
 ];

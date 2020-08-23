@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\UserRepo;
 use Carbon\Carbon;
 use DB;
 use Facade\FlareClient\Http\Exceptions\NotFound;
@@ -12,16 +13,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class HomeController extends Controller
 {
     var $courseRepo;
+    var $userRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        CourseRepo $courseRepo
+        CourseRepo $courseRepo,
+        UserRepo $userRepo
     )
     {
         $this->courseRepo = $courseRepo;
+        $this->userRepo = $userRepo;
         $this->middleware('auth');
     }
 
@@ -41,6 +45,8 @@ class HomeController extends Controller
             return $this->adminDashboard();
         elseif ($role->name == 'instructor')
             return $this->instructorDashboard();
+        elseif ($role->name == 'trainee')
+            return $this->traineeDashboard();
         else
             throw new NotFoundHttpException();
     }
@@ -62,5 +68,11 @@ class HomeController extends Controller
         //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
 
         return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses]);
+    }
+
+    private function traineeDashboard(){
+        $trainee_id = Auth::id();
+        $courses = $this->userRepo->getTraineeCourses($trainee_id);
+        return view('cp.dashboards.trainee', ['courses' => $courses]);
     }
 }
