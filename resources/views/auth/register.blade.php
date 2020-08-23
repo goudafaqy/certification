@@ -7,7 +7,7 @@
                 @csrf
                 <div class="logo-centered">
                     <a href="{{ url('/') }}">
-                        <img src="images/new-logo.png" class="" alt="">
+                        <img src="{{asset('site-assets/images/new-logo.png')}}" class="" alt="">
                     </a>
                 </div>
                 <span class="login-form-title ">
