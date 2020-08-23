@@ -25,6 +25,8 @@ Auth::routes();
     // Home routes ...
     Route::prefix('dashboard')->group(function () {
         Route::get('/', 'HomeController@dashboard')->name('dashboard');
+        Route::get('edit-profile', 'ProfileController@edit')->name('edit-profile');
+        Route::post('save-profile', 'ProfileController@save')->name('save-profile');
     });
 
 
