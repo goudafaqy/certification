@@ -1,7 +1,7 @@
 @extends('site.layouts.master')
 
 @section('content')
-    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/header-2.png')}});">
+    <div class="top_site_main" style="color: #ffffff;background-image:url({{asset('site-assets/images/law3.jpg')}});">
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">
@@ -115,7 +115,7 @@
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="row">
                             @foreach($courses as $course)
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <div class="course-item-wrapper">
                                         <div class="course-thumbnail">
                                             <a href="{{url('course/'.$course->id)}}"><img src="{{url($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>

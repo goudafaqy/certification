@@ -10,9 +10,10 @@
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
-                                <h2>أهداف المركز</h2>
-                                <h6>يهدف المركز إلى الإسهام في رفع كفاءة وتأهيل القضاة ،وكتاب العدل وكتاب الضبط ومحضري
-                                    الخصوم وأعضاء هيئة النظر وغيرهم من مساعدي وأعوان القضاة
+                                <h2>أهداف المركز</h2> 
+                                <h6>
+                              تدريب مستمر وفاعل يسهم في رفع كفاءة الممارسين العدليين
+                          
                                 </h6>
 
                             </div>
@@ -24,8 +25,9 @@
                         <div class="container">
                             <div class="header-content">
                                 <h2>أهداف المركز</h2>
-                                <h6>يهدف المركز إلى الإسهام في رفع كفاءة وتأهيل القضاة ،وكتاب العدل وكتاب الضبط ومحضري
-                                    الخصوم وأعضاء هيئة النظر وغيرهم من مساعدي وأعوان القضاة
+                                <h6>
+                                نحو توظيف التقنية في تعزيز برامج التدريب والتأهيل العدلي المتخصص 
+
                                 </h6>
 
                             </div>
@@ -33,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
+                <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
@@ -45,9 +47,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/4.jpg')}})">
+                <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/4.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
@@ -59,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 

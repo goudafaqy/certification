@@ -276,6 +276,7 @@
                                     <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
                                     <button type="submit">
                                         <div class="input-group-append">
+
                          <span class="input-group-text" id="basic-text1">
                         <i class="fa fa-search" aria-hidden="true"></i></span>
                                         </div>
@@ -465,6 +466,7 @@
 <script src="{{asset('site-assets/js/swiper.min.js')}}"></script>
 <script src="{{asset('site-assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('site-assets/js/slick.js')}}"></script>
+<script src="{{asset('site-assets/js/jquery.sticky-kit.min.js')}}"></script>
 <script src="{{asset('site-assets/js/wow.min.js')}}"></script>
 <script>new WOW().init();</script>
 <script src="{{asset('site-assets/js/store.min.js')}}"></script>

@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
             'username' => 'Ayman',
             'email' => 'ayman@gmail.com',
             'active' => true,
-            'national_id' => 215588787,
-            'mobile' => 21555587,
-            'gender' => 1,
+            'national_id' => 215555,
+            'mobile' => 2155553337,
+            'gender' => 3,
             'password' => Hash::make('123456'),
         ]);
-
+            
         DB::table('users')->insert([
             'name_ar' => 'ابراهيم نجم',
             'name_en' => 'Ibrahim Negm',

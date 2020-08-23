@@ -74,7 +74,7 @@
                                                 <td class="text-center">{{ $course->classification->title_ar }}</td>
                                                 <td class="text-center">{{ $course->seats }}</td>
                                                 <td class="text-center">
-                                                    <a class="btn btn-primary actions-btns" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الاقسام"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
+                                                    <a class="btn btn-primary actions-btns" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top"  title="الاقسام"><i style="position: relative; top: -2px; right: -4px" class="fa fa-building"></i></a>
                                                     <a class="btn btn-primary actions-btns" href="{{route('materials-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الملفات"><i style="position: relative; top: -2px; right: -4px" class="fa fa-file"></i></a>
                                                     @if($course->type == 'face_to_face' || $course->type == 'live')
                                                     <a class="btn btn-primary actions-btns" href="/courses/appointments/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="المواعيد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-clock"></i></a>
