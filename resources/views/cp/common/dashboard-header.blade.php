@@ -25,8 +25,6 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/new-style2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
-    
-    
 
     <!-- End Style -->
 </head>

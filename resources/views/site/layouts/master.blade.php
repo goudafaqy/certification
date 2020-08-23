@@ -272,17 +272,11 @@
 
                         <li class="nav-item">
                             <form action="{{route('courses')}}">
-<<<<<<< HEAD
-                            <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
-                                <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                                <button type="submit" id="submit">
-                                    <div class="input-group-append">
-=======
                                 <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
                                     <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
                                     <button type="submit">
                                         <div class="input-group-append">
->>>>>>> 56aab1ed68c0f59f48cb1760494a71f9ade726d7
+
                          <span class="input-group-text" id="basic-text1">
                         <i class="fa fa-search" aria-hidden="true"></i></span>
                                         </div>
