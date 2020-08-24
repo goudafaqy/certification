@@ -37,6 +37,15 @@ class WebinarRepo implements WebinarEloquent
             "agenda"=>$inputs["agenda"]
 
         ]);
+
+        foreach ($inputs->students as $student){
+            $webinar->registrants()->save([
+                'email'=> $student["email"],
+                'first_name'=> $student["name_en"]
+            ]);
+        }
+
+
         $webinarArr = $webinar->toArray();
 
         $webinarArr["user_id"] = $user->id;

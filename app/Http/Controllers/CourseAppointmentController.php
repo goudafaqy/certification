@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\DateHelper;
+use App\Http\Repositories\Eloquent\WebinarRepo;
 use App\Http\Repositories\Validation\CourseAppointmentRepoValidation;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Validation\WebinarRepoValidation;
+use App\Models\Course;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CourseAppointmentController extends Controller
@@ -15,17 +19,23 @@ class CourseAppointmentController extends Controller
     var $categoryRepo;
     var $classRepo;
     var $courseValidation;
+    var $webinarRepo;
+    var $webinarValidation;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct(
-        CourseRepo $courseRepo, 
-        CourseAppointmentRepo $courseAppRepo, 
-        CourseAppointmentRepoValidation $courseAppValidation
+        CourseRepo $courseRepo,
+        CourseAppointmentRepo $courseAppRepo,
+        CourseAppointmentRepoValidation $courseAppValidation,
+        WebinarRepo $webinarRepo,
+        WebinarRepoValidation $webinarValidation
     )
     {
+        $this->webinarRepo       = $webinarRepo;
+        $this->webinarValidation = $webinarValidation;
         $this->courseRepo = $courseRepo;
         $this->courseAppRepo = $courseAppRepo;
         $this->courseAppValidation = $courseAppValidation;
@@ -55,7 +65,7 @@ class CourseAppointmentController extends Controller
         $endDate = DateHelper::getEndDate($inputs['start_date'], $numOfRepeats, $lastWeekDay);
         $daysArr = $inputs['week_days'];
         $actualDates = DateHelper::getActualDates($daysArr, $inputs['start_date'], $endDate);
-        
+
         $from_time = $inputs['from_time'];
         $to_time = $inputs['to_time'];
         $num_of_repeat = $numOfRepeats;
@@ -63,10 +73,10 @@ class CourseAppointmentController extends Controller
         $data = [];
         $lec_num = 0;
         $course_days = 0;
-        
+
         foreach ($actualDates as $day => $dates) {
             $row = [];
-            for ($i=0; $i < count($dates); $i++) { 
+            for ($i=0; $i < count($dates); $i++) {
                 $row['title']       = $inputs['title'];
                 $row['date']        = $dates[$i];
                 $row['day']         = DateHelper::getDayWeekStringFromNumber($day);
@@ -92,6 +102,7 @@ class CourseAppointmentController extends Controller
             'num_of_repeat'   => $num_of_repeat,
         ];
         $this->courseRepo->update($dataCourse, $inputs['course_id']);
+
         return ($this->courseAppRepo->saveBulk($data)) ? true : false ;
     }
 
@@ -104,6 +115,29 @@ class CourseAppointmentController extends Controller
         if($result){
             return redirect('courses/appointments/'.$course_id)->with('deleted', 'تم حذف الموعد بنجاح');
         }
+    }
+
+    /**
+     *
+     */
+    public function scheduleOnZoom($course_id){
+        $course = Course::find($course_id);
+        foreach ($course->appointments as $appointment) {
+            $startDateTime = Carbon::createFromTimeString($appointment->date . ' ' . $appointment->from_time)->format('Y-m-d H:i:s');
+            $start = Carbon::parse($appointment->from_time);
+            $end = Carbon::parse($appointment->to_time);
+            $data = [
+                "topic" => $appointment->title,
+                "type" => 5,
+                "start_time" => $startDateTime,
+                "duration" => $end->diffInRealMinutes($start),
+                "timezone" => "Asia/Riyadh",
+                "agenda" => substr($course, 0, 50),
+            ];
+            $this->webinarRepo->save($data);
+        }
+        return redirect()->back();
+
     }
 
     /**
