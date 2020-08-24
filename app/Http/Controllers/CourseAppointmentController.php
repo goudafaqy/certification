@@ -127,12 +127,15 @@ class CourseAppointmentController extends Controller
             $start = Carbon::parse($appointment->from_time);
             $end = Carbon::parse($appointment->to_time);
             $data = [
+                'course_appointments_id'=>$appointment->id,
+                'course_id'=>$course->id,
                 "topic" => $appointment->title,
                 "type" => 5,
                 "start_time" => $startDateTime,
                 "duration" => $end->diffInRealMinutes($start),
                 "timezone" => "Asia/Riyadh",
                 "agenda" => substr($course, 0, 50),
+                "students"=>$course->students,
             ];
             $this->webinarRepo->save($data);
         }
