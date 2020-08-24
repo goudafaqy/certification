@@ -193,7 +193,7 @@
                                                            width="20"> الإستبيانات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
-                                        <a href="{{$tab != 'tab5'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'ads']):"javascript:void(0);"}}"
+                                        <a href="{{$tab != 'tab5'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'update']):"javascript:void(0);"}}"
                                            for="tab5"><img src="{{ asset('images/training.png') }}" class="img-fluid"
                                                            width="20"> الاعلانات </a>
                                     </li>
@@ -231,7 +231,7 @@
                                     @elseif($tab== 'tab4')
                                         @include('cp.instructor.courses.view-sections.questionnaires', ['id' => $course->id, 'type'=> $type])
                                     @elseif($tab== 'tab5')
-                                        @include('cp.instructor.courses.view-sections.ads', ['id' => $course->id, 'type'=> $type])
+                                        @include('cp.instructor.courses.view-sections.update', ['id' => $course->id, 'type'=> $type, 'updates' => $updates])
                                     @elseif($tab== 'tab6')
                                         @if(isset($action))
                                             @switch($action)

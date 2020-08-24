@@ -82,4 +82,12 @@ class Course extends Model
     public function getTitleAttribute(){
         return $this["title_".App::getLocale()];
     }
+
+    /**
+     * Get the updates for the course.
+     */
+    public function updates()
+    {
+        return $this->hasMany('App\Models\CourseUpdate');
+    }
 }
