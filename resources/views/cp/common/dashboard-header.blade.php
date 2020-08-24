@@ -37,6 +37,7 @@
                     <div class="top-menu d-flex align-items-center">
                         @if(!isset($role) || $role == 1)
                         <a type="" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></a>
+                        
                         <!-- <div class="nav-item dropdown">
                             <a class=" dropdown-toggle" href="#" data-toggle="dropdown">
                                 <img src="{{ asset('images/school.png') }}" style="width: 20px">
