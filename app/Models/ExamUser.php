@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
-class Question extends Model
+class ExamUser extends Model
 {
 
-    protected $table = 'course_exam_questions';
+    protected $table = 'course_exam_user';
 
     protected $primaryKey = 'id';
 
@@ -20,27 +19,24 @@ class Question extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'exam_id',
-        'type',
-        'question_en',
-        'question_ar',
-        'answer_MC',
-        'answer_TF',
-        'type_OC',
+        'submitted',
         'created_at',
         'updated_at',
     ];
 
-    public function getAnswersAttribute(){
-        if($this->type != 'MC') return [];
-        $choices = json_decode($this->answer_MC, true);
-
-        return array_keys($choices);
-    }
-
 
     /**
-     * Get the courses for the Exam.
+     * Get the User Answers for the Exam.
+     */
+    public function answers()
+    {
+        return $this->hasMany('App\Models\ExamUserAnswer', 'course_exam_user_id');
+    }
+
+    /**
+     * Get the Exam
      */
     public function exam()
     {

@@ -19,12 +19,10 @@ class UserSeeder extends Seeder
             'active' => true,
             'national_id' => 215555,
             'mobile' => 2155553337,
-            'gender' => 3,
+            'gender' => 1,
             'password' => Hash::make('123456'),
-            'mobile' => '123123123',
-            'gender' => 1
         ]);
-            
+
         DB::table('users')->insert([
             'name_ar' => 'ابراهيم نجم',
             'name_en' => 'Ibrahim Negm',
@@ -35,8 +33,6 @@ class UserSeeder extends Seeder
             'mobile' => 21555587,
             'gender' => 1,
             'password' => Hash::make('123456'),
-            'mobile' => '123123123',
-            'gender' => 1
         ]);
     }
 }

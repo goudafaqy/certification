@@ -78,6 +78,8 @@ class CourseExamsController extends Controller
         }
 
         $data['course_id'] = $course_id;
+        $data['title_en'] = isset($data['title_en']) && $data['title_en']? $data['title_en']: $data['title_ar'];
+        $data['guide_en'] = isset($data['guide_en']) && $data['guide_en']? $data['guide_en']: $data['guide_ar'];
 
         $exam = $this->examRepo->save($data);
 
