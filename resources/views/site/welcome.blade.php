@@ -304,195 +304,37 @@
                             </div>
                         </div>
                         <div class="event-slider">
+
+                        @foreach($advertisments as $item)
                             <div class="event-item">
                                 <div class="time-from">
                                     <div class="date">
-                                        30
+                                        {{date('d',strtotime($item->date) ) }}
                                     </div>
                                     <div class="month">
-                                        Sep
+                                       {{date('M',strtotime($item->date) ) }}
                                     </div>
                                 </div>
                                 <div class="event-wrapper">
                                     <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنوان القانون الجنائى 2020</a>
+                                        <a href="events/summer-school-2015/index.html"> {{$item->title_ar??'' }} </a>
                                     </h5>
                                     <div class="meta">
                                         <div class="time">
                                             <i class="fa fa-clock-o"></i>
 
-                                            00: 12 pm
+                                            {{$item->time??'' }}
                                         </div>
                                         <div class="location">
                                             <i class="fa fa-map-marker"></i>
-                                            الرياض
+                                            {{$item->location??'' }}
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html"> ندوة بعنوان القانون العمالى 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">   ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنوان القانون الجنائى 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach    
+                          
                         </div>
                     </div>
                 </div>

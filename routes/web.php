@@ -124,7 +124,7 @@ Auth::routes();
         return view('site.course');
     });
 
-    // Course Units routes ...
+    // Course notifications routes ...
     Route::prefix('notifications')->group(function () {
 
         Route::get('/', 'NotificationsSettingsController@list')->name('notify-list');
@@ -136,6 +136,33 @@ Auth::routes();
 
     });
 
+
+        // Course advertisments routes ...
+        Route::prefix('advertisments')->group(function () {
+
+            Route::get('/', 'AdvertismentsController@list')->name('advertisments-list');
+            Route::get('add', 'AdvertismentsController@add')->name('advertisments-add');
+            Route::get('update/{id}', 'AdvertismentsController@update')->name('advertisments-update');
+            Route::post('update', 'AdvertismentsController@edit')->name('update-advertisments');
+            Route::post('save', 'AdvertismentsController@create')->name('save-advertisments');
+            Route::get('delete/{id}', 'AdvertismentsController@delete')->name('delete-advertisments');
+    
+        });
+
+
+        
+        // Course advertisments routes ...
+        Route::prefix('tesmonials')->group(function () {
+
+            Route::get('/', 'AdvertismentsController@list')->name('tesmonials-list');
+            Route::get('add', 'AdvertismentsController@add')->name('tesmonials-add');
+            Route::get('update/{id}', 'AdvertismentsController@update')->name('tesmonials-update');
+            Route::post('update', 'AdvertismentsController@edit')->name('update-tesmonials');
+            Route::post('save', 'AdvertismentsController@create')->name('save-tesmonials');
+            Route::get('delete/{id}', 'AdvertismentsController@delete')->name('delete-tesmonials');
+    
+        });
+    
 Auth::routes();
 
 
