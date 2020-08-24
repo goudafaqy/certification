@@ -51,23 +51,25 @@
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="owl-container">
+                                @foreach($advertisments as $item)
                                     <div class="owl-carousel basic">
                                         <div class="card">
                                             <div class="news">
-                                                <img src="{{ asset('images/albom2.jpg') }}" alt="" class="img-thumbnail">
+                                                <img src="{{ url($item->image)}}" alt="" class="img-thumbnail">
                                                 <div class="details">
                                                     <h3>
-                                                        <a href="#">مركز التدريب العدلي</a>
+                                                        <a href="#">{{$item->title_ar??'' }}</a>
                                                     </h3>
                                                     <div class="social">
                                                         <p style="text-align: center; margin-top: 10px; color: #fff">
-                                                            <i class="far fa-calendar-alt" style="color: #A58661"></i> 09.10.2019
+                                                            <i class="far fa-calendar-alt" style="color: #A58661"></i> {{$item->date ??'' }}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                     <div class="slider-nav text-center">
                                         <a href="#" class="left-arrow owl-prev">
                                             <i class="ik ik-chevron-right"></i>

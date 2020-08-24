@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Advertisment;
 
 class WelcomeController extends Controller
 {
@@ -16,8 +17,9 @@ class WelcomeController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
+        $advertisments = Advertisment::all();
         $sliderItems = Classification::where("home_page_display",1)->orderBy('created_at','DESC')->take(4)->get();
-        return view('site.welcome',compact("sliderItems"));
+        return view('site.welcome',compact("sliderItems","advertisments"));
     }
 
 
