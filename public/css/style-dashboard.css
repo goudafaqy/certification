@@ -1541,7 +1541,7 @@ img {
 .profile-card-body h3 {
     color: #000;
     text-transform: capitalize;
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 10px;
     margin-bottom: 15px;
     font-weight: 600;
@@ -1770,7 +1770,7 @@ textarea {
     padding: 13px 10px 0px 10px;
     font-family: "ArbFONTS-PNU-Medium.ttf";
     /* padding:1rem; */
-    height: 45px;
+    height: 40px;
 
 }
 
@@ -2820,8 +2820,8 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     border: 1px solid #ffffff40;
     padding: 5px;
     background-color: #fff;
-    -webkit-animation: mover 1s infinite alternate;
-    animation: mover 1s infinite alternate;
+    /* -webkit-animation: mover 1s infinite alternate;
+    animation: mover 1s infinite alternate; */
 }
 
 .register-left p {
@@ -2895,7 +2895,8 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .tooltip {
-    top: -12% !important;
+    top: -6rem !important;
+    position: absolute;
 
 }
 
