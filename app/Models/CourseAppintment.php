@@ -19,11 +19,11 @@ class CourseAppintment extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 
-        'date', 
-        'day', 
-        'from_time', 
-        'to_time', 
+        'title',
+        'date',
+        'day',
+        'from_time',
+        'to_time',
         'course_id'
     ];
 
@@ -33,6 +33,10 @@ class CourseAppintment extends Model
     public function course()
     {
         return $this->belongsTo('App\Models\Course');
+    }
+
+    public function webinar(){
+        return $this->hasOne('App\Models\Webinar','course_appointments_id');
     }
 
 }

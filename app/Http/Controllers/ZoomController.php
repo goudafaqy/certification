@@ -19,7 +19,9 @@ class ZoomController extends Controller
      *
      * @return void
      */
-    public function __construct(WebinarRepo $webinarRepo, WebinarRepoValidation $webinarValidation)
+    public function __construct(
+        WebinarRepo $webinarRepo,
+                                WebinarRepoValidation $webinarValidation)
     {
         $this->webinarRepo       = $webinarRepo;
         $this->webinarValidation = $webinarValidation;

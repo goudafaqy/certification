@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,6 +78,7 @@ Auth::routes();
         Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
         Route::get('appointments/reset/{id}', 'CourseAppointmentController@reset')->name('reset-appointment');
+        Route::get('appointments/zoom/{id}', 'CourseAppointmentController@scheduleOnZoom')->name('reset-appointment');
     });
 
     // Course Materials routes ...
@@ -121,7 +123,11 @@ Auth::routes();
 
 
     Route::get('test', function (){
-        return view('site.course');
+       $startat = '12:35 PM';
+       $endat = '1:35 PM';
+        $start = Carbon::parse($startat);
+       $end =  Carbon::parse($endat);
+       dd($end->diffInRealMinutes($start));
     });
 
     // Course notifications routes ...
