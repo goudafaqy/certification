@@ -3,25 +3,13 @@
 namespace App\Http\Repositories\Eloquent;
 
 use App\Http\Interfaces\Eloquent\UserEloquent;
+use App\Http\Repositories\Eloquent\Repository;
 use App\Models\User;
-
-class UserRepo implements UserEloquent{
+class UserRepo extends Repository implements UserEloquent{
     
-    public function getAll()
+    public function __construct()
     {
-        return User::with('roles')->get();
-    }
-
-
-    public function getById($id)
-    {
-        return User::where('id', $id)->with('roles')->first();
-    }
-
-
-    public function getByIds($ids)
-    {
-        return User::whereIn('id', $ids)->get();
+        parent::__construct(new User());
     }
 
     public function getByRoleIds($ids)
@@ -45,22 +33,10 @@ class UserRepo implements UserEloquent{
         $user->roles()->attach($roles);
     }
 
-    public function save($inputs, $getId = false)
-    {
-        return ($getId) ? User::insertGetId($inputs) : User::create($inputs) ;
-    }
-
-    public function update($inputs, $id)
-    {
-        return User::where('id', $id)->update($inputs);
-    }
-
-
-    public function delete($id)
+    public function deleteAssocciated($id)
     {
         $user = User::find($id);
-        $user->courses()->delete();
-        return User::where('id', $id)->delete();
+        return $user->courses()->delete();
     }
 
     public function getTraineeCourses($trainee_id)

@@ -6,12 +6,12 @@
 
             <form id="exam-form"
                   action="{{ route('instructor-course-exam-create', ['id' => $id, 'type' => $type, 'examType' => $examType]) }}"
-                  method="POST">
+                  method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row justify-content-center" style="padding: 20px 50px;">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="title_ar">العنوان باللغة العربية</label>
+                            <label for="title_ar">العنوان</label>
                             <input type="text" class="form-control @error('title_ar') is-invalid @enderror"
                                    id="title_ar" name="title_ar" value="{{old('title_ar')}}">
                         </div>
@@ -21,39 +21,15 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="title_en">العنوان باللغة الإنجليزية</label>
-                            <input type="text" class="form-control @error('title_en') is-invalid @enderror"
-                                   id="title_en" name="title_en" value="{{old('title_en')}}">
-                        </div>
-                        @error('title_en')
-                        <span class="text-danger err-msg-title_en" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="guide_ar">تفاصيل الامتحان باللغة العربية</label>
+                            <label for="guide_ar">تفاصيل</label>
                             <textarea class="form-control @error('guide_ar') is-invalid @enderror" id="guide_ar"
                                       name="guide_ar">{{old('guide_ar')}}</textarea>
                         </div>
                         @error('guide_ar')
                         <span class="text-danger err-msg-guide_ar" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="guide_en">تفاصيل الامتحان باللغة الإنجليزية</label>
-                            <textarea class="form-control @error('guide_en') is-invalid @enderror" id="guide_en"
-                                      name="guide_en">{{old('guide_en')}}</textarea>
-                        </div>
-                        @error('guide_en')
-                        <span class="text-danger err-msg-guide_en" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
@@ -73,7 +49,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="question_point">عدد نقاط السؤال</label>
+                            <label for="question_point">نقاط كل سؤال</label>
                             <input type="text" class="form-control @error('question_point') is-invalid @enderror"
                                    id="question_point" name="question_point" value="{{old('question_point')}}">
                         </div>

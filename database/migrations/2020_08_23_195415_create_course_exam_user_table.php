@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseExamQuestionsTable extends Migration
+class CreateCourseExamUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateCourseExamQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_exam_questions', function (Blueprint $table) {
+        Schema::create('course_exam_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_id")->references('id')
+                ->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("exam_id")->references('id')
                 ->on('course_exams')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->enum('type', ['MC', 'TF', 'OC']);
-            $table->string('question_en');
-            $table->string('question_ar');
-            $table->text('answer_MC')->nullable();
-            $table->boolean('answer_TF')->nullable();
-            $table->enum('type_OC', ['FT', 'FU'])->nullable();
+            $table->boolean("submitted")->default(false);
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreateCourseExamQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_exam_questions');
+        Schema::dropIfExists('course_exam_user');
     }
 }

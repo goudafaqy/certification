@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function list()
     {
-        $users = $this->userRepo->getAll();
+        $users = $this->userRepo->getAll('roles');
         return view("cp.users.users-list", ['users' => $users]);
     }
 
@@ -61,9 +61,6 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-
-         
-
         $inputs = $request->input();
         $validator = $this->userValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
@@ -85,7 +82,7 @@ class UserController extends Controller
                  if(in_array('2',$roles)){
                    // Send Mail Notification To Instructor
                     $inputs['password'] = $pass;
-                    $instructor =  $this->userRepo->getById($userId);
+                    $instructor =  $this->userRepo->getById($userId, 'roles');
                     $data = [
                         'title_ar'=>   __('app.You have new account'),
                         'title_en'=>   __('app.You have new account'),
@@ -116,7 +113,7 @@ class UserController extends Controller
     public function update($id)
     {
         $roles = $this->roleRepo->getAll();
-        $user = $this->userRepo->getById($id);
+        $user = $this->userRepo->getById($id, 'roles');
         $selectedRoles = [];
         foreach ($user->roles as $role) {
             array_push($selectedRoles, $role->id);
@@ -157,6 +154,7 @@ class UserController extends Controller
      */
     public function delete($id)
     {
+        $this->userRepo->deleteAssocciated($id);
         $result = $this->userRepo->delete($id);
         if($result){
             return redirect('users/list')->with('deleted', 'تم حذف المستخدم بنجاح');

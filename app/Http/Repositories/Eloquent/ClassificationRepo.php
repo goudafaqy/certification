@@ -5,17 +5,11 @@ namespace App\Http\Repositories\Eloquent;
 use App\Http\Interfaces\Eloquent\ClassificationEloquent;
 use App\Models\Classification;
 
-class ClassificationRepo implements ClassificationEloquent{
-    
-    public function getAll()
-    {
-        return Classification::all();
-    }
+class ClassificationRepo extends Repository implements ClassificationEloquent{
 
-
-    public function getById($id)
+    public function __construct()
     {
-        return Classification::where('id', $id)->first();
+        parent::__construct(new Classification());
     }
 
     public function getByCat($cat_id)
@@ -23,23 +17,10 @@ class ClassificationRepo implements ClassificationEloquent{
         return Classification::where('cat_id', $cat_id)->get();
     }
 
-
-    public function save($inputs, $getId = false)
-    {
-        return Classification::create($inputs);
-    }
-
-    public function update($inputs, $id)
-    {
-        return Classification::where('id', $id)->update($inputs);
-    }
-
-
-    public function delete($id)
+    public function deleteAssocciated($id)
     {
         $classification = Classification::find($id);
-        $classification->courses()->delete();
-        return Classification::where('id', $id)->delete();
+        return $classification->courses()->delete();
     }
 
 }

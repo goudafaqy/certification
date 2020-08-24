@@ -149,14 +149,14 @@ Auth::routes();
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
-        Route::get('view/{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
+        Route::get('{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
 
-        Route::get('view/{id}/exam/add', 'CourseExamsController@add')->name('instructor-course-exam-add');
-        Route::get('view/{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
-        Route::post('view/{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
-        Route::get('view/{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
-        Route::get('view/{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
-        Route::post('view/{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
+        Route::get('{id}/exam/add', 'CourseExamsController@add')->name('instructor-course-exam-add');
+        Route::get('{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
+        Route::post('{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
+//        Route::get('{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
+//        Route::get('{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
+//        Route::post('{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
     });
 });
 
@@ -164,6 +164,10 @@ Route::prefix('instructor')->group(function (){
 Route::prefix('trainee')->group(function (){
     Route::prefix('courses')->namespace('Trainee')->group(function () {
         Route::get('/list', 'CourseController@list')->name('trainee-courses');
-        Route::get('view/{id}/{tab?}', 'CourseController@view')->name('trainee-courses-view');
+        Route::get('{id}/{tab?}', 'CourseController@view')->name('trainee-courses-view');
+
+        Route::get('{id}/exam/{examId}/show', 'CourseExamsController@start')->name('trainee-course-exam-show');
+        Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@answer')->name('trainee-course-exam-answer');
+
     });
 });
