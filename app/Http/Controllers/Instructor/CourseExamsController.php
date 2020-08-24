@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\QuestionRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use App\Http\Repositories\Validation\ExamRepoValidation;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CourseExamsController extends Controller
@@ -16,6 +18,7 @@ class CourseExamsController extends Controller
     var $userRepo;
     var $examRepo;
     var $examRepoValidation;
+    var $questionRepo;
 
 
     /**
@@ -27,13 +30,16 @@ class CourseExamsController extends Controller
         CourseRepo $courseRepo,
         UserRepo $userRepo,
         ExamRepo $examRepo,
-        ExamRepoValidation $examRepoValidation
+        ExamRepoValidation $examRepoValidation,
+        QuestionRepo $questionRepo
     )
     {
         $this->courseRepo = $courseRepo;
         $this->userRepo = $userRepo;
         $this->examRepo = $examRepo;
         $this->examRepoValidation = $examRepoValidation;
+        $this->questionRepo = $questionRepo;
+
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -72,6 +78,8 @@ class CourseExamsController extends Controller
         }
 
         $data['course_id'] = $course_id;
+        $data['title_en'] = isset($data['title_en']) && $data['title_en']? $data['title_en']: $data['title_ar'];
+        $data['guide_en'] = isset($data['guide_en']) && $data['guide_en']? $data['guide_en']: $data['guide_ar'];
 
         $exam = $this->examRepo->save($data);
 
@@ -79,12 +87,21 @@ class CourseExamsController extends Controller
             $routeName = $data['type'] == 'assignment' ? 'instructor-course-assignment-add' : 'instructor-course-exam-add';
             return redirect()->route($routeName, ['id' => $course_id, 'type' => $type])->withErrors('Internal Error')->withInput($data);
         }
+
+        $questionsMsg = "";
+        if($request->hasFile('questions')) {
+            $questions = $this->questionRepo->loadExcel($request->file('questions'), $exam->id);
+            $qCount = count($questions);
+
+            $questionsMsg = $this->questionRepo->saveMulti($questions)?
+                " مع اضافة ($qCount) سؤال":
+                " مع وجود خطأ فى تسحيل الأسئلة";
+        }
+
         return redirect()->route('instructor-courses-view', [
             'id' => $course->id,
             'type' => $type,
             'tab' => 'exams'
         ])->with('added', 'تمت إضافة امتحان/واجب جديد بنجاح');
     }
-
-
 }

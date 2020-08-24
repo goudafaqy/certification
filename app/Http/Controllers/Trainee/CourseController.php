@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Trainee;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ class CourseController extends Controller
     var $userRepo;
     var $materialRepo;
     var $appointmentRepo;
+    var $examRepo;
 
     /**
      * Create a new controller instance.
@@ -26,13 +28,16 @@ class CourseController extends Controller
         CourseRepo $courseRepo,
         UserRepo $userRepo,
         MaterialRepo $materialRepo,
-        CourseAppointmentRepo $appointmentRepo
+        CourseAppointmentRepo $appointmentRepo,
+        ExamRepo $examRepo
     )
     {
         $this->courseRepo = $courseRepo;
         $this->userRepo = $userRepo;
         $this->materialRepo = $materialRepo;
         $this->appointmentRepo = $appointmentRepo;
+        $this->examRepo = $examRepo;
+
         $this->middleware(['auth', 'authorize.trainee']);
     }
 
@@ -86,7 +91,7 @@ class CourseController extends Controller
     private function exams($course)
     {
 
-        $exams = $this->examRepo->getAll($course->id);
+        $exams = $this->examRepo->getExamsForTrainees($course->id);
 
         return view("cp.trainee.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'tab6']);
     }

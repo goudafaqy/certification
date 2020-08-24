@@ -17,7 +17,8 @@ class ExamRepoValidation implements MaterialValidation{
                 'question_point'=> 'nullable|numeric',
                 'start_time' => 'required|date_format:H:i',
                 'end_time' => 'required|date_format:H:i',
-                'duration' => 'required|numeric'
+                'duration' => 'required|numeric',
+                'questions' => 'nullable|file|mimes:xls,xlsx,csv'
             ],
             'update' => [
 

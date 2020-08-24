@@ -19,10 +19,10 @@ class UserSeeder extends Seeder
             'active' => true,
             'national_id' => 215555,
             'mobile' => 2155553337,
-            'gender' => 3,
+            'gender' => 1,
             'password' => Hash::make('123456'),
         ]);
-            
+
         DB::table('users')->insert([
             'name_ar' => 'ابراهيم نجم',
             'name_en' => 'Ibrahim Negm',

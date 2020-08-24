@@ -220,11 +220,11 @@
                                     @elseif($tab== 'tab6')
                                         @if(isset($action))
                                             @switch($action)
-                                                @case('add')
+                                                @case('show')
 
-                                                @include('cp.trainee.courses.view-sections.exam-form', ['id' => $course->id, 'examType' => $examType])
+                                                @include('cp.trainee.courses.view-sections.exam-show', ['id' => $course->id, 'userExam' => $userExam])
 
-                                                @break('add')
+                                                @break('show')
                                                 @default
 
                                                 @include('cp.trainee.courses.view-sections.exams', ['id' => $course->id, 'exams' => $exams])
