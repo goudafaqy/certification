@@ -104,6 +104,7 @@ class ClassificationController extends Controller
      */
     public function delete($id)
     {
+        $this->classRepo->deleteAssocciated($id);
         $result = $this->classRepo->delete($id);
         if($result){
             return redirect('classifications/list')->with('deleted', 'تم حذف التصنيف بنجاح');
