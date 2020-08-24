@@ -7,39 +7,18 @@ use App\Models\Exam;
 use App\Models\ExamUser;
 use App\Models\ExamUserAnswer;
 use App\Models\Question;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
-class ExamRepo implements ExamEloquent
+class ExamRepo extends Repository implements ExamEloquent
 {
+    public function __construct()
+    {
+        parent::__construct(new Exam());
+    }
 
     public function getAll($course_id = '')
     {
         return Exam::where('course_id', $course_id)->get();
     }
-
-    public function getById($id)
-    {
-        return Exam::where('id', $id)->first();
-    }
-
-
-    public function save($inputs, $getId = false)
-    {
-        return ($getId) ? Exam::insertGetId($inputs) : Exam::create($inputs);
-    }
-
-    public function update($inputs, $id)
-    {
-        return Exam::where('id', $id)->update($inputs);
-    }
-
-
-    public function delete($id)
-    {
-        return Exam::where('id', $id)->delete();
-    }
-
 
     public function getExamsForTrainees($course_id = '')
     {

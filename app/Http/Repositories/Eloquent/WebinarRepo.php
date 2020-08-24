@@ -6,21 +6,13 @@ namespace App\Http\Repositories\Eloquent;
 
 use App\Http\Interfaces\Eloquent\WebinarEloquent;
 use App\Models\Webinar;
-use Carbon\Carbon;
 use MacsiDigital\Zoom\Facades\Zoom;
 
-class WebinarRepo implements WebinarEloquent
+class WebinarRepo extends Repository implements WebinarEloquent
 {
-
-    public function getAll()
+    public function __construct()
     {
-       return Webinar::all();
-
-    }
-
-    public function getById($id)
-    {
-       return Webinar::find($id);
+        parent::__construct(new Webinar());
     }
 
     public function save($inputs, $getId = false)
@@ -46,17 +38,5 @@ class WebinarRepo implements WebinarEloquent
 
       return  Webinar::create($webinarArr);
 
-    }
-
-
-
-    public function update($inputs, $id)
-    {
-
-    }
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
     }
 }
