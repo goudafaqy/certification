@@ -175,9 +175,10 @@ Route::prefix('instructor')->group(function (){
         Route::get('{id}/exam/add', 'CourseExamsController@add')->name('instructor-course-exam-add');
         Route::get('{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
         Route::post('{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
-//        Route::get('{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
-//        Route::get('{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
-//        Route::post('{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
+        
+        Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
+        Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
+
     });
 });
 
