@@ -38,9 +38,9 @@ class Exam extends Model
 
 
     /**
-     * Get the courses for the category.
+     * Get the courses for the Course.
      */
-    public function courses()
+    public function course()
     {
         return $this->belongsTo('App\Models\Course', 'course_id');
     }

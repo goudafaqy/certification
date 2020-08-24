@@ -19,7 +19,7 @@ class CreateCourseExamsTable extends Migration
                 ->on('courses')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('type', ['exam', 'assignment']);
             $table->string('title_ar');
-            $table->string('title_en');
+            $table->string('title_en')->nullable();
             $table->date('exam_date');
             $table->text('guide_ar')->nullable();
             $table->text('guide_en')->nullable();
