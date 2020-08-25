@@ -1658,6 +1658,12 @@ input[type="password"]:focus {
 .form1 input {
     width: 100%;
 }
+input[type="date"] {
+ 
+  
+    font-size:13px !important;
+
+  }
 
 /*Media queries */
 
@@ -2285,9 +2291,9 @@ h3.p-header {
 
 /* START OUTER CONTAINER STYLES */
 .outer-container {
-    background-color: var(--container-background);
+    background-color: #ffff;
     border-radius: 0.625rem;
-    box-shadow: 0 5px 10px rgba(12, 16, 31, 0.4);
+    /* box-shadow: 0 5px 10px rgba(12, 16, 31, 0.4); */
     padding: 1rem;
     margin: auto;
     font-family: "ArbFONTS-PNU-Regular.ttf";
@@ -2326,16 +2332,17 @@ table tbody tr:hover {
 }
 
 table.course-view-table thead tr {
-    background-color: #A1825C;
-    color: #FFF
+    background-color: #f6f8fb;
+    color: #879099
 }
 
 table.course-view-table thead tr th {
     font-size: 1.7em !important;
+    
 }
 
 table.course-view-table tbody tr:hover {
-    background-color: #a1825c32;
+  color:#283045;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -2575,6 +2582,29 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     /* padding: 17px; */
     /* border-radius: 0rem !important; */
     margin-right: -10px;
+    cursor: pointer;
+
+}
+.icon-dates {
+   
+    z-index: 999;
+    pointer-events: none;
+    font-size: 16px;
+    /* margin-top: 5px; */
+    background-color: #ebf0f3;
+    padding: 12px 12px;
+    position: absolute;
+    /* padding: 17px; */
+     border-radius: 0rem !important; 
+    border-top-right-radius:5px !important ;
+    border-bottom-right-radius:5px !important ;
+    cursor: pointer;
+
+}
+.icon-dates i {
+    /* position: absolute; */
+    z-index: 999;
+    color: #484f61;
     cursor: pointer;
 
 }

@@ -22,7 +22,14 @@
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                    <label for="start_date" style="font-size:11px">تاريخ بداية الدورة</label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                        </div>
+                                        <input placeholder="تاريخ الميلاد" class="form-control" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                    </div>
+                                        <!-- <div class="form-group">
                                             <label for="start_date">تاريخ بداية الدورة</label>
                                             <div class="date" data-provide="datepicker">
                                                 <input value="{{ old('start_date') }}" type="text" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date">
@@ -34,7 +41,7 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
