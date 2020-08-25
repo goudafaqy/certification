@@ -224,25 +224,25 @@
                                                     <span class="label">الإختبارات</span>
                                                 </li> -->
                                                 <li class="duration-feature">
-                                                    <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fas fa-calendar-alt"></i>
                                                     <span class="label">تاريخ بدء التسجيل</span>
                                                     <span class="value">{{$course->start_date}}</span>
 
                                                 </li>
                                                 <li class="duration-feature">
-                                                    <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fas fa-calendar-alt"></i>
                                                     <span class="label">تاريخ نهاية التسجيل</span>
                                                     <span class="value">{{$course->end_date}}</span>
 
                                                 </li>
                                                 <li class="skill-feature">
-                                                    <img src="{{asset('site-assets/images/schedule.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="far fa-clock"></i>
                                                     <span class="label">مدة البرنامج</span>
                                                     <span class="value">{{$course->appointments()->count()}} محاضرات </span>
 
                                                 </li>
                                                 <li class="skill-feature">
-                                                    <img src="{{asset('site-assets/images/teaching.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fas fa-level-up-alt"></i>
                                                     <span class="label">مستوى البرنامج</span>
                                                     @if($course->skill_level == "m")
                                                         <span class="value">متوسط</span>
@@ -255,13 +255,13 @@
 
                                                 </li>
                                                 <li class="language-feature">
-                                                    <img src="{{asset('site-assets/images/world.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fa fa-language"></i>
 
                                                     <span class="label">اللغة</span>
                                                     <span class="value">العربية</span>
                                                 </li>
 
-                                                <ul class="under-links">
+                                                <!-- <ul class="under-links">
                                                     <h4>يحتوي البرنامج علي </h4>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/cou.png')}}" width="20" class="im-fluid" style="width:20px !important">
@@ -283,7 +283,7 @@
 
                                                         <span class="label">الأدوات والتجهيزات اللازمة</span>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                                 <!-- <li class="students-feature">
                                                     <img src="images/man.png" width="20" class="im-fluid" style="width:20px !important">
                                                     <span class="value"></span>
@@ -297,14 +297,14 @@
                                                 <li>
                                                     <div class="facebook-social">
                                                         <a target="_blank" class="facebook" href="#" title="Facebook">
-                                                            <i class="fab fa-facebook"></i>
+                                                        <i class="fab fa-facebook-f"></i>
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="googleplus-social">
-                                                        <a target="_blank" class="googleplus" href="#" title="Google Plus">
-                                                            <i class="fab fa-google"></i>
+                                                        <a target="_blank" class="googleplus" href="#" title="email">
+                                                        <i class="far fa-envelope"></i>
                                                         </a>
                                                     </div>
                                                 </li>
@@ -317,8 +317,8 @@
                                                 </li>
                                                 <li>
                                                     <div class="pinterest-social">
-                                                        <a target="_blank" class="pinterest" href="" title="Pinterest">
-                                                            <i class="fab fa-pinterest-p"></i>
+                                                        <a target="_blank" class="pinterest" href="" title="copUrl">
+                                                        <i class="far fa-copy"></i>
                                                         </a>
                                                     </div>
                                                 </li>
