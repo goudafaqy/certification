@@ -107,7 +107,8 @@ class CourseController extends Controller
                         'name'=>       $instructor->name,
                         'email'=>      $instructor->email,
                         'link' =>      '',
-                        'extra_text'=> ''
+                        'extra_text'=> '',
+                        'course' =>$course->title_ar
                         
                     ];
                     $not = new NotificationsController();

@@ -31,6 +31,7 @@
             </script>
             <script>
                 $(document).ready(function () {
+
                     $('.repeater').repeater({
                         // (Optional)
                         // start with an empty list of repeaters. Set your first (and only)
@@ -76,6 +77,9 @@
                         isFirstItemUndeletable: true
                     })
                 });
+
+               
+
             </script>
 
             </body>

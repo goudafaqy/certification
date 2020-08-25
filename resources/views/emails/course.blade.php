@@ -54,17 +54,9 @@
                                 <tr>
                                 <td style="padding: 10px 0 10px 0;font-size: 15px;color: #153643; font-family: Almarai, Roboto, sans-serif; font-size: 18px; line-height: 20px;text-align: right">
                                      <p style="font-size: 15px;">عزيزي المتدرب / المتدربة</p>
-                                     <p style="font-size: 15px;">  {{$data['message_ar']}}   </p>
-
-                                     @if($data['link'] != null )
-                                       <p style="font-size: 15px;"> <a class="nav-link" href="{{ $data['link'] }} "> أضغط هنا </a> </p> 
-                                    @endif
-                                    
-                                    @if($data['extra_text'] != null )
-                                      <p style="font-size: 15px;"> {{ $data['extra_text'] }}  </p> 
-                                    @endif
-                                    
-                                       
+                                     <p style="font-size: 15px;">  تم تسجيلكم في برنامج    <strong> {{$data['course']}}</strong> </p>
+                                     <p style="font-size: 15px;">نأمل الدخول للمنصة الإلكترونية للتدريب للاطلاع على كافة التفاصيل.</p>
+                                     
                                 </td>
                                 </tr>
                                 <tr style="margin: auto;
