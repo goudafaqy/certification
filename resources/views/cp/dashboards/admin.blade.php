@@ -69,7 +69,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    
                                     <div class="slider-nav text-center">
                                         <a href="#" class="left-arrow owl-prev">
                                             <i class="ik ik-chevron-right"></i>
@@ -79,6 +79,7 @@
                                             <i class="ik ik-chevron-left"></i>
                                         </a>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
