@@ -4889,16 +4889,50 @@ top: -7px;
  .subscription-tag{
     display: inline-block;
     font-weight: bold;
-    font-size: 15px;
-    color: #e3e5e9;
-    background-color: #393e5b;
-    padding: 7px 14px;
+    font-size: 45px;
+    color: #efe1d0;
+
     border-radius: 20px;
     cursor: pointer;
     margin: auto;
     display:table;
-    border-radius: 0px 30px 30px 30px;
+   
  }
+ .items h6{
+     text-align: center;
+     color:#fff;
+     font-size:25px;
+     margin-top:30px;
+     font-family: "Univers Next Arabic";
+ }
+ .items h6::after {
+    font-family: Arial;
+    content: "\201C";
+    color:#c5aa89;
+    font-size: 4em;
+    position: absolute;
+    left: 5px;
+    top: -10px;
+}
+.items h6::before {
+    font-family: Arial;
+    content: "\201C";
+    color: #c5aa89;
+    font-size: 4em;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+}
+.subscription-tag::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: #eee2b8;
+    bottom: 4rem;
+    left: calc(50% - 25px);
+}
  /* .subscription-tag:hover{
      background:none;
      border:1px solid #393e5b;
@@ -4910,8 +4944,3 @@ top: -7px;
     transition: all .6s
  } */
 
- .new_card h6{
-    margin-top: 15px;
-    text-align: center;
-    color:#fff
- }

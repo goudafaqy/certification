@@ -6,21 +6,7 @@
 
         <div id="swiper" class="swiper-container loading no-printme">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
-                    <div class="cover">
-                        <div class="container">
-                            <div class="header-content">
-                                <h2>أهداف المركز</h2> 
-                                <h6>
-                              تدريب مستمر وفاعل يسهم في رفع كفاءة الممارسين العدليين
-                          
-                                </h6>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
@@ -34,20 +20,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/2.jpg')}})">
+                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
-                                <h2>أهداف المركز</h2>
+                                <h2>رسالة المركز</h2> 
                                 <h6>
-                                نحو توظيف التقنية في تعزيز برامج التدريب والتأهيل العدلي المتخصص 
-
+                                رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
+                          
                                 </h6>
 
                             </div>
                         </div>
                     </div>
                 </div>
+             
+               
 
                 <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
                     <div class="cover">
@@ -236,27 +224,14 @@
     <div id="swiper" class="articles d-flex align-items-center">
         <div class="overlay"></div>
         <div class="container">
-            <div class="row program d-flex align-items-center">
-                <div class="col-lg-6 col-xs-12">
+            <div class="row program">
+              
+                <div class="col-lg-12 col-xs-12">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="new_card">
-                        <!-- <img src="{{asset('site-assets/images/legal.png')}}" alt="" class="weather-icon" width="150" draggable="false"> -->
-                            <div class="items">
-                                <div class="subscription-tag">رؤية المركز</div>
-                                <h6> مرجع فني رائد,ومزود متميز ,في التأهيل والتدريب</h6>
+                    <div class="items">
+                                <div class="subscription-tag">تدريب</div>
+                                <h6> علمي ومرجعي في المجال العدلي والقانوني</h6>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xs-12">
-                    <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="new_card">
-                        <!-- <img src="{{asset('site-assets/images/legal.png')}}" alt="" class="weather-icon" width="150" draggable="false"> -->
-                            <div class="items">
-                                <div class="subscription-tag">رسالة المركز</div>
-                                <h6> رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة</h6>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
