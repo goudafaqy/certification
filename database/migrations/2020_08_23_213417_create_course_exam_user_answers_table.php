@@ -19,7 +19,7 @@ class CreateCourseExamUserAnswersTable extends Migration
                 ->on('course_exam_user')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("question_id")->references('id')
                 ->on('course_exam_questions')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->tinyInteger("answer_MC")->nullable();
+            $table->text("answer_MC")->nullable();
             $table->boolean("answer_TF")->nullable();
             $table->text("answer_FT")->nullable();
             $table->string("answer_FU")->nullable();
