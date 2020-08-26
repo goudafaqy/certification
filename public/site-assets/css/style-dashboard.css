@@ -1853,7 +1853,7 @@ background: #fff;
 
 /* START OUTER CONTAINER STYLES */
 .outer-container {
-    background-color: var(--container-background);
+  background-color: #f6f8fb;
     border-radius: 0.625rem;
     box-shadow: 0 5px 10px rgba(12,16,31,0.4);
     padding: 1rem;

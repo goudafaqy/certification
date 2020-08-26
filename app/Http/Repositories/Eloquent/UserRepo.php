@@ -33,11 +33,10 @@ class UserRepo extends Repository implements UserEloquent{
         $user->roles()->attach($roles);
     }
 
-    public function delete($id)
+    public function deleteAssocciated($id)
     {
         $user = User::find($id);
-        $user->courses()->delete();
-        return User::where('id', $id)->delete();
+        return $user->courses()->delete();
     }
 
     public function getTraineeCourses($trainee_id)

@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,6 +78,7 @@ Auth::routes();
         Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
         Route::get('appointments/reset/{id}', 'CourseAppointmentController@reset')->name('reset-appointment');
+        Route::get('appointments/zoom/{id}', 'CourseAppointmentController@scheduleOnZoom')->name('reset-appointment');
     });
 
     // Course Materials routes ...
@@ -121,10 +123,14 @@ Auth::routes();
 
 
     Route::get('test', function (){
-        return view('site.course');
+       $startat = '12:35 PM';
+       $endat = '1:35 PM';
+        $start = Carbon::parse($startat);
+       $end =  Carbon::parse($endat);
+       dd($end->diffInRealMinutes($start));
     });
 
-    // Course Units routes ...
+    // Course notifications routes ...
     Route::prefix('notifications')->group(function () {
 
         Route::get('/', 'NotificationsSettingsController@list')->name('notify-list');
@@ -136,6 +142,33 @@ Auth::routes();
 
     });
 
+
+        // Course advertisments routes ...
+        Route::prefix('advertisments')->group(function () {
+
+            Route::get('/', 'AdvertismentsController@list')->name('advertisments-list');
+            Route::get('add', 'AdvertismentsController@add')->name('advertisments-add');
+            Route::get('update/{id}', 'AdvertismentsController@update')->name('advertisments-update');
+            Route::post('update', 'AdvertismentsController@edit')->name('update-advertisments');
+            Route::post('save', 'AdvertismentsController@create')->name('save-advertisments');
+            Route::get('delete/{id}', 'AdvertismentsController@delete')->name('delete-advertisments');
+    
+        });
+
+
+        
+        // Course advertisments routes ...
+        Route::prefix('tesmonials')->group(function () {
+
+            Route::get('/', 'AdvertismentsController@list')->name('tesmonials-list');
+            Route::get('add', 'AdvertismentsController@add')->name('tesmonials-add');
+            Route::get('update/{id}', 'AdvertismentsController@update')->name('tesmonials-update');
+            Route::post('update', 'AdvertismentsController@edit')->name('update-tesmonials');
+            Route::post('save', 'AdvertismentsController@create')->name('save-tesmonials');
+            Route::get('delete/{id}', 'AdvertismentsController@delete')->name('delete-tesmonials');
+    
+        });
+    
 Auth::routes();
 
 
@@ -148,9 +181,10 @@ Route::prefix('instructor')->group(function (){
         Route::get('{id}/exam/add', 'CourseExamsController@add')->name('instructor-course-exam-add');
         Route::get('{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
         Route::post('{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
-//        Route::get('{id}/exams/questions', 'CourseExamsController@questions')->name('instructor-course-exam-questions');
-//        Route::get('{id}/exams/questions/add', 'CourseExamsController@question_add')->name('instructor-course-exam-question-create');
-//        Route::post('{id}/exams/questions/save', 'CourseExamsController@question_create')->name('instructor-course-exam-question-create');
+        
+        Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
+        Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
+
     });
 });
 

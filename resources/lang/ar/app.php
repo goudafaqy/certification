@@ -44,6 +44,7 @@ return [
     'Message_en' =>'الرسالة باللغة الانجليزية',
     'New Notification'=>'اشعار جديد',
     'Code'=>'كود الاشعار',
+    'Date' => 'التاريخ',
     'Update Notification'=> 'تحديث الاشعار',
     'Adly Training Center'=>'مركز التدريب العدلي',
     'You have new account'=>'لديك حساب جديد',
@@ -51,5 +52,12 @@ return [
     'Save & Send' =>'حفظ وارسال ',
     'Extra Data' =>' بيانات أضافية ',
     'You have choosen to new course' => 'لقد تم اختيارك لدورة بمركز التدريب العادلى',
-    'Update done successfully' => 'تم التحديث بنجاح'
+    'Update done successfully' => 'تم التحديث بنجاح',
+    'New Advertisment' =>'أعلان جديد',
+    'Advertisments'=>'الاعلانات',
+    'Update Advertisment' =>'تحديث الاعلان',
+    'location' =>'المكان',
+    'Advertisment Added Successfully' => 'تم اضافة الاعلان  بنجاح',
+    'Advertisment Updated Successfully' => 'تم تحديث الاعلان بنجاح',
+    'Advertisment Deleted Successfully' => 'تم حذف الاعلان بنجاح',
 ];

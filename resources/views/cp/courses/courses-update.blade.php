@@ -162,7 +162,14 @@
                                 </div>
                                 <div class="row" style="padding: 10px 50px;">
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                    <label for="start_date" style="font-size:11px">تاريخ بدء التسجيل</label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                        </div>
+                                        <input placeholder="تاريخ الميلاد" class="form-control" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                    </div>
+                                        <!-- <div class="form-group">
                                             <label for="reg_start_date">تاريخ بدء التسجيل</label>
                                             <div class="date" data-provide="datepicker">
                                                 <input value="{{ $course->reg_start_date }}" type="text" class="form-control @error('reg_start_date') is-invalid @enderror" id="reg_start_date" name="reg_start_date">
@@ -173,11 +180,18 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div> 
+                                        </div>  -->
                                         
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                    <label for="start_date" style="font-size:11px">تاريخ نهاية التسجيل</label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                        </div>
+                                        <input placeholder="تاريخ الميلاد" class="form-control" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                    </div>
+                                        <!-- <div class="form-group">
                                             <label for="reg_end_date">تاريخ نهاية التسجيل</label>
                                             <div class="date" data-provide="datepicker">
                                                 <input value="{{ $course->reg_end_date }}" type="text" class="form-control @error('reg_end_date') is-invalid @enderror" id="reg_end_date" name="reg_end_date">
@@ -188,7 +202,7 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div> 
+                                        </div>  -->
                                     </div>
                                 </div>
                                 <div class="row" style="padding: 5px 50px;">

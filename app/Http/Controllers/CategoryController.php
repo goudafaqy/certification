@@ -30,7 +30,6 @@ class CategoryController extends Controller
         return view("cp.categories.categories-list", ['categories' => $categories]);
     }
 
-
     /**
      * Get add category page ...
      */
@@ -38,7 +37,6 @@ class CategoryController extends Controller
     {
         return view("cp.categories.categories-add");
     }
-
 
     /**
      * Save category date ...
@@ -57,7 +55,6 @@ class CategoryController extends Controller
             }
         }
     }
-
 
     /**
      * Get update category page ...
@@ -87,12 +84,12 @@ class CategoryController extends Controller
         }
     }
 
-
     /**
      * Delete category date ...
      */
     public function delete($id)
     {
+        $this->categoryRepo->deleteAssocciated($id);
         $result = $this->categoryRepo->delete($id);
         if($result){
             return redirect('categories/list')->with('deleted', 'تم حذف الفئة بنجاح');

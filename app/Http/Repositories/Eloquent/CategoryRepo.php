@@ -5,37 +5,18 @@ namespace App\Http\Repositories\Eloquent;
 use App\Http\Interfaces\Eloquent\CategoryEloquent;
 use App\Models\Category;
 
-class CategoryRepo implements CategoryEloquent{
-    
-    public function getAll()
+class CategoryRepo extends Repository implements CategoryEloquent{
+
+    public function __construct()
     {
-        return Category::all();
+        parent::__construct(new Category());
     }
 
-
-    public function getById($id)
-    {
-        return Category::where('id', $id)->first();
-    }
-
-
-    public function save($inputs, $getId = false)
-    {
-        return Category::create($inputs);
-    }
-
-    public function update($inputs, $id)
-    {
-        return Category::where('id', $id)->update($inputs);
-    }
-
-
-    public function delete($id)
+    public function deleteAssocciated($id)
     {
         $category = Category::find($id);
         $category->classifications()->delete();
-        $category->courses()->delete();
-        return Category::where('id', $id)->delete();
+        return $category->courses()->delete();
     }
 
 }

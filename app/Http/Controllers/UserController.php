@@ -61,9 +61,6 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-
-         
-
         $inputs = $request->input();
         $validator = $this->userValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
@@ -157,6 +154,7 @@ class UserController extends Controller
      */
     public function delete($id)
     {
+        $this->userRepo->deleteAssocciated($id);
         $result = $this->userRepo->delete($id);
         if($result){
             return redirect('users/list')->with('deleted', 'تم حذف المستخدم بنجاح');

@@ -6,43 +6,23 @@ use App\Http\Interfaces\Eloquent\QuestionEloquent;
 use App\Models\Question;
 use Maatwebsite\Excel\Concerns\Importable;
 
-class QuestionRepo implements QuestionEloquent
+class QuestionRepo extends Repository implements QuestionEloquent
 {
-
     use Importable;
+
+    public function __construct()
+    {
+        parent::__construct(new Question());
+    }
 
     public function getAll($course_id = '')
     {
         return Question::where('exam_id', $course_id)->get();
     }
 
-
-    public function getById($id)
-    {
-        return Question::where('id', $id)->first();
-    }
-
-
-    public function save($inputs, $getId = false)
-    {
-        return ($getId) ? Question::insertGetId($inputs) : Question::create($inputs);
-    }
-
-    public function update($inputs, $id)
-    {
-        return Question::where('id', $id)->update($inputs);
-    }
-
-
-    public function delete($id)
-    {
-        return Question::where('id', $id)->delete();
-    }
-
     function saveMulti($questions){
         return Question::insert($questions);
     }
-
 
     function loadExcel($file, $exam_id){
         $questionsList = $this->toArray($file);

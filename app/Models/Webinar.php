@@ -18,6 +18,8 @@ class Webinar extends Model
         "timezone",
         "agenda",
         "start_url",
-        "join_url"
+        "join_url",
+        "course_id",
+        "course_appointments_id"
     ];
 }

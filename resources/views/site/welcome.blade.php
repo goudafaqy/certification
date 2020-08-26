@@ -6,13 +6,13 @@
 
         <div id="swiper" class="swiper-container loading no-printme">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
-                                <h2>أهداف المركز</h2> 
+                                <h2>رؤية المركز</h2> 
                                 <h6>
-                              تدريب مستمر وفاعل يسهم في رفع كفاءة الممارسين العدليين
+                              مرجع فني معياري رائد ,ومزود متميز,في التأهيل والتدريب
                           
                                 </h6>
 
@@ -20,20 +20,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/2.jpg')}})">
+                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
-                                <h2>أهداف المركز</h2>
+                                <h2>رسالة المركز</h2> 
                                 <h6>
-                                نحو توظيف التقنية في تعزيز برامج التدريب والتأهيل العدلي المتخصص 
-
+                                رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
+                          
                                 </h6>
 
                             </div>
                         </div>
                     </div>
                 </div>
+             
+               
 
                 <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
                     <div class="cover">
@@ -222,65 +224,14 @@
     <div id="swiper" class="articles d-flex align-items-center">
         <div class="overlay"></div>
         <div class="container">
-            <div class="row program d-flex align-items-center">
-                <div class="col-lg-3 col-xs-12">
-                    <h3>المسارات التاهيلية</h3>
-                </div>
-                <div class="col-lg-9">
+            <div class="row program">
+              
+                <div class="col-lg-12 col-xs-12">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="wpb_wrapper">
-                            <div class="thim-widget-courses-collection">
-                                <div class="thim-widget-course-categories thim-widget-course-categories-grid">
-                                    <ul class="column-3">
-                                        <li>
-                                            <a href="/tracks/e2fc581a-4bf8-4b55-b13b-dbbe50d95ffd/about/" class="d-flex">
-                                                <img src="{{asset('site-assets/images/0000_logo-react-32x32.png')}}"
-                                                     alt="Web Design and Development Program" title="course-9" width="32"
-                                                     height="32">
-                                                برنامج تجريبي
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/tracks/0678993c-5dc3-47ec-a359-717f1bc3068b/about/" class="d-flex">
-                                                <img src="{{asset('site-assets/images/0002_logo-asp-net-32x32.png')}}"
-                                                     alt="Web Design and Development Program" title="course-9" width="32"
-                                                     height="32">
-                                                برنامج المحامي
-                                            </a>
-                                        </li>
-                                    <!-- <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0002_logo-asp-net-32x32.png" alt="ASP.NET Application"
-                                                     title="_0002_logo-asp-net" width="32" height="32">
-                                                ASP.NET Application
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0000_logo-react-32x32.png" alt="React Application"
-                                                     title="_0000_logo-react" width="32" height="32">
-                                                React Application
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0003_logo-php-32x32.png" alt="PHP Development"
-                                                     title="_0003_logo-php" width="32" height="32">
-                                                PHP Development
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0000_logo-react-32x32.png"
-                                                     alt="Web Design and Development Program" title="course-9" width="32"
-                                                     height="32">
-                                                Web Design and Development Program
-                                            </a>
-                                        </li> -->
-                                    </ul>
-                                </div>
+                    <div class="items">
+                                <div class="subscription-tag">تدريب</div>
+                                <h6> علمي ومرجعي في المجال العدلي والقانوني</h6>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -304,195 +255,37 @@
                             </div>
                         </div>
                         <div class="event-slider">
+
+                        @foreach($advertisments as $item)
                             <div class="event-item">
                                 <div class="time-from">
                                     <div class="date">
-                                        30
+                                        {{date('d',strtotime($item->date) ) }}
                                     </div>
                                     <div class="month">
-                                        Sep
+                                       {{date('M',strtotime($item->date) ) }}
                                     </div>
                                 </div>
                                 <div class="event-wrapper">
                                     <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنوان القانون الجنائى 2020</a>
+                                        <a href="events/summer-school-2015/index.html"> {{$item->title_ar??'' }} </a>
                                     </h5>
                                     <div class="meta">
                                         <div class="time">
                                             <i class="fa fa-clock-o"></i>
 
-                                            00: 12 pm
+                                            {{$item->time??'' }}
                                         </div>
                                         <div class="location">
                                             <i class="fa fa-map-marker"></i>
-                                            الرياض
+                                            {{$item->location??'' }}
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html"> ندوة بعنوان القانون العمالى 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">   ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنوان القانون الجنائى 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach    
+                          
                         </div>
                     </div>
                 </div>

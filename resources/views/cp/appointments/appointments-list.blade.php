@@ -22,7 +22,14 @@
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                    <label for="start_date" style="font-size:11px">تاريخ بداية الدورة</label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                        </div>
+                                        <input placeholder="تاريخ الميلاد" class="form-control" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                    </div>
+                                        <!-- <div class="form-group">
                                             <label for="start_date">تاريخ بداية الدورة</label>
                                             <div class="date" data-provide="datepicker">
                                                 <input value="{{ old('start_date') }}" type="text" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date">
@@ -34,7 +41,7 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div> 
+                                        </div> -->
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -109,6 +116,7 @@
                             <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">المواعيد الفعلية</h3>
                                 <a href="/courses/appointments/reset/<?php echo $course->id; ?>" style="color: #FFF; padding: 10px;" class="btn btn-primary">إعادة إستخراج مواعيد الدورة <i class="fa fa-sync-alt"></i></a>
+                                <a href="/courses/appointments/zoom/<?php echo $course->id; ?>" style="color: #FFF; padding: 10px;" class="btn btn-primary">جدولة على زوم<i class="fa fa-calendar"></i></a>
                                 <a style="font-size: 1.1em;" href="{{ route('courses-list') }}" class="widget-title">قائمة الدورات <i class="fa fa-arrow-left"></i></a>
                             </div>
                         </div>
@@ -181,8 +189,8 @@
         $("div.spanner").addClass("show");
         $('#form').submit(function() {
             event.preventDefault();
-            $.ajax({ 
-                data: $(this).serialize(), 
+            $.ajax({
+                data: $(this).serialize(),
                 type: $(this).attr('method'),
                 url: $(this).attr('action'),
                 success: function(data) {
@@ -191,7 +199,7 @@
                     location.reload();
                 }
             });
-            return false; 
+            return false;
         });
     });
 
@@ -228,7 +236,7 @@
                 "lengthMenu": "عرض _MENU_ موعد في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواعيد",
                 "info": "الصفحة رقم _PAGE_ من _PAGES_",
-                "infoEmpty": "لا يوجد", 
+                "infoEmpty": "لا يوجد",
                 "infoFiltered": "(نتيجة البحث من _MAX_ موعد)",
                 "search": "بحث  ",
                 "paginate": {
@@ -241,7 +249,7 @@
     });
 
     $(document).on('click', 'a#delete', function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         Swal.fire({
         title: 'هل أنت متأكد ؟',
         text: "لن تتمكن من التراجع عن هذا!",

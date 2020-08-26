@@ -36,6 +36,11 @@ class Repository implements MainEloquent{
         return ($getId) ? $this->model->insertGetId($inputs) : $this->model->create($inputs) ;
     }
 
+    public function saveBulk($inputs)
+    {
+        return $this->model->insert($inputs) ;
+    }
+
     public function update($inputs, $id)
     {
         return $this->model->where('id', $id)->update($inputs);
