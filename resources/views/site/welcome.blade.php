@@ -439,14 +439,33 @@
                                 <div class="new-card2">
                                     <i class="far fa-envelope"></i>
                                     <div class="body_card2">
-                                        <p>
+                                        <p class="email-p">
                                             سجل الى القائمة البريدية ليصلك جديد البرامج والدوات التدريبية
                                         </p>
+                                        <!-- <form>
+                                            <input type="text" class="txte" placeholder="البريد الالكترونى">
+
+                                            <input type="submit" class="button" value="سجل">
+
+                                        </form> -->
+                                        <form>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><img src="images/man.png" class="img-fluid" style="width:20px !important;height:20px !important"></span>
+                                            </div>
+                                            <input id="email" required="" name="email" class="form-control" type="email" placeholder="البريد الإلكتروني">
+                                        </div>
+                                        <button type="button" class="btn btn-vote"  style="background:#273044;color:#fff">
+                                        سجل الأن
+                                    </button>
+                                    </form>
+
                                             <input type="email"  id="newsletter_email" class="txte" placeholder="البريد الالكترونى">
 
                                             <button style="background-color:#A58661;color:white;border-radius:30px" id="newsletter" class="button" value="سجل">   سجل  </button>
 
                                           
+
                                     </div>
 
                                     <span class="alert alert-success" role="alert" id="sccess" style="display:none">
