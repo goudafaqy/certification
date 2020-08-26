@@ -62,6 +62,19 @@
                                                                            value="تعليم مدمج">
                                                                 @endif
                                                             </div>
+                                                            <h6>عدد المقاعد</h6>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/man.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                </div>
+                                                                <input id="email" required="" name="email"
+                                                                       class="form-control" type="text" disabled
+                                                                       value="{{ $course->seats }} مقعد">
+                                                            </div>
                                                             <h6>مستوى الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
@@ -87,7 +100,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h6>تاريخ بداية الكورس</h6>
+                                                            <h6>تاريخ بداية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -100,7 +113,7 @@
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->start_date }}">
                                                             </div>
-                                                            <h6>تاريخ نهاية الكورس</h6>
+                                                            <h6>تاريخ نهاية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -112,6 +125,19 @@
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->end_date }}">
+                                                            </div>
+                                                            <h6>عدد ساعات الدورة</h6>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/medal.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                </div>
+                                                                <input id="email" required="" name="email"
+                                                                       class="form-control" type="text" disabled
+                                                                       value="{{ $course->course_hours }} ساعة">
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
@@ -174,49 +200,40 @@
                                 <ul>
                                     <li class="tab1 {{$tab == 'tab1'? 'active': ''}}">
                                         <a href="{{$tab != 'tab1'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'guide']):"javascript:void(0);"}}"
-                                           for="tab1"> <img src="{{ asset('images/graph.png') }}" class="img-fluid"
-                                                            width="20">الكتيب التدريبى</a>
+                                           for="tab1"> <i class="fas fa-book-reader"></i> الكتيب التدريبى  </a>
                                     </li>
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'files']):"javascript:void(0);"}}"
-                                           for="tab2"> <img src="{{ asset('images/school.png') }}" class="img-fluid"
-                                                            width="20"> الملفات</a>
+                                           for="tab2"> <i class="far fa-file"></i> الملفات</a>
                                     </li>
                                     <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
                                         <a href="{{$tab != 'tab3'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'sessions']):"javascript:void(0);"}}"
-                                           for="tab3"> <img src="{{ asset('images/cal.png') }}" class="img-fluid"
-                                                            width="20"> المحاضرات</a>
+                                           for="tab3"> <i class="far fa-copy"></i>  المحاضرات</a>
                                     </li>
                                     <li class="tab4 {{$tab == 'tab4'? 'active': ''}}">
                                         <a href="{{$tab != 'tab4'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'questionnaires']):"javascript:void(0);"}}"
-                                           for="tab4"><img src="{{ asset('images/prof.png') }}" class="img-fluid"
-                                                           width="20"> الإستبيانات</a>
+                                           for="tab4"><i class="fas fa-book-open"></i>  الإستبيانات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'update']):"javascript:void(0);"}}"
-                                           for="tab5"><img src="{{ asset('images/training.png') }}" class="img-fluid"
-                                                           width="20"> الاعلانات </a>
+                                           for="tab5"><i class="far fa-bookmark"></i>  الاعلانات </a>
                                     </li>
 
                                     <li class="tab6 {{$tab == 'tab6'? 'active': ''}}">
                                         <a href="{{$tab != 'tab6'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'exams']):"javascript:void(0);"}}"
-                                           for="tab6"><img src="{{ asset('images/exam.png') }}" class="img-fluid"
-                                                           width="20"> الامتحانات والواجبات</a>
+                                           for="tab6"> <i class="far fa-address-book"></i> الامتحانات والواجبات</a>
                                     </li>
                                     <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">
                                         <a href="{{$tab != 'tab7'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'evaluations']):"javascript:void(0);"}}"
-                                           for="tab7"><img src="{{ asset('images/teaching.png') }}" class="img-fluid"
-                                                           width="20"> مركز التقديرات</a>
+                                           for="tab7"><i class="fas fa-door-open"></i>  مركز التقديرات</a>
                                     </li>
                                     <li class="tab8 {{$tab == 'tab8'? 'active': ''}}">
                                         <a href="{{$tab != 'tab8'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'trainees']):"javascript:void(0);"}}"
-                                           for="tab8"><img src="{{ asset('images/man.png') }}" class="img-fluid"
-                                                           width="20"> المتدربيين</a>
+                                           for="tab8"><i class="fas fa-user-friends"></i>  المتدربيين</a>
                                     </li>
                                     <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                         <a href="{{$tab != 'tab9'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'support']):"javascript:void(0);"}}"
-                                           for="tab9"><img src="{{ asset('images/supp.png') }}" class="img-fluid"
-                                                           width="20"> الدعم الفني</a>
+                                           for="tab9"><i class="fas fa-life-ring"></i>  الدعم الفني</a>
                                     </li>
                                 </ul>
                             </nav>

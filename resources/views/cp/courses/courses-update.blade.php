@@ -73,6 +73,9 @@
                                             <label for="class_id">التصنيف</label>
                                             <select class="form-control @error('class_id') is-invalid @enderror" id="class_id" name="class_id">
                                                 <option value="">--</option>
+                                                @foreach($classifications as $classification)
+                                                <option <?php if($course->class_id == $classification->id){ ?> selected <?php } ?> value="{{$classification->id}}">{{$classification->title_ar}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         @error('class_id')
@@ -162,33 +165,32 @@
                                 </div>
                                 <div class="row" style="padding: 10px 50px;">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="reg_start_date">تاريخ بدء التسجيل</label>
-                                            <div class="date" data-provide="datepicker">
-                                                <input value="{{ $course->reg_start_date }}" type="text" class="form-control @error('reg_start_date') is-invalid @enderror" id="reg_start_date" name="reg_start_date">
+                                        <label for="start_date" style="font-size:11px">تاريخ بدء التسجيل</label>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            
+                                            <input value="{{ $course->reg_start_date }}" class="form-control @error('reg_start_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" id="date" name="reg_start_date" style=" padding-right:50px !important; ">
                                             @error('reg_start_date')
                                                 <span class="text-danger err-msg-reg_start_date" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div> 
-                                        
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="reg_end_date">تاريخ نهاية التسجيل</label>
-                                            <div class="date" data-provide="datepicker">
-                                                <input value="{{ $course->reg_end_date }}" type="text" class="form-control @error('reg_end_date') is-invalid @enderror" id="reg_end_date" name="reg_end_date">
+                                        <label for="start_date" style="font-size:11px">تاريخ نهاية التسجيل</label>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            
+                                            <input value="{{ $course->reg_end_date }}" class="form-control @error('reg_end_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" name="reg_end_date" id="date" style=" padding-right:50px !important; ">
                                             @error('reg_end_date')
                                                 <span class="text-danger err-msg-reg_end_date" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row" style="padding: 5px 50px;">

@@ -6,21 +6,7 @@
 
         <div id="swiper" class="swiper-container loading no-printme">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
-                    <div class="cover">
-                        <div class="container">
-                            <div class="header-content">
-                                <h2>أهداف المركز</h2> 
-                                <h6>
-                              تدريب مستمر وفاعل يسهم في رفع كفاءة الممارسين العدليين
-                          
-                                </h6>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
@@ -34,20 +20,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/2.jpg')}})">
+                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
                     <div class="cover">
                         <div class="container">
                             <div class="header-content">
-                                <h2>أهداف المركز</h2>
+                                <h2>رسالة المركز</h2> 
                                 <h6>
-                                نحو توظيف التقنية في تعزيز برامج التدريب والتأهيل العدلي المتخصص 
-
+                                رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
+                          
                                 </h6>
 
                             </div>
                         </div>
                     </div>
                 </div>
+             
+               
 
                 <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
                     <div class="cover">
@@ -236,27 +224,14 @@
     <div id="swiper" class="articles d-flex align-items-center">
         <div class="overlay"></div>
         <div class="container">
-            <div class="row program d-flex align-items-center">
-                <div class="col-lg-6 col-xs-12">
+            <div class="row program">
+              
+                <div class="col-lg-12 col-xs-12">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="new_card">
-                        <!-- <img src="{{asset('site-assets/images/legal.png')}}" alt="" class="weather-icon" width="150" draggable="false"> -->
-                            <div class="items">
-                                <div class="subscription-tag">رؤية المركز</div>
-                                <h6> مرجع فني رائد,ومزود متميز ,في التأهيل والتدريب</h6>
+                    <div class="items">
+                                <div class="subscription-tag">تدريب</div>
+                                <h6> علمي ومرجعي في المجال العدلي والقانوني</h6>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xs-12">
-                    <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="new_card">
-                        <!-- <img src="{{asset('site-assets/images/legal.png')}}" alt="" class="weather-icon" width="150" draggable="false"> -->
-                            <div class="items">
-                                <div class="subscription-tag">رسالة المركز</div>
-                                <h6> رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة</h6>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -319,6 +294,33 @@
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="testimonial-container">
                             <div class="slider testimonial-vertical">
+
+                             @foreach($testmonials as $item)
+                                <div class="te-item" style="height: 200px">
+                                    <div class="te-content">
+                                        <div>
+                                            <div class="content">
+                                                <p>
+                                                {{$item->message??'' }}‬
+                                                </p>
+                                            </div>
+                                            <div class="author">
+                                                <div class="image">
+                                                    <img src="{{ url($item->image)}}" alt="" width="100" height="100">
+                                                </div>
+                                                <div class="info">
+                                                    <h3 class="title"> {{$item->name??'' }}‬‬</h3>
+                                                    <div class="regency"> {{$item->title??'' }}‬</div>
+                                                </div>
+                                            </div>
+                                            <div class="testimonials-navigation">
+                                                <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                                <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                                 <div class="te-item" style="height: 200px">
                                     <div class="te-content">
                                         <div>
@@ -437,17 +439,43 @@
                                 <div class="new-card2">
                                     <i class="far fa-envelope"></i>
                                     <div class="body_card2">
-                                        <p>
+                                        <p class="email-p">
                                             سجل الى القائمة البريدية ليصلك جديد البرامج والدوات التدريبية
                                         </p>
-                                        <form>
+                                        <!-- <form>
                                             <input type="text" class="txte" placeholder="البريد الالكترونى">
 
                                             <input type="submit" class="button" value="سجل">
 
-                                        </form>
+                                        </form> -->
+                                        <form>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><img src="images/man.png" class="img-fluid" style="width:20px !important;height:20px !important"></span>
+                                            </div>
+                                            <input id="email" required="" name="email" class="form-control" type="email" placeholder="البريد الإلكتروني">
+                                        </div>
+                                        <button type="button" class="btn btn-vote"  style="background:#273044;color:#fff">
+                                        سجل الأن
+                                    </button>
+                                    </form>
+
+                                            <input type="email"  id="newsletter_email" class="txte" placeholder="البريد الالكترونى">
+
+                                            <button style="background-color:#A58661;color:white;border-radius:30px" id="newsletter" class="button" value="سجل">   سجل  </button>
+
+                                          
 
                                     </div>
+
+                                    <span class="alert alert-success" role="alert" id="sccess" style="display:none">
+                                      تم أضافة البريد الالكترونى بنجاح
+                                    </span>
+
+                                    <span class="alert alert-danger" role="alert" id="fail" style="display:none">
+                                     هناك خطأ
+                                    </span>
+                                   
                                 </div>
 
                             </div>

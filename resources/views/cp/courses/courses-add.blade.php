@@ -145,33 +145,33 @@
                                 </div>
                                 <div class="row" style="padding: 10px 50px;">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="reg_start_date">تاريخ بدء التسجيل</label>
-                                            <div class="date" data-provide="datepicker">
-                                                <input value="{{ old('reg_start_date') }}" type="text" class="form-control @error('reg_start_date') is-invalid @enderror" id="reg_start_date" name="reg_start_date">
+                                        <label for="start_date" style="font-size:11px">تاريخ بدء التسجيل</label>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            
-                                            @error('reg_start_date')
-                                                <span class="text-danger err-msg-reg_start_date" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div> 
+                                            <input value="{{ old('reg_start_date') }}" class="form-control @error('reg_start_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" name="reg_start_date" id="date" style=" padding-right:50px !important; ">
+                                        </div>
+                                        @error('reg_start_date')
+                                            <span class="text-danger err-msg-reg_start_date" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                         
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="reg_end_date">تاريخ نهاية التسجيل</label>
-                                            <div class="date" data-provide="datepicker">
-                                                <input value="{{ old('reg_end_date') }}" type="text" class="form-control @error('reg_end_date') is-invalid @enderror" id="reg_end_date" name="reg_end_date">
+                                        <label for="start_date" style="font-size:11px">تاريخ نهاية التسجيل</label>
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            
-                                            @error('reg_end_date')
-                                                <span class="text-danger err-msg-reg_end_date" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div> 
+                                            <input value="{{ old('reg_end_date') }}" class="form-control @error('reg_end_date') is-invalid @enderror" name="reg_end_date" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                        </div>
+                                        @error('reg_end_date')
+                                            <span class="text-danger err-msg-reg_end_date" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row" style="padding: 10px 50px;">

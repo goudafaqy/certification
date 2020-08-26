@@ -19,6 +19,8 @@ class CreateCourseExamUserTable extends Migration
                 ->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("exam_id")->references('id')
                 ->on('course_exams')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->dateTime("start_time");
+            $table->dateTime("submit_time")->nullable();
             $table->boolean("submitted")->default(false);
             $table->timestamps();
         });

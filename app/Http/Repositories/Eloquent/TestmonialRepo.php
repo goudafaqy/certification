@@ -14,16 +14,16 @@ class TestmonialRepo extends Repository implements TestmonialEloquent{
 
     public function getAll($course_id = '')
     {
-        return Testmonial::where('course_id',$course_id)->get();
+        return Testmonial::get();
     }
 
-    public function getByCourseWhereNotField($course_id, $field, $fieldValue)
+    public function getByCourseWhereNotField($field, $fieldValue)
     {
-        return Testmonial::where('course_id',$course_id)->where("$field", '!=' , "$fieldValue")->get();
+        return Testmonial::where("$field", '!=' , "$fieldValue")->get();
     }
 
-    public function getByCourseWhereField($course_id, $field, $fieldValue)
+    public function getByCourseWhereField( $field, $fieldValue)
     {
-        return Testmonial::where('course_id', $course_id)->where("$field", "$fieldValue")->first();
+        return Testmonial::where("$field", "$fieldValue")->first();
     }
 }

@@ -4889,16 +4889,50 @@ top: -7px;
  .subscription-tag{
     display: inline-block;
     font-weight: bold;
-    font-size: 15px;
-    color: #e3e5e9;
-    background-color: #393e5b;
-    padding: 7px 14px;
+    font-size: 45px;
+    color: #efe1d0;
+
     border-radius: 20px;
     cursor: pointer;
     margin: auto;
     display:table;
-    border-radius: 0px 30px 30px 30px;
+   
  }
+ .items h6{
+     text-align: center;
+     color:#fff;
+     font-size:25px;
+     margin-top:30px;
+     font-family: "Univers Next Arabic";
+ }
+ .items h6::after {
+    font-family: Arial;
+    content: "\201C";
+    color:#c5aa89;
+    font-size: 4em;
+    position: absolute;
+    left: 5px;
+    top: -10px;
+}
+.items h6::before {
+    font-family: Arial;
+    content: "\201C";
+    color: #c5aa89;
+    font-size: 4em;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+}
+.subscription-tag::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: #eee2b8;
+    bottom: 4rem;
+    left: calc(50% - 25px);
+}
  /* .subscription-tag:hover{
      background:none;
      border:1px solid #393e5b;
@@ -4909,9 +4943,80 @@ top: -7px;
     color:#393e5b;
     transition: all .6s
  } */
-
- .new_card h6{
-    margin-top: 15px;
-    text-align: center;
-    color:#fff
+ .new-card2 form .form-group{
+   
+     width:65%;
+     margin: auto;
+     margin-top: 2rem;
  }
+ .new-card2 form .form-group .input-group-text {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #2e3950;
+    border-color: #2e3950;
+    color: #C3A37E;
+  
+    font-size: 18px;
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
+}
+ .new-card2 form .form-group  .input-group-prepend .input-group-text{
+    
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
+    } 
+    .new-card2 form .form-group input{
+        font-size: 16px;
+        color: #273044;
+        line-height: 1.2;
+        display: block;
+       
+        height: 45px;
+        background: #fff;
+        padding: 0 10px 0 10px;
+        border: 0;
+        -moz-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        transition: 0.5s ease-in-out;
+        box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
+        border-radius: 5px;
+        border-right: 3px solid #273044;
+    }
+    .new-card2 form .form-control:focus {
+        padding-right: 5px;
+        border-right: 5px solid #C3A37E;
+        box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
+       
+           
+        
+        
+        
+        
+        }
+        .btn-vote{
+            margin-top:1rem;
+        }
+        .email-p{
+            padding-bottom:10px;
+        }
+        .email-p::after{
+            content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 5px;
+    background: #c5aa89;
+    border-radius:20px;
+    left: calc(50% - 25px);
+        }
+   
+    .new-card2 form .form-group:focus{
+        outline: none !important;
+        border: none;
+    }
+   input[type="email"]:focus,
+   .form-control:focus
+   {
+    outline: none !important;
+    
+   }
