@@ -22,6 +22,8 @@ class ExamUser extends Model
         'user_id',
         'exam_id',
         'submitted',
+        'start_time',
+        'submit_time',
         'created_at',
         'updated_at',
     ];
@@ -30,7 +32,7 @@ class ExamUser extends Model
     /**
      * Get the User Answers for the Exam.
      */
-    public function answers()
+    public function userQuestions()
     {
         return $this->hasMany('App\Models\ExamUserAnswer', 'course_exam_user_id');
     }

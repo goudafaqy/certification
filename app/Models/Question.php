@@ -31,7 +31,7 @@ class Question extends Model
         'updated_at',
     ];
 
-    public function getAnswersAttribute(){
+    public function getChoicesAttribute(){
         if($this->type != 'MC') return [];
         $choices = json_decode($this->answer_MC, true);
 

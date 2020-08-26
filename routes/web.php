@@ -152,12 +152,12 @@ Auth::routes();
             Route::post('update', 'AdvertismentsController@edit')->name('update-advertisments');
             Route::post('save', 'AdvertismentsController@create')->name('save-advertisments');
             Route::get('delete/{id}', 'AdvertismentsController@delete')->name('delete-advertisments');
-    
+
         });
 
 
-        
-        // Course advertisments routes ...
+
+        // Course testmonials routes ...
         Route::prefix('testmonials')->group(function () {
 
             Route::get('/', 'TestmonialsController@list')->name('testmonials-list');
@@ -168,7 +168,7 @@ Auth::routes();
             Route::get('delete/{id}', 'TestmonialsController@delete')->name('delete-testmonials');
     
         });
-    
+
 Auth::routes();
 
 
@@ -181,7 +181,7 @@ Route::prefix('instructor')->group(function (){
         Route::get('{id}/exam/add', 'CourseExamsController@add')->name('instructor-course-exam-add');
         Route::get('{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
         Route::post('{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
-        
+
         Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
         Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
 
@@ -196,7 +196,7 @@ Route::prefix('trainee')->group(function (){
         Route::get('{id}/{tab?}', 'CourseController@view')->name('trainee-courses-view');
 
         Route::get('{id}/exam/{examId}/show', 'CourseExamsController@start')->name('trainee-course-exam-show');
-        Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@answer')->name('trainee-course-exam-answer');
+        Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@submitAnswer')->name('trainee-course-exam-answer');
 
     });
 });
