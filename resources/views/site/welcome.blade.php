@@ -319,6 +319,33 @@
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="testimonial-container">
                             <div class="slider testimonial-vertical">
+
+                             @foreach($testmonials as $item)
+                                <div class="te-item" style="height: 200px">
+                                    <div class="te-content">
+                                        <div>
+                                            <div class="content">
+                                                <p>
+                                                {{$item->message??'' }}‬
+                                                </p>
+                                            </div>
+                                            <div class="author">
+                                                <div class="image">
+                                                    <img src="{{ url($item->image)}}" alt="" width="100" height="100">
+                                                </div>
+                                                <div class="info">
+                                                    <h3 class="title"> {{$item->name??'' }}‬‬</h3>
+                                                    <div class="regency"> {{$item->title??'' }}‬</div>
+                                                </div>
+                                            </div>
+                                            <div class="testimonials-navigation">
+                                                <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                                <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                                 <div class="te-item" style="height: 200px">
                                     <div class="te-content">
                                         <div>
@@ -440,14 +467,21 @@
                                         <p>
                                             سجل الى القائمة البريدية ليصلك جديد البرامج والدوات التدريبية
                                         </p>
-                                        <form>
-                                            <input type="text" class="txte" placeholder="البريد الالكترونى">
+                                            <input type="email"  id="newsletter_email" class="txte" placeholder="البريد الالكترونى">
 
-                                            <input type="submit" class="button" value="سجل">
+                                            <button style="background-color:#A58661;color:white;border-radius:30px" id="newsletter" class="button" value="سجل">   سجل  </button>
 
-                                        </form>
-
+                                          
                                     </div>
+
+                                    <span class="alert alert-success" role="alert" id="sccess" style="display:none">
+                                      تم أضافة البريد الالكترونى بنجاح
+                                    </span>
+
+                                    <span class="alert alert-danger" role="alert" id="fail" style="display:none">
+                                     هناك خطأ
+                                    </span>
+                                   
                                 </div>
 
                             </div>

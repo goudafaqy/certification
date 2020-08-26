@@ -158,14 +158,14 @@ Auth::routes();
 
         
         // Course advertisments routes ...
-        Route::prefix('tesmonials')->group(function () {
+        Route::prefix('testmonials')->group(function () {
 
-            Route::get('/', 'AdvertismentsController@list')->name('tesmonials-list');
-            Route::get('add', 'AdvertismentsController@add')->name('tesmonials-add');
-            Route::get('update/{id}', 'AdvertismentsController@update')->name('tesmonials-update');
-            Route::post('update', 'AdvertismentsController@edit')->name('update-tesmonials');
-            Route::post('save', 'AdvertismentsController@create')->name('save-tesmonials');
-            Route::get('delete/{id}', 'AdvertismentsController@delete')->name('delete-tesmonials');
+            Route::get('/', 'TestmonialsController@list')->name('testmonials-list');
+            Route::get('add', 'TestmonialsController@add')->name('testmonials-add');
+            Route::get('update/{id}', 'TestmonialsController@update')->name('testmonials-update');
+            Route::post('update', 'TestmonialsController@edit')->name('update-testmonials');
+            Route::post('save', 'TestmonialsController@create')->name('save-testmonials');
+            Route::get('delete/{id}', 'TestmonialsController@delete')->name('delete-testmonials');
     
         });
     
@@ -187,6 +187,7 @@ Route::prefix('instructor')->group(function (){
 
     });
 });
+Route::get('newsletter', 'WelcomeController@newsletter')->name('newsletter');
 
 // Trainee dashboard routes ...
 Route::prefix('trainee')->group(function (){

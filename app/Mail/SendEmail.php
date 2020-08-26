@@ -33,9 +33,15 @@ class SendEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.general')
+        $view  = 'emails.general';
+        if($this->type == 'instructor_account_notification'){
+            $view  = 'emails.account';
+        }elseif($this->type == 'instructor_course_notification'){
+            $view  = 'emails.course';
+        }
+        return $this->view($view)
                         ->with(['data' => $this->data , 'title' => $this->title ,'type'=> $this->type])
-                        ->from('adlytmscenter@gmail.com' , __($this->title))
+                        ->from('Jtc-Trainingplat@moj.gov.sa' , __($this->title))
                         ->subject(__($this->subject));
     }
 }
