@@ -2536,7 +2536,7 @@ element.style {
     background-color:#7E22DD;
 }
 #learn-press-course-description .thim-course-content h4{
-    font-weight: 600;
+  
     color: #283045;
 
 }
@@ -4373,13 +4373,13 @@ height:200px !important
 }
 
 
-.review-stars-rated {
+/* .review-stars-rated {
     float: right;
     height: 16px;
     line-height: 16px;
-    /* width: 80px; */
+   
     position: relative;
-}
+} */
 
 
 

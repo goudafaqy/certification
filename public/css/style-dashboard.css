@@ -3583,12 +3583,12 @@ left: -100%;
           bottom: .0;
     }
 }
-#carouselExampleIndicators .carousel-control-prev{
+/* #carouselExampleIndicators .carousel-control-prev{
     left:5rem
 }
 #carouselExampleIndicators .carousel-control-next{
     right:4rem
-}
+} */
 .justify-content-center .form-group label{
     color: #35415b;
 }
