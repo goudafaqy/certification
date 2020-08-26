@@ -2844,7 +2844,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .register-left img {
-    margin-top: 15%;
+   
     margin-bottom: 5%;
     width: 25%;
     border: 1px solid #ffffff40;
@@ -2853,7 +2853,13 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     /* -webkit-animation: mover 1s infinite alternate;
     animation: mover 1s infinite alternate; */
 }
-
+.b-rating-star .b-rating-icon .b-icon.bi.text-rating {
+    color: #f9c32c!important;
+    margin-left: 5px;
+}
+.b-rating-value {
+    padding-right: 10px;
+}
 .register-left p {
     font-weight: lighter;
     padding: 12%;
@@ -3583,12 +3589,12 @@ left: -100%;
           bottom: .0;
     }
 }
-#carouselExampleIndicators .carousel-control-prev{
+/* #carouselExampleIndicators .carousel-control-prev{
     left:5rem
 }
 #carouselExampleIndicators .carousel-control-next{
     right:4rem
-}
+} */
 .justify-content-center .form-group label{
     color: #35415b;
 }

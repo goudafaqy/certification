@@ -71,7 +71,14 @@
 
                                     <div class="row justify-content-center" >
                                     <div class="col-md-3">
-                                    <div class="form-group">
+                                    <label for="start_date" style="font-size:11px">تاريخ </label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                        </div>
+                                        <input placeholder="تاريخ الميلاد" class="form-control" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                    </div>
+                                    <!-- <div class="form-group">
                                             <label for="start_date">تاريخ  </label>
                                             <div class="date" data-provide="datepicker">
                                                 <input  type="text" class="form-control @error('date') is-invalid @enderror" value="{{$item->date??''}}" id="start_date" name="date">
@@ -81,7 +88,7 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                        </div> 
+                                        </div>  -->
                                     
                                         </div> 
 

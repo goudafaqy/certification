@@ -33,12 +33,18 @@ return [
     |
     */
 
+
+
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
             'host' =>  'smtp.gmail.com',
             'port' => 587,
             'encryption' =>  'tls',
+            // 'host' =>  'smtp.gmail.com',
+           // 'username' => 'Jtc-Trainingplat',
+           // 'password' => 'Rui11237',
+          
             'username' => 'adlytmscenter@gmail.com',
             'password' => 'Adly2020',
             'timeout' => null,
