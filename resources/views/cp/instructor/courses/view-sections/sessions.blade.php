@@ -29,10 +29,10 @@
                         <!-- <td class="priority text-center">{{ $session->title }}</td> -->
                         <td class="priority text-center">{{ $session->day }}</td>
                         <td class="priority text-center">{{ $session->date }}</td>
-                        <td class="priority text-center">{{ $session->from_time }}</td>
-                        <td class="priority text-center">{{ $session->to_time }}</td>
+                        <td class="priority text-center">{{ explode(" ", $session->from_time)[0] }} @if(explode(" ", $session->from_time)[1] == 'AM') مساءً @else صباحاً @endif</td>
+                        <td class="priority text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') مساءً @else صباحاً @endif</td>
                         <td class="priority text-center">
-                            <a style="padding: 7px; border: solid 1px #A1825C;" href="#" target="_blanck"><i class="far fa-play-circle" style="color:#283045"></i></a>
+                            <a style="padding: 7px; border: solid 1px #A1825C;" href="{{$session->webinar->start_url}}" target="_blanck"><i class="far fa-play-circle" style="color:#283045"></i></a>
                             <a style="padding: 7px; border: solid 1px #A1825C; margin-right: 2px;" href="#" target="_blanck"><i class="fa fa-list" style="color:#283045"></i></a>
                         </td>
                     </tr>

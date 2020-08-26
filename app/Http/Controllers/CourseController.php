@@ -129,7 +129,8 @@ class CourseController extends Controller
         $instructors        = $this->userRepo->getByRole('instructor');
         $categories         = $this->categoryRepo->getAll();
         $course = $this->courseRepo->getById($id);
-        return view("cp.courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories]);
+        $classifications = $this->classRepo->getByCat($course->cat_id);
+        return view("cp.courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories, 'classifications' => $classifications]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Trainee;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
@@ -18,6 +19,7 @@ class CourseController extends Controller
     var $materialRepo;
     var $appointmentRepo;
     var $examRepo;
+    var $updateRepo;
 
     /**
      * Create a new controller instance.
@@ -29,7 +31,8 @@ class CourseController extends Controller
         UserRepo $userRepo,
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
-        ExamRepo $examRepo
+        ExamRepo $examRepo,
+        CourseUpdateRepo $updateRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -37,6 +40,7 @@ class CourseController extends Controller
         $this->materialRepo = $materialRepo;
         $this->appointmentRepo = $appointmentRepo;
         $this->examRepo = $examRepo;
+        $this->updateRepo = $updateRepo;
 
         $this->middleware(['auth', 'authorize.trainee']);
     }
@@ -83,9 +87,10 @@ class CourseController extends Controller
         return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab4']);
     }
 
-    private function ads($course)
+    private function update($course)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab5']);
+        $updates = $this->updateRepo->getAll($course->id);
+        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab5', 'updates' => $updates]);
     }
 
     private function exams($course)
