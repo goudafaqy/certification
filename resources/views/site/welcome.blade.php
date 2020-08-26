@@ -442,12 +442,7 @@
                                         <p class="email-p">
                                             سجل الى القائمة البريدية ليصلك جديد البرامج والدوات التدريبية
                                         </p>
-                                        <!-- <form>
-                                            <input type="text" class="txte" placeholder="البريد الالكترونى">
-
-                                            <input type="submit" class="button" value="سجل">
-
-                                        </form> -->
+                         
                                         <form>
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
