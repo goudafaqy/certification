@@ -57,6 +57,7 @@ class HomeController extends Controller
 
         $categories = DB::table('categories')->get();
         $advertisments = Advertisment::all();
+       // dd($advertisments);
         return view('/cp/dashboards/admin', ['categories' => $categories ,'advertisments'=>$advertisments]);
     }
 
