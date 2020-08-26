@@ -61,7 +61,7 @@ class AdvertismentsController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
-        $this->add_notify( $inputs, 'Advertisments');
+       // $this->add_notify( $inputs, 'Advertisments');
         
         $inputs['created_by'] = \Auth::user()->id;
         $validator = $this->validation->doValidate($inputs, 'insert');

@@ -76,8 +76,15 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                         </div>
-                                        <input placeholder="تاريخ الميلاد" class="form-control" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                        <input placeholder="التاريخ" class="form-control" name="date" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
                                     </div>
+
+                                    @error('date')
+                                                <span class="text-danger err-msg-start_date" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+
                                     <!-- <div class="form-group">
                                             <label for="start_date">تاريخ  </label>
                                             <div class="date" data-provide="datepicker">
