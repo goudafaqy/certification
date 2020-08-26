@@ -31,6 +31,7 @@
             </script>
             <script>
                 $(document).ready(function () {
+
                     $('.repeater').repeater({
                         // (Optional)
                         // start with an empty list of repeaters. Set your first (and only)
@@ -76,8 +77,12 @@
                         isFirstItemUndeletable: true
                     })
                 });
+
+               
+
             </script>
-    <script>
+
+   <script>
         $('.owl-carousell').owlCarousel({
   loop:true,
   margin:10,
@@ -100,6 +105,11 @@
   }
 })
     </script>
+
+
+            @stack('scripts')
+
+
             </body>
 
 </html>

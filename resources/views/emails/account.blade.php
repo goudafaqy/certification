@@ -52,20 +52,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                <td style="padding: 10px 0 10px 0;font-size: 15px;color: #153643; font-family: Almarai, Roboto, sans-serif; font-size: 18px; line-height: 20px;text-align: right">
+                                    <td style="padding: 10px 0 10px 0;font-size: 15px;color: #153643; font-family: Almarai, Roboto, sans-serif; font-size: 18px; line-height: 20px;text-align: right">
                                      <p style="font-size: 15px;">عزيزي المتدرب / المتدربة</p>
-                                     <p style="font-size: 15px;">  {{$data['message_ar']}}   </p>
+                                     <p style="font-size: 15px;">مرحبا بك في المنصة الإلكترونية للتدريب بمركز التدريب العدلي .</p>
+                                     <p style="font-size: 15px;">لقد تم بنجاح انشاء حساب لك، معلومات الحساب الخاص بك والتي تستطيع من خلالها الدخول إلى النظام:</p>
+                                     <p style="font-size: 15px;"> {{$data['email']}}  اسم المستخدم: </p>
+                                     <p style="font-size: 15px;"> {{$data['password']}}   كلمة المرور: </p>
 
-                                     @if($data['link'] != null )
-                                       <p style="font-size: 15px;"> <a class="nav-link" href="{{ $data['link'] }} "> أضغط هنا </a> </p> 
-                                    @endif
-                                    
-                                    @if($data['extra_text'] != null )
-                                      <p style="font-size: 15px;"> {{ $data['extra_text'] }}  </p> 
-                                    @endif
-                                    
-                                       
-                                </td>
+                                    </td>
                                 </tr>
                                 <tr style="margin: auto;
                                 display: table;">
@@ -91,7 +85,7 @@
                                             <tr>
                                                 <td style="font-family: Almarai, Roboto, sans-serif; font-size: 13px; font-weight: bold;">
                                                     <a href="#" style="color: #ffffff; text-decoration: none;">
-                                                        jtc- @moj.gov.sa
+                                                    Jtc-Trainingplat@moj.gov.sa
                                                     </a>
                                                 </td>
                                                 
@@ -104,7 +98,7 @@
                                             <tr>
                                                 <td style="font-family: Almarai, Roboto, sans-serif; font-size: 13px; font-weight: bold;">
                                                     <a href="#" style="color: #ffffff;text-decoration: none;">
-                                                        www.jtc- .com                            
+                                                        www.jtc.com                            
                                                     </a>
                                                 </td>
                                                 

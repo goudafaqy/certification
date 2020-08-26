@@ -62,6 +62,19 @@
                                                                            value="تعليم مدمج">
                                                                 @endif
                                                             </div>
+                                                            <h6>عدد المقاعد</h6>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/man.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                </div>
+                                                                <input id="email" required="" name="email"
+                                                                       class="form-control" type="text" disabled
+                                                                       value="{{ $course->seats }} مقعد">
+                                                            </div>
                                                             <h6>مستوى الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
@@ -87,7 +100,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h6>تاريخ بداية الكورس</h6>
+                                                            <h6>تاريخ بداية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -100,7 +113,7 @@
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->start_date }}">
                                                             </div>
-                                                            <h6>تاريخ نهاية الكورس</h6>
+                                                            <h6>تاريخ نهاية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -112,6 +125,19 @@
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->end_date }}">
+                                                            </div>
+                                                            <h6>عدد ساعات الدورة</h6>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/medal.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                </div>
+                                                                <input id="email" required="" name="email"
+                                                                       class="form-control" type="text" disabled
+                                                                       value="{{ $course->course_hours }} ساعة">
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
