@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Advertisment;
+use App\Models\Testmonial;
+use App\Models\Newsletter;
 
 class WelcomeController extends Controller
 {
@@ -18,8 +20,10 @@ class WelcomeController extends Controller
      */
     public function index(){
         $advertisments = Advertisment::all();
+        $testmonials = Testmonial::all();
+
         $sliderItems = Classification::where("home_page_display",1)->orderBy('created_at','DESC')->take(4)->get();
-        return view('site.welcome',compact("sliderItems","advertisments"));
+        return view('site.welcome',compact("sliderItems","advertisments",'testmonials'));
     }
 
 
@@ -74,5 +78,14 @@ class WelcomeController extends Controller
 
         $courses = $query->paginate(12)->appends(['q'=>$request->get('q')]);
         return view('site.searchResults',compact('courses','categories','classifications'));
+    }
+
+    public function newsletter(Request $request){
+
+        $n = new Newsletter();
+        $n->email = $request->email;
+        $n->save();
+        return true;
+
     }
 }

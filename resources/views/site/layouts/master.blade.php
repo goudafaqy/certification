@@ -476,6 +476,54 @@
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
 
+
+
+    <script>
+    $(document).ready(function () {
+
+
+        function IsEmail(email) {
+
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!regex.test(email)) {
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        $("#newsletter").on('click',function(){
+    
+            $('#fail').hide();
+            $('#sccess').hide();
+            var value = $('#newsletter_email').val();
+            if(value == '' || IsEmail(value) == false){
+                $('#fail').show();
+            }else{
+
+                    $.ajax({
+                        type:'GET',
+                        url: "<?php echo route('newsletter') ?>",
+                        data:'email='+value,
+                        success:function(content){
+
+                            if(content == true){
+                                $('#sccess').show();
+                            }else{
+                                $('#fail').show();
+                            }
+           
+                        }
+                });
+            }   
+    });
+    
+
+});
+            
+    
+</script>
+
 @yield('script')
 </body>
 </html>
