@@ -61,7 +61,7 @@ class AdvertismentsController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
-        $this->add_Advertisment( $inputs, 'Advertisments');
+        $this->add_notify( $inputs, 'Advertisments');
         
         $inputs['created_by'] = \Auth::user()->id;
         $validator = $this->validation->doValidate($inputs, 'insert');
@@ -137,7 +137,7 @@ class AdvertismentsController extends Controller
         }
     }
 
-    function add_advertisment($data){
+    function add_notify($data){
 
 
         $users = Newsletter::get();
@@ -157,8 +157,8 @@ class AdvertismentsController extends Controller
                 'extra_text'=>   ''
                 
             ];
-            //$not = new AdvertismentsController();
-            //$not->Send_Advertisment_And_Email($data_Advertisments, 'Advertisment');
+            $not = new NotificationsController();
+            $not->Send_Notification_And_Email($data_Advertisments, 'advertisment_notification');
         }
 
         
