@@ -91,7 +91,7 @@ class CourseController extends Controller
     private function exams($course)
     {
 
-        $exams = $this->examRepo->getExamsForTrainees($course->id);
+        $exams = $this->examRepo->getExamsForTrainee($course->id, Auth::id());
 
         return view("cp.trainee.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'tab6']);
     }

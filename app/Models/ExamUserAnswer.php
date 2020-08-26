@@ -30,6 +30,14 @@ class ExamUserAnswer extends Model
     ];
 
 
+    function getMCAnswersAttribute(){
+        return json_decode($this->answer_MC);
+    }
+
+    function mcCheckecd($i){
+        return in_array($i, $this->mcAnswers);
+    }
+
     /**
      * Get the Question
      */

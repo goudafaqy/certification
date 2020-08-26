@@ -23,6 +23,10 @@ class ExamRepoValidation implements MaterialValidation{
             'update' => [
 
             ],
+            'exam' => [
+                'answers'=> 'required|array',
+                'action' => 'sometimes|in:submit,save'
+            ]
         ];
     }
 
