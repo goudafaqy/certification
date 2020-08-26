@@ -455,9 +455,6 @@
                                     </button>
                                     </form>
 
-                                            <input type="email"  id="newsletter_email" class="txte" placeholder="البريد الالكترونى">
-
-                                            <button style="background-color:#A58661;color:white;border-radius:30px" id="newsletter" class="button" value="سجل">   سجل  </button>
 
                                           
 
