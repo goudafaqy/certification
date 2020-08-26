@@ -2332,8 +2332,8 @@ table tbody tr:hover {
 }
 
 table.course-view-table thead tr {
-    background-color: #f6f8fb;
-    color: #879099
+    background-color: #35415b;
+    color: #fefefe;
 }
 
 table.course-view-table thead tr th {
@@ -3352,4 +3352,243 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
 .exam-form .form-check-input, .form-radio-input {
     margin-top: 6px;
+}
+#carouselExampleIndicators .carousel-control-prev,
+#carouselExampleIndicators .carousel-control-next{
+      top: 100%;
+}
+
+#masterhead {
+    padding-top: 20px;
+    padding-bottom: 124px;
+    margin-bottom: -52px;
+}
+
+#carouselExampleIndicators .carousel {
+      position: relative;
+      height: 150px;
+}
+
+#carouselExampleIndicators .carousel-inner {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+}
+
+#carouselExampleIndicators .carousel-inner > .item {
+      position: relative;
+      display: none;
+      height: 150px;
+      background-color: #777;
+    -webkit-transition: .6s ease-in-out left;
+  -o-transition: .6s ease-in-out left;
+  transition: .6s ease-in-out left;
+}
+
+#carouselExampleIndicators .carousel-inner > .item > img,
+#carouselExampleIndicators .carousel-inner > .item > a > img {
+    line-height: 1;
+     position: absolute;
+     top: 0;
+     left: 0;
+     min-width: 100%;
+     height: 150px;
+}
+
+#carouselExampleIndicators .carousel-inner > .active,
+#carouselExampleIndicators .carousel-inner > .next,
+#carouselExampleIndicators .carousel-inner > .prev {
+    display: block;
+}
+
+#carouselExampleIndicators .carousel-inner > .active {
+    left: 0;
+}
+
+#carouselExampleIndicators .carousel-inner > .next,
+#carouselExampleIndicators .carousel-inner > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#carouselExampleIndicators .carousel-inner > .next {
+    left: 100%;
+}
+
+#carouselExampleIndicators .carousel-inner > .prev {
+    left: -100%;
+}
+
+#carouselExampleIndicators .carousel-inner > .next.left,
+#carouselExampleIndicators .carousel-inner > .prev.right {
+    left: 0;
+}
+
+#carouselExampleIndicators .carousel-inner > .active.left {
+left: -100%;
+}
+
+#carouselExampleIndicators .carousel-inner > .active.right {
+    left: 100%;
+}
+
+#carouselExampleIndicators .controlsBlock {
+     position: relative;
+     bottom: 0;
+     left: 0;
+     top: 10px;
+     display: block;
+     width: 177px;
+     margin: 0 auto;
+     z-index: 1;
+     height: 24px;
+     text-align: center;
+}
+
+#carouselExampleIndicators .controls {
+     position: relative;
+     display: block;
+}
+
+#carouselExampleIndicators .carousel-control {
+    position: absolute;
+    top: 25.5px;
+    bottom: 0;
+    left: 0;
+    background: #000000;
+    font-size: 5px;
+    background: none !important;
+    color: #000 !important;
+    text-align: center;
+}
+
+#carouselExampleIndicators .carousel-control i {
+      font-size: 20px;
+}
+
+#carouselExampleIndicators .carousel-control.left {
+    left: 4rem;
+}
+
+#carouselExampleIndicators .carousel-control.right {
+    right: 4rem;
+    
+}
+
+#carouselExampleIndicators .carousel-control:hover,
+#carouselExampleIndicators .carousel-control:focus {
+    color: #000;
+}
+
+#carouselExampleIndicators .carousel-control .glyphicon-chevron-left,
+#carouselExampleIndicators .carousel-control .glyphicon-chevron-right {
+    position: absolute;
+    z-index: 5;
+    display: inline-block;
+}
+
+#carouselExampleIndicators .carousel-control .glyphicon-chevron-left {
+    left: 0;
+}
+
+#carouselExampleIndicators .carousel-control .glyphicon-chevron-right {
+    right: 0;
+}
+
+#carouselExampleIndicators .carousel-indicators {
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    z-index: 15;
+    width: 70%;
+    top: 10px;
+    padding-left: 0;
+    margin-left: -30%;
+    text-align: center;
+    list-style: none;
+}
+
+
+#carouselExampleIndicators .carousel-indicators li {
+    display: inline-block;
+     zoom: 1;
+     width: 10px;
+     height: 10px;
+     margin: 0 2px;
+     background: transparent;
+     -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+     border-radius: 50%;
+     border: 3px solid transparent;
+     -webkit-box-shadow: rgba(0,0,0,0.5) 0 0 2px;
+     -moz-box-shadow: rgba(0,0,0,0.5) 0 0 2px;
+     box-shadow: rgba(0,0,0,0.5) 0 0 2px;
+     cursor: pointer;
+}
+
+#carouselExampleIndicators .carousel-indicators .active {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    background-color: #000000;
+}
+
+#carouselExampleIndicators .carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 20px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+
+#carouselExampleIndicators .carousel-caption .btn {
+    text-shadow: none;
+}
+
+@media screen and (min-width: 768px) {
+    #carouselExampleIndicators .carousel {
+      height: auto;
+  }
+
+  #carouselExampleIndicators .carousel-inner > .item {
+      height: 500px;
+  }
+
+  #carouselExampleIndicators .carousel-inner > .item > img,
+  #carouselExampleIndicators .carousel-inner > .item > a > img {
+      height: 500px;
+  }
+
+  #carouselExampleIndicators .carousel-control .glyphicon-chevron-left,
+  #carouselExampleIndicators .carousel-control .glyphicon-chevron-right,
+  #carouselExampleIndicators .carousel-control .icon-prev,
+  #carouselExampleIndicators .carousel-control .icon-next {
+          
+          font-size: 15px;
+    }
+
+    #carouselExampleIndicators .carousel-caption {
+          right: 20%;
+          left: 20%;
+          padding-bottom: 30px;
+    }
+
+    #carouselExampleIndicators .carousel-indicators {
+          bottom: .0;
+    }
+}
+#carouselExampleIndicators .carousel-control-prev{
+    left:5rem
+}
+#carouselExampleIndicators .carousel-control-next{
+    right:4rem
+}
+.justify-content-center .form-group label{
+    color: #35415b;
 }

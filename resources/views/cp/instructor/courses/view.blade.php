@@ -174,40 +174,40 @@
                                 <ul>
                                     <li class="tab1 {{$tab == 'tab1'? 'active': ''}}">
                                         <a href="{{$tab != 'tab1'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'guide']):"javascript:void(0);"}}"
-                                           for="tab1"> الكتيب التدريبى</a>
+                                           for="tab1"> <i class="fas fa-book-reader"></i> الكتيب التدريبى  </a>
                                     </li>
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'files']):"javascript:void(0);"}}"
-                                           for="tab2"> الملفات</a>
+                                           for="tab2"> <i class="far fa-file"></i> الملفات</a>
                                     </li>
                                     <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
                                         <a href="{{$tab != 'tab3'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'sessions']):"javascript:void(0);"}}"
-                                           for="tab3">  المحاضرات</a>
+                                           for="tab3"> <i class="far fa-copy"></i>  المحاضرات</a>
                                     </li>
                                     <li class="tab4 {{$tab == 'tab4'? 'active': ''}}">
                                         <a href="{{$tab != 'tab4'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'questionnaires']):"javascript:void(0);"}}"
-                                           for="tab4"> الإستبيانات</a>
+                                           for="tab4"><i class="fas fa-book-open"></i>  الإستبيانات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'update']):"javascript:void(0);"}}"
-                                           for="tab5"> الاعلانات </a>
+                                           for="tab5"><i class="far fa-bookmark"></i>  الاعلانات </a>
                                     </li>
 
                                     <li class="tab6 {{$tab == 'tab6'? 'active': ''}}">
                                         <a href="{{$tab != 'tab6'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'exams']):"javascript:void(0);"}}"
-                                           for="tab6"> الامتحانات والواجبات</a>
+                                           for="tab6"> <i class="far fa-address-book"></i> الامتحانات والواجبات</a>
                                     </li>
                                     <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">
                                         <a href="{{$tab != 'tab7'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'evaluations']):"javascript:void(0);"}}"
-                                           for="tab7"> مركز التقديرات</a>
+                                           for="tab7"><i class="fas fa-door-open"></i>  مركز التقديرات</a>
                                     </li>
                                     <li class="tab8 {{$tab == 'tab8'? 'active': ''}}">
                                         <a href="{{$tab != 'tab8'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'trainees']):"javascript:void(0);"}}"
-                                           for="tab8"> المتدربيين</a>
+                                           for="tab8"><i class="fas fa-user-friends"></i>  المتدربيين</a>
                                     </li>
                                     <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                         <a href="{{$tab != 'tab9'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'support']):"javascript:void(0);"}}"
-                                           for="tab9"> الدعم الفني</a>
+                                           for="tab9"><i class="fas fa-life-ring"></i>  الدعم الفني</a>
                                     </li>
                                 </ul>
                             </nav>

@@ -77,7 +77,29 @@
                     })
                 });
             </script>
-
+    <script>
+        $('.owl-carousell').owlCarousel({
+  loop:true,
+  margin:10,
+  nav:true,
+  autoplay:true,
+  dots:true,
+  nav:true,
+ 
+  
+  responsive:{
+      0:{
+          items:1
+      },
+      600:{
+          items:1
+      },
+      1000:{
+          items:1
+      }
+  }
+})
+    </script>
             </body>
 
 </html>

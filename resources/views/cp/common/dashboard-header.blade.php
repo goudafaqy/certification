@@ -76,7 +76,7 @@
                         @endif
                     </div>
                     <div class="top-menu d-flex align-items-center">
-                        <div class="input-group md-form form-sm form-2 pl-0 searchclass">
+                        <!-- <div class="input-group md-form form-sm form-2 pl-0 searchclass">
                             <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
                             <a href="#">
                                 <div class="input-group-append">
@@ -84,7 +84,7 @@
                                         <i class="fa fa-search" aria-hidden="true"></i></span>
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
                         <button type="button" class="nav-link ml-10 right-sidebar-toggle">
                             <i class="far fa-calendar-alt"></i>
                             <span class="badge bg-success">0</span></button>
