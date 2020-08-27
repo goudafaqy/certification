@@ -34,5 +34,54 @@ class UserSeeder extends Seeder
             'gender' => 1,
             'password' => Hash::make('123456'),
         ]);
+
+
+        DB::table('users')->insert([
+            'name_ar' => 'trainee 1',
+            'name_en' => 'trainee 1',
+            'username' => 'trainee1',
+            'email' => 'trainee1@gmail.com',
+            'active' => true,
+            'national_id' => 215588787,
+            'mobile' => 21555587,
+            'gender' => 1,
+            'password' => Hash::make('123456'),
+        ]);
+
+        DB::table('users')->insert([
+            'name_ar' => 'trainee 2',
+            'name_en' => 'trainee 2',
+            'username' => 'trainee2',
+            'email' => 'trainee2@gmail.com',
+            'active' => true,
+            'national_id' => 215588787,
+            'mobile' => 21555587,
+            'gender' => 1,
+            'password' => Hash::make('123456'),
+        ]);
+
+        DB::table('users')->insert([
+            'name_ar' => 'trainee 3',
+            'name_en' => 'trainee 3',
+            'username' => 'trainee3',
+            'email' => 'trainee3@gmail.com',
+            'active' => true,
+            'national_id' => 215588787,
+            'mobile' => 21555587,
+            'gender' => 1,
+            'password' => Hash::make('123456'),
+        ]);
+
+        DB::table('users')->insert([
+            'name_ar' => 'trainee 4',
+            'name_en' => 'trainee 4',
+            'username' => 'trainee4',
+            'email' => 'trainee4@gmail.com',
+            'active' => true,
+            'national_id' => 215588787,
+            'mobile' => 21555587,
+            'gender' => 1,
+            'password' => Hash::make('123456'),
+        ]);
     }
 }

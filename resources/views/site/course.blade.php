@@ -86,26 +86,26 @@
                                             <span>نظرة عامة</span>
                                         </a>
                                     </li>
-{{--                                    <li role="presentation" class="course-nav-tab-curriculum thim-col-4">--}}
-{{--                                        <a href="#tab-curriculum" data-toggle="tab">--}}
-{{--                                            <img src="{{asset('site-assets/images/product-description.png')}}" class="img-fluid" width="20">--}}
-{{--                                            <span>المخطط</span>--}}
-{{--                                        </a>--}}
-{{--                                    </li>--}}
+                                   <li role="presentation" class="course-nav-tab-curriculum thim-col-4">
+                                       <a href="#tab-curriculum" data-toggle="tab">
+                                           <img src="{{asset('site-assets/images/product-description.png')}}" class="img-fluid" width="20">
+                                            <span>المخطط</span>
+                                        </a>
+                                  </li>
                                     <li role="presentation" class="course-nav-tab-instructor thim-col-4">
                                         <a href="{{url('profile/'.$course->instructor_id)}}">
                                             <img src="{{asset('site-assets/images/teacher.png')}}" class="img-fluid" width="20">
                                             <span>المدرب</span>
                                         </a>
                                     </li>
-{{--                                    <li role="presentation" class="course-nav-tab-reviews thim-col-4">--}}
-{{--                                        <a href="#tab-reviews" data-toggle="tab">--}}
-{{--                                            <img src="{{asset('site-assets/images/laww.png')}}" class="img-fluid" width="20">--}}
-{{--                                            <span>المراجعات</span>--}}
-{{--                                        </a>--}}
-{{--                                    </li>--}}
+                                    <li role="presentation" class="course-nav-tab-reviews thim-col-4">
+                                       <a href="#tab-reviews" data-toggle="tab">
+                                           <img src="{{asset('site-assets/images/laww.png')}}" class="img-fluid" width="20">
+                                            <span>المراجعات</span>
+                                       </a>
+                                 </li>
                                 </ul>
-                                <div class="tab-content">
+                                <!-- <div class="tab-content">
                                     <div class="tab-pane course-tab-panel-overview course-tab-panel active" id="tab-overview">
                                         <div class="course-description" id="learn-press-course-description">
 
@@ -119,7 +119,176 @@
                                         </div>
                                     </div>
 
+                                </div> -->
+                                <div class="tab-content">
+                            <div class="tab-pane course-tab-panel-overview course-tab-panel active" id="tab-overview">
+                                <div class="course-description" id="learn-press-course-description">
+
+
+                                    <div class="thim-course-content">
+                                        <h4> {{$course->overview}}</h4>
+                                        
+                                    
+                                    </div>
+
+
                                 </div>
+                            </div>
+                            <div class="tab-pane course-tab-panel-curriculum course-tab-panel" id="tab-curriculum">
+                                <div class="course-curriculum" id="learn-press-course-curriculum">
+                                    <div class="section-header wow fadeInDown" data-wow-duration="2s" style="visibility: hidden; animation-duration: 2s; animation-name: none;">
+                                        <h4> المنازعات<span> التجارية</span></h4>
+                                    
+                                    </div>
+                                    <div class="curriculum-scrollable">
+                                        <ul class="curriculum-sections">
+                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                            <?php $counter = 1; ?>
+                                                @foreach($sections as $section)
+                                                
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="section-{{$counter}}">
+                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-{{$counter}}_contents" aria-expanded="false" aria-controls="section-{{$counter}}_contents">
+                                                            <a>
+                                                                 <i class="fa fa-chevron-down"></i>{{$section->title_ar??'' }}
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="section-{{$counter}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="section-{{$counter}}" style="">
+                                                    <?php $inner = 1; ?>
+                                                        @foreach($section->units as $unit)
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-{{$inner}}">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-{{$inner}}_contents" aria-expanded="false" aria-controls="subsection-{{$inner}}_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>{{$unit->title_ar??'' }}
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-{{$inner}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-{{$inner}}" style="">
+                                                                <div class="panel-body" style="text-align:center">
+                                                                <p> <?php echo $unit->text??'' ?></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php $inner++; ?>
+                                                        @endforeach
+                                                        
+                                                       
+                                                    </div>
+                                                </div>
+                                                 <?php $counter++; ?>
+                                                @endforeach
+                                                
+                                              
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        
+                            <div class="tab-pane course-tab-panel-reviews course-tab-panel" id="tab-reviews">
+                                <div class="course-rating">
+                                    <div class="section-header wow fadeInDown" style="visibility: hidden; animation-name: none;">
+                                        <h4><span> المراجعات</span></h4>
+                                    
+                                    </div>
+                                    <div class="average-rating">
+                                        <p class="rating-title">متوسط تقييم</p>
+                                        <div class="rating-box">
+                                            <div class="average-value" itemprop="ratingValue">0</div>
+                                            <div class="review-star">
+                                                <div class="review-stars-rated">
+                                                    <ul class="review-stars">
+                                                        <li><span class="far fa-star"></span></li>
+                                                        <li><span class="far fa-star"></span></li>
+                                                        <li><span class="far fa-star"></span></li>
+                                                        <li><span class="far fa-star"></span></li>
+                                                        <li><span class="far fa-star"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="review-amount" itemprop="ratingCount">
+                                                0 rating
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="detailed-rating">
+                                        <p class="rating-title">تقييم مفصل</p>
+
+                                        <div class="rating-box">
+                                            <div class="detailed-rating">
+                                                <div class="stars">
+                                                    <div class="key">
+                                                      ٥
+                                                    </div>
+                                                    <div class="bar">
+                                                      <div class="full_bar">
+                                                        <div style="width:50% "></div>
+                                                      </div>
+                                                    </div>
+                                                    <span>50%</span>
+                                                  </div>
+                                                  <div class="stars">
+                                                    <div class="key">
+                                                      ٤
+                                                    </div>
+                                                    <div class="bar">
+                                                      <div class="full_bar">
+                                                        <div style="width:0%"></div>
+                                                      </div>
+                                                    </div>
+                                                    <span>0%</span>
+                                                  </div>
+                                                  <div class="stars">
+                                                    <div class="key">
+                                                      ٣
+                                                    </div>
+                                                    <div class="bar">
+                                                      <div class="full_bar">
+                                                        <div style="width:0%"></div>
+                                                      </div>
+                                                    </div>
+                                                    <span>0%</span>
+                                                  </div>
+                                                  <div class="stars">
+                                                    <div class="key">
+                                                      ٢
+                                                    </div>
+                                                    <div class="bar">
+                                                      <div class="full_bar">
+                                                        <div style="width:50%"></div>
+                                                      </div>
+                                                    </div>
+                                                    <span>50%</span>
+                                                  </div>
+                                                  <div class="stars">
+                                                    <div class="key">
+                                                      ١
+                                                    </div>
+                                                    <div class="bar">
+                                                      <div class="full_bar">
+                                                        <div style="width:0%"></div>
+                                                      </div>
+                                                    </div>
+                                                    <span>0%</span>
+                                                  </div>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-stars-rated">
+                                        <div class="review-stars empty"></div>
+                                        <div class="review-stars filled" style="width:0%;"></div>
+                                    </div>
+                                    <div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             </div>
                         </div>
                         <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
@@ -224,25 +393,25 @@
                                                     <span class="label">الإختبارات</span>
                                                 </li> -->
                                                 <li class="duration-feature">
-                                                    <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fas fa-calendar-alt"></i>
                                                     <span class="label">تاريخ بدء التسجيل</span>
                                                     <span class="value">{{$course->start_date}}</span>
 
                                                 </li>
                                                 <li class="duration-feature">
-                                                    <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fas fa-calendar-alt"></i>
                                                     <span class="label">تاريخ نهاية التسجيل</span>
                                                     <span class="value">{{$course->end_date}}</span>
 
                                                 </li>
                                                 <li class="skill-feature">
-                                                    <img src="{{asset('site-assets/images/schedule.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="far fa-clock"></i>
                                                     <span class="label">مدة البرنامج</span>
                                                     <span class="value">{{$course->appointments()->count()}} محاضرات </span>
 
                                                 </li>
                                                 <li class="skill-feature">
-                                                    <img src="{{asset('site-assets/images/teaching.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fas fa-level-up-alt"></i>
                                                     <span class="label">مستوى البرنامج</span>
                                                     @if($course->skill_level == "m")
                                                         <span class="value">متوسط</span>
@@ -255,13 +424,13 @@
 
                                                 </li>
                                                 <li class="language-feature">
-                                                    <img src="{{asset('site-assets/images/world.png')}}" width="20" class="im-fluid" style="width:20px !important">
+                                                <i class="fa fa-language"></i>
 
                                                     <span class="label">اللغة</span>
                                                     <span class="value">العربية</span>
                                                 </li>
 
-                                                <ul class="under-links">
+                                                <!-- <ul class="under-links">
                                                     <h4>يحتوي البرنامج علي </h4>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/cou.png')}}" width="20" class="im-fluid" style="width:20px !important">
@@ -283,7 +452,7 @@
 
                                                         <span class="label">الأدوات والتجهيزات اللازمة</span>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                                 <!-- <li class="students-feature">
                                                     <img src="images/man.png" width="20" class="im-fluid" style="width:20px !important">
                                                     <span class="value"></span>
@@ -297,14 +466,14 @@
                                                 <li>
                                                     <div class="facebook-social">
                                                         <a target="_blank" class="facebook" href="#" title="Facebook">
-                                                            <i class="fab fa-facebook"></i>
+                                                        <i class="fab fa-facebook-f"></i>
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="googleplus-social">
-                                                        <a target="_blank" class="googleplus" href="#" title="Google Plus">
-                                                            <i class="fab fa-google"></i>
+                                                        <a target="_blank" class="googleplus" href="#" title="email">
+                                                        <i class="far fa-envelope"></i>
                                                         </a>
                                                     </div>
                                                 </li>
@@ -317,8 +486,8 @@
                                                 </li>
                                                 <li>
                                                     <div class="pinterest-social">
-                                                        <a target="_blank" class="pinterest" href="" title="Pinterest">
-                                                            <i class="fab fa-pinterest-p"></i>
+                                                        <a target="_blank" class="pinterest" href="" title="copUrl">
+                                                        <i class="far fa-copy"></i>
                                                         </a>
                                                     </div>
                                                 </li>

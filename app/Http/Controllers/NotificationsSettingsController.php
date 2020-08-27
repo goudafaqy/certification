@@ -76,7 +76,7 @@ class NotificationsSettingsController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
-       // $this->add_notification( $inputs, 'notifications');
+        $this->add_notification( $inputs, 'notifications');
         if($inputs['sending_to'] == 'users' ){
 
             

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class CourseController extends Controller
     var $examRepo;
     var $materialRepo;
     var $appointmentRepo;
+    var $updateRepo;
 
     /**
      * Create a new controller instance.
@@ -29,7 +31,8 @@ class CourseController extends Controller
         UserRepo $userRepo,
         ExamRepo $examRepo,
         MaterialRepo $materialRepo,
-        CourseAppointmentRepo $appointmentRepo
+        CourseAppointmentRepo $appointmentRepo,
+        CourseUpdateRepo $updateRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -37,6 +40,7 @@ class CourseController extends Controller
         $this->examRepo = $examRepo;
         $this->materialRepo = $materialRepo;
         $this->appointmentRepo = $appointmentRepo;
+        $this->updateRepo = $updateRepo;
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -90,9 +94,10 @@ class CourseController extends Controller
         return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type]);
     }
 
-    private function ads($course, $type)
+    private function update($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab5', 'type' => $type]);
+        $updates = $this->updateRepo->getAll($course->id);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab5', 'type' => $type, 'updates' => $updates]);
     }
 
     private function exams($course, $type)

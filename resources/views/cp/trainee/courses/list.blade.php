@@ -35,11 +35,11 @@
                                                 <td class="text-center">{{ $course->title_ar }}</td>
                                                 <td class="text-center">
                                                     @if($course->type == 'recorded')
-                                                        دورة مسجلة
+                                                        دورات مسجلة
                                                     @elseif($course->type == 'face_to_face')
-                                                        حضور فعلي
+                                                    التدريب حضورياً
                                                     @elseif($course->type == 'live')
-                                                        حضور أونلاين
+                                                    التدريب عن بعد
                                                     @else
                                                         تعليم مدمج
                                                     @endif

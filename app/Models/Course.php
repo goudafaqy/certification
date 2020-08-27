@@ -32,6 +32,7 @@ class Course extends Model
         'type',
         'image',
         'seats',
+        'zoom',
         'created_at',
         'updated_at',
     ];
@@ -81,5 +82,13 @@ class Course extends Model
      */
     public function getTitleAttribute(){
         return $this["title_".App::getLocale()];
+    }
+
+    /**
+     * Get the updates for the course.
+     */
+    public function updates()
+    {
+        return $this->hasMany('App\Models\CourseUpdate');
     }
 }
