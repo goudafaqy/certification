@@ -90,7 +90,7 @@ return [
     */
 
     'from' => [
-        'address' =>  'adlytmscenter@gmail.com',
+        'address' =>  'Jtc-Trainingplat@mail.moj.gov.sa',
         'name' =>'العادلى للدورات التدريبة',
     ],
 
