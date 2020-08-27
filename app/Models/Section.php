@@ -26,5 +26,14 @@ class Section extends Model
         'updated_at',
     ];
 
+     /**
+     * Get the units for the course.
+     */
+    public function units()
+    {
+        return $this->hasMany('App\Models\Unit','section_id');
+    }
+    
+
     
 }
