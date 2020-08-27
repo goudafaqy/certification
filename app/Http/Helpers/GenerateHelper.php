@@ -6,7 +6,7 @@ class GenerateHelper{
 
     public static function generateCourseCode($id, $categoryLetter){
         $prefix = "JTC";
-        $higri = "42";
+        $higri = "42"; // To do automatically ...
         return $prefix . "-" . $categoryLetter . $higri . $id;
     }
 

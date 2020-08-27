@@ -48,15 +48,15 @@
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="حضور أونلاين">
+                                                                           value="التدريب عن بعد">
                                                                 @elseif($course->type == 'recorded')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="دورة مسجلة">
+                                                                           value="دورات مسجلة">
                                                                 @elseif($course->type == 'face_to_face')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="حضور فعلي">
+                                                                           value="التدريب حضورياً">
                                                                 @else
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
