@@ -12,10 +12,12 @@ class CategoryRepoValidation implements CategoryValidation{
             'insert' => [
                 'title_ar' => 'required',
                 'title_en' => 'required',
+                'letter' => 'required',
             ],
             'update' => [
                 'title_ar' => 'required',
                 'title_en' => 'required',
+                'letter' => 'required',
             ],
         ];
     }

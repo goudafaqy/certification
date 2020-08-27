@@ -111,6 +111,17 @@ class CourseAppointmentController extends Controller
      */
     public function reset($course_id)
     {
+        $dataCourse = [
+            'from_time'       => null,
+            'to_time'         => null,
+            'lec_num'         => 0,
+            'course_hours'    => 0,
+            'course_days'     => 0,
+            'start_date'      => null,
+            'end_date'        => null,
+            'num_of_repeat'   => 0,
+        ];
+        $this->courseRepo->update($dataCourse, $course_id);
         $result = $this->courseAppRepo->deleteByCourseId($course_id);
         if($result){
             return redirect('courses/appointments/'.$course_id)->with('deleted', 'تم حذف الموعد بنجاح');
@@ -139,6 +150,10 @@ class CourseAppointmentController extends Controller
             ];
             $this->webinarRepo->save($data);
         }
+        $dataCourse = [
+            'zoom'       => 1,
+        ];
+        $this->courseRepo->update($dataCourse, $course_id);
         return redirect()->back();
 
     }
