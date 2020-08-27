@@ -94,4 +94,8 @@ class DateHelper{
         }
         return ($dur == 'AM') ? (int)$time : (int)($time) + 12 ;
     }
+
+    public static function getCurrentDate(){
+        return Carbon::now()->toDateTimeString();
+    }
 }

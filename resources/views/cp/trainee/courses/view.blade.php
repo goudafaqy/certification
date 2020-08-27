@@ -5,6 +5,7 @@
         <div class="box box-default">
             <div class="wrapper-box">
                 <div class="profile-card active">
+                    @if($course->start_date <= $currentDate)
                     <div class="profile-card-body">
                         <div class="form-course">
                             <div class="user-ragistration">
@@ -276,6 +277,16 @@
                             </section>
                         </div>
                     </div>
+                    @else
+                    <div class="profile-card-body">
+                        <div class="alert alert-info text-right" role="alert">
+                            <h4 class="alert-heading">الأستاذ المتدرب <b>{{ Auth::user()->username }}</b> </h4>
+                            <p style="margin-top: 20px;">هذه الدورة التدريبية تبدأ بتاريخ <b>{{ $course->start_date }}  <i class="fas fa-exclamation-triangle"></i></b></p>
+                            <hr>
+                            <p class="mb-0">لذا لن تتمكن من مشاهدة تفاصيل هذه الدورة حتى تاريخ بداية الدورة و شكراً </p>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
