@@ -6,13 +6,13 @@
 
         <div id="swiper" class="swiper-container loading no-printme">
             <div class="swiper-wrapper">
-            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/shutterstock_1540253891.jpg')}})">
                     <div class="cover">
                         <div class="container">
-                            <div class="header-content">
-                                <h2>رؤية المركز</h2> 
+                            <div class="header-content right-content">
+                            <a href="" class="btn04 btn05"><span>رؤيتنا</span></a>
                                 <h6>
-                              مرجع فني معياري رائد ,ومزود متميز,في التأهيل والتدريب
+                              أن يكون المركز مرجعا فنيا ومعياريا رائدا ومزودا متميزا في التأهيل والتدريب
                           
                                 </h6>
 
@@ -20,15 +20,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/shutterstock_389579191.jpg')}})">
                     <div class="cover">
                         <div class="container">
-                            <div class="header-content">
-                                <h2>رسالة المركز</h2> 
-                                <h6>
+                            <div class="header-content left-content">
+                            <a href="" class="btn04 btn05"><span>رسالتنا</span></a>
+                                <h5>
                                 رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
                           
-                                </h6>
+                                </h65>
 
                             </div>
                         </div>
