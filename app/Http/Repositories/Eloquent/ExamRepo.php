@@ -43,7 +43,7 @@ class ExamRepo extends Repository implements ExamEloquent
                 || ($exam->exam_date == date("Y-m-d") && $exam->end_time <= date("H:i"))) {
                 $exam->status = 1; // Finished
 
-                if($userExam->submitted) {
+                if($userExam && $userExam->submitted) {
                     $exam->time_spent = Carbon::make($userExam->submit_time)
                         ->diffInMinutes(Carbon::make($userExam->start_time));
                 }
