@@ -123,11 +123,7 @@ Auth::routes();
 
 
     Route::get('test', function (){
-       $startat = '12:35 PM';
-       $endat = '1:35 PM';
-        $start = Carbon::parse($startat);
-       $end =  Carbon::parse($endat);
-       dd($end->diffInRealMinutes($start));
+       return \App\Http\Helpers\ZoomHelper::getAttendeesReport('83817922541');
     });
 
     // Course notifications routes ...
@@ -175,6 +171,9 @@ Auth::routes();
 // Instructor dashboard routes ...
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('Instructor')->group(function () {
+        Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance');
+        Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');
+
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
         Route::get('{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
 
