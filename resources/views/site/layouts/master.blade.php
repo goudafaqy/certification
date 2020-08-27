@@ -497,7 +497,6 @@
             $('#fail').hide();
             $('#sccess').hide();
             var value = $('#newsletter_email').val();
-            alert(value);
             if(value == '' || IsEmail(value) == false){
                 $('#fail').show();
             }else{
