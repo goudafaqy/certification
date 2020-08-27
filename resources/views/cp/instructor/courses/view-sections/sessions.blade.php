@@ -32,8 +32,8 @@
                         <td class="priority text-center">{{ $session->from_time }}</td>
                         <td class="priority text-center">{{ $session->to_time }}</td>
                         <td class="priority text-center">
-                            <a style="padding: 7px; border: solid 1px #A1825C;" href="{{$session->webinar->start_url}}" target="_blanck"><i class="far fa-play-circle"></i></a>
-                            <a style="padding: 7px; border: solid 1px #A1825C; margin-right: 2px;" href="#" target="_blanck"><i class="fa fa-list"></i></a>
+                            <a style="padding: 7px; border: solid 1px #A1825C;" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
+                            <a style="padding: 7px; border: solid 1px #A1825C; margin-right: 2px;" href="{{isset($session->webinar)?url('instructor/courses/webinar/'.$session->webinar->id.'/attendance'):'#'}}" target="_blanck"><i class="fa fa-list"></i></a>
                         </td>
                     </tr>
                     @endforeach

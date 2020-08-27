@@ -22,4 +22,8 @@ class Webinar extends Model
         "course_id",
         "course_appointments_id"
     ];
+
+    public function attendances(){
+        return $this->hasMany(Attendance::class);
+    }
 }
