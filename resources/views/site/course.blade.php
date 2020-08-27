@@ -166,7 +166,7 @@
                                                                 </h5>
                                                             </div>
                                                             <div id="subsection-{{$inner}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-{{$inner}}" style="">
-                                                                <div class="panel-body">
+                                                                <div class="panel-body" style="text-align:center">
                                                                 <p> <?php echo $unit->text??'' ?></p>
                                                                 </div>
                                                             </div>
