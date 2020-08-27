@@ -223,9 +223,9 @@
                                             <label for="type">نوع الدورة</label>
                                             <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
                                                 <option value="">--</option>
-                                                <option <?php if($course->type == 'recorded'){ ?> selected <?php } ?> value="recorded">دورة مسجلة</option>
-                                                <option <?php if($course->type == 'face_to_face'){ ?> selected <?php } ?> value="face_to_face">حضور فعلي</option>
-                                                <option <?php if($course->type == 'live'){ ?> selected <?php } ?> value="live">حضور أونلاين</option>
+                                                <option <?php if($course->type == 'recorded'){ ?> selected <?php } ?> value="recorded">دورات مسجلة</option>
+                                                <option <?php if($course->type == 'face_to_face'){ ?> selected <?php } ?> value="face_to_face"> التدريب حضورياً</option>
+                                                <option <?php if($course->type == 'live'){ ?> selected <?php } ?> value="live">التدريب عن بعد</option>
                                                 <option <?php if($course->type == 'blended'){ ?> selected <?php } ?> value="blended">تعليم مدمج</option>
                                             </select>
                                         </div>

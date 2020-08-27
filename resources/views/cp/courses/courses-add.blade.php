@@ -204,9 +204,9 @@
                                             <label for="type">نوع الدورة</label>
                                             <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
                                                 <option value="">--</option>
-                                                <option value="recorded">دورة مسجلة</option>
-                                                <option value="face_to_face">حضور فعلي</option>
-                                                <option value="live">حضور أونلاين</option>
+                                                <option value="recorded">دورات مسجلة</option>
+                                                <option value="face_to_face">التدريب حضورياً</option>
+                                                <option value="live">التدريب عن بعد</option>
                                                 <option value="blended">التعليم المدمج</option>
                                             </select>
                                         </div>

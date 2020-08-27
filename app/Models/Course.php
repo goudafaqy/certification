@@ -32,6 +32,7 @@ class Course extends Model
         'type',
         'image',
         'seats',
+        'zoom',
         'created_at',
         'updated_at',
     ];

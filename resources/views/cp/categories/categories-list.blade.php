@@ -44,6 +44,7 @@
                                                 <th class="th-sm text-center">#</th>
                                                 <th class="th-sm text-center">العنوان باللغة العربية</th>
                                                 <th class="th-sm text-center">العنوان باللغة الإنجليزية</th>
+                                                <th class="th-sm text-center">الرمز</th>
                                                 <th class="th-sm text-center">الإجراءات</th>
                                             </tr>
                                         </thead>
@@ -53,6 +54,7 @@
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $category->title_ar }}</td>
                                                 <td class="text-center">{{ $category->title_en }}</td>
+                                                <td class="text-center">{{ $category->letter }}</td>
                                                 <td class="text-center">
                                                     <a class="btn btn-info" href="/categories/update/<?php echo $category->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="/categories/delete-category/<?php echo $category->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>

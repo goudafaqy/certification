@@ -19,4 +19,17 @@ class CategoryRepo extends Repository implements CategoryEloquent{
         return $category->courses()->delete();
     }
 
+    public function getExistLetters(){
+        $letters = Category::select('letter')->get();
+        $lettersArr = [];
+        foreach ($letters as $letter) {
+            array_push($lettersArr, $letter->letter);
+        }
+        return $lettersArr;
+    }
+
+    public function getAllLetters(){
+        return range('A', 'Z');
+    }
+
 }

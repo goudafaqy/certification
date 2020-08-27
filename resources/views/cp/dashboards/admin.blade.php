@@ -8,29 +8,13 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title"> الخدمات الإلكترونية</h3>
+                                <h3 class="widget-title">الإحصائيات</h3>
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">
                             <div class="row justify-content-center">
-                                <div class="col-md-4 new-ser">
-                                    <a target="" href="">
-                                        <img src="{{ asset('images/prof.png') }}">
-                                        طلب إفادة
-                                    </a>
-                                </div>
-                                <div class="col-md-4 new-ser">
-                                    <a target="" href="">
-                                        <img src="{{ asset('images/cancel.png') }}">
-                                        طلب حذف دورة
-                                    </a>
-                                </div>
-
-                                <div class="col-md-4 new-ser">
-                                    <a target="" href="">
-                                        <img src="{{ asset('images/cancel2.png') }}">
-                                        طلب إلغاء تسجيل دورة
-                                    </a>
+                                <div class="col-md-12 new-ser">
+                                    <span style="color: #A58661">جاري العمل على إضافة بعض الإحصائيات  <i class="fa fa-cogs"></i></span>
                                 </div>
                             </div>
                         </div>

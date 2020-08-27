@@ -109,8 +109,16 @@
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">المواعيد الفعلية</h3>
+                                @if($course->zoom == 0)
                                 <a href="/courses/appointments/reset/<?php echo $course->id; ?>" style="color: #FFF; padding: 10px;" class="btn btn-primary">إعادة إستخراج مواعيد الدورة <i class="fa fa-sync-alt"></i></a>
+                                @endif
+                                @if($course->zoom == 0)
                                 <a href="/courses/appointments/zoom/<?php echo $course->id; ?>" style="color: #FFF; padding: 10px;" class="btn btn-primary">جدولة على زوم<i class="fa fa-calendar"></i></a>
+                                @else
+                                <div class="alert alert-success" style="padding: 10px 50px; border-radius: 3px;">
+                                    <b>تمت جدولة المواعيد بنجاح <i class="fa fa-check-circle"></i></b>
+                                </div>
+                                @endif
                                 <a style="font-size: 1.1em;" href="{{ route('courses-list') }}" class="widget-title">قائمة الدورات <i class="fa fa-arrow-left"></i></a>
                             </div>
                         </div>
@@ -134,7 +142,9 @@
                                                 <th class="th-sm text-center">اليوم</th>
                                                 <th class="th-sm text-center">وقت البداية</th>
                                                 <th class="th-sm text-center">وقت النهاية</th>
+                                                @if($course->zoom == 0)
                                                 <th class="th-sm text-center">الإجراءات</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -158,9 +168,11 @@
                                                     {{ explode(" ", $appointment->to_time)[0] }} ص
                                                     @endif
                                                 </td>
+                                                @if($course->zoom == 0)
                                                 <td class="text-center">
                                                     <a id="delete" href="/courses/appointments/delete/<?php echo $appointment->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="إلغاء الموعد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                         </tbody>

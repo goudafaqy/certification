@@ -24,11 +24,11 @@
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
                                                 @if($course->type == 'live')
-                                                <h6 style="padding-right: 10px;">حضور أونلاين</h6>
+                                                <h6 style="padding-right: 10px;">التدريب عن بعد</h6>
                                                 @elseif($course->type == 'recorded')
-                                                <h6 style="padding-right: 10px;">دورة مسجلة</h6>
+                                                <h6 style="padding-right: 10px;">دورات مسجلة</h6>
                                                 @elseif($course->type == 'face_to_face')
-                                                <h6 style="padding-right: 10px;">حضور فعلي</h6>
+                                                <h6 style="padding-right: 10px;">التدريب حضورياً</h6>
                                                 @else
                                                 <h6 style="padding-right: 10px;">تعليم مدمج</h6>
                                                 @endif
@@ -68,11 +68,11 @@
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
                                                 @if($course->type == 'live')
-                                                <h6>أونلاين</h6>
+                                                <h6>التدريب عن بعد</h6>
                                                 @elseif($course->type == 'recorded')
-                                                <h6>دورة مسجلة</h6>
+                                                <h6>دورات مسجلة</h6>
                                                 @elseif($course->type == 'face_to_face')
-                                                <h6>حضور فعلي</h6>
+                                                <h6>التدريب حضورياً</h6>
                                                 @else
                                                 <h6>تعليم مدمج</h6>
                                                 @endif
