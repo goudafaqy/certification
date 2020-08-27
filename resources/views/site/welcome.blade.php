@@ -349,7 +349,7 @@
                                         <form>
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1"><img src="images/man.png" class="img-fluid" style="width:20px !important;height:20px !important"></span>
+                                                <span class="input-group-text" id="basic-addon1"><img src="{{asset('site-assets/images/mail.png')}}" class="img-fluid" style="width:20px !important;height:20px !important"></span>
                                             </div>
                                             <input id="email" required="" name="email" class="form-control" type="email" placeholder="البريد الإلكتروني">
                                         </div>
