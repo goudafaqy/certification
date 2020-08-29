@@ -21,7 +21,6 @@ class WelcomeController extends Controller
     public function index(){
         $advertisments = Advertisment::all();
         $testmonials = Testmonial::all();
-
         $sliderItems = Classification::where("home_page_display",1)->orderBy('created_at','DESC')->take(4)->get();
         return view('site.welcome',compact("sliderItems","advertisments",'testmonials'));
     }

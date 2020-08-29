@@ -37,7 +37,7 @@
 
 
                                     <div class="form-group" style="margin-top: 20px;">
-                                        <label for="name">ألاسم</label>
+                                        <label for="name">الاسم</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="" name="name" value="{{$item->name??''}}">
                                     </div>
                                        

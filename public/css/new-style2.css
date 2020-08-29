@@ -18,11 +18,11 @@ body{
 }
 
 .searchclass > .form-control:focus{
- 
+
     border-radius: 8px;
     border: 0;
-box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06); 
-    transition: .4s 
+box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
+    transition: .4s
 }
 
 .navbar-light .setting-menu a.btn-outline-success{
@@ -66,7 +66,7 @@ box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
     font-size: 13px;
 }
 
-h3.p-header { 
+h3.p-header {
     font-size: 23px;
 }
 
@@ -97,9 +97,9 @@ h3.p-header {
 .nav-pills .nav-link.active:before {
     position: absolute;
         content: " ";
-     
+
     border-width: 0px;
-  
+
 }
 .nav-pills .nav-link.active:after {
    content: '';
@@ -142,7 +142,7 @@ h3.p-header {
 .author-contact p { color: #fff; margin-bottom: 6px}
 .author-contact p i { color: #A58661; margin-left: 10px; }
 
-.author-contact .social i { color: #A58661; margin-left: 10px; 
+.author-contact .social i { color: #A58661; margin-left: 10px;
 background: #fff;
     border-radius: 50%;
     width: 33px; height: 33px;
@@ -152,20 +152,20 @@ background: #fff;
 }
 
 .inst-info-details { padding: 40px 0 10px}
-.inst-info-details .bio p {  
+.inst-info-details .bio p {
     padding: 12px 20px;
     margin-bottom: 6px
 }
-.inst-info-details .bio p i {  
+.inst-info-details .bio p i {
    margin-left: 6px
 }
-.inst-info-details .bio p:nth-child(odd) {  
+.inst-info-details .bio p:nth-child(odd) {
     background: #273044;
     border-radius: 50px 10px;
     color: #fff;
 }
 
-.inst-info-details  h2 { 
+.inst-info-details  h2 {
     font-weight: 700; border-right: 3px solid #A58661;
     padding-right: 10px ; font-size: 25px; margin-bottom: 20px}
 
@@ -226,9 +226,9 @@ background: #fff;
 
 .role-label{
     font-size: 0.8em;
-    padding: 5px 10px; 
-    background-color: #333; 
-    color: #FFF; 
+    padding: 5px 10px;
+    background-color: #333;
+    color: #FFF;
     border-radius: 3px;
 }
 
@@ -264,7 +264,7 @@ div.bootstrap-datetimepicker-widget table{
 div.bootstrap-datetimepicker-widget table .btn-primary{
     padding: 5px 10px;
     height: auto;
-    width: auto; 
+    width: auto;
 }
 
 .spanner{
@@ -281,7 +281,7 @@ div.bootstrap-datetimepicker-widget table .btn-primary{
     z-index: 1000;
     visibility: hidden;
   }
-  
+
   .overlay{
     position: fixed;
       width: 100%;
@@ -289,7 +289,7 @@ div.bootstrap-datetimepicker-widget table .btn-primary{
     background: rgba(0,0,0,0.5);
     visibility: hidden;
   }
-  
+
   .loader,
   .loader:before,
   .loader:after {
@@ -347,7 +347,7 @@ div.bootstrap-datetimepicker-widget table .btn-primary{
       box-shadow: 0 2.5em 0 0;
     }
   }
-  
+
   .show{
     visibility: visible;
   }
@@ -355,14 +355,14 @@ div.bootstrap-datetimepicker-widget table .btn-primary{
   .hide{
     visibility: hidden;
   }
-  
+
   .spanner, .overlay{
       opacity: 0;
       -webkit-transition: all 0.3s;
       -moz-transition: all 0.3s;
       transition: all 0.3s;
   }
-  
+
   .spanner.show, .overlay.show {
       opacity: 1
   }
@@ -380,13 +380,13 @@ table.table-condensed{
 .actions-btns{
     padding: 5px 10px;
     height: auto;
-    width: auto; 
+    width: auto;
 }
 
 .input-group .date1 .btn .btn-primary{
     padding: 5px 10px;
     height: auto;
-    width: auto; 
+    width: auto;
 }
 button[role="combobox"]{
     height: 40px !important;
@@ -405,12 +405,12 @@ button[role="combobox"]{
 	.dropdown-menu li{
 		position: relative;
 	}
-	.nav-item .submenu{ 
+	.nav-item .submenu{
 		display: none;
 		position: absolute;
 		right:100%; top:-7px;
 	}
-	.nav-item .submenu-left{ 
+	.nav-item .submenu-left{
 		right:100%; left:auto;
 	}
 	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
@@ -418,4 +418,4 @@ button[role="combobox"]{
 		display: block;
 	}
 }
- 
+

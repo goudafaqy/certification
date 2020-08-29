@@ -5,6 +5,7 @@
         <div class="box box-default">
             <div class="wrapper-box">
                 <div class="profile-card active">
+                    @if($course->start_date <= $currentDate)
                     <div class="profile-card-body">
                         <div class="form-course">
                             <div class="user-ragistration">
@@ -14,6 +15,43 @@
                                             <img src="{{url($course->image)}}" class="img-fluid" width="60" alt=""
                                                  style="width:200px !important">
                                             <h3>{{$course->title_ar}}</h3>
+
+                                            <div class="course-review star-review">
+
+                                            
+
+                                             <!-- rating-widget -->
+                                            <section class='rating-widget'>
+  
+                                            <!-- Rating Stars Box -->
+                                                <div class='rating-stars text-center'>
+                                                    <ul id='stars'>
+                                                        <li class='star' title='Poor' data-value='1'>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        </li>
+                                                        <li class='star' title='Fair' data-value='2'>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        </li>
+                                                        <li class='star' title='Good' data-value='3'>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        </li>
+                                                        <li class='star' title='Excellent' data-value='4'>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        </li>
+                                                        <li class='star' title='WOW!!!' data-value='5'>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+  
+                                                <div class='success-box'>
+                                                    <div class='clearfix'></div>
+                                                    تقيم الكورس
+                                                    <div class='text-message'></div>
+                                                    <div class='clearfix'></div>
+                                                </div>
+                                            </section>
+                                            <!-- end rating-widget -->
                                         </div>
                                         <div class="col-md-9 register-right">
                                             <div class="tab-content" id="myTabContent">
@@ -47,15 +85,15 @@
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="حضور أونلاين">
+                                                                           value="التدريب عن بعد">
                                                                 @elseif($course->type == 'recorded')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="دورة مسجلة">
+                                                                           value="دورات مسجلة">
                                                                 @elseif($course->type == 'face_to_face')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="حضور فعلي">
+                                                                           value="التدريب حضورياً">
                                                                 @else
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
@@ -263,6 +301,16 @@
                             </section>
                         </div>
                     </div>
+                    @else
+                    <div class="profile-card-body">
+                        <div class="alert alert-info text-right" role="alert">
+                            <h4 class="alert-heading">الأستاذ المتدرب <b>{{ Auth::user()->username }}</b> </h4>
+                            <p style="margin-top: 20px;">هذه الدورة التدريبية تبدأ بتاريخ <b>{{ $course->start_date }}  <i class="fas fa-exclamation-triangle"></i></b></p>
+                            <hr>
+                            <p class="mb-0">لذا لن تتمكن من مشاهدة تفاصيل هذه الدورة حتى تاريخ بداية الدورة و شكراً </p>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

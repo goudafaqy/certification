@@ -66,6 +66,7 @@ Auth::routes();
         Route::get('list', 'CourseController@list')->name('courses-list');
         Route::get('add', 'CourseController@add')->name('courses-add');
         Route::get('update/{id}', 'CourseController@update')->name('courses-update');
+        Route::post('duplicate', 'CourseController@duplicate')->name('courses-duplicate');
         Route::post('save-course', 'CourseController@create')->name('save-course');
         Route::get('delete-course/{id}', 'CourseController@delete')->name('delete-course');
         Route::post('update-course', 'CourseController@edit')->name('update-course');
@@ -123,11 +124,7 @@ Auth::routes();
 
 
     Route::get('test', function (){
-       $startat = '12:35 PM';
-       $endat = '1:35 PM';
-        $start = Carbon::parse($startat);
-       $end =  Carbon::parse($endat);
-       dd($end->diffInRealMinutes($start));
+       return \App\Http\Helpers\ZoomHelper::getAttendeesReport('83817922541');
     });
 
     // Course notifications routes ...
@@ -175,6 +172,9 @@ Auth::routes();
 // Instructor dashboard routes ...
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('Instructor')->group(function () {
+        Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance');
+        Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');
+
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
         Route::get('{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
 

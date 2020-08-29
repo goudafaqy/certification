@@ -32,6 +32,7 @@ class Course extends Model
         'type',
         'image',
         'seats',
+        'zoom',
         'created_at',
         'updated_at',
     ];
@@ -89,5 +90,13 @@ class Course extends Model
     public function updates()
     {
         return $this->hasMany('App\Models\CourseUpdate');
+    }
+
+    /**
+     * Get the materials for the course.
+     */
+    public function materials()
+    {
+        return $this->hasMany('App\Models\Material', 'course_id');
     }
 }
