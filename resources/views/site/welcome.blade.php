@@ -6,13 +6,13 @@
 
         <div id="swiper" class="swiper-container loading no-printme">
             <div class="swiper-wrapper">
-            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/shutterstock_1540253891.jpg')}})">
                     <div class="cover">
                         <div class="container">
-                            <div class="header-content">
-                                <h2>رؤية المركز</h2> 
+                            <div class="header-content right-content">
+                            <a href="" class="btn04 btn05"><span>رؤيتنا</span></a>
                                 <h6>
-                              مرجع فني معياري رائد ,ومزود متميز,في التأهيل والتدريب
+                              أن يكون المركز مرجعا فنيا ومعياريا رائدا ومزودا متميزا في التأهيل والتدريب
                           
                                 </h6>
 
@@ -20,15 +20,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/shutterstock_389579191.jpg')}})">
                     <div class="cover">
                         <div class="container">
-                            <div class="header-content">
-                                <h2>رسالة المركز</h2> 
-                                <h6>
+                            <div class="header-content left-content">
+                            <a href="" class="btn04 btn05"><span>رسالتنا</span></a>
+                                <h5>
                                 رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
                           
-                                </h6>
+                                </h65>
 
                             </div>
                         </div>
@@ -289,14 +289,121 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- <div class="col-sm-6">
+                  <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                  <div class="testimonial-container">
+                      <div class="slider testimonial-vertical">
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫‪...‬‬ ‫مطبوعه‬ ‫تصامیم‬ ‫كانت‬ ‫سواء‬ ‫بالتصامیم‬ ‫النصوص‬ ‫وضع‬ ‫طریقه‬ ‫لیتصور‬ ‫العمیل‬ ‫على‬ ‫لتعرض‬ ‫التصامیم‬ ‫في‬ ‫یوضع‬ ‫افتراضي‬ ‫نموذج‬
+                                              ‫...‬ ‫انترنت‬ ‫مواقع‬ ‫نماذج‬ ‫او‬ ‫‪...‬‬ ‫المثال‬ ‫سبیل‬ ‫على‬ ‫فلایر‬ ‫او‬ ‫بروشور‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t1_bfxoncA.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫حبیب‬ ‫رؤؤف‬</h3>
+                                              <div class="regency">‫قاضى‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫‪...‬‬ ‫مطبوعه‬ ‫تصامیم‬ ‫كانت‬ ‫سواء‬ ‫بالتصامیم‬ ‫النصوص‬ ‫وضع‬ ‫طریقه‬ ‫لیتصور‬ ‫العمیل‬ ‫على‬ ‫لتعرض‬ ‫التصامیم‬ ‫في‬ ‫یوضع‬ ‫افتراضي‬ ‫نموذج‬
+  ‫...‬ ‫انترنت‬ ‫مواقع‬ ‫نماذج‬ ‫او‬ ‫‪...‬‬ ‫المثال‬ ‫سبیل‬ ‫على‬ ‫فلایر‬ ‫او‬ ‫بروشور‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t2_ZWaKnz7.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫رضا‬ ‫محمود‬ ‫احمد‬</h3>
+                                              <div class="regency">‫قضایا‬ ‫موثق‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                           @foreach($testmonials as $item)
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫بالتسجیل‬ ‫سارع‬ ‫سهلة‬ ‫بطریقة‬ ‫القانونیة‬ ‫المواد‬ ‫وهضم‬ ‫فهم‬ ‫فى‬ ‫تساعدك‬ ‫التى‬ ‫المریحة‬ ‫التدریبیة‬ ‫الادوات‬ ‫الطرق‬ ‫كافة‬ ‫یوفر‬ ‫المركز‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t3_OOsOKDS.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫على‬ ‫معوض‬</h3>
+                                              <div class="regency">‫متخصص‬ ‫مدرب‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                            @endforeach
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫المناسبة‬ ‫التدربیة‬ ‫الدورات‬ ‫عن‬ ‫والبحث‬ ‫التسجیل‬ ‫بسرعة‬ ‫انصح‬ ‫العدلى‬ ‫التدریب‬ ‫مركز‬ ‫منصة‬ ‫من‬ ‫كثیرا‬ ‫استفدت‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t4_Svl3e3S.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫احمد‬ ‫عمر‬ ‫محمد‬</h3>
+                                              <div class="regency">‫حر‬ ‫محامى‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div> -->
                 <div class="col-sm-6">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="testimonial-container">
                             <div class="slider testimonial-vertical">
 
                              @foreach($testmonials as $item)
-                                <div class="te-item" style="height: 200px">
+                                <div class="te-item" style="height: 240px; width: 100%; display: inline-block;">
                                     <div class="te-content">
                                         <div>
                                             <div class="content">

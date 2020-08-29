@@ -4961,8 +4961,8 @@ top: -7px;
 }
  .new-card2 form .form-group  .input-group-prepend .input-group-text{
     
-    background-color: #f7f7f7;
-    border: 1px solid #f7f7f7;
+    background-color: #ebebeb;
+    border: 1px solid #ebebeb;
     } 
     .new-card2 form .form-group input{
         font-size: 16px;
@@ -5020,3 +5020,5 @@ top: -7px;
     outline: none !important;
     
    }
+
+   

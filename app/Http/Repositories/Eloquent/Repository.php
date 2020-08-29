@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Repositories\Eloquent;
 
@@ -13,10 +13,10 @@ class Repository implements MainEloquent{
     {
         $this->model = $model;
     }
-    
+
     public function getAll($with = false)
     {
-        return ($with) ? $this->model->with($with)->get() : $this->model->get();
+        return ($with) && is_string($with) ? $this->model->with($with)->get() : $this->model->get();
     }
 
 
