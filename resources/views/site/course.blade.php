@@ -301,7 +301,7 @@
                                             <div class="item">
                                                 <div class="course-item-wrapper">
                                                     <div class="course-thumbnail">
-                                                        <a href="{{url('course/'.$coursee->id)}}"><img src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                                        <a href="{{url('course/'.$coursee->id)}}"><img  src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
                                                         <div class="price">{{$coursee->price}} SR</div>
                                                     </div>
                                                     <div class="thim-course-content">
@@ -348,7 +348,7 @@
                                         <div class="course-thumbnail">
                                             <img
                                                 src="{{url($course->image)}}"
-                                                class="attachment-full size-full wp-post-image img-fluid" alt="">
+                                                class="attachment-full size-full wp-post-image img-fluid" alt="" width="1600" height="790">
                                         </div>
                                         <div class="course-payment">
                                             <div class="course-price">

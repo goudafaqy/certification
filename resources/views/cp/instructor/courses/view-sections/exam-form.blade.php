@@ -8,89 +8,186 @@
                   action="{{ route('instructor-course-exam-create', ['id' => $id, 'type' => $type, 'examType' => $examType]) }}"
                   method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="row justify-content-center" style="padding: 20px 50px;">
-                    <div class="col-md-6">
-                        <div class="form-group">
+            <div class="row justify-content-center course_form" style="padding: 20px 20px;">
+                <div class="col-lg-6">
+                    <div>
+                        <label for="title_ar">العنوان</label>
+                        <div class="form-group input-group">                      
+                            <div class="input-group-prepend">
+                                <span class="input-group-text course-group" id="basic-addon1"><i class="fas fa-bookmark" style="font-size:16px"></i></span>
+                            </div>
+                            <input id="email" required="" name="text" class="form-control @error('title_ar') is-invalid @enderror" id="title_ar" name="title_ar" value="{{old('title_ar')}}" type="text">
+                        </div>
+                        <!-- <div class="form-group">
                             <label for="title_ar">العنوان</label>
                             <input type="text" class="form-control @error('title_ar') is-invalid @enderror"
                                    id="title_ar" name="title_ar" value="{{old('title_ar')}}">
-                        </div>
+                        </div> -->
                         @error('title_ar')
                         <span class="text-danger err-msg-title_ar" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="guide_ar">تفاصيل</label>
-                            <textarea class="form-control @error('guide_ar') is-invalid @enderror" id="guide_ar"
-                                      name="guide_ar">{{old('guide_ar')}}</textarea>
-                        </div>
-                        @error('guide_ar')
-                        <span class="text-danger err-msg-guide_ar" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div>
+                         <!-- <div class="form-group">
                             <label for="questions_no">عدد الأسئلة</label>
                             <input type="text" class="form-control @error('questions_no') is-invalid @enderror"
                                    id="questions_no" name="questions_no" value="{{old('questions_no')}}">
+                        </div> -->
+                                <label for="questions_no">عدد الأسئلة</label>
+                                <div class="form-group input-group">                    
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text course-group" id="basic-addon1"><i class="fas fa-list-ol" style="font-size:16px"></i></span>
+                                    </div>
+                                    <input id="email" required="" name="text" class="form-control @error('questions_no') is-invalid @enderror"
+                                        id="questions_no" name="questions_no" value="{{old('questions_no')}}" type="text">
+                                    </div>
+                                    @error('questions_no')
+                                    <span class="text-danger err-msg-questions_no" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                            </div>
                         </div>
-                        @error('questions_no')
-                        <span class="text-danger err-msg-questions_no" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="col-lg-6">
+                            <div>
+                           <!-- <div class="form-group">
                             <label for="question_point">نقاط كل سؤال</label>
                             <input type="text" class="form-control @error('question_point') is-invalid @enderror"
                                    id="question_point" name="question_point" value="{{old('question_point')}}">
+                        </div> -->
+                            <label for="question_point">نقاط كل سؤال</label>
+                                <div class="form-group input-group">                      
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text course-group" id="basic-addon1"><i class="fas fa-question" style="font-size:16px"></i></span>
+                                    </div>
+                                    <input id="email" required="" name="text" class="form-control @error('question_point') is-invalid @enderror"
+                                        id="question_point" name="question_point" value="{{old('question_point')}}" type="text">
+                                    </div>
+                                @error('question_point')
+                                <span class="text-danger err-msg-question_point" role="alert">
+                                <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                </div>
+                            </div>
                         </div>
-                        @error('question_point')
-                        <span class="text-danger err-msg-question_point" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="row" style="margin-top:1rem">
+                            <div class="col-lg-6">
+                                <div>
+                            <!-- <div class="form-group">
                             <label for="duration">مدة الامتحان</label>
                             <input type="text" class="form-control @error('duration') is-invalid @enderror"
                                    id="duration" name="duration" value="{{old('duration')}}">
-                        </div>
-                        @error('duration')
-                        <span class="text-danger err-msg-duration" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
+                        </div> -->
+                            <label for="duration">مدة الامتحان</label>
+                                <div class="form-group input-group">                     
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text course-group" id="basic-addon1"><i class="far fa-clock" style="font-size:13px"></i></span>
+                                    </div>
+                                    <input  type="number"  class="form-control @error('duration') is-invalid @enderror"
+                                        id="duration" name="duration" value="{{old('duration')}}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" style="background: #ebf0f3;font-size: 14px;color: #34405a;">MM</span>
+                                    </div>        
+                                </div>
+                                @error('duration')
+                                <span class="text-danger err-msg-duration" role="alert">
+                                <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="">
+                        <!-- <div class="form-group">
                             <label for="exam_date">تاريخ الامتحان</label>
                             <input type="text" class="form-control @error('exam_date') is-invalid @enderror"
                                    id="exam_date" name="exam_date" value="{{old('exam_date')}}">
-                        </div>
-                        @error('exam_date')
-                        <span class="text-danger err-msg-duration" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
+                        </div> -->
+                                <label for="exam_date">تاريخ الامتحان</label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                        </div>
+                                            <input placeholder="التاريخ" class="form-control  @error('exam_date') is-invalid @enderror"
+                                            id="exam_date" name="exam_date" value="{{old('exam_date')}}" name="date" type="date"  id="date" style=" padding-right:50px !important; ">
+                                    </div>
+                                            @error('exam_date')
+                                            <span class="text-danger err-msg-duration" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="">
+                                    <label for="guide_ar">تفاصيل</label>
+                                    <label class="ui-form-input-container">
+                                        <textarea class="ui-form-input @error('guide_ar') is-invalid @enderror" id="guide_ar"
+                                            name="guide_ar">{{old('guide_ar')}}</textarea>
+                                        <span class="form-input-label text-area"><i class="fas fa-book-open" style="font-size:16px;color:#283045"></i></span>
+                                    </label>
+                        <!-- <div class="form-group">
+                            <label for="guide_ar">تفاصيل</label>
+                            <textarea class="form-control @error('guide_ar') is-invalid @enderror" id="guide_ar"
+                                      name="guide_ar">{{old('guide_ar')}}</textarea>
+                        </div> -->
+                                        @error('guide_ar')
+                                        <span class="text-danger err-msg-guide_ar" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <div class="">
+                       <!-- <div class="form-group">
+                           <label for="questions">الاسئلة</label>
+                           <input type="file" class="form-control @error('questions') is-invalid @enderror"
+                                  id="questions" name="questions">
+                       </div> -->
+                                <label for="questions">الاسئلة</label>
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">اختر ملف</div>
+                                                <div class="file-select-name" id="noFile">No file chosen...</div> 
+                                                    <input type="file" name="chooseFile" id="chooseFile">
+                                                </div>
+                                            </div>
+                                             @error('questions')
+                                            <span class="text-danger err-msg-questions" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                            </div>
+                                        </div>
+                      
+                                        </div>
+              
+                    <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="">
+                        <!-- <div class="form-group">
                             <label for="start_time">ساعة البداية</label>
                             <input type="text" class="form-control @error('start_time') is-invalid @enderror"
                                    id="start_time" name="start_time" value="{{old('start_time')}}">
+                        </div> -->
+                        <div class="form-group">
+                        <label for="start_time">ساعة البداية</label>
+                            <div class="input-group date1" id="datetimepicker3">
+                            <span class="input-group-addon addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                                <input type="text" class="form-control @error('start_time') is-invalid @enderror"
+                                   id="start_time" name="start_time" value="{{old('start_time')}}" name="time" value="">
+                               
+                            </div>
                         </div>
                         @error('start_time')
                         <span class="text-danger err-msg-start_time" role="alert">
@@ -98,39 +195,109 @@
                         </span>
                         @enderror
                     </div>
+                    </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="">
+                        <!-- <div class="form-group">
                             <label for="end_time">ساعة النهاية</label>
                             <input type="text" class="form-control @error('end_time') is-invalid @enderror"
                                    id="end_time" name="end_time" value="{{old('end_time')}}">
+                        </div> -->
+                        
+                            <div class="form-group">
+                                <label for="end_time">ساعة النهاية</label>
+                                <div class="input-group date1" id="datetimepicker4">
+                                    <span class="input-group-addon addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                <input type="text" class="form-control @error('end_time') is-invalid @enderror"
+                                   id="end_time" name="end_time" value="{{old('end_time')}}" name="time">
+                               
+                                </div>
+                            </div>
+                            @error('end_time')
+                            <span class="text-danger err-msg-end_time" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        @error('end_time')
-                        <span class="text-danger err-msg-end_time" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="questions">الاسئلة</label>
-                            <input type="file" class="form-control @error('questions') is-invalid @enderror"
-                                   id="questions" name="questions">
+                        
+                   
                         </div>
-                        @error('questions')
-                        <span class="text-danger err-msg-questions" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                     </div>
-
                     <div class="col-md-12">
                         <button style="width: 25%; margin-top: 50px;" type="submit" class="btn btn-primary">حفظ</button>
                     </div>
-                </div>
-            </form>
+            </div>
+    <!-- </div>
 
-        </div>
-    </div>
+</div> -->
+<script>
 
-</div>
+ 
+
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
+        $('#datetimepicker4').datetimepicker({
+            format: 'LT'
+        });
+    });
+
+    $('#start_time').on('change', function(ev){
+        $('.datepicker-inline').hide();
+    });
+
+    $('#end_time').on('change', function(ev){
+        $('.datepicker-inline').hide();
+    });
+
+    $(document).ready(function () {
+
+        $('.datepicker').datepicker({
+            inline: true,
+            sideBySide: false,
+            format: 'mm/dd/yyyy',
+            startDate: '-3d'
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $('#dtBasicExample').DataTable({
+            "searching": false ,
+            "language": {
+                "lengthMenu": "عرض _MENU_ موعد في الصفحة الواحدة",
+                "zeroRecords": "لا يوجد مواعيد",
+                "info": "الصفحة رقم _PAGE_ من _PAGES_",
+                "infoEmpty": "لا يوجد",
+                "infoFiltered": "(نتيجة البحث من _MAX_ موعد)",
+                "search": "بحث  ",
+                "paginate": {
+                    "next": "التالي",
+                    "previous": "السابق",
+                }
+            }
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+    $(document).on('click', 'a#delete', function(e) {
+        e.preventDefault();
+        Swal.fire({
+        title: 'هل أنت متأكد ؟',
+        text: "لن تتمكن من التراجع عن هذا!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'نعم',
+        cancelButtonText: 'إلغاء'
+        }).then((result) => {
+            if (result.value) {
+                window.location = $(this).attr('href');
+            }
+        })
+    });
+
+</script>
