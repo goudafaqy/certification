@@ -10,7 +10,6 @@ use App\Models\Category;
 use App\Models\Advertisment;
 use App\Models\Testmonial;
 use App\Models\Newsletter;
-use App\Models\Section;
 
 class WelcomeController extends Controller
 {
@@ -49,10 +48,8 @@ class WelcomeController extends Controller
      */
     public function course($id){
         $course = Course::find($id);
-        $sections = Section::where('course_id',$id)->with('units')->get();
-        //dd($sections);
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
-        return view('site.course',compact('course','related_courses','sections'));
+        return view('site.course',compact('course','related_courses'));
     }
 
     /**

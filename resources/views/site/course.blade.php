@@ -143,44 +143,431 @@
                                     <div class="curriculum-scrollable">
                                         <ul class="curriculum-sections">
                                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                            <?php $counter = 1; ?>
-                                                @foreach($sections as $section)
                                                 
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading" role="tab" id="section-{{$counter}}">
-                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-{{$counter}}_contents" aria-expanded="false" aria-controls="section-{{$counter}}_contents">
+                                                    <div class="panel-heading" role="tab" id="section-1">
+                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-1_contents" aria-expanded="false" aria-controls="section-1_contents">
                                                             <a>
-                                                                 <i class="fa fa-chevron-down"></i>{{$section->title_ar??'' }}
+                                                                 <i class="fa fa-chevron-down"></i>الوحدة الأولى: مقدمة في المنازعات التجارية وتعريفها وأهم ما يميز النظام التجاري عن غيره
                                                             </a>
                                                         </h4>
                                                     </div>
-                                                    <div id="section-{{$counter}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="section-{{$counter}}" style="">
-                                                    <?php $inner = 1; ?>
-                                                        @foreach($section->units as $unit)
+                                                    <div id="section-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="section-1" style="">
+                                                        
                                                         <div class="panel-body">
-                                                            <div class="panel-heading" role="tab" id="subsection-{{$inner}}">
-                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-{{$inner}}_contents" aria-expanded="false" aria-controls="subsection-{{$inner}}_contents">
+                                                            <div class="panel-heading" role="tab" id="subsection-1">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-1_contents" aria-expanded="false" aria-controls="subsection-1_contents">
                                                                     <a>
-                                                                         <i class="fa fa-chevron-down"></i>{{$unit->title_ar??'' }}
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الأول : مقدمة في المنازعات التجارية وتعريفها
                                                                     </a>
                                                                 </h5>
                                                             </div>
-                                                            <div id="subsection-{{$inner}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-{{$inner}}" style="">
-                                                                <div class="panel-body" style="text-align:center">
-                                                                <p> <?php echo $unit->text??'' ?></p>
+                                                            <div id="subsection-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-1" style="">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>تعريف المنازعات التجارية</li>
+                                                                        <li>النشاط (1ـ1ـ1)</li>
+                                                                        <li>وحدة</li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <?php $inner++; ?>
-                                                        @endforeach
                                                         
-                                                       
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-2">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-2_contents" aria-expanded="false" aria-controls="subsection-2_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الثاني : أهم ما يميز النظام التجاري عن غيره
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-2_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-2">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>ما يميز النظام التجاري</li>
+                                                                        <li>ما يميز القضاء التجاري</li>
+                                                                        <li>النشاط (1ـ1ـ2)</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                 <?php $counter++; ?>
-                                                @endforeach
                                                 
-                                              
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="section-2">
+                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-2_contents" aria-expanded="false" aria-controls="section-2_contents">
+                                                            <a>
+                                                                 <i class="fa fa-chevron-down"></i>الوحدة الثانية: النزاعات التجارية
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="section-2_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="section-2">
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-1">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-1_contents" aria-expanded="false" aria-controls="subsection-1_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الثالث النزاعات الداخلة تحت اختصاص المحكمة التجارية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-1" style="">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>اختصاص المحكمة التجارية</li>
+                                                                        <li>النشاط (1ـ2ـ1)</li>
+                                                                        <li>شروط الدعوى المنظورة أمام المحكمة التجارية</li>
+                                                                        <li>النشاط (1ـ2ـ2)</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-2">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-2_contents" aria-expanded="false" aria-controls="subsection-2_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الرابع تعريف التاجر وما هي الأعمال التجارية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-2_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-2">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>تعريف التاجر</li>
+                                                                        <li>بيان الأعمال التجارية</li>
+                                                                        <li>النشاط (1ـ2ـ2)</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-3">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-3_contents" aria-expanded="false" aria-controls="subsection-3_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الخامس النزاعات الداخلة تحت اختصاص لجنة المنازعات المصرفية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-3_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-3">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>تأسيس اللجنة</li>
+                                                                        <li>اختصاص اللجنة</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-4">
+                                                                <h5 class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#subsection-4_contents" aria-expanded="false" aria-controls="subsection-4_contents">
+                                                                    <a role="button">
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع السادس النزاعات الداخلة تحت اختصاص لجنة الفصل في المخالفات والمنازعات التمويلية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-4_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-4">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>تأسيس اللجنة</li>
+                                                                        <li>اختصاص اللجنة</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-5">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-5_contents" aria-expanded="false" aria-controls="subsection-5_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع السابع النزاعات الداخلة تحت اختصاص لجنة الفصل في المنازعات والمخالفات التأمينية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-5_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-5">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>تأسيس اللجنة</li>
+                                                                        <li>اختصاص اللجنة</li>
+                                                                        <li>النشاط (1ـ2ـ3)</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-6">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-6_contents" aria-expanded="false" aria-controls="subsection-6_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الثامن النزاعات الداخلة تحت اختصاص لجنة الفصل في منازعات الأوراق المالية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-6_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-6">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>تأسيس اللجنة</li>
+                                                                        <li>اختصاص اللجنة</li>
+                                                                        <li>النشاط (2ـ1ـ1)</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-7">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-7_contents" aria-expanded="false" aria-controls="subsection-7_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع التاسع النزاعات التجارية الداخلة تحت اختصاص المحاكم العامة
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-7_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-7">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>النزاعات التجارية الداخلة تحت اختصاص المحاكم العامة</li>
+                                                                        <li>النشاط (2ـ1ـ2)</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="section-3">
+                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-3_contents" aria-expanded="false" aria-controls="section-3_contents">
+                                                            <a>
+                                                                 <i class="fa fa-chevron-down"></i>الوحدة الثالثة: وسائل الإثبات الخاصة بالنزاعات التجارية
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="section-3_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="section-3">
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-1">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-1_contents" aria-expanded="false" aria-controls="subsection-1_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع العاشر : أوراق التجار
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-1" style="">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-2">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-2_contents" aria-expanded="false" aria-controls="subsection-2_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الحادي عشر: العرف التجاري
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-2_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-2">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-3">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-3_contents" aria-expanded="false" aria-controls="subsection-3_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الثاني عشر: القرائن
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-3_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-3">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-4">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-4_contents" aria-expanded="false" aria-controls="subsection-4_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الثالث عشر: الدفاتر التجارية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-4_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-4">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-5">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-5_contents" aria-expanded="false" aria-controls="subsection-5_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الرابع عشر: الخبرة
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-5_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-5">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-6">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-6_contents" aria-expanded="false" aria-controls="subsection-6_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الخامس عشر: القيد المحاسبي
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-6_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-6">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-7">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-7_contents" aria-expanded="false" aria-controls="subsection-7_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع السادس عشر: ميزانيات الشركات
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-7_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-7">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-8">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-8_contents" aria-expanded="false" aria-controls="subsection-8_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع السابع عشر: سندات الشحن
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-8_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-8">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-9">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-9_contents" aria-expanded="false" aria-controls="subsection-9_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع الثامن عشر : الإثبات بالمحررات الالكترونية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-9_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-9">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="section-4">
+                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-4_contents" aria-expanded="false" aria-controls="section-4_contents">
+                                                            <a>
+                                                                 <i class="fa fa-chevron-down"></i>الوحدة الرابعة: وسائل فض المنازعات التجارية
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="section-4_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="section-4">
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-1">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-1_contents" aria-expanded="false" aria-controls="subsection-1_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع التاسع عشر:  الطريقة التقليدية
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-1" style="">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-2">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-2_contents" aria-expanded="false" aria-controls="subsection-2_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الموضوع العشرون : الوسائل الحديثة
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-2_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-2">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>فض النزاع التجاري عن طريق التحكيم</li>
+                                                                        <li>فض النزاع التجاري عن طريق المفاوضات المباشرة</li>
+                                                                        <li>فض النزاع التجاري عن طريق الوساطة والصلح</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="section-5">
+                                                        <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-5_contents" aria-expanded="false" aria-controls="section-5_contents">
+                                                            <a>
+                                                                 <i class="fa fa-chevron-down"></i>الاختبارات
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="section-5_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="section-5">
+                                                        
+                                                        <div class="panel-body">
+                                                            <div class="panel-heading" role="tab" id="subsection-1">
+                                                                <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-1_contents" aria-expanded="false" aria-controls="subsection-1_contents">
+                                                                    <a>
+                                                                         <i class="fa fa-chevron-down"></i>الاختبارات
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div id="subsection-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-1" style="">
+                                                                <div class="panel-body">
+                                                                    <ul>
+                                                                        <li>الاختبارات</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </ul>
                                     </div>
