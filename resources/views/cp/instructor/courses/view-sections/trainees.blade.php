@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     @foreach ($trainees as $trainee)
-                    <tr>
+                    <tr style="color: #FFF">
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td class="priority text-center">{{ $trainee->name_ar }}</td>
                     </tr>

@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     @foreach ($files as $file)
-                    <tr>
+                    <tr style="color: #FFF">
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td class="priority text-center">{{ $file->name_ar }}</td>
                         <td class="text-center">

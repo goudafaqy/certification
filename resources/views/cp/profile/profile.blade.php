@@ -9,7 +9,7 @@
                     </div>
                     <div class="profile-card-header">
                         <div class="circle">
-                            <img class="profile-pic" src="{{asset($user->image)}}" alt="img">
+                            <img class="profile-pic" src="{{asset($user->image)}}">
                             <div class="p-image">
                                 <i class="fa fa-camera upload-button"></i>
                             </div>
@@ -25,25 +25,25 @@
                             <nav>
                                 <ul>
                                     <li class="tab1">
-                                        <label for="tab1"> <img src="{{asset('images/man.png')}}" alt="img" style="width: 22px">
+                                        <label for="tab1"> <img src="{{asset('images/man.png')}}" style="width: 22px">
                                             الملف الشخصي</label>
                                     </li>
                                     @if(in_array('instructor', $user->roles->pluck('name')->toArray()))
                                         <li class="tab2">
                                             <label for="tab2"> <img src="{{asset('images/school.png')}}"
-                                                                    style="width: 20px" alt="img"> الكورسات</label>
+                                                                    style="width: 20px"> الكورسات</label>
                                         </li>
                                         <li class="tab3">
                                             <label for="tab3"> <img src="{{asset('images/bo.png')}}"
-                                                                    style="width: 22px" alt="img"> البحوث والدراسات</label>
+                                                                    style="width: 22px"> البحوث والدراسات</label>
                                         </li>
                                         <li class="tab4">
                                             <label for="tab4"> <img src="{{asset('images/training.png')}}"
-                                                                    style="width: 22px" alt="img"> الخبرات</label>
+                                                                    style="width: 22px"> الخبرات</label>
                                         </li>
                                         <li class="tab5">
                                             <label for="tab5"> <img src="{{asset('images/certificate.png')}}"
-                                                                    style="width: 22px" alt="img"> الشهادات</label>
+                                                                    style="width: 22px"> الشهادات</label>
                                         </li>
                                     @endif
                                 </ul>
@@ -194,7 +194,7 @@
                                                                       id="word-count-input"></textarea>
                                                             <span class="form-input-label">
                                                                 <img src="{{ asset('images/school.png') }}"
-                                                                     style="width: 20px" alt="img"><span data-repeater-delete
+                                                                     style="width: 20px"><span data-repeater-delete
                                                                                                type="button"
                                                                                                value="Delete"
                                                                                                class="delet">&times;</span></span>
@@ -228,7 +228,7 @@
                                                                       id="word-count-input"></textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/bo.png') }}"
-                                                                    style="width: 22px" alt="img"><span data-repeater-delete
+                                                                    style="width: 22px"><span data-repeater-delete
                                                                                               type="button"
                                                                                               value="Delete"
                                                                                               class="delet">&times;</span></span>
@@ -260,7 +260,7 @@
                                                                       id="word-count-input"></textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/training.png') }}"
-                                                                    style="width: 22px" alt="img"><span data-repeater-delete
+                                                                    style="width: 22px"><span data-repeater-delete
                                                                                               type="button"
                                                                                               value="Delete"
                                                                                               class="delet">&times;</span></span>
@@ -294,7 +294,7 @@
                                                                       id="word-count-input"></textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/certificate.png') }}"
-                                                                    style="width: 22px" alt="img"><span data-repeater-delete
+                                                                    style="width: 22px"><span data-repeater-delete
                                                                                               type="button"
                                                                                               value="Delete"
                                                                                               class="delet">&times;</span></span>
