@@ -107,29 +107,19 @@
                             <div class="tab-content">
                                 <div class="tab-pane course-tab-panel-overview course-tab-panel active" id="tab-overview">
                                     <div class="course-description" id="learn-press-course-description">
-
-
                                         <div class="thim-course-content">
                                             <h4> {{$course->overview}}</h4>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <div class="tab-pane course-tab-panel-curriculum course-tab-panel" id="tab-curriculum">
                                     <div class="course-curriculum" id="learn-press-course-curriculum">
-                                        <div class="section-header wow fadeInDown" data-wow-duration="2s" style="visibility: hidden; animation-duration: 2s; animation-name: none;">
-                                            <h4> المنازعات<span> التجارية</span></h4>
-
-                                        </div>
                                         <div class="curriculum-scrollable">
                                             <ul class="curriculum-sections">
                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                                <?php $counter = 1; ?>
+                                                    <?php $counter = 1; ?>
                                                     @foreach($sections as $section)
-                                                    
+
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading" role="tab" id="section-{{$counter}}">
                                                             <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-{{$counter}}_contents" aria-expanded="false" aria-controls="section-{{$counter}}_contents">
@@ -139,7 +129,7 @@
                                                             </h4>
                                                         </div>
                                                         <div id="section-{{$counter}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="section-{{$counter}}" style="">
-                                                        <?php $inner = 1; ?>
+                                                            <?php $inner = 1; ?>
                                                             @foreach($section->units as $unit)
                                                             <div class="panel-body">
                                                                 <div class="panel-heading" role="tab" id="subsection-{{$inner}}">
@@ -151,79 +141,23 @@
                                                                 </div>
                                                                 <div id="subsection-{{$inner}}_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-{{$inner}}" style="">
                                                                     <div class="panel-body" style="text-align:center">
-                                                                    <p> <?php echo $unit->text??'' ?></p>
+                                                                        <p> <?php echo $unit->text ?? '' ?></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <?php $inner++; ?>
                                                             @endforeach
-                                                            
-                                                        
+
+
                                                         </div>
                                                     </div>
                                                     <?php $counter++; ?>
                                                     @endforeach
-                                                    
-                                                
+
+
                                                 </div>
                                             </ul>
                                         </div>
-                                        <!-- <div class="curriculum-scrollable">
-                                            <ul class="curriculum-sections">
-                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading" role="tab" id="section-1">
-                                                            <h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-1_contents" aria-expanded="false" aria-controls="section-1_contents">
-                                                                <a>
-                                                                    <i class="fa fa-chevron-down"></i>الوحدة الأولى: مقدمة في المنازعات التجارية وتعريفها وأهم ما يميز النظام التجاري عن غيره
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-                                                        <div id="section-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="section-1" style="">
-
-                                                            <div class="panel-body">
-                                                                <div class="panel-heading" role="tab" id="subsection-1">
-                                                                    <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-1_contents" aria-expanded="false" aria-controls="subsection-1_contents">
-                                                                        <a>
-                                                                            <i class="fa fa-chevron-down"></i>الموضوع الأول : مقدمة في المنازعات التجارية وتعريفها
-                                                                        </a>
-                                                                    </h5>
-                                                                </div>
-                                                                <div id="subsection-1_contents" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="subsection-1" style="">
-                                                                    <div class="panel-body">
-                                                                        <ul>
-                                                                            <li>تعريف المنازعات التجارية</li>
-                                                                            <li>النشاط (1ـ1ـ1)</li>
-                                                                            <li>وحدة</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="panel-body">
-                                                                <div class="panel-heading" role="tab" id="subsection-2">
-                                                                    <h5 class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#subsection-2_contents" aria-expanded="false" aria-controls="subsection-2_contents">
-                                                                        <a>
-                                                                            <i class="fa fa-chevron-down"></i>الموضوع الثاني : أهم ما يميز النظام التجاري عن غيره
-                                                                        </a>
-                                                                    </h5>
-                                                                </div>
-                                                                <div id="subsection-2_contents" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subsection-2">
-                                                                    <div class="panel-body">
-                                                                        <ul>
-                                                                            <li>ما يميز النظام التجاري</li>
-                                                                            <li>ما يميز القضاء التجاري</li>
-                                                                            <li>النشاط (1ـ1ـ2)</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </ul>
-                                        </div> -->
                                     </div>
                                 </div>
 
@@ -331,6 +265,7 @@
                             </div>
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             </div>
                         </div>
                         <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
@@ -357,6 +292,8 @@
                                                                     </div>
                                                                 </div>
 =======
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                     </div>
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="related-courses">
@@ -379,7 +316,10 @@
                                                             <label>المعلم</label>
                                                             <div class="value" itemprop="name">
                                                                 <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
+<<<<<<< HEAD
 >>>>>>> ecdc6a62e6763402dac163a4e5d2bf6d38e41f70
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                                                             </div>
                                                         </div>
                                                     </div>
@@ -405,6 +345,7 @@
                     </div>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 {{--               =============right side============--}}
                 <div class="col-sm-12 col-md-4">
 
@@ -425,6 +366,8 @@
                                                     {{$course->price}} ريـال
                                                 </div>
 =======
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
             </div>
             {{-- =============right side============--}}
             <div class="col-sm-12 col-md-4">
@@ -442,7 +385,10 @@
                                             <span class="label">السعر</span>
                                             <div class="value ">
                                                 {{$course->price}} ريـال
+<<<<<<< HEAD
 >>>>>>> ecdc6a62e6763402dac163a4e5d2bf6d38e41f70
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                                             </div>
                                         </div>
 
@@ -522,22 +468,18 @@
                                                     <h4>يحتوي البرنامج علي </h4>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/cou.png')}}" width="20" class="im-fluid" style="width:20px !important">
-
                                                         <span class="label">وحدة تدريبية</span>
                                                     </li>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/computer.png')}}" width="20" class="im-fluid" style="width:20px !important">
-
                                                         <span class="label">نشاط</span>
                                                     </li>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/contract.png')}}" width="20" class="im-fluid" style="width:20px !important">
-
                                                         <span class="label">تقييم الجدارات</span>
                                                     </li>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/graph.png')}}" width="20" class="im-fluid" style="width:20px !important">
-
                                                         <span class="label">الأدوات والتجهيزات اللازمة</span>
                                                     </li>
                                                 </ul> -->
@@ -606,7 +548,6 @@
         $(document).on('click', '.dropdown-menu', function(e) {
             e.stopPropagation();
         });
-
         // make it as accordion for smaller screens
         if ($(window).width() < 992) {
             $('.dropdown-menu a').click(function(e) {
