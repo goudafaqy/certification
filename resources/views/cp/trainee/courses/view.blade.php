@@ -40,7 +40,7 @@
     
                                                     <div class='success-box'>
                                                         <div class='clearfix'></div>
-                                                        تقيم الكورس
+                                                        تقيم الدورة
                                                         <div class='text-message'></div>
                                                         <div class='clearfix'></div>
                                                     </div>
@@ -53,7 +53,7 @@
                                                      role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row register-form">
                                                         <div class="col-md-6">
-                                                            <h6>رقم الكورس</h6>
+                                                            <h6>رمز الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -67,7 +67,7 @@
                                                                        disabled value="{{$course->code}}">
                                                             </div>
 
-                                                            <h6>نوع الكورس</h6>
+                                                            <h6>نوع الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -132,7 +132,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h6>تاريخ بداية الكورس</h6>
+                                                            <h6>تاريخ بداية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -145,7 +145,7 @@
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->start_date }}">
                                                             </div>
-                                                            <h6>تاريخ نهاية الكورس</h6>
+                                                            <h6>تاريخ نهاية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -192,7 +192,7 @@
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
-                                                                    <span class="exam"> امتحانات</span>
+                                                                    <span class="exam"> واجبات</span>
                                                                     <label class="radio inline">
                                                                         <input type="radio" name="gridRadios2"
                                                                                id="gridRadios3" value="option1"
