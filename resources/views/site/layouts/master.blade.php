@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>مركز التدريب </title>
+    <title>مركز التدريب العدلي </title>
     <link rel='icon' href="{{ asset('images/favicon.ico') }}" type='image/x-icon' />
     <link rel="stylesheet" href="{{asset('site-assets/css\bootstrap-rtl.min.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
@@ -28,7 +28,7 @@
 </head>
 <body class="post">
 <!-- start chat icon -->
-<div class="live-chat">
+<!-- <div class="live-chat">
     <div  class="chat">
         <div class="background"></div>
         <svg class="chat-bubble" width="100" height="100" viewBox="0 0 100 100">
@@ -45,14 +45,14 @@
             <circle class="circle circle2 c" cx="49.9" cy="50.7" r="1.9" />
             <circle class="circle circle3 c" r="1.9" cy="50.7" cx="57.3" />
         </svg>
-    </div>
+    </div> -->
     <section class="chatbox-popup">
         <header class="chatbox-popup__header">
             <aside style="flex:3">
                 <img src="{{asset('site-assets/images/chat.png')}}">
             </aside>
             <aside style="flex:8">
-                <!-- <i class="fas fa-sms"></i> -->
+
                 <h1>مركز التدريب العدلي</h1>
             </aside>
             <aside style="flex:1">
@@ -238,7 +238,7 @@
                                     @foreach($categories as $category)
                                         <li class="link-menu {{count($category->classifications) > 0 ?"has-children":""}} ">
                                             <a class="dropdown-item {{count($category->classifications) > 0 ?"item-first":""}}" href="{{url('category/'.$category->id.'/courses')}}">
-                                                <img src="{{asset('site-assets/images/balance.png')}}" class="img-fluid" width="20">
+                                                <!-- <img src="{{asset('site-assets/images/balance.png')}}" class="img-fluid" width="20"> -->
                                                 {{$category->title}}
 
                                             </a>
@@ -250,7 +250,7 @@
                                                     @foreach($category->classifications as $classification)
                                                         <li>
                                                             <a class="dropdown-item" href="{{url('classification/'.$classification->id.'/courses')}}">
-                                                                <img src="{{asset('site-assets/images/law.png')}}" class="img-fluid" width="18"> {{$classification->title}}
+                                                                 {{$classification->title}}
                                                             </a>
                                                         </li>
                                                     @endforeach
@@ -342,10 +342,10 @@
                                 <a href="#"><img src="{{asset('site-assets/images\jnkjnkjn.png')}}" class="img-fluid">المركز الرئيسى - الرياض - حى الفلاح - شارع البركة </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{asset('site-assets/images/email-center.png')}}" class="img-fluid">jtc-law@mo j.gov.sa</a>
+                                <a href="#"><img src="{{asset('site-assets/images/email-center.png')}}" class="img-fluid"> Jtc-Trainingplat@moj.gov.sa</a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{asset('site-assets/images/phone-center.png')}}" class="img-fluid">+001 2233 456</a>
+                                <a href="#"><img src="{{asset('site-assets/images/phone-center.png')}}" class="img-fluid">0112947065</a>
                             </li>
                             <li class="support"><a href="#"><img src="{{asset('site-assets/images/customer-service.png')}}" class="img-fluid">دعم</a></li>
                         </ul>
@@ -353,8 +353,8 @@
                         <!-- class bottom-footer -->
                         <ul class="bottom-footer">
                             <li><a href="#"><img src="{{asset('site-assets/images\title-center.png')}}" class="img-fluid" width="32"></a></li>
-                            <li><a href="#"> <img src="{{asset('site-assets/images\play.png')}}" class="img-fluid" width="100"> </a></li>
-                            <li><a href="#"><img src="{{asset('site-assets/images\apple.png')}}" class="img-fluid"  width="90"></a></li>
+                            <!-- <li><a href="#"> <img src="{{asset('site-assets/images\play.png')}}" class="img-fluid" width="100"> </a></li>
+                            <li><a href="#"><img src="{{asset('site-assets/images\apple.png')}}" class="img-fluid"  width="90"></a></li> -->
 
                         </ul>
 
@@ -475,6 +475,55 @@
 <script src="{{asset('site-assets/js/main.js')}}"></script>
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
+<script src="{{ asset('js/share.js') }}"></script>
+
+
+
+    <script>
+    $(document).ready(function () {
+
+
+        function IsEmail(email) {
+
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!regex.test(email)) {
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        $("#newsletter").on('click',function(){
+
+            $('#fail').hide();
+            $('#sccess').hide();
+            var value = $('#newsletter_email').val();
+            if(value == '' || IsEmail(value) == false){
+                $('#fail').show();
+            }else{
+
+                    $.ajax({
+                        type:'GET',
+                        url: "<?php echo route('newsletter') ?>",
+                        data:'email='+value,
+                        success:function(content){
+
+                            if(content == true){
+                                $('#sccess').show();
+                            }else{
+                                $('#fail').show();
+                            }
+
+                        }
+                });
+            }
+    });
+
+
+});
+
+
+</script>
 
 @yield('script')
 </body>

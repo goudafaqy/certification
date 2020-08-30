@@ -37,7 +37,8 @@
                     <div class="top-menu d-flex align-items-center">
                         @if(!isset($role) || $role == 1)
                         <a type="" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></a>
-                        <div class="nav-item dropdown">
+
+                        <!-- <div class="nav-item dropdown">
                             <a class=" dropdown-toggle" href="#" data-toggle="dropdown">
                                 <img src="{{ asset('images/school.png') }}" style="width: 20px">
                                 الدورات
@@ -65,17 +66,17 @@
                                 <li><a class="dropdown-item" href="#"> <i class="fa fa-outdent"></i> الموثقين </a> </li>
                                 <li><a class="dropdown-item" href="#"> <i class="fa fa-balance-scale"></i> كتاب العدل </a> </li>
                             </ul>
-                        </div>
-                        <div class="nav-item">
+                        </div> -->
+                        <!-- <div class="nav-item">
                             <a class="" href="#">
                                 <img src="{{ asset('images/computer.png') }}" style="width: 20px">
                                 المسارات
                             </a>
-                        </div>
+                        </div> -->
                         @endif
                     </div>
                     <div class="top-menu d-flex align-items-center">
-                        <div class="input-group md-form form-sm form-2 pl-0 searchclass">
+                        <!-- <div class="input-group md-form form-sm form-2 pl-0 searchclass">
                             <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
                             <a href="#">
                                 <div class="input-group-append">
@@ -83,7 +84,7 @@
                                         <i class="fa fa-search" aria-hidden="true"></i></span>
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
                         <button type="button" class="nav-link ml-10 right-sidebar-toggle">
                             <i class="far fa-calendar-alt"></i>
                             <span class="badge bg-success">0</span></button>

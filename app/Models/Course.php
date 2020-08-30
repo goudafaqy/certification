@@ -32,9 +32,12 @@ class Course extends Model
         'type',
         'image',
         'seats',
+        'zoom',
         'created_at',
         'updated_at',
     ];
+
+//    protected $dates = ['start_date','end_date', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * Get the category that owns the course.
@@ -75,11 +78,27 @@ class Course extends Model
     {
         return $this->belongsToMany('App\Models\User','course_user');
     }
-    
+
     /**
      * Get the the title localized.
      */
     public function getTitleAttribute(){
         return $this["title_".App::getLocale()];
+    }
+
+    /**
+     * Get the updates for the course.
+     */
+    public function updates()
+    {
+        return $this->hasMany('App\Models\CourseUpdate');
+    }
+
+    /**
+     * Get the materials for the course.
+     */
+    public function materials()
+    {
+        return $this->hasMany('App\Models\Material', 'course_id');
     }
 }

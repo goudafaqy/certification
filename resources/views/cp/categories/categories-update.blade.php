@@ -15,7 +15,7 @@
                             <form id="add-category-form" action="{{ route('update-category') }}" method="POST">
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="title_ar">العنوان باللغة العربية</label>
                                             <input type="text" value="{{$category->title_ar}}" class="form-control @error('title_ar') is-invalid @enderror" id="title_ar" name="title_ar">
@@ -27,13 +27,28 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="title_en">العنوان باللغة الإنجليزية</label>
                                             <input type="text" value="{{ $category->title_en }}" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en">
                                         </div>
                                         @error('title_en')
                                             <span class="text-danger err-msg-title_en" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="letter">الرمز</label>
+                                            <select class="form-control @error('letter') is-invalid @enderror" id="letter" name="letter">
+                                                @foreach($letters as $letter)
+                                                <option @if($category->letter == $letter) selected @endif value="{{$letter}}">{{$letter}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('letter')
+                                            <span class="text-danger err-msg-letter" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -59,6 +74,10 @@
         $("#title_en").keypress(function(){
             $(".err-msg-title_en").hide();
             $("#title_en").removeClass("is-invalid");
+        });
+        $("#letter").keypress(function(){
+            $(".err-msg-letter").hide();
+            $("#letter").removeClass("is-invalid");
         });
     })
 </script>

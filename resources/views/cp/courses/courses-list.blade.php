@@ -60,11 +60,11 @@
                                                 <td class="text-center">{{ $course->title_ar }}</td>
                                                 <td class="text-center">
                                                     @if($course->type == 'recorded')
-                                                        دورة مسجلة
+                                                        دورات مسجلة
                                                     @elseif($course->type == 'face_to_face')
-                                                        حضور فعلي   
+                                                        التدريب حضورياً  
                                                     @elseif($course->type == 'live')
-                                                        حضور أونلاين
+                                                        التدريب عن بعد   
                                                     @else
                                                         تعليم مدمج
                                                     @endif
@@ -80,6 +80,52 @@
                                                     <a class="btn btn-primary actions-btns" href="/courses/appointments/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="المواعيد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-clock"></i></a>
                                                     @endif
                                                     <a class="btn btn-primary actions-btns" href="/courses/update/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="إعادة تشغيل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-copy"></i></button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="duplicate_{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="duplicate{{$course->id}}" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <form id="add-course-dates-{{$course->id}}" action="{{ route('courses-duplicate') }}" method="POST">
+                                                                    @csrf
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="duplicate{{$course->id}}">تحديد موعد التسجيل الجديد</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body" style="font-size: 1.3em;">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <label for="start_date" style="font-size:11px">تاريخ بدء التسجيل</label>
+                                                                                <div class="form-group input-group">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                                                                    </div>
+                                                                                    <input class="form-control" type="date" onfocus="(this.type = 'date')" name="reg_start_date" id="date" style=" padding-right:50px !important; ">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <label for="start_date" style="font-size:11px">تاريخ نهاية التسجيل</label>
+                                                                                <div class="form-group input-group">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                                                                    </div>
+                                                                                    <input class="form-control" name="reg_end_date" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                                                                    <input class="form-control" name="course_id" type="hidden" value="{{$course->id}}">
+                                                                                    <input class="form-control" name="code" type="hidden" value="{{$course->code}}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button onclick="submit(<?php echo $course->id; ?>)" style="width: 100%; padding-bottom: 30px;" type="submit" class="btn btn-primary">إعادة تشغيل الدورة</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <a id="delete" href="/courses/delete-course/<?php echo $course->id; ?>" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
@@ -98,6 +144,10 @@
 @include('cp.common.dashboard-footer')
 
 <script>
+
+    function submit(id){
+        $('#add-course-dates-'+id).submit();
+    }
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({

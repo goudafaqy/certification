@@ -86,7 +86,7 @@
                                                     تسجيل الدخول
                                                 </button>
                                             </div>
-                                            <p  style="text-align: center">ان لم يكن لديك حساب فقم بإنشاء حساب</p>
+                                            <!-- <p  style="text-align: center">ان لم يكن لديك حساب فقم بإنشاء حساب</p> -->
                                             <div style="text-align: center">
                                                 <a  href="{{url('register')}}" class="login-link">
                                                     إنشاء حساب

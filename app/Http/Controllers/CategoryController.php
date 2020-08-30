@@ -35,7 +35,10 @@ class CategoryController extends Controller
      */
     public function add()
     {
-        return view("cp.categories.categories-add");
+        $allLetters = $this->categoryRepo->getAllLetters();
+        $existLetters = $this->categoryRepo->getExistLetters();
+        $letters = array_diff($allLetters, $existLetters);
+        return view("cp.categories.categories-add", ['letters' => $letters]);
     }
 
     /**
@@ -62,7 +65,11 @@ class CategoryController extends Controller
     public function update($id)
     {
         $category = $this->categoryRepo->getById($id);
-        return view("cp.categories.categories-update", ['category' => $category]);
+        $allLetters = $this->categoryRepo->getAllLetters();
+        $existLetters = $this->categoryRepo->getExistLetters();
+        $letters = array_diff($allLetters, $existLetters);
+        array_push($letters, $category->letter);
+        return view("cp.categories.categories-update", ['category' => $category, 'letters' => $letters]);
     }
 
     /**

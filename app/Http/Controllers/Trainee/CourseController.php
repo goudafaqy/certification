@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
@@ -18,6 +20,7 @@ class CourseController extends Controller
     var $materialRepo;
     var $appointmentRepo;
     var $examRepo;
+    var $updateRepo;
 
     /**
      * Create a new controller instance.
@@ -29,7 +32,8 @@ class CourseController extends Controller
         UserRepo $userRepo,
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
-        ExamRepo $examRepo
+        ExamRepo $examRepo,
+        CourseUpdateRepo $updateRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -37,6 +41,7 @@ class CourseController extends Controller
         $this->materialRepo = $materialRepo;
         $this->appointmentRepo = $appointmentRepo;
         $this->examRepo = $examRepo;
+        $this->updateRepo = $updateRepo;
 
         $this->middleware(['auth', 'authorize.trainee']);
     }
@@ -56,59 +61,60 @@ class CourseController extends Controller
         if (!method_exists($this, $tab)) {
             throw new NotFoundHttpException();
         }
-
-        return $this->$tab($course);
+        $currentDate = DateHelper::getCurrentDate();
+        return $this->$tab($course, $currentDate);
     }
 
-    private function guide($course)
+    private function guide($course, $currentDate)
     {
         $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_t");
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab1', 'guide' => $guide]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab1', 'guide' => $guide]);
     }
 
-    private function files($course)
+    private function files($course, $currentDate)
     {
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_t");
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab2', 'files' => $files]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab2', 'files' => $files]);
     }
 
-    private function sessions($course)
+    private function sessions($course, $currentDate)
     {
         $sessions = $this->appointmentRepo->getAll($course->id);
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab3', 'sessions' => $sessions]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab3', 'sessions' => $sessions]);
     }
 
-    private function questionnaires($course)
+    private function questionnaires($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab4']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab4']);
     }
 
-    private function ads($course)
+    private function update($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab5']);
+        $updates = $this->updateRepo->getAll($course->id);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab5', 'updates' => $updates]);
     }
 
-    private function exams($course)
+    private function exams($course, $currentDate)
     {
 
-        $exams = $this->examRepo->getExamsForTrainees($course->id);
+        $exams = $this->examRepo->getExamsForTrainee($course->id, Auth::id());
 
-        return view("cp.trainee.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'tab6']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'exams' => $exams, 'tab' => 'tab6']);
     }
 
-    private function evaluations($course)
+    private function evaluations($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab7']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab7']);
     }
 
-    private function trainees($course)
+    private function trainees($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab8']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab8']);
     }
 
-    private function support($course)
+    private function support($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'tab' => 'tab9']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab9']);
     }
 
 }

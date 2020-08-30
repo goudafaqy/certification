@@ -6,13 +6,13 @@
 
         <div id="swiper" class="swiper-container loading no-printme">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/1.jpg')}})">
+            <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/shutterstock_1540253891.jpg')}})">
                     <div class="cover">
                         <div class="container">
-                            <div class="header-content">
-                                <h2>أهداف المركز</h2> 
+                            <div class="header-content right-content">
+                            <a href="" class="btn04 btn05"><span>رؤيتنا</span></a>
                                 <h6>
-                              تدريب مستمر وفاعل يسهم في رفع كفاءة الممارسين العدليين
+                              أن يكون المركز مرجعا فنيا ومعياريا رائدا ومزودا متميزا في التأهيل والتدريب
                           
                                 </h6>
 
@@ -20,20 +20,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/2.jpg')}})">
+                <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/shutterstock_389579191.jpg')}})">
                     <div class="cover">
                         <div class="container">
-                            <div class="header-content">
-                                <h2>أهداف المركز</h2>
-                                <h6>
-                                نحو توظيف التقنية في تعزيز برامج التدريب والتأهيل العدلي المتخصص 
-
-                                </h6>
+                            <div class="header-content left-content">
+                            <a href="" class="btn04 btn05"><span>رسالتنا</span></a>
+                                <h5>
+                                رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
+                          
+                                </h65>
 
                             </div>
                         </div>
                     </div>
                 </div>
+             
+               
 
                 <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
                     <div class="cover">
@@ -222,65 +224,14 @@
     <div id="swiper" class="articles d-flex align-items-center">
         <div class="overlay"></div>
         <div class="container">
-            <div class="row program d-flex align-items-center">
-                <div class="col-lg-3 col-xs-12">
-                    <h3>المسارات التاهيلية</h3>
-                </div>
-                <div class="col-lg-9">
+            <div class="row program">
+              
+                <div class="col-lg-12 col-xs-12">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="wpb_wrapper">
-                            <div class="thim-widget-courses-collection">
-                                <div class="thim-widget-course-categories thim-widget-course-categories-grid">
-                                    <ul class="column-3">
-                                        <li>
-                                            <a href="/tracks/e2fc581a-4bf8-4b55-b13b-dbbe50d95ffd/about/" class="d-flex">
-                                                <img src="{{asset('site-assets/images/0000_logo-react-32x32.png')}}"
-                                                     alt="Web Design and Development Program" title="course-9" width="32"
-                                                     height="32">
-                                                برنامج تجريبي
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/tracks/0678993c-5dc3-47ec-a359-717f1bc3068b/about/" class="d-flex">
-                                                <img src="{{asset('site-assets/images/0002_logo-asp-net-32x32.png')}}"
-                                                     alt="Web Design and Development Program" title="course-9" width="32"
-                                                     height="32">
-                                                برنامج المحامي
-                                            </a>
-                                        </li>
-                                    <!-- <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0002_logo-asp-net-32x32.png" alt="ASP.NET Application"
-                                                     title="_0002_logo-asp-net" width="32" height="32">
-                                                ASP.NET Application
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0000_logo-react-32x32.png" alt="React Application"
-                                                     title="_0000_logo-react" width="32" height="32">
-                                                React Application
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0003_logo-php-32x32.png" alt="PHP Development"
-                                                     title="_0003_logo-php" width="32" height="32">
-                                                PHP Development
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{asset('')}}images/0000_logo-react-32x32.png"
-                                                     alt="Web Design and Development Program" title="course-9" width="32"
-                                                     height="32">
-                                                Web Design and Development Program
-                                            </a>
-                                        </li> -->
-                                    </ul>
-                                </div>
+                    <div class="items">
+                                <div class="subscription-tag">تدريب</div>
+                                <h6> علمي ومرجعي في المجال العدلي والقانوني</h6>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -304,219 +255,169 @@
                             </div>
                         </div>
                         <div class="event-slider">
+
+                        @foreach($advertisments as $item)
                             <div class="event-item">
                                 <div class="time-from">
                                     <div class="date">
-                                        30
+                                        {{date('d',strtotime($item->date) ) }}
                                     </div>
                                     <div class="month">
-                                        Sep
+                                       {{date('M',strtotime($item->date) ) }}
                                     </div>
                                 </div>
                                 <div class="event-wrapper">
                                     <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنوان القانون الجنائى 2020</a>
+                                        <a href="events/summer-school-2015/index.html"> {{$item->title_ar??'' }} </a>
                                     </h5>
                                     <div class="meta">
                                         <div class="time">
                                             <i class="fa fa-clock-o"></i>
 
-                                            00: 12 pm
+                                            {{$item->time??'' }}
                                         </div>
                                         <div class="location">
                                             <i class="fa fa-map-marker"></i>
-                                            الرياض
+                                            {{$item->location??'' }}
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html"> ندوة بعنوان القانون العمالى 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">   ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنوان القانون الجنائى 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-item">
-                                <div class="time-from">
-                                    <div class="date">
-                                        30
-                                    </div>
-                                    <div class="month">
-                                        Sep
-                                    </div>
-                                </div>
-                                <div class="event-wrapper">
-                                    <h5 class="title">
-                                        <a href="events/summer-school-2015/index.html">  ندوة بعنونا المنازعات التجارية 2020</a>
-                                    </h5>
-                                    <div class="meta">
-                                        <div class="time">
-                                            <i class="fa fa-clock-o"></i>
-
-                                            00: 12 pm
-                                        </div>
-                                        <div class="location">
-                                            <i class="fa fa-map-marker"></i>
-                                            الرياض
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach    
+                          
                         </div>
                     </div>
                 </div>
-
+                <!-- <div class="col-sm-6">
+                  <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                  <div class="testimonial-container">
+                      <div class="slider testimonial-vertical">
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫‪...‬‬ ‫مطبوعه‬ ‫تصامیم‬ ‫كانت‬ ‫سواء‬ ‫بالتصامیم‬ ‫النصوص‬ ‫وضع‬ ‫طریقه‬ ‫لیتصور‬ ‫العمیل‬ ‫على‬ ‫لتعرض‬ ‫التصامیم‬ ‫في‬ ‫یوضع‬ ‫افتراضي‬ ‫نموذج‬
+                                              ‫...‬ ‫انترنت‬ ‫مواقع‬ ‫نماذج‬ ‫او‬ ‫‪...‬‬ ‫المثال‬ ‫سبیل‬ ‫على‬ ‫فلایر‬ ‫او‬ ‫بروشور‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t1_bfxoncA.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫حبیب‬ ‫رؤؤف‬</h3>
+                                              <div class="regency">‫قاضى‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫‪...‬‬ ‫مطبوعه‬ ‫تصامیم‬ ‫كانت‬ ‫سواء‬ ‫بالتصامیم‬ ‫النصوص‬ ‫وضع‬ ‫طریقه‬ ‫لیتصور‬ ‫العمیل‬ ‫على‬ ‫لتعرض‬ ‫التصامیم‬ ‫في‬ ‫یوضع‬ ‫افتراضي‬ ‫نموذج‬
+  ‫...‬ ‫انترنت‬ ‫مواقع‬ ‫نماذج‬ ‫او‬ ‫‪...‬‬ ‫المثال‬ ‫سبیل‬ ‫على‬ ‫فلایر‬ ‫او‬ ‫بروشور‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t2_ZWaKnz7.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫رضا‬ ‫محمود‬ ‫احمد‬</h3>
+                                              <div class="regency">‫قضایا‬ ‫موثق‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                           @foreach($testmonials as $item)
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫بالتسجیل‬ ‫سارع‬ ‫سهلة‬ ‫بطریقة‬ ‫القانونیة‬ ‫المواد‬ ‫وهضم‬ ‫فهم‬ ‫فى‬ ‫تساعدك‬ ‫التى‬ ‫المریحة‬ ‫التدریبیة‬ ‫الادوات‬ ‫الطرق‬ ‫كافة‬ ‫یوفر‬ ‫المركز‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t3_OOsOKDS.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫على‬ ‫معوض‬</h3>
+                                              <div class="regency">‫متخصص‬ ‫مدرب‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                            @endforeach
+                          <div class="te-item" style="height: 200px">
+                              <div class="te-content">
+                                  <div>
+                                      <div class="content">
+                                          <p>
+                                              ‫المناسبة‬ ‫التدربیة‬ ‫الدورات‬ ‫عن‬ ‫والبحث‬ ‫التسجیل‬ ‫بسرعة‬ ‫انصح‬ ‫العدلى‬ ‫التدریب‬ ‫مركز‬ ‫منصة‬ ‫من‬ ‫كثیرا‬ ‫استفدت‬
+                                          </p>
+                                      </div>
+                                      <div class="author">
+                                          <div class="image">
+                                              <img src="images/t4_Svl3e3S.jpg" alt="" width="100" height="100">
+                                          </div>
+                                          <div class="info">
+                                              <h3 class="title">‫احمد‬ ‫عمر‬ ‫محمد‬</h3>
+                                              <div class="regency">‫حر‬ ‫محامى‬</div>
+                                          </div>
+                                      </div>
+                                      <div class="testimonials-navigation">
+                                          <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
+                                          <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div> -->
                 <div class="col-sm-6">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="testimonial-container">
                             <div class="slider testimonial-vertical">
-                                <div class="te-item" style="height: 200px">
+
+                             @foreach($testmonials as $item)
+                                <div class="te-item" style="height: 240px; width: 100%; display: inline-block;">
                                     <div class="te-content">
                                         <div>
                                             <div class="content">
                                                 <p>
-                                                    ‫‪...‬‬ ‫مطبوعه‬ ‫تصامیم‬ ‫كانت‬ ‫سواء‬ ‫بالتصامیم‬ ‫النصوص‬ ‫وضع‬ ‫طریقه‬ ‫لیتصور‬ ‫العمیل‬ ‫على‬ ‫لتعرض‬ ‫التصامیم‬ ‫في‬ ‫یوضع‬ ‫افتراضي‬ ‫نموذج‬
-                                                    ‫...‬ ‫انترنت‬ ‫مواقع‬ ‫نماذج‬ ‫او‬ ‫‪...‬‬ ‫المثال‬ ‫سبیل‬ ‫على‬ ‫فلایر‬ ‫او‬ ‫بروشور‬
+                                                {{$item->message??'' }}‬
                                                 </p>
                                             </div>
                                             <div class="author">
                                                 <div class="image">
-                                                    <img src="{{asset('site-assets/images/t1_bfxoncA.jpg')}}" alt="" width="100" height="100">
+                                                    <img src="{{ url($item->image)}}" alt="" width="100" height="100">
                                                 </div>
                                                 <div class="info">
-                                                    <h3 class="title">‫حبیب‬ ‫رؤؤف‬</h3>
-                                                    <div class="regency">‫قاضى‬</div>
+                                                    <h3 class="title"> {{$item->name??'' }}‬‬</h3>
+                                                    <div class="regency"> {{$item->title??'' }}‬</div>
                                                 </div>
                                             </div>
                                             <div class="testimonials-navigation">
@@ -526,79 +427,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="te-item" style="height: 200px">
-                                    <div class="te-content">
-                                        <div>
-                                            <div class="content">
-                                                <p>
-                                                    ‫‪...‬‬ ‫مطبوعه‬ ‫تصامیم‬ ‫كانت‬ ‫سواء‬ ‫بالتصامیم‬ ‫النصوص‬ ‫وضع‬ ‫طریقه‬ ‫لیتصور‬ ‫العمیل‬ ‫على‬ ‫لتعرض‬ ‫التصامیم‬ ‫في‬ ‫یوضع‬ ‫افتراضي‬ ‫نموذج‬
-                                                    ‫...‬ ‫انترنت‬ ‫مواقع‬ ‫نماذج‬ ‫او‬ ‫‪...‬‬ ‫المثال‬ ‫سبیل‬ ‫على‬ ‫فلایر‬ ‫او‬ ‫بروشور‬
-                                                </p>
-                                            </div>
-                                            <div class="author">
-                                                <div class="image">
-                                                    <img src="{{asset('site-assets/images/t2_ZWaKnz7.jpg')}}" alt="" width="100" height="100">
-                                                </div>
-                                                <div class="info">
-                                                    <h3 class="title">‫رضا‬ ‫محمود‬ ‫احمد‬</h3>
-                                                    <div class="regency">‫قضایا‬ ‫موثق‬</div>
-                                                </div>
-                                            </div>
-                                            <div class="testimonials-navigation">
-                                                <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
-                                                <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="te-item" style="height: 200px">
-                                    <div class="te-content">
-                                        <div>
-                                            <div class="content">
-                                                <p>
-                                                    ‫بالتسجیل‬ ‫سارع‬ ‫سهلة‬ ‫بطریقة‬ ‫القانونیة‬ ‫المواد‬ ‫وهضم‬ ‫فهم‬ ‫فى‬ ‫تساعدك‬ ‫التى‬ ‫المریحة‬ ‫التدریبیة‬ ‫الادوات‬ ‫الطرق‬ ‫كافة‬ ‫یوفر‬ ‫المركز‬
-                                                </p>
-                                            </div>
-                                            <div class="author">
-                                                <div class="image">
-                                                    <img src="{{asset('site-assets/images/t3_OOsOKDS.jpg')}}" alt="" width="100" height="100">
-                                                </div>
-                                                <div class="info">
-                                                    <h3 class="title">‫على‬ ‫معوض‬</h3>
-                                                    <div class="regency">‫متخصص‬ ‫مدرب‬</div>
-                                                </div>
-                                            </div>
-                                            <div class="testimonials-navigation">
-                                                <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
-                                                <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="te-item" style="height: 200px">
-                                    <div class="te-content">
-                                        <div>
-                                            <div class="content">
-                                                <p>
-                                                    ‫المناسبة‬ ‫التدربیة‬ ‫الدورات‬ ‫عن‬ ‫والبحث‬ ‫التسجیل‬ ‫بسرعة‬ ‫انصح‬ ‫العدلى‬ ‫التدریب‬ ‫مركز‬ ‫منصة‬ ‫من‬ ‫كثیرا‬ ‫استفدت‬
-                                                </p>
-                                            </div>
-                                            <div class="author">
-                                                <div class="image">
-                                                    <img src="{{asset('site-assets/images/t4_Svl3e3S.jpg')}}" alt="" width="100" height="100">
-                                                </div>
-                                                <div class="info">
-                                                    <h3 class="title">‫احمد‬ ‫عمر‬ ‫محمد‬</h3>
-                                                    <div class="regency">‫حر‬ ‫محامى‬</div>
-                                                </div>
-                                            </div>
-                                            <div class="testimonials-navigation">
-                                                <button type='button' class='slick-next slick-arrow'><i class="fa fa-chevron-down"></i></button>
-                                                <button type='button' class='slick-prev slick-arrow'><i class='fa fa-chevron-up'></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+                              
                             </div>
                         </div>
                     </div>
@@ -619,17 +449,35 @@
                                 <div class="new-card2">
                                     <i class="far fa-envelope"></i>
                                     <div class="body_card2">
-                                        <p>
+                                        <p class="email-p">
                                             سجل الى القائمة البريدية ليصلك جديد البرامج والدوات التدريبية
                                         </p>
+                         
                                         <form>
-                                            <input type="text" class="txte" placeholder="البريد الالكترونى">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><img src="{{asset('site-assets/images/mail.png')}}" class="img-fluid" style="width:20px !important;height:20px !important"></span>
+                                            </div>
+                                            <input id="email" required="" name="email" class="form-control" type="email" placeholder="البريد الإلكتروني">
+                                        </div>
+                                        <button type="button" class="btn btn-vote"  style="background:#273044;color:#fff">
+                                        سجل الأن
+                                    </button>
+                                    </form>
 
-                                            <input type="submit" class="button" value="سجل">
 
-                                        </form>
+                                          
 
                                     </div>
+
+                                    <span class="alert alert-success" role="alert" id="sccess" style="display:none">
+                                      تم أضافة البريد الالكترونى بنجاح
+                                    </span>
+
+                                    <span class="alert alert-danger" role="alert" id="fail" style="display:none">
+                                     هناك خطأ
+                                    </span>
+                                   
                                 </div>
 
                             </div>

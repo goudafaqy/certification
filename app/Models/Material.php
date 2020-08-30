@@ -39,10 +39,10 @@ class Material extends Model
     }
 
     /**
-     * Get the courses for the category.
+     * Get the courses for the material.
      */
-    public function courses()
+    public function course()
     {
-        return $this->hasMany('App\Models\Course', 'cat_id');
+        return $this->belongsTo('App\Models\Course', 'course_id');
     }
 }

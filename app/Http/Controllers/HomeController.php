@@ -9,6 +9,7 @@ use DB;
 use Facade\FlareClient\Http\Exceptions\NotFound;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Models\Advertisment;
 
 class HomeController extends Controller
 {
@@ -55,8 +56,9 @@ class HomeController extends Controller
     private function adminDashboard(){
 
         $categories = DB::table('categories')->get();
-
-        return view('/cp/dashboards/admin', ['categories' => $categories]);
+        $advertisments = Advertisment::all();
+       // dd($advertisments);
+        return view('/cp/dashboards/admin', ['categories' => $categories ,'advertisments'=>$advertisments]);
     }
 
 
@@ -64,15 +66,19 @@ class HomeController extends Controller
 
         $instructor_id = Auth::id();
         $currentCourses = $this->courseRepo->getCurrentByInstructor($instructor_id);
+        $advertisments = Advertisment::all();
+
         $previousCourses = $this->courseRepo->getPastByInstructor($instructor_id);
         //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses]);
+        return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses ,'advertisments'=>$advertisments]);
     }
 
     private function traineeDashboard(){
         $trainee_id = Auth::id();
+        $advertisments = Advertisment::all();
+
         $courses = $this->userRepo->getTraineeCourses($trainee_id);
-        return view('cp.dashboards.trainee', ['courses' => $courses]);
+        return view('cp.dashboards.trainee', ['courses' => $courses,'advertisments'=>$advertisments]);
     }
 }

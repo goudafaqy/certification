@@ -5,7 +5,7 @@
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">
-                <h2> الملف الشخصي {{$mr->name}}</h2>
+                <h2> الملف الشخصي <span style="float:left"> {{$mr->name}}</span></h2>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
                                     <label for="tab1"> <img src="{{asset('site-assets/images/certificate.png')}}" style="width: 22px"> الشهادات العلمية </label>
                                 </li>
                                 <li class="tab2">
-                                    <label for="tab2"> <img src="{{asset('site-assets/images/training.png')}}" style="width: 22px"> الخبرات العلمية</label>
+                                    <label for="tab2"> <img src="{{asset('site-assets/images/training.png')}}" style="width: 22px"> الخبرات العملية</label>
                                 </li>
                                 <li class="tab3">
                                     <label for="tab3"> <img src="{{asset('site-assets/images/bo.png')}}" style="width: 22px"> البحوث والدراسات</label>

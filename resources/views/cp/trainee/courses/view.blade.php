@@ -5,6 +5,7 @@
         <div class="box box-default">
             <div class="wrapper-box">
                 <div class="profile-card active">
+                    @if($course->start_date <= $currentDate)
                     <div class="profile-card-body">
                         <div class="form-course">
                             <div class="user-ragistration">
@@ -14,6 +15,37 @@
                                             <img src="{{url($course->image)}}" class="img-fluid" width="60" alt=""
                                                  style="width:200px !important">
                                             <h3>{{$course->title_ar}}</h3>
+
+                                            <div class="course-review star-review">
+                                                <section class='rating-widget'>
+                                                    <div class='rating-stars text-center'>
+                                                        <ul id='stars'>
+                                                            <li class='star' title='Poor' data-value='1'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Fair' data-value='2'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Good' data-value='3'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Excellent' data-value='4'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='WOW!!!' data-value='5'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+    
+                                                    <div class='success-box'>
+                                                        <div class='clearfix'></div>
+                                                        تقيم الدورة
+                                                        <div class='text-message'></div>
+                                                        <div class='clearfix'></div>
+                                                    </div>
+                                                </section>
+                                            </div>
                                         </div>
                                         <div class="col-md-9 register-right">
                                             <div class="tab-content" id="myTabContent">
@@ -21,7 +53,7 @@
                                                      role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row register-form">
                                                         <div class="col-md-6">
-                                                            <h6>رقم الكورس</h6>
+                                                            <h6>رمز الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -35,7 +67,7 @@
                                                                        disabled value="{{$course->code}}">
                                                             </div>
 
-                                                            <h6>نوع الكورس</h6>
+                                                            <h6>نوع الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -47,20 +79,33 @@
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="حضور أونلاين">
+                                                                           value="التدريب عن بعد">
                                                                 @elseif($course->type == 'recorded')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="دورة مسجلة">
+                                                                           value="دورات مسجلة">
                                                                 @elseif($course->type == 'face_to_face')
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
-                                                                           value="حضور فعلي">
+                                                                           value="التدريب حضورياً">
                                                                 @else
                                                                     <input id="email" required="" name="email"
                                                                            class="form-control" type="text" disabled
                                                                            value="تعليم مدمج">
                                                                 @endif
+                                                            </div>
+                                                            <h6>عدد المقاعد</h6>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/man.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                </div>
+                                                                <input id="email" required="" name="email"
+                                                                       class="form-control" type="text" disabled
+                                                                       value="{{ $course->seats }} مقعد">
                                                             </div>
                                                             <h6>مستوى الدورة</h6>
                                                             <div class="form-group input-group">
@@ -87,7 +132,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h6>تاريخ بداية الكورس</h6>
+                                                            <h6>تاريخ بداية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -100,7 +145,7 @@
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->start_date }}">
                                                             </div>
-                                                            <h6>تاريخ نهاية الكورس</h6>
+                                                            <h6>تاريخ نهاية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -112,6 +157,19 @@
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->end_date }}">
+                                                            </div>
+                                                            <h6>عدد ساعات الدورة</h6>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/medal.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                </div>
+                                                                <input id="email" required="" name="email"
+                                                                       class="form-control" type="text" disabled
+                                                                       value="{{ $course->course_hours }} ساعة">
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
@@ -134,7 +192,7 @@
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
-                                                                    <span class="exam"> امتحانات</span>
+                                                                    <span class="exam"> واجبات</span>
                                                                     <label class="radio inline">
                                                                         <input type="radio" name="gridRadios2"
                                                                                id="gridRadios3" value="option1"
@@ -174,34 +232,28 @@
                                 <ul>
                                     <li class="tab1 {{$tab == 'tab1'? 'active': ''}}">
                                         <a href="{{$tab != 'tab1'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'guide']):"javascript:void(0);"}}"
-                                           for="tab1"> <img src="{{ asset('images/graph.png') }}" class="img-fluid"
-                                                            width="20">الكتيب التدريبى</a>
+                                           for="tab1"><i class="fas fa-book-reader"></i>  الكتيب التدريبى</a>
                                     </li>
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'files']):"javascript:void(0);"}}"
-                                           for="tab2"> <img src="{{ asset('images/school.png') }}" class="img-fluid"
-                                                            width="20"> الملفات</a>
+                                           for="tab2"> <i class="far fa-file"></i> الملفات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
-                                        <a href="{{$tab != 'tab5'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'ads']):"javascript:void(0);"}}"
-                                           for="tab5"><img src="{{ asset('images/training.png') }}" class="img-fluid"
-                                                           width="20"> الاعلانات </a>
+                                        <a href="{{$tab != 'tab5'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'update']):"javascript:void(0);"}}"
+                                           for="tab5"> <i class="far fa-bookmark"></i> الاعلانات </a>
                                     </li>
 
                                     <li class="tab6 {{$tab == 'tab6'? 'active': ''}}">
                                         <a href="{{$tab != 'tab6'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'exams']):"javascript:void(0);"}}"
-                                           for="tab6"><img src="{{ asset('images/exam.png') }}" class="img-fluid"
-                                                           width="20"> الامتحانات والواجبات</a>
+                                           for="tab6"> <i class="far fa-address-book"></i> الامتحانات والواجبات</a>
                                     </li>
                                     <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">
                                         <a href="{{$tab != 'tab7'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'evaluations']):"javascript:void(0);"}}"
-                                           for="tab7"><img src="{{ asset('images/teaching.png') }}" class="img-fluid"
-                                                           width="20"> مركز التقديرات</a>
+                                           for="tab7"> <i class="fas fa-door-open"></i> مركز التقديرات</a>
                                     </li>
                                     <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                         <a href="{{$tab != 'tab9'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'support']):"javascript:void(0);"}}"
-                                           for="tab9"><img src="{{ asset('images/supp.png') }}" class="img-fluid"
-                                                           width="20"> الدعم الفني</a>
+                                           for="tab9"><i class="fas fa-life-ring"></i> الدعم الفني</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -216,7 +268,7 @@
                                     @elseif($tab== 'tab4')
                                         @include('cp.trainee.courses.view-sections.questionnaires', ['id' => $course->id])
                                     @elseif($tab== 'tab5')
-                                        @include('cp.trainee.courses.view-sections.ads', ['id' => $course->id])
+                                        @include('cp.trainee.courses.view-sections.update', ['id' => $course->id, 'updates' => $updates])
                                     @elseif($tab== 'tab6')
                                         @if(isset($action))
                                             @switch($action)
@@ -243,6 +295,16 @@
                             </section>
                         </div>
                     </div>
+                    @else
+                    <div class="profile-card-body">
+                        <div class="alert alert-info text-right" role="alert">
+                            <h4 class="alert-heading">الأستاذ المتدرب <b>{{ Auth::user()->username }}</b> </h4>
+                            <p style="margin-top: 20px;">هذه الدورة التدريبية تبدأ بتاريخ <b>{{ $course->start_date }}  <i class="fas fa-exclamation-triangle"></i></b></p>
+                            <hr>
+                            <p class="mb-0">لذا لن تتمكن من مشاهدة تفاصيل هذه الدورة حتى تاريخ بداية الدورة و شكراً </p>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

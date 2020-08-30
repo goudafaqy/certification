@@ -106,21 +106,62 @@
 
         <!-- Notifiction views -->
         <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-item has-sub @if($active == 'notify-list' || $active == 'notify-add') open @endif">
+                    <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
+                        <span> قائمة  الاشعارات </span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="{{ route('notify-list') }}"
+                        class="menu-item @if($active == 'notify-list') active @endif"><img
+                                src="{{ asset('images/list.png') }}" style="width: 20px">  قائمة  الاشعارات </a>
+                        <a href="{{ route('notify-add') }}" class="menu-item @if($active == 'notify-add') active @endif">
+                            <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة اشعار جديدة </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    
+        <!-- Ads views -->
+        <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-item has-sub @if($active == 'advertisments-list' || $active == 'advertisments-add') open @endif">
+                    <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
+                        <span> قائمة  الاعلانات </span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="{{ route('advertisments-list') }}"
+                        class="menu-item @if($active == 'advertisments-list') active @endif"><img
+                                src="{{ asset('images/list.png') }}" style="width: 20px">  قائمة  الاعلانات </a>
+                        <a href="{{ route('advertisments-add') }}" class="menu-item @if($active == 'advertisments-add') active @endif">
+                            <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة اعلان جديدة </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+
+     <!-- Testmonials views -->
+     <div class="nav-container">
         <nav id="main-menu-navigation" class="navigation-main">
-            <div class="nav-item has-sub @if($active == 'notify-list' || $active == 'notify-add') open @endif">
+            <div class="nav-item has-sub @if($active == 'testmonials-list' || $active == 'testmonials-add') open @endif">
                 <a href="javascript:void(0)"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
-                    <span> قائمة  الاشعارات </span>
+                    <span>{{__('app.Testmonials')}} </span>
                 </a>
                 <div class="submenu-content">
-                    <a href="{{ route('notify-list') }}"
-                       class="menu-item @if($active == 'notify-list') active @endif"><img
-                            src="{{ asset('images/list.png') }}" style="width: 20px">  قائمة  الاشعارات </a>
-                    <a href="{{ route('notify-add') }}" class="menu-item @if($active == 'notify-add') active @endif">
-                        <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة اشعار جديدة </a>
+                    <a href="{{ route('testmonials-list') }}"
+                       class="menu-item @if($active == 'testmonials-list') active @endif"><img
+                            src="{{ asset('images/list.png') }}" style="width: 20px">  {{__('app.Testmonials')}}</a>
+                    <a href="{{ route('testmonials-add') }}" class="menu-item @if($active == 'testmonials-add') active @endif">
+                        <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة رأي جديد </a>
                 </div>
             </div>
         </nav>
     </div>
+
+
 </div>
 </div>
 

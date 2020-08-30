@@ -1,15 +1,17 @@
-<?php 
+<?php
 
 namespace App\Http\Helpers;
 
-class FileHelper{
+class FileHelper
+{
 
-    public static function uploadFiles($file, $pathToUpload){
-        $fileName = $file->getClientOriginalName();
+    public static function uploadFiles($file, $pathToUpload, $fileName = null)
+    {
         $fileExt = $file->getClientOriginalExtension();
-        $filePath = $pathToUpload.$fileName;
+        $fileName = is_null($fileName) ? $file->getClientOriginalName() : ($fileName.".".$fileExt);
+        $filePath = $pathToUpload . $fileName;
 
-        $file->move($pathToUpload ,$file->getClientOriginalName());
+        $file->move($pathToUpload, $fileName);
 
         return $filePath;
     }
