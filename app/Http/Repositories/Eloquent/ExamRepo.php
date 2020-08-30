@@ -29,38 +29,65 @@ class ExamRepo extends Repository implements ExamEloquent
             $exam->status = 0; // Not Started
             $exam->user_start_time = false;
             $exam->time_spent = false;
+            $exam->reviewed = false;
+            $exam->exam_grade = false;
 
             $userExam = ExamUser::where([
                 'exam_id' => $exam->id,
                 'user_id' => $user_id
             ])->first();
 
-            if($userExam) {
+            if ($userExam) {
                 $exam->user_start_time = $userExam->start_time;
+                $exam->reviewed = $userExam->reviewed;
+                if ($exam->reviewed) {
+                    $exam->exam_grade = $userExam->getExamGrade();
+                }
             }
 
             if ($exam->exam_date < date("Y-m-d")
                 || ($exam->exam_date == date("Y-m-d") && $exam->end_time <= date("H:i"))) {
-                $exam->status = 1; // Finished
+                /*
+                 * exam finished
+                 */
 
-                if($userExam && $userExam->submitted) {
+                $exam->status = 1;
+
+                if ($userExam && $userExam->submitted) {
                     $exam->time_spent = Carbon::make($userExam->submit_time)
                         ->diffInMinutes(Carbon::make($userExam->start_time));
                 }
-            }
-            elseif ($exam->exam_date == date('Y-m-d')
+            } elseif ($exam->exam_date == date('Y-m-d')
                 && $exam->start_time <= date("H:i")
                 && $exam->end_time > date("H:i")) {
+                /*
+                 * exam Available
+                 */
 
-                $exam->status = 2; //exam available and not started yet
+                $exam->status = 2;
 
-                if($userExam){
-                    $exam->status = 3; //user start the exam
+                if ($userExam) {
+                    /*
+                     * exam Started
+                     */
+                    $exam->status = 3;
 
-                    if($userExam->submitted) {
-                        $exam->status = 4; //user submit the exam
+                    if ($userExam->submitted) {
+                        /*
+                         * exam Submitted
+                         */
+
+                        $exam->status = 4;
                         $exam->time_spent = Carbon::make($userExam->submit_time)
                             ->diffInMinutes(Carbon::make($userExam->start_time));
+
+                    } elseif (Carbon::now()->diffInMinutes(Carbon::make($userExam->start_time)) > $exam->duration) {
+                        /*
+                         * exam Duration ended
+                         */
+
+                        $exam->status = 1; // finished
+                        $exam->time_spent = $exam->duration;
                     }
                 }
             }

@@ -25,6 +25,8 @@ class ExamUserAnswer extends Model
         'answer_TF',
         'answer_FT',
         'answer_FU',
+        'graded',
+        'grade',
         'created_at',
         'updated_at',
     ];

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ExamUser extends Model
@@ -24,6 +25,8 @@ class ExamUser extends Model
         'submitted',
         'start_time',
         'submit_time',
+        'reviewed',
+        'reviewed_date',
         'created_at',
         'updated_at',
     ];
@@ -43,5 +46,28 @@ class ExamUser extends Model
     public function exam()
     {
         return $this->belongsTo('App\Models\Exam', 'exam_id');
+    }
+
+
+    public function getExamGrade(){
+        if(!$this->reviewed) return 0;
+
+        $grade = 0;
+        foreach ($this->userQuestions as $userQuestion){
+            if($userQuestion->graded)
+                $grade += $userQuestion->grade;
+        }
+
+        return $grade;
+    }
+
+    public function isExamEnded(){
+        if($this->submitted) return true;
+
+        if(Carbon::now() > Carbon::make($this->exam->end_date_time)) return true;
+
+        if(Carbon::now() > Carbon::make($this->start_time)->addMinutes($this->exam->duration)) return true;
+
+        return false;
     }
 }
