@@ -46,19 +46,21 @@
                             @endif
                         </td>
                         <td class="priority text-center">
-                            {{in_array($exam->status, [1, 4])?($exam->reviewed? "{$exam->exam_grade} / {$exam->full_mark}": "لم تعتمد بعد"):""}}
+                            {{$exam->status==4?($exam->reviewed? "{$exam->exam_grade} / {$exam->full_mark}": "لم تعتمد بعد"):""}}
                         </td>
                         <td class="delete text-center" style="text-align: center;">
                             @if($exam->status == 0)
                                 <i class="fa fa-clock"></i>
                             @elseif($exam->status == 1)
-                                <i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="انتهى الاختبار"
-                                   style="color: red;"></i>
                                 @if($exam->time_spent!==false)
                                     <a class="" data-toggle="tooltip" data-placement="top" title="مشاهدة الاجابات"
                                        href="{{route('trainee-course-exam-show', ['id' => $id, 'examId' => $exam->id])}}">
                                         <i class="fa fa-eye"></i>
                                     </a>
+                                @else
+                                    <i class="fa fa-times" data-toggle="tooltip" data-placement="top"
+                                       title="انتهى الاختبار"
+                                       style="color: red;"></i>
                                 @endif
                             @elseif($exam->status == 2)
                                 <a class="" data-toggle="tooltip" data-placement="top" title="بدأ الاختبار"

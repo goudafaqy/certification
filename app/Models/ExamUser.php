@@ -48,6 +48,25 @@ class ExamUser extends Model
         return $this->belongsTo('App\Models\Exam', 'exam_id');
     }
 
+    /**
+     * Get the User
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+
+    public function getDurationAttribute(){
+        if($this->submitted)
+           return Carbon::make($this->submit_time)->diffInMinutes(Carbon::make($this->start_time));
+
+        if(Carbon::now() > Carbon::make($this->exam->end_date_time))
+            return $this->exam->duration;
+
+        return Carbon::now()->diffInMinutes(Carbon::make($this->start_time));
+    }
+
 
     public function getExamGrade(){
         if(!$this->reviewed) return 0;

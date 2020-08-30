@@ -14,6 +14,10 @@ class Question extends Model
 
     public $timestamps = true;
 
+    protected $casts = [
+        'answer_TF' => 'boolean'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,5 +49,17 @@ class Question extends Model
     public function exam()
     {
         return $this->belongsTo('App\Models\Exam', 'exam_id');
+    }
+
+    public function getMCCorrectAnswers(){
+        if($this->type != 'MC') return [];
+        $choices = json_decode($this->answer_MC, true);
+
+        $answers = []; $i = 0;
+        foreach ($choices as $choice => $correct){
+            if($correct) $answers[] = $i;
+            $i++;
+        }
+        return $answers;
     }
 }

@@ -169,4 +169,71 @@ class ExamRepo extends Repository implements ExamEloquent
 
     }
 
+    public function getExamTrainees($course, $exam_id)
+    {
+
+        $examinedStudents = ExamUser::where('exam_id', $exam_id)->get()->keyBy('user_id');
+
+        $trainees = [];
+        foreach ($course->students as $student) {
+            if (isset($examinedStudents[$student->id])) {
+
+                $answered = 0;
+                foreach ($examinedStudents[$student->id]->userQuestions as $userQuestion)
+                    $answered += $userQuestion->answered ? 1 : 0;
+
+                $trainees[] = [
+                    'id' => $student->id,
+                    'name' => $student->name,
+                    'hasExam' => true,
+                    'userExam' => $examinedStudents[$student->id],
+                    'numAnswered' => $answered
+                ];
+            } else {
+                $trainees[] = [
+                    'id' => $student->id,
+                    'name' => $student->name,
+                    'hasExam' => false
+                ];
+            }
+
+        }
+
+        return $trainees;
+    }
+
+
+
+    public function saveExamUserAnswersReview($userExamId, $grades)
+    {
+        $userExamQuestions = ExamUserAnswer::where('course_exam_user_id', $userExamId)->get()->keyBy('id');
+
+        try {
+            DB::beginTransaction();
+            foreach ($grades as $userExam_id => $grade) {
+                $userExamQuestion = $userExamQuestions[$userExam_id];
+
+                $userExamQuestion->graded = true;
+                $userExamQuestion->grade = $grade;
+                $userExamQuestion->save();
+            }
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public function markUserExamAsReviewed($userExamId){
+        ExamUser::where('id', $userExamId)->update([
+            'reviewed' => true,
+            'reviewed_date' => Carbon::now()
+        ]);
+    }
+
+
+
 }
