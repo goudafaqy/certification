@@ -124,7 +124,8 @@ Auth::routes();
 
 
     Route::get('test', function (){
-       return \App\Http\Helpers\ZoomHelper::getAttendeesReport('83817922541');
+
+      dd(Route::getCurrentRoute()->uri);
     });
 
     // Course notifications routes ...
@@ -163,7 +164,7 @@ Auth::routes();
             Route::post('update', 'TestmonialsController@edit')->name('update-testmonials');
             Route::post('save', 'TestmonialsController@create')->name('save-testmonials');
             Route::get('delete/{id}', 'TestmonialsController@delete')->name('delete-testmonials');
-    
+
         });
 
 Auth::routes();
