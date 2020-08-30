@@ -337,8 +337,8 @@
                                                 <input type="hidden" name="purchase-course-nonce" value="1ad69a85d7">
                                                 <input type="hidden" name="course_id" value="{{$course->id}}">
                                                 @php
-                                                    $start = \Carbon\Carbon::createFromTimeString($course->start_date.' '.$course->from_time);
-                                                    $end = \Carbon\Carbon::createFromTimeString($course->end_date.' '.$course->to_time);
+                                                    $start = \Carbon\Carbon::createFromTimeString($course->start_date.' '.'00:00:01');
+                                                    $end = \Carbon\Carbon::createFromTimeString($course->end_date.' '.'23:59:59');
                                                 @endphp
 
                                                 <button {{$course->students()->count() < $course->seats? "" : "disabled"}} {{$start->isPast()? "" : "disabled"}} {{$end->isPast()? "disabled" : ""}} type="submit" class="lp-button button button-purchase-course thim-enroll-course-button">
