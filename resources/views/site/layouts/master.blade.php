@@ -52,7 +52,7 @@
                 <img src="{{asset('site-assets/images/chat.png')}}">
             </aside>
             <aside style="flex:8">
-               
+
                 <h1>مركز التدريب العدلي</h1>
             </aside>
             <aside style="flex:1">
@@ -475,6 +475,7 @@
 <script src="{{asset('site-assets/js/main.js')}}"></script>
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
+<script src="{{ asset('js/share.js') }}"></script>
 
 
 
@@ -493,7 +494,7 @@
         }
 
         $("#newsletter").on('click',function(){
-    
+
             $('#fail').hide();
             $('#sccess').hide();
             var value = $('#newsletter_email').val();
@@ -512,16 +513,16 @@
                             }else{
                                 $('#fail').show();
                             }
-           
+
                         }
                 });
-            }   
+            }
     });
-    
+
 
 });
-            
-    
+
+
 </script>
 
 @yield('script')

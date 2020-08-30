@@ -20,7 +20,7 @@
                     <h1 class="entry-title">
                         {{$course->title}}
                     </h1>
-                    <p> {{substr($course->overview,0,100)}} ...
+                    <p> {{substr($course->overview,0,200)}} ...
                     </p>
                 </div>
                 <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
@@ -29,9 +29,9 @@
                             <div class="course-author-content">
                                 <img alt="User Avatar" src="{{asset('site-assets/images/Dr_Image.jpg')}}" class="avatar avatar-96 photo" height="96" width="96">
                                 <div class="author-contain">
-                                    <label itemprop="jobTitle">الأستاذ</label>
+                                    <label itemprop="jobTitle">المدرب</label>
                                     <div class="value">
-                                        <a href="#">
+                                        <a href="{{url('profile/'.$course->instructor_id)}}">
                                             {{$course->instructor->name}}
                                         </a>
                                     </div>
@@ -336,8 +336,12 @@
                                                 <input type="hidden" name="purchase-course" value="5181">
                                                 <input type="hidden" name="purchase-course-nonce" value="1ad69a85d7">
                                                 <input type="hidden" name="course_id" value="{{$course->id}}">
+                                                @php
+                                                    $start = \Carbon\Carbon::createFromTimeString($course->start_date.' '.$course->from_time);
+                                                    $end = \Carbon\Carbon::createFromTimeString($course->end_date.' '.$course->to_time);
+                                                @endphp
 
-                                                <button {{$course->students()->count() < $course->seats? "" : "disabled"}} type="submit" class="lp-button button button-purchase-course thim-enroll-course-button">
+                                                <button {{$course->students()->count() < $course->seats? "" : "disabled"}} {{$start->isPast()? "" : "disabled"}} {{$end->isPast()? "disabled" : ""}} type="submit" class="lp-button button button-purchase-course thim-enroll-course-button">
                                                     @if(auth()->guest())
                                                     سجل دخول الآن
                                                     @elseif(auth()->user() && !$course->students->contains(auth()->user()->id))
@@ -364,6 +368,47 @@
                                                     <span class="value">0</span>
                                                     <span class="label">الإختبارات</span>
                                                 </li> -->
+{{--                                            <<<<<<< HEAD--}}
+{{--                                            <li class="duration-feature">--}}
+{{--                                                <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+{{--                                                <span class="label">تاريخ بدء التسجيل</span>--}}
+{{--                                                <span class="value">{{$course->start_date}}</span>--}}
+
+{{--                                            </li>--}}
+{{--                                            <li class="duration-feature">--}}
+{{--                                                <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+{{--                                                <span class="label">تاريخ نهاية التسجيل</span>--}}
+{{--                                                <span class="value">{{$course->end_date}}</span>--}}
+
+{{--                                            </li>--}}
+{{--                                            <li class="skill-feature">--}}
+{{--                                                <img src="{{asset('site-assets/images/schedule.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+{{--                                                <span class="label">مدة البرنامج</span>--}}
+{{--                                                <span class="value">{{$course->appointments()->count()}} محاضرات </span>--}}
+
+{{--                                            </li>--}}
+{{--                                            <li class="skill-feature">--}}
+{{--                                                <img src="{{asset('site-assets/images/teaching.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+{{--                                                <span class="label">مستوى البرنامج</span>--}}
+{{--                                                @if($course->skill_level == "m")--}}
+{{--                                                    <span class="value">متوسط</span>--}}
+{{--                                                @elseif($course->skill_level == "l")--}}
+{{--                                                    <span class="value">منخفض</span>--}}
+{{--                                                @else--}}
+{{--                                                    <span class="value">متقدم</span>--}}
+{{--                                                @endif--}}
+{{--                                                <span class="value"></span>--}}
+
+{{--                                            </li>--}}
+{{--                                            <li class="language-feature">--}}
+{{--                                                <img src="{{asset('site-assets/images/world.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+
+{{--                                                <span class="label">اللغة</span>--}}
+{{--                                                <span class="value">العربية</span>--}}
+{{--                                            </li>--}}
+
+{{--                                            <ul class="under-links">--}}
+{{--                                                =======--}}
                                             <li class="duration-feature">
                                                 <i class="fas fa-calendar-alt"></i>
                                                 <span class="label">تاريخ بدء التسجيل</span>
@@ -379,7 +424,7 @@
                                             <li class="skill-feature">
                                                 <i class="far fa-clock"></i>
                                                 <span class="label">مدة البرنامج</span>
-                                                <span class="value">{{$course->appointments()->count()}} محاضرات </span>
+                                                <span class="value">{{$totalTime/60}} ساعات </span>
 
                                             </li>
                                             <li class="skill-feature">
@@ -390,7 +435,7 @@
                                                 @elseif($course->skill_level == "l")
                                                 <span class="value">منخفض</span>
                                                 @else
-                                                <span class="value">عالي</span>
+                                                <span class="value">متقدم</span>
                                                 @endif
                                                 <span class="value"></span>
 
@@ -401,8 +446,20 @@
                                                 <span class="label">اللغة</span>
                                                 <span class="value">العربية</span>
                                             </li>
+                                            <li class="language-feature">
+                                                <i class="fa fa-user-alt-slash"></i>
 
+                                                <span class="label">اقصى عدد</span>
+                                                <span class="value">{{$course->seats}} متدرب </span>
+                                            </li>
+                                            <li class="language-feature">
+                                                <i class="fa fa-user-plus"></i>
+
+                                                <span class="label">عدد المسجلين</span>
+                                                <span class="value">{{$course->students()->count()}} متدرب </span>
+                                            </li>
                                             <!-- <ul class="under-links">
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                                                     <h4>يحتوي البرنامج علي </h4>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/cou.png')}}" width="20" class="im-fluid" style="width:20px !important">
@@ -433,7 +490,7 @@
                                             <li class="heading">Share:</li>
                                             <li>
                                                 <div class="facebook-social">
-                                                    <a target="_blank" class="facebook" href="#" title="Facebook">
+                                                    <a target="_blank" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{URL::current()}}" title="Facebook">
                                                         <i class="fab fa-facebook-f"></i>
                                                     </a>
                                                 </div>
@@ -447,14 +504,14 @@
                                             </li>
                                             <li>
                                                 <div class="twitter-social">
-                                                    <a target="_blank" class="twitter" href="#" title="Twitter">
+                                                    <a target="_blank" class="twitter" href="https://twitter.com/intent/tweet?text={{$course->title}}&amp;url={{URL::current()}}" title="Twitter">
                                                         <i class="fab fa-twitter"></i>
                                                     </a>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="pinterest-social">
-                                                    <a target="_blank" class="pinterest" href="" title="copUrl">
+                                                    <a id="copy" class="pinterest" href="#" title="copUrl">
                                                         <i class="far fa-copy"></i>
                                                     </a>
                                                 </div>
@@ -500,3 +557,4 @@
         }
     </script>
     @endsection
+
