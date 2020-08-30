@@ -249,7 +249,7 @@
                                                     @elseif($course->skill_level == "l")
                                                         <span class="value">منخفض</span>
                                                     @else
-                                                        <span class="value">عالي</span>
+                                                        <span class="value">متقدم</span>
                                                     @endif
                                                     <span class="value"></span>
 
