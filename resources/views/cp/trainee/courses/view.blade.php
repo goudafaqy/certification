@@ -238,6 +238,10 @@
                                         <a href="{{$tab != 'tab2'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'files']):"javascript:void(0);"}}"
                                            for="tab2"> <i class="far fa-file"></i> الملفات</a>
                                     </li>
+                                    <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
+                                        <a href="{{$tab != 'tab3'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'sessions']):"javascript:void(0);"}}"
+                                           for="tab3"> <i class="far fa-copy"></i> المحاضرات</a>
+                                    </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'update']):"javascript:void(0);"}}"
                                            for="tab5"> <i class="far fa-bookmark"></i> الاعلانات </a>
