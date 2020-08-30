@@ -264,6 +264,36 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                            </div>
+                        </div>
+                        <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                            <div class="related-courses">
+                                <h3 class="p-header">كورسات ذات صله</h3><span class="pull-left"></span>
+                                <div class="clear">
+                                    <div   class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
+
+                                        @foreach($related_courses as $coursee)
+                                            <div class="item">
+                                                <div class="course-item-wrapper">
+                                                    <div class="course-thumbnail">
+                                                        <a href="{{url('course/'.$coursee->id)}}"><img  src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                                        <div class="price">{{$coursee->price}} SR</div>
+                                                    </div>
+                                                    <div class="thim-course-content">
+                                                        <div class="course-author">
+                                                            <div class="course-author-content">
+                                                                <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                                <div class="author-contain">
+                                                                    <label>المعلم</label>
+                                                                    <div class="value" itemprop="name">
+                                                                        <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
+                                                                    </div>
+                                                                </div>
+=======
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                     </div>
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="related-courses">
@@ -286,6 +316,10 @@
                                                             <label>المعلم</label>
                                                             <div class="value" itemprop="name">
                                                                 <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
+<<<<<<< HEAD
+>>>>>>> ecdc6a62e6763402dac163a4e5d2bf6d38e41f70
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                                                             </div>
                                                         </div>
                                                     </div>
@@ -310,6 +344,30 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+{{--               =============right side============--}}
+                <div class="col-sm-12 col-md-4">
+
+                    <div class="course-info-right sticky-sidebar">
+                        <div class="sticky-content">
+                            <div class="course-info-wrapper">
+                                <div class="right-col__content">
+                                    <div class="right-col__wrapper">
+                                        <div class="course-thumbnail">
+                                            <img
+                                                src="{{url($course->image)}}"
+                                                class="attachment-full size-full wp-post-image img-fluid" alt="" width="1600" height="790">
+                                        </div>
+                                        <div class="course-payment">
+                                            <div class="course-price">
+                                                <span class="label">السعر</span>
+                                                <div class="value ">
+                                                    {{$course->price}} ريـال
+                                                </div>
+=======
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
             </div>
             {{-- =============right side============--}}
             <div class="col-sm-12 col-md-4">
@@ -327,6 +385,10 @@
                                             <span class="label">السعر</span>
                                             <div class="value ">
                                                 {{$course->price}} ريـال
+<<<<<<< HEAD
+>>>>>>> ecdc6a62e6763402dac163a4e5d2bf6d38e41f70
+=======
+>>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                                             </div>
                                         </div>
 
