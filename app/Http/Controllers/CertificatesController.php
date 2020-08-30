@@ -39,10 +39,10 @@ class CertificatesController extends Controller
 
        
         $img = Image::make(public_path('images/certificate.jpeg'));  
-        $img->text('السلام عليكم', 120, 100, function($font) {  
+        $img->text('Muhammed ABoElGoud', 760, 275, function($font) {  
            $font->file(public_path('fonts/ArbFONTS-PNU-Regular.ttf'));  
-           $font->size(30);  
-           $font->color('#FFFFFF');  
+           $font->size(25);  
+           $font->color('#000000');  
            $font->align('center');  
            $font->valign('bottom');  
            $font->angle(0);  
