@@ -35,4 +35,14 @@ class CourseRepo extends Repository implements CourseEloquent
         return Course::find($course_id)->students;
     }
 
+    public function generateNewCourseVirsionCode($code)
+    {
+        $oldCode = explode("_", $code)[0];
+        $latest = Course::select('code')->where("code", "like", "$oldCode%")
+        ->orderByDesc('id')->first()->code;
+        $base = explode("_", $latest)[0];
+        $newVirsion = explode("_", $latest)[1];
+        $newVirsion = (int)$newVirsion;
+        return  $base . "_" .  ++$newVirsion;
+    }
 }

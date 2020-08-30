@@ -91,4 +91,12 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\CourseUpdate');
     }
+
+    /**
+     * Get the materials for the course.
+     */
+    public function materials()
+    {
+        return $this->hasMany('App\Models\Material', 'course_id');
+    }
 }
