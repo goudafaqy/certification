@@ -22,7 +22,7 @@
                                                      role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row register-form">
                                                         <div class="col-md-6">
-                                                            <h6>رقم الكورس</h6>
+                                                            <h6>رمز الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -36,7 +36,7 @@
                                                                        disabled value="{{$course->code}}">
                                                             </div>
 
-                                                            <h6>نوع الكورس</h6>
+                                                            <h6>نوع الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
@@ -161,7 +161,7 @@
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
-                                                                    <span class="exam"> امتحانات</span>
+                                                                    <span class="exam"> واجبات</span>
                                                                     <label class="radio inline">
                                                                         <input type="radio" name="gridRadios2"
                                                                                id="gridRadios3" value="option1"
