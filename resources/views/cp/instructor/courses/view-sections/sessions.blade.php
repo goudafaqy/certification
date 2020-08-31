@@ -29,10 +29,14 @@
                         <!-- <td class="priority text-center">{{ $session->title }}</td> -->
                         <td class="priority text-center">{{ $session->day }}</td>
                         <td class="priority text-center">{{ $session->date }}</td>
-                        <td class="priority text-center">{{ explode(" ", $session->from_time)[0] }} @if(explode(" ", $session->from_time)[1] == 'AM') مساءً @else صباحاً @endif</td>
-                        <td class="priority text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') مساءً @else صباحاً @endif</td>
+                        <td class="priority text-center">{{ explode(" ", $session->from_time)[0] }} @if(explode(" ", $session->from_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
+                        <td class="priority text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
                         <td class="priority text-center">
+                            @if(explode(" ", $currentDate)[0] == $session->date && ((int)explode(":", explode(" ", date("h:i a"))[0])[0] >= (int)explode(":", explode(" ", $session->from_time)[0])[0] && (int)explode(":", explode(" ", date("h:i a"))[0])[0] < (int)explode(":", explode(" ", $session->to_time)[0])[0]))
                             <a style="padding: 7px; border: solid 1px #A1825C;" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
+                            @else
+                            <button style="padding: 7px; border: solid 1px #A1825C;" data-toggle="tooltip" data-placement="top" title="لا يمكن فتح المحاضرة في غير وقتها"><i class="far fa-play-circle"></i></button>
+                            @endif
                             <a style="padding: 7px; border: solid 1px #A1825C; margin-right: 2px;" href="{{isset($session->webinar)?url('instructor/courses/webinar/'.$session->webinar->id.'/attendance'):'#'}}" target="_blanck"><i class="fa fa-list"></i></a>
                         </td>
                     </tr>
