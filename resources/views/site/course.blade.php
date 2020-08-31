@@ -264,163 +264,103 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            </div>
-                        </div>
-                        <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                            <div class="related-courses">
-                                <h3 class="p-header">كورسات ذات صله</h3><span class="pull-left"></span>
-                                <div class="clear">
-                                    <div   class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
-
-                                        @foreach($related_courses as $coursee)
-                                            <div class="item">
-                                                <div class="course-item-wrapper">
-                                                    <div class="course-thumbnail">
-                                                        <a href="{{url('course/'.$coursee->id)}}"><img  src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
-                                                        <div class="price">{{$coursee->price}} SR</div>
-                                                    </div>
-                                                    <div class="thim-course-content">
-                                                        <div class="course-author">
-                                                            <div class="course-author-content">
-                                                                <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
-                                                                <div class="author-contain">
-                                                                    <label>المعلم</label>
-                                                                    <div class="value" itemprop="name">
-                                                                        <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
-                                                                    </div>
-                                                                </div>
-=======
-=======
->>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
                     </div>
-                    <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <div class="related-courses">
-                            <h3 class="p-header">كورسات ذات صله</h3><span class="pull-left"></span>
-                            <div class="clear">
-                                <div class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
+                </div>
+                <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                    <div class="related-courses">
+                        <h3 class="p-header">كورسات ذات صله</h3><span class="pull-left"></span>
+                        <div class="clear">
+                            <div class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
 
-                                    @foreach($related_courses as $coursee)
-                                    <div class="item">
-                                        <div class="course-item-wrapper">
-                                            <div class="course-thumbnail">
-                                                <a href="{{url('course/'.$coursee->id)}}"><img src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
-                                                <div class="price">{{$coursee->price}} SR</div>
-                                            </div>
-                                            <div class="thim-course-content">
-                                                <div class="course-author">
-                                                    <div class="course-author-content">
-                                                        <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
-                                                        <div class="author-contain">
-                                                            <label>المعلم</label>
-                                                            <div class="value" itemprop="name">
-                                                                <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
-<<<<<<< HEAD
->>>>>>> ecdc6a62e6763402dac163a4e5d2bf6d38e41f70
-=======
->>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
-                                                            </div>
+                                @foreach($related_courses as $coursee)
+                                <div class="item">
+                                    <div class="course-item-wrapper">
+                                        <div class="course-thumbnail">
+                                            <a href="{{url('course/'.$coursee->id)}}"><img src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
+                                            <div class="price">{{$coursee->price}} SR</div>
+                                        </div>
+                                        <div class="thim-course-content">
+                                            <div class="course-author">
+                                                <div class="course-author-content">
+                                                    <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                    <div class="author-contain">
+                                                        <label>المعلم</label>
+                                                        <div class="value" itemprop="name">
+                                                            <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h2 class="course-title">
-                                                    <a href="{{url('course/'.$coursee->id)}}">{{$coursee->title}}</a>
-                                                </h2>
-                                                <div class="course-meta">
-                                                    <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                                    <span>
-                                                        <i class="fa fa-tag"></i>
-                                                        <a href="{{url('course/'.$coursee->id)}}">{{$coursee->category->title}}</a>
-                                                    </span>
-                                                    <span class="star"><i class="fa fa-star"></i> 3</span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    <h2 class="course-title">
+                                        <a href="{{url('course/'.$coursee->id)}}">{{$coursee->title}}</a>
+                                    </h2>
+                                    <div class="course-meta">
+                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
+                                        <span>
+                                            <i class="fa fa-tag"></i>
+                                            <a href="{{url('course/'.$coursee->id)}}">{{$coursee->category->title}}</a>
+                                        </span>
+                                        <span class="star"><i class="fa fa-star"></i> 3</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-{{--               =============right side============--}}
-                <div class="col-sm-12 col-md-4">
-
-                    <div class="course-info-right sticky-sidebar">
-                        <div class="sticky-content">
-                            <div class="course-info-wrapper">
-                                <div class="right-col__content">
-                                    <div class="right-col__wrapper">
-                                        <div class="course-thumbnail">
-                                            <img
-                                                src="{{url($course->image)}}"
-                                                class="attachment-full size-full wp-post-image img-fluid" alt="" width="1600" height="790">
-                                        </div>
-                                        <div class="course-payment">
-                                            <div class="course-price">
-                                                <span class="label">السعر</span>
-                                                <div class="value ">
-                                                    {{$course->price}} ريـال
-                                                </div>
-=======
-=======
->>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
             </div>
-            {{-- =============right side============--}}
-            <div class="col-sm-12 col-md-4">
+        </div>
+    </div>
+    {{-- =============right side============--}}
+    <div class="col-sm-12 col-md-4">
 
-                <div class="course-info-right sticky-sidebar">
-                    <div class="sticky-content">
-                        <div class="course-info-wrapper">
-                            <div class="right-col__content">
-                                <div class="right-col__wrapper">
-                                    <div class="course-thumbnail">
-                                        <img src="{{url($course->image)}}" class="attachment-full size-full wp-post-image img-fluid" alt="">
+        <div class="course-info-right sticky-sidebar">
+            <div class="sticky-content">
+                <div class="course-info-wrapper">
+                    <div class="right-col__content">
+                        <div class="right-col__wrapper">
+                            <div class="course-thumbnail">
+                                <img src="{{url($course->image)}}" class="attachment-full size-full wp-post-image img-fluid" alt="">
+                            </div>
+                            <div class="course-payment">
+                                <div class="course-price">
+                                    <span class="label">السعر</span>
+                                    <div class="value ">
+                                        {{$course->price}} ريـال
+
                                     </div>
-                                    <div class="course-payment">
-                                        <div class="course-price">
-                                            <span class="label">السعر</span>
-                                            <div class="value ">
-                                                {{$course->price}} ريـال
-<<<<<<< HEAD
->>>>>>> ecdc6a62e6763402dac163a4e5d2bf6d38e41f70
-=======
->>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
-                                            </div>
-                                        </div>
+                                </div>
 
-                                        <div class="lp-course-buttons">
-                                            <form name="purchase-course" class="purchase-course form-purchase-course" action="{{route('purchase-course')}}" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="purchase-course" value="5181">
-                                                <input type="hidden" name="purchase-course-nonce" value="1ad69a85d7">
-                                                <input type="hidden" name="course_id" value="{{$course->id}}">
-                                                @php
-                                                    $start = \Carbon\Carbon::createFromTimeString($course->start_date.' '.'00:00:01');
-                                                    $end = \Carbon\Carbon::createFromTimeString($course->end_date.' '.'23:59:59');
-                                                @endphp
+                                <div class="lp-course-buttons">
+                                    <form name="purchase-course" class="purchase-course form-purchase-course" action="{{route('purchase-course')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="purchase-course" value="5181">
+                                        <input type="hidden" name="purchase-course-nonce" value="1ad69a85d7">
+                                        <input type="hidden" name="course_id" value="{{$course->id}}">
+                                        @php
+                                        $start = \Carbon\Carbon::createFromTimeString($course->start_date.' '.'00:00:01');
+                                        $end = \Carbon\Carbon::createFromTimeString($course->end_date.' '.'23:59:59');
+                                        @endphp
 
-                                                <button {{$course->students()->count() < $course->seats? "" : "disabled"}} {{$start->isPast()? "" : "disabled"}} {{$end->isPast()? "disabled" : ""}} type="submit" class="lp-button button button-purchase-course thim-enroll-course-button">
-                                                    @if(auth()->guest())
-                                                    سجل دخول الآن
-                                                    @elseif(auth()->user() && !$course->students->contains(auth()->user()->id))
-                                                    سجل في الدوره الآن
-                                                    @elseif($course->students->contains(auth()->user()->id))
-                                                    استعرض الان
-                                                    @endif
-                                                </button>
-                                                <input type="hidden" name="redirect_to" value="">
-                                                <input type="hidden" name="single-purchase" value="yes">
-                                                <input type="hidden" name="add-to-cart" value="5181">
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="thim-course-feature">
-                                        <ul>
-                                            <!-- <li class="lectures-feature">
+                                        <button {{$course->students()->count() < $course->seats? "" : "disabled"}} {{$start->isPast()? "" : "disabled"}} {{$end->isPast()? "disabled" : ""}} type="submit" class="lp-button button button-purchase-course thim-enroll-course-button">
+                                            @if(auth()->guest())
+                                            سجل دخول الآن
+                                            @elseif(auth()->user() && !$course->students->contains(auth()->user()->id))
+                                            سجل في الدوره الآن
+                                            @elseif($course->students->contains(auth()->user()->id))
+                                            استعرض الان
+                                            @endif
+                                        </button>
+                                        <input type="hidden" name="redirect_to" value="">
+                                        <input type="hidden" name="single-purchase" value="yes">
+                                        <input type="hidden" name="add-to-cart" value="5181">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="thim-course-feature">
+                                <!-- <li class="lectures-feature">
                                                     <img src="images/agenda (1).png" width="20" class="im-fluid" style="width:20px !important">
                                                     <span class="value">5</span>
                                                     <span class="label">محاضرات</span>
@@ -430,98 +370,58 @@
                                                     <span class="value">0</span>
                                                     <span class="label">الإختبارات</span>
                                                 </li> -->
-{{--                                            <<<<<<< HEAD--}}
-{{--                                            <li class="duration-feature">--}}
-{{--                                                <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
-{{--                                                <span class="label">تاريخ بدء التسجيل</span>--}}
-{{--                                                <span class="value">{{$course->start_date}}</span>--}}
 
-{{--                                            </li>--}}
-{{--                                            <li class="duration-feature">--}}
-{{--                                                <img src="{{asset('site-assets/images/calendar2.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
-{{--                                                <span class="label">تاريخ نهاية التسجيل</span>--}}
-{{--                                                <span class="value">{{$course->end_date}}</span>--}}
+                                <ul class="under-links">
+                                    <li class="duration-feature">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span class="label">تاريخ بدء التسجيل</span>
+                                        <span class="value">{{$course->start_date}}</span>
 
-{{--                                            </li>--}}
-{{--                                            <li class="skill-feature">--}}
-{{--                                                <img src="{{asset('site-assets/images/schedule.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
-{{--                                                <span class="label">مدة البرنامج</span>--}}
-{{--                                                <span class="value">{{$course->appointments()->count()}} محاضرات </span>--}}
+                                    </li>
+                                    <li class="duration-feature">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span class="label">تاريخ نهاية التسجيل</span>
+                                        <span class="value">{{$course->end_date}}</span>
 
-{{--                                            </li>--}}
-{{--                                            <li class="skill-feature">--}}
-{{--                                                <img src="{{asset('site-assets/images/teaching.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
-{{--                                                <span class="label">مستوى البرنامج</span>--}}
-{{--                                                @if($course->skill_level == "m")--}}
-{{--                                                    <span class="value">متوسط</span>--}}
-{{--                                                @elseif($course->skill_level == "l")--}}
-{{--                                                    <span class="value">منخفض</span>--}}
-{{--                                                @else--}}
-{{--                                                    <span class="value">متقدم</span>--}}
-{{--                                                @endif--}}
-{{--                                                <span class="value"></span>--}}
+                                    </li>
+                                    <li class="skill-feature">
+                                        <i class="far fa-clock"></i>
+                                        <span class="label">مدة البرنامج</span>
+                                        <span class="value">{{$totalTime/60}} ساعات </span>
 
-{{--                                            </li>--}}
-{{--                                            <li class="language-feature">--}}
-{{--                                                <img src="{{asset('site-assets/images/world.png')}}" width="20" class="im-fluid" style="width:20px !important">--}}
+                                    </li>
+                                    <li class="skill-feature">
+                                        <i class="fas fa-level-up-alt"></i>
+                                        <span class="label">مستوى البرنامج</span>
+                                        @if($course->skill_level == "m")
+                                        <span class="value">متوسط</span>
+                                        @elseif($course->skill_level == "l")
+                                        <span class="value">منخفض</span>
+                                        @else
+                                        <span class="value">متقدم</span>
+                                        @endif
+                                        <span class="value"></span>
 
-{{--                                                <span class="label">اللغة</span>--}}
-{{--                                                <span class="value">العربية</span>--}}
-{{--                                            </li>--}}
+                                    </li>
+                                    <li class="language-feature">
+                                        <i class="fa fa-language"></i>
 
-{{--                                            <ul class="under-links">--}}
-{{--                                                =======--}}
-                                            <li class="duration-feature">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span class="label">تاريخ بدء التسجيل</span>
-                                                <span class="value">{{$course->start_date}}</span>
+                                        <span class="label">اللغة</span>
+                                        <span class="value">العربية</span>
+                                    </li>
+                                    <li class="language-feature">
+                                        <i class="fa fa-user-alt-slash"></i>
 
-                                            </li>
-                                            <li class="duration-feature">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span class="label">تاريخ نهاية التسجيل</span>
-                                                <span class="value">{{$course->end_date}}</span>
+                                        <span class="label">اقصى عدد</span>
+                                        <span class="value">{{$course->seats}} متدرب </span>
+                                    </li>
+                                    <li class="language-feature">
+                                        <i class="fa fa-user-plus"></i>
 
-                                            </li>
-                                            <li class="skill-feature">
-                                                <i class="far fa-clock"></i>
-                                                <span class="label">مدة البرنامج</span>
-                                                <span class="value">{{$totalTime/60}} ساعات </span>
-
-                                            </li>
-                                            <li class="skill-feature">
-                                                <i class="fas fa-level-up-alt"></i>
-                                                <span class="label">مستوى البرنامج</span>
-                                                @if($course->skill_level == "m")
-                                                <span class="value">متوسط</span>
-                                                @elseif($course->skill_level == "l")
-                                                <span class="value">منخفض</span>
-                                                @else
-                                                <span class="value">متقدم</span>
-                                                @endif
-                                                <span class="value"></span>
-
-                                            </li>
-                                            <li class="language-feature">
-                                                <i class="fa fa-language"></i>
-
-                                                <span class="label">اللغة</span>
-                                                <span class="value">العربية</span>
-                                            </li>
-                                            <li class="language-feature">
-                                                <i class="fa fa-user-alt-slash"></i>
-
-                                                <span class="label">اقصى عدد</span>
-                                                <span class="value">{{$course->seats}} متدرب </span>
-                                            </li>
-                                            <li class="language-feature">
-                                                <i class="fa fa-user-plus"></i>
-
-                                                <span class="label">عدد المسجلين</span>
-                                                <span class="value">{{$course->students()->count()}} متدرب </span>
-                                            </li>
-                                            <!-- <ul class="under-links">
->>>>>>> 04f1403c73dcd8c0a0db022c37c832fe71c60a0c
+                                        <span class="label">عدد المسجلين</span>
+                                        <span class="value">{{$course->students()->count()}} متدرب </span>
+                                    </li>
+                                    <!-- <ul class="under-links">
                                                     <h4>يحتوي البرنامج علي </h4>
                                                     <li class="language-feature">
                                                         <img src="{{asset('site-assets/images/cou.png')}}" width="20" class="im-fluid" style="width:20px !important">
@@ -540,83 +440,82 @@
                                                         <span class="label">الأدوات والتجهيزات اللازمة</span>
                                                     </li>
                                                 </ul> -->
-                                            <!-- <li class="students-feature">
+                                    <!-- <li class="students-feature">
                                                     <img src="images/man.png" width="20" class="im-fluid" style="width:20px !important">
                                                     <span class="value"></span>
                                                     <span class="label"> 94 طالب</span>
                                                 </li> -->
-                                        </ul>
-                                    </div>
-                                    <div class="social_share">
-                                        <ul class="thim-social-share">
-                                            <li class="heading">Share:</li>
-                                            <li>
-                                                <div class="facebook-social">
-                                                    <a target="_blank" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{URL::current()}}" title="Facebook">
-                                                        <i class="fab fa-facebook-f"></i>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="googleplus-social">
-                                                    <a target="_blank" class="googleplus" href="#" title="email">
-                                                        <i class="far fa-envelope"></i>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="twitter-social">
-                                                    <a target="_blank" class="twitter" href="https://twitter.com/intent/tweet?text={{$course->title}}&amp;url={{URL::current()}}" title="Twitter">
-                                                        <i class="fab fa-twitter"></i>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="pinterest-social">
-                                                    <a id="copy" class="pinterest" href="#" title="copUrl">
-                                                        <i class="far fa-copy"></i>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                </ul>
+                            </div>
+                            <div class="social_share">
+                                <ul class="thim-social-share">
+                                    <li class="heading">Share:</li>
+                                    <li>
+                                        <div class="facebook-social">
+                                            <a target="_blank" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{URL::current()}}" title="Facebook">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="googleplus-social">
+                                            <a target="_blank" class="googleplus" href="#" title="email">
+                                                <i class="far fa-envelope"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="twitter-social">
+                                            <a target="_blank" class="twitter" href="https://twitter.com/intent/tweet?text={{$course->title}}&amp;url={{URL::current()}}" title="Twitter">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="pinterest-social">
+                                            <a id="copy" class="pinterest" href="#" title="copUrl">
+                                                <i class="far fa-copy"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                {{-- ============= end right side============--}}
-
             </div>
+
         </div>
+        {{-- ============= end right side============--}}
+
     </div>
-    @endsection
+</div>
+</div>
+@endsection
 
-    @section('script')
-    <script>
-        $("#learn-press-course-tabs ul li a").click(function() {
-            $("#learn-press-course-tabs ul li").removeClass("active");
-            $(this).parent().addClass('active');
+@section('script')
+<script>
+    $("#learn-press-course-tabs ul li a").click(function() {
+        $("#learn-press-course-tabs ul li").removeClass("active");
+        $(this).parent().addClass('active');
+    });
+</script>
+<script>
+    // Prevent closing from click inside dropdown
+    $(document).on('click', '.dropdown-menu', function(e) {
+        e.stopPropagation();
+    });
+    // make it as accordion for smaller screens
+    if ($(window).width() < 992) {
+        $('.dropdown-menu a').click(function(e) {
+            e.preventDefault();
+            if ($(this).next('.submenu').length) {
+                $(this).next('.submenu').toggle();
+            }
+            $('.dropdown').on('hide.bs.dropdown', function() {
+                $(this).find('.submenu').hide();
+            })
         });
-    </script>
-    <script>
-        // Prevent closing from click inside dropdown
-        $(document).on('click', '.dropdown-menu', function(e) {
-            e.stopPropagation();
-        });
-        // make it as accordion for smaller screens
-        if ($(window).width() < 992) {
-            $('.dropdown-menu a').click(function(e) {
-                e.preventDefault();
-                if ($(this).next('.submenu').length) {
-                    $(this).next('.submenu').toggle();
-                }
-                $('.dropdown').on('hide.bs.dropdown', function() {
-                    $(this).find('.submenu').hide();
-                })
-            });
-        }
-    </script>
-    @endsection
-
+    }
+</script>
+@endsection
