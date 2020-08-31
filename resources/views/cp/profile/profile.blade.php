@@ -9,7 +9,7 @@
                     </div>
                     <div class="profile-card-header">
                         <div class="circle">
-                            <img class="profile-pic" src="{{asset($user->image)}}">
+                            <img class="profile-pic" src="{{asset($user->image)}}" alt="img">
                             <div class="p-image">
                                 <i class="fa fa-camera upload-button"></i>
                             </div>
@@ -25,25 +25,24 @@
                             <nav>
                                 <ul>
                                     <li class="tab1">
-                                        <label for="tab1"> <img src="{{asset('images/man.png')}}" style="width: 22px">
+                                        <label for="tab1"> <img src="{{asset('images/man.png')}}" alt="img" style="width: 22px">
                                             الملف الشخصي</label>
                                     </li>
                                     @if(in_array('instructor', $user->roles->pluck('name')->toArray()))
                                         <li class="tab2">
-                                            <label for="tab2"> <img src="{{asset('images/school.png')}}"
-                                                                    style="width: 20px"> الكورسات</label>
+                                            <label for="tab2"> <img src="{{asset('images/school.png')}}" style="width: 20px"> الدورات الحاصل عليها </label>
                                         </li>
                                         <li class="tab3">
                                             <label for="tab3"> <img src="{{asset('images/bo.png')}}"
-                                                                    style="width: 22px"> البحوث والدراسات</label>
+                                                                    style="width: 22px" alt="img"> البحوث والدراسات</label>
                                         </li>
                                         <li class="tab4">
-                                            <label for="tab4"> <img src="{{asset('images/training.png')}}"
-                                                                    style="width: 22px"> الخبرات</label>
+                                            <label for="tab4"> <img src="{{asset('images/training.png')}}" style="width: 22px"> الخبرات العملية</label>
+
                                         </li>
                                         <li class="tab5">
                                             <label for="tab5"> <img src="{{asset('images/certificate.png')}}"
-                                                                    style="width: 22px"> الشهادات</label>
+                                                                    style="width: 22px" alt="img"> الشهادات</label>
                                         </li>
                                     @endif
                                 </ul>
@@ -184,17 +183,42 @@
                                     </div>
                                 </div>
                                 <div class="tab2 Tab-form">
-                                    <form class="form repeater-default row">
+                                    <form class="form repeater-default row" method="POST" action="{{route('save-qualifications')}}">
+                                        @csrf
+                                        <input type="hidden" name="type" value="courses">
                                         <div class="col-lg-10">
                                             <div class="ui-input-container">
+                                                @if(count($user->courses_have_taken) == 0)
+
+                                                    <div data-repeater-list="group-a">
+                                                        <div data-repeater-item>
+                                                            <label class="ui-form-input-container">
+
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input"></textarea>
+                                                                <span class="form-input-label">
+                                                                <img src="{{ asset('images/school.png') }}"
+                                                                     style="width: 20px"><span data-repeater-delete
+                                                                                               type="button"
+                                                                                               value="Delete"
+                                                                                               class="delet">&times;</span></span>
+                                                            </label>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                @else
+                                                @foreach($user->courses_have_taken as $course)
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
-                                                            <textarea class="ui-form-input"
-                                                                      id="word-count-input"></textarea>
+
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input">{{$course->body}}</textarea>
                                                             <span class="form-input-label">
                                                                 <img src="{{ asset('images/school.png') }}"
-                                                                     style="width: 20px"><span data-repeater-delete
+                                                                     style="width: 20px" alt="img"><span data-repeater-delete
                                                                                                type="button"
                                                                                                value="Delete"
                                                                                                class="delet">&times;</span></span>
@@ -203,6 +227,8 @@
                                                     </div>
 
                                                 </div>
+                                                @endforeach
+                                                    @endif
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
@@ -215,26 +241,50 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-primary mt-2 mx-auto">حفظ</button>
                                     </form>
                                 </div>
                                 <div class="tab3 Tab-form">
-                                    <form class="form repeater-default row">
+                                    <form class="form repeater-default row" method="POST" action="{{route('save-qualifications')}}">
+                                        @csrf
+                                        <input type="hidden" name="type" value="researches">
                                         <div class="col-lg-10">
                                             <div class="ui-input-container">
+                                                @if(count($user->researches)  == 0)
+
+                                                    <div data-repeater-list="group-a">
+                                                        <div data-repeater-item>
+                                                            <label class="ui-form-input-container">
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input"></textarea>
+                                                                <span class="form-input-label"><img
+                                                                        src="{{ asset('images/bo.png') }}"
+                                                                        style="width: 22px"><span data-repeater-delete
+                                                                                                  type="button"
+                                                                                                  value="Delete"
+                                                                                                  class="delet">&times;</span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    @else
+                                                @foreach($user->researches as $research)
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
-                                                            <textarea class="ui-form-input"
-                                                                      id="word-count-input"></textarea>
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input">{{$research->body}}</textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/bo.png') }}"
-                                                                    style="width: 22px"><span data-repeater-delete
+                                                                    style="width: 22px" alt="img"><span data-repeater-delete
                                                                                               type="button"
                                                                                               value="Delete"
                                                                                               class="delet">&times;</span></span>
                                                         </label>
                                                     </div>
                                                 </div>
+                                                @endforeach
+                                                    @endif
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
@@ -247,20 +297,43 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-primary mt-2 mx-auto">حفظ</button>
                                     </form>
                                 </div>
                                 <div class="tab4 Tab-form">
-                                    <form class="form repeater-default row">
+                                    <form class="form repeater-default row" method="POST" action="{{route('save-qualifications')}}">
+                                        @csrf
+                                        <input type="hidden" name="type" value="experiences">
                                         <div class="col-lg-10">
                                             <div class="ui-input-container">
+                                                @if(count($user->experiences) == 0)
+                                                    <div data-repeater-list="group-a">
+                                                        <div data-repeater-item>
+                                                            <label class="ui-form-input-container">
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input"></textarea>
+                                                                <span class="form-input-label"><img
+                                                                        src="{{ asset('images/training.png') }}"
+                                                                        style="width: 22px"><span data-repeater-delete
+                                                                                                  type="button"
+                                                                                                  value="Delete"
+                                                                                                  class="delet">&times;</span></span>
+                                                            </label>
+
+                                                        </div>
+
+                                                    </div>
+                                                    @else
+
+                                                @foreach($user->experiences as $experiences)
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
-                                                            <textarea class="ui-form-input"
-                                                                      id="word-count-input"></textarea>
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input">{{$experiences->body}}</textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/training.png') }}"
-                                                                    style="width: 22px"><span data-repeater-delete
+                                                                    style="width: 22px" alt="img"><span data-repeater-delete
                                                                                               type="button"
                                                                                               value="Delete"
                                                                                               class="delet">&times;</span></span>
@@ -269,6 +342,8 @@
                                                     </div>
 
                                                 </div>
+                                                @endforeach
+                                                    @endif
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
@@ -281,26 +356,50 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-primary mt-2 mx-auto">حفظ</button>
                                     </form>
                                 </div>
                                 <div class="tab5 Tab-form">
-                                    <form class="form repeater-default row">
+                                    <form class="form repeater-default row" method="POST" action="{{route('save-qualifications')}}">
+                                        @csrf
+                                        <input type="hidden" name="type" value="certificates">
                                         <div class="col-lg-10">
                                             <div class="ui-input-container">
+
+                                                @if(count($user->certificates) == 0)
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
-                                                            <textarea class="ui-form-input"
+                                                            <textarea name="body" class="ui-form-input"
                                                                       id="word-count-input"></textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/certificate.png') }}"
-                                                                    style="width: 22px"><span data-repeater-delete
+                                                                    style="width: 22px" alt="img"><span data-repeater-delete
                                                                                               type="button"
                                                                                               value="Delete"
                                                                                               class="delet">&times;</span></span>
                                                         </label>
                                                     </div>
                                                 </div>
+                                                    @else
+                                                    @foreach($user->certificates as $cert)
+                                                        <div data-repeater-list="group-a">
+                                                            <div data-repeater-item>
+                                                                <label class="ui-form-input-container">
+                                                            <textarea name="body" class="ui-form-input"
+                                                                      id="word-count-input">{{$cert->body}}</textarea>
+                                                                    <span class="form-input-label"><img
+                                                                            src="{{ asset('images/certificate.png') }}"
+                                                                            style="width: 22px"><span data-repeater-delete
+                                                                                                      type="button"
+                                                                                                      value="Delete"
+                                                                                                      class="delet">&times;</span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
+
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
@@ -313,6 +412,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-primary mt-2 mx-auto">حفظ</button>
                                     </form>
                                 </div>
                             </section>

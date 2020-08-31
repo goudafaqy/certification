@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classification;
 use App\Models\Course;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Advertisment;
@@ -48,10 +49,19 @@ class WelcomeController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function course($id){
+        $minutes = [];
         $course = Course::find($id);
         $sections = Section::where('course_id',$id)->with('units')->get();
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
-        return view('site.course',compact('course','related_courses', 'sections'));
+        $courseAppointments = $course->appointments;
+        foreach ($courseAppointments as $session){
+            $start  = Carbon::createFromTimeString($session->date.' '.$session->from_time);
+            $end  = Carbon::createFromTimeString($session->date.' '.$session->to_time);
+            $minutes[] = $end->diffInRealMinutes($start);
+        }
+        $totalTime = array_sum($minutes);
+
+        return view('site.course',compact('course','related_courses', 'sections','totalTime'));
     }
 
     /**

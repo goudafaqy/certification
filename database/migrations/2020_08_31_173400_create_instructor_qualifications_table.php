@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLetterToCategoriesTable extends Migration
+class CreateInstructorQualificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddLetterToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->char('letter')->nullable();
+        Schema::create('instructor_qualifications', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->string('type');
+            $table->text('body');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddLetterToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('letter');
-        });
+        Schema::dropIfExists('instructor_qulifications');
     }
 }

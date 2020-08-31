@@ -28,6 +28,7 @@ Auth::routes();
         Route::get('/', 'HomeController@dashboard')->name('dashboard');
         Route::get('edit-profile', 'ProfileController@edit')->name('edit-profile');
         Route::post('save-profile', 'ProfileController@save')->name('save-profile');
+        Route::post('save-qualifications', 'ProfileController@saveQualifications')->name('save-qualifications');
     });
 
 
@@ -124,7 +125,8 @@ Auth::routes();
 
 
     Route::get('test', function (){
-       return \App\Http\Helpers\ZoomHelper::getAttendeesReport('83817922541');
+
+      dd(Route::getCurrentRoute()->uri);
     });
 
     // Course notifications routes ...
@@ -163,7 +165,7 @@ Auth::routes();
             Route::post('update', 'TestmonialsController@edit')->name('update-testmonials');
             Route::post('save', 'TestmonialsController@create')->name('save-testmonials');
             Route::get('delete/{id}', 'TestmonialsController@delete')->name('delete-testmonials');
-    
+
         });
 
 Auth::routes();
@@ -182,11 +184,21 @@ Route::prefix('instructor')->group(function (){
         Route::get('{id}/assignment/add', 'CourseExamsController@add')->name('instructor-course-assignment-add');
         Route::post('{id}/exam/save', 'CourseExamsController@create')->name('instructor-course-exam-create');
 
+        Route::get('{id}/exam/{examId}/edit', 'CourseExamsController@edit')->name('instructor-course-exam-edit');
+        Route::get('{id}/assignment/{examId}/edit', 'CourseExamsController@edit')->name('instructor-course-assignment-edit');
+        Route::post('{id}/exam/{examId}/update', 'CourseExamsController@update')->name('instructor-course-exam-update');
+
+        Route::get('{id}/exam/{examId}/trainees', 'CourseExamsController@trainees')->name('instructor-course-exam-trainees');
+        Route::get('{id}/assignment/{examId}/trainees', 'CourseExamsController@trainees')->name('instructor-course-assignment-trainees');
+        Route::get('{id}/exam/{examId}/review/{traineeId}', 'CourseExamsController@trainee_answers')->name('instructor-course-exam-review-trainee');
+        Route::get('{id}/assignment/{examId}/review/{traineeId}', 'CourseExamsController@trainee_answers')->name('instructor-course-assignment-review-trainee');
+        Route::post('{id}/exam/{examId}/review/{traineeId}', 'CourseExamsController@review')->name('instructor-course-exam-review-trainee-save');
+
         Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
         Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
-
     });
 });
+
 Route::get('newsletter', 'WelcomeController@newsletter')->name('newsletter');
 
 // Trainee dashboard routes ...
