@@ -198,7 +198,7 @@
                                     <div class="thim-course-content">
                                         <div class="course-author">
                                             <div class="course-author-content">
-                                                <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
                                                 <div class="author-contain">
                                                     <label>المعلم</label>
                                                     <div class="value" itemprop="name">
@@ -211,7 +211,7 @@
                                             <a href="{{url('course/'.$course->id)}}">{{$course->title}}</a>
                                         </h2>
                                         <div class="course-meta">
-                                            <span> <i class="fa fa-user"></i>94 متدرب</span>
+                                            <span> <i class="fa fa-user"></i>{{$course->students()->count()}} متدرب</span>
                                             <span>
                               <i class="fa fa-tag"></i>
                               <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
