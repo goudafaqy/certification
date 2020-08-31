@@ -18,6 +18,7 @@ class ProfileController extends Controller
     }
 
     public function save(UpdateProfile $request){
+
         $user = Auth::user();
         $user->fill($request->all());
         if($request->file()) {

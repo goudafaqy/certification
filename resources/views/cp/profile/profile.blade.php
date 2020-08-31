@@ -104,7 +104,7 @@
                                                         <span class="input-group-text" id="basic-addon1"><i
                                                                 class="far fa-id-card"></i></span>
                                                     </div>
-                                                    <input id="national_id" value="{!! $user->national_id !!}" readonly
+                                                    <input id="national_id" value="{{$user->national_id }}"
                                                            required="" name="national_id" class="form-control"
                                                            type="text" placeholder="رقم الهوية">
                                                 </div>
@@ -177,6 +177,45 @@
 
                                                     </select>
                                                 </div>
+                                                @error('job_title')
+                                                <div class="valid"><a href="#">{{$message}}</a></div>
+                                                @enderror
+                                                <div class=" input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-list-alt"></i></span>
+                                                    </div>
+                                                    <input id="job_title" required="" value="{!! $user->job_title !!}"
+                                                           name="job_title" class="form-control" type="text"
+                                                           placeholder="المسمى الوظيفي">
+                                                </div>
+
+                                                @error('facebook_link')
+                                                <div class="valid"><a href="#">{{$message}}</a></div>
+                                                @enderror
+                                                <div class=" input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-facebook-f"></i></span>
+                                                    </div>
+                                                    <input id="facebook_link" required="" value="{!! $user->facebook_link !!}"
+                                                           name="facebook_link" class="form-control" type="text"
+                                                           placeholder="رابط فيسبوك">
+                                                </div>
+
+                                                @error('twitter_link')
+                                                <div class="valid"><a href="#">{{$message}}</a></div>
+                                                @enderror
+                                                <div class=" input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-twitter"></i></span>
+                                                    </div>
+                                                    <input id="twitter_link" required="" value="{!! $user->twitter_link !!}"
+                                                           name="twitter_link" class="form-control" type="text"
+                                                           placeholder="رابط تويتر">
+                                                </div>
+
                                                 <button type="submit" class="btn btn-primary mt-2 mx-auto">حفظ</button>
                                             </form>
                                         </div>

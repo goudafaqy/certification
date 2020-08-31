@@ -13,7 +13,7 @@
                             <a href="" class="btn04 btn05"><span>رؤيتنا</span></a>
                                 <h6>
                               أن يكون المركز مرجعا فنيا ومعياريا رائدا ومزودا متميزا في التأهيل والتدريب
-                          
+
                                 </h6>
 
                             </div>
@@ -27,15 +27,15 @@
                             <a href="" class="btn04 btn05"><span>رسالتنا</span></a>
                                 <h5>
                                 رفع كفاءة الممارسين العدليين من خلال توفير برامج نوعية وتمكين الشركاء بإطار معرفي ومعايير حاكمة
-                          
+
                                 </h65>
 
                             </div>
                         </div>
                     </div>
                 </div>
-             
-               
+
+
 
                 <!-- <div class="swiper-slide" data-test-set="test" style="background-image:url({{asset('site-assets/images/slider/3.jpg')}})">
                     <div class="cover">
@@ -191,7 +191,7 @@
                                     <div class="thim-course-content">
                                         <div class="course-author">
                                             <div class="course-author-content">
-                                                <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
                                                 <div class="author-contain">
                                                     <label>المعلم</label>
                                                     <div class="value" itemprop="name">
@@ -204,7 +204,7 @@
                                             <a href="{{url('course/'.$course->id)}}">{{$course->title}}</a>
                                         </h2>
                                         <div class="course-meta">
-                                            <span> <i class="fa fa-user"></i>94 متدرب</span>
+                                            <span> <i class="fa fa-user"></i>{{$course->students()->count()}} متدرب</span>
                                             <span>
                               <i class="fa fa-tag"></i>
                               <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
@@ -225,7 +225,7 @@
         <div class="overlay"></div>
         <div class="container">
             <div class="row program">
-              
+
                 <div class="col-lg-12 col-xs-12">
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                     <div class="items">
@@ -284,8 +284,8 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach    
-                          
+                        @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -428,7 +428,7 @@
                                     </div>
                                 </div>
                                 @endforeach
-                              
+
                             </div>
                         </div>
                     </div>
@@ -452,7 +452,7 @@
                                         <p class="email-p">
                                             سجل الى القائمة البريدية ليصلك جديد البرامج والدوات التدريبية
                                         </p>
-                         
+
                                         <form>
                                         <div class="form-group input-group">
                                             <div class="input-group-prepend">
@@ -466,7 +466,7 @@
                                     </form>
 
 
-                                          
+
 
                                     </div>
 
@@ -477,7 +477,7 @@
                                     <span class="alert alert-danger" role="alert" id="fail" style="display:none">
                                      هناك خطأ
                                     </span>
-                                   
+
                                 </div>
 
                             </div>
