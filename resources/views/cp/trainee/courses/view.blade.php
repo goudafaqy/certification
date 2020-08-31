@@ -15,57 +15,37 @@
                                             <img src="{{url($course->image)}}" class="img-fluid" width="60" alt=""
                                                  style="width:200px !important">
                                             <h3>{{$course->title_ar}}</h3>
-                                            
 
-                                             <!-- rating-widget -->
-                                            <section class='rating-widget'>
-  
-                                            <!-- Rating Stars Box -->
-                                                <div class='rating-stars text-center'>
-                                                    <ul id='stars'>
-                                                        <li class='star' title='Poor' data-value='1'>
-                                                            <i class='fa fa-star fa-fw'></i>
-                                                        </li>
-                                                        <li class='star' title='Fair' data-value='2'>
-                                                            <i class='fa fa-star fa-fw'></i>
-                                                        </li>
-                                                        <li class='star' title='Good' data-value='3'>
-                                                            <i class='fa fa-star fa-fw'></i>
-                                                        </li>
-                                                        <li class='star' title='Excellent' data-value='4'>
-                                                            <i class='fa fa-star fa-fw'></i>
-                                                        </li>
-                                                        <li class='star' title='WOW!!!' data-value='5'>
-                                                            <i class='fa fa-star fa-fw'></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-  
-                                                <div class='success-box'>
-                                                    <div class='clearfix'></div>
-                                                    تقيم الكورس
-                                                    <div class='text-message'></div>
-                                                    <div class='clearfix'></div>
-                                                </div>
-                                            </section>
-                                            <!-- end rating-widget -->
-
-
-
-
-                                            <!-- <div class="course-review star-review">
-                                                <label>  تقييم البرنامج</label>
-                                                <div class="flex">
-                                                    <output dir="rtl" tabindex="0" role="slider" 
-                                                        aria-readonly="true" aria-live="off" 
-                                                        aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" 
-                                                        class="b-rating form-control align-items-center b-rating-inline form-control-sm d-inline-flex border-0 readonly" id="__BVID__107">
-                                                        <span class="b-rating-star   b-rating-star-full">
-                                                        <span class="b-rating-icon">
-                                                        <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><b aria-hidden="true" class="b-rating-value  ">3/5</b>
-                                                    </output>
-                                                </div>
-                                            </div> -->
+                                            <div class="course-review star-review">
+                                                <section class='rating-widget'>
+                                                    <div class='rating-stars text-center'>
+                                                        <ul id='stars'>
+                                                            <li class='star' title='Poor' data-value='1'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Fair' data-value='2'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Good' data-value='3'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Excellent' data-value='4'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='WOW!!!' data-value='5'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+    
+                                                    <div class='success-box'>
+                                                        <div class='clearfix'></div>
+                                                        تقيم الدورة
+                                                        <div class='text-message'></div>
+                                                        <div class='clearfix'></div>
+                                                    </div>
+                                                </section>
+                                            </div>
                                         </div>
                                         <div class="col-md-9 register-right">
                                             <div class="tab-content" id="myTabContent">
@@ -73,28 +53,28 @@
                                                      role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row register-form">
                                                         <div class="col-md-6">
-                                                            <h6>رقم الكورس</h6>
+                                                            <h6>رمز الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/cou.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="text"
                                                                        class="form-control" type="text"
                                                                        disabled value="{{$course->code}}">
                                                             </div>
 
-                                                            <h6>نوع الكورس</h6>
+                                                            <h6>نوع الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/school.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
@@ -121,7 +101,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/man.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -134,7 +114,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/teacher.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'b')
                                                                     <input id="email" required="" name="email"
@@ -152,27 +132,27 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h6>تاريخ بداية الكورس</h6>
+                                                            <h6>تاريخ بداية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
                                                                        value="{{ $course->start_date }}">
                                                             </div>
-                                                            <h6>تاريخ نهاية الكورس</h6>
+                                                            <h6>تاريخ نهاية الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -185,7 +165,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/medal.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -212,7 +192,7 @@
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
-                                                                    <span class="exam"> امتحانات</span>
+                                                                    <span class="exam"> واجبات</span>
                                                                     <label class="radio inline">
                                                                         <input type="radio" name="gridRadios2"
                                                                                id="gridRadios3" value="option1"
@@ -257,6 +237,10 @@
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'files']):"javascript:void(0);"}}"
                                            for="tab2"> <i class="far fa-file"></i> الملفات</a>
+                                    </li>
+                                    <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
+                                        <a href="{{$tab != 'tab3'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'sessions']):"javascript:void(0);"}}"
+                                           for="tab3"> <i class="far fa-copy"></i> المحاضرات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'update']):"javascript:void(0);"}}"

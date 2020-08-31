@@ -5,7 +5,7 @@
         <span class="overlay-top-header"></span>
         <div class="page-title-wrapper">
             <div class="banner-wrapper container">
-                <h2> الملف الشخصي {{$mr->name}}</h2>
+                <h2> الملف الشخصي <span style="float:left"> {{$mr->name}}</span></h2>
             </div>
         </div>
     </div>

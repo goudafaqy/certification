@@ -13,7 +13,7 @@
                                         <div class="col-md-3 register-left">
 
                                             <h3>{{$course->title_ar}}</h3>
-                                            <img src="{{url($course->image)}}" class="img-fluid" width="60" alt=""
+                                            <img src="{{url($course->image)}}" class="img-fluid" width="60" alt="img"
                                                  style="width:200px !important">
                                         </div>
                                         <div class="col-md-9 register-right">
@@ -22,28 +22,28 @@
                                                      role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row register-form">
                                                         <div class="col-md-6">
-                                                            <h6>رقم الكورس</h6>
+                                                            <h6>رمز الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/cou.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="text"
                                                                        class="form-control" type="text"
                                                                        disabled value="{{$course->code}}">
                                                             </div>
 
-                                                            <h6>نوع الكورس</h6>
+                                                            <h6>نوع الدورة</h6>
                                                             <div class="form-group input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/school.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
@@ -70,7 +70,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/man.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -83,7 +83,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/teacher.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'b')
                                                                     <input id="email" required="" name="email"
@@ -108,7 +108,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -121,7 +121,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -134,7 +134,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/medal.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -161,7 +161,7 @@
                                                             </div>
                                                             <div class="form-group input-group">
                                                                 <div class="maxl">
-                                                                    <span class="exam"> امتحانات</span>
+                                                                    <span class="exam"> واجبات</span>
                                                                     <label class="radio inline">
                                                                         <input type="radio" name="gridRadios2"
                                                                                id="gridRadios3" value="option1"

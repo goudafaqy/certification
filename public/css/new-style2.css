@@ -256,6 +256,17 @@ background: #fff;
     border-bottom-left-radius: 5px;
     cursor: pointer;
 }
+.addon{
+    padding: 10px;
+    font-size: 1.1em;
+    background-color: #ebf0f3;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
 div.bootstrap-datetimepicker-widget table{
     text-align: center !important;
     font-size: 1.3em;

@@ -2299,8 +2299,13 @@ ul li{
 
 .course-info-right .course-info-wrapper .right-col__content .right-col__wrapper .course-payment .course-price .value{
     font-family: "ArbFONTS-PNU-Bold.ttf";
+    display: block;
+    float: none;
+
+    position: relative;
 
 }
+
 .course-info-right .course-info-wrapper .right-col__content .right-col__wrapper .thim-course-feature ul li span{
     font-family: "ArbFONTS-PNU-Regular.ttf";
 }
@@ -2330,7 +2335,7 @@ ul li{
 }
 .course-thumbnail img{
     width: 100%;
-  
+    height:200px;
     border-top-right-radius:10px;
     border-top-left-radius:10px;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
@@ -2536,7 +2541,7 @@ element.style {
     background-color:#7E22DD;
 }
 #learn-press-course-description .thim-course-content h4{
-  
+
     color: #283045;
 
 }
@@ -3994,8 +3999,8 @@ height:200px !important
     transition: all 0.5s ease;
 }
 .class_search:hover{
-   
-   
+
+
     transition: all 0.5s ease;
 }
 .nav-item  .btn-light{
@@ -4377,7 +4382,7 @@ height:200px !important
     float: right;
     height: 16px;
     line-height: 16px;
-   
+
     position: relative;
 } */
 
@@ -4823,7 +4828,7 @@ top: -7px;
 }
 #submit{
     background-color:#fff !important;
-   
+
   }
   #submit:hover{
       border:none !important;
@@ -4833,7 +4838,7 @@ top: -7px;
      cursor: pointer;
  }
  button{
-    cursor: pointer; 
+    cursor: pointer;
  }
  .btn-outline-success:hover{
      outline:none !important;
@@ -4868,7 +4873,7 @@ top: -7px;
     border-radius: 0px 30px 30px 30px;
     min-height: 120px;
     padding: 15px 20px 15px 20px;
-    
+
     gap: 5px;
     border-radius: 40px;
     border-top-left-radius: 0px;
@@ -4876,7 +4881,7 @@ top: -7px;
     grid-template-rows: 1fr 2fr 2fr 2fr;
     border:1px solid #fff;
     height:140px;
-    
+
  }
   /* .weather-icon {
     position: absolute;
@@ -4896,7 +4901,7 @@ top: -7px;
     cursor: pointer;
     margin: auto;
     display:table;
-   
+
  }
  .items h6{
      text-align: center;
@@ -4944,7 +4949,7 @@ top: -7px;
     transition: all .6s
  } */
  .new-card2 form .form-group{
-   
+
      width:65%;
      margin: auto;
      margin-top: 2rem;
@@ -4955,21 +4960,21 @@ top: -7px;
     background-color: #2e3950;
     border-color: #2e3950;
     color: #C3A37E;
-  
+
     font-size: 18px;
     box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.06);
 }
  .new-card2 form .form-group  .input-group-prepend .input-group-text{
-    
-    background-color: #f7f7f7;
-    border: 1px solid #f7f7f7;
-    } 
+
+    background-color: #ebebeb;
+    border: 1px solid #ebebeb;
+    }
     .new-card2 form .form-group input{
         font-size: 16px;
         color: #273044;
         line-height: 1.2;
         display: block;
-       
+
         height: 45px;
         background: #fff;
         padding: 0 10px 0 10px;
@@ -4986,12 +4991,12 @@ top: -7px;
         padding-right: 5px;
         border-right: 5px solid #C3A37E;
         box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
-       
-           
-        
-        
-        
-        
+
+
+
+
+
+
         }
         .btn-vote{
             margin-top:1rem;
@@ -5009,7 +5014,7 @@ top: -7px;
     border-radius:20px;
     left: calc(50% - 25px);
         }
-   
+
     .new-card2 form .form-group:focus{
         outline: none !important;
         border: none;
@@ -5018,7 +5023,11 @@ top: -7px;
    .form-control:focus
    {
     outline: none !important;
-    
-   }
 
-   
+   }
+button:disabled,
+button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc !important;
+    color: #666666;
+}

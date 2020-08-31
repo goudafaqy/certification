@@ -66,6 +66,7 @@ Auth::routes();
         Route::get('list', 'CourseController@list')->name('courses-list');
         Route::get('add', 'CourseController@add')->name('courses-add');
         Route::get('update/{id}', 'CourseController@update')->name('courses-update');
+        Route::post('duplicate', 'CourseController@duplicate')->name('courses-duplicate');
         Route::post('save-course', 'CourseController@create')->name('save-course');
         Route::get('delete-course/{id}', 'CourseController@delete')->name('delete-course');
         Route::post('update-course', 'CourseController@edit')->name('update-course');
@@ -123,7 +124,8 @@ Auth::routes();
 
 
     Route::get('test', function (){
-       return \App\Http\Helpers\ZoomHelper::getAttendeesReport('83817922541');
+
+      dd(Route::getCurrentRoute()->uri);
     });
 
     // Course notifications routes ...
