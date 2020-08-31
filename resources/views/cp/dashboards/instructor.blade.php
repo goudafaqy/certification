@@ -141,14 +141,58 @@
                     </div>
                 </div>
                 <div class="content widget " style="margin-top:-10px">
-                <div class="widget-header">
-                        <div class=" d-flex justify-content-between">
-                            <h3 class="widget-title"> التقويم التدريبي</h3>
-                           
+                    <div class="widget-header">
+                            <div class=" d-flex justify-content-between">
+                                <h3 class="widget-title"> التقويم التدريبي</h3>
+                            
+                            </div>
+                    </div>
+                    <div class="events-container">
+                    </div>
+                    <div class="calendar-container">
+                        <div class="calendar"> 
+                            <div class="year-header"> 
+                            <span class="left-button" id="prev"> &lang; </span> 
+                            <span class="year" id="label"></span> 
+                            <span class="right-button" id="next"> &rang; </span>
+                            </div> 
+                            <table class="months-table"> 
+                            <tbody>
+                                <tr class="months-row">
+                                <td class="month">Jan</td> 
+                                <td class="month">Feb</td> 
+                                <td class="month">Mar</td> 
+                                <td class="month">Apr</td> 
+                                <td class="month">May</td> 
+                                <td class="month">Jun</td> 
+                                <td class="month">Jul</td>
+                                <td class="month">Aug</td> 
+                                <td class="month">Sep</td> 
+                                <td class="month">Oct</td>          
+                                <td class="month">Nov</td>
+                                <td class="month">Dec</td>
+                                </tr>
+                            </tbody>
+                            </table> 
+                            <table class="days-table"> 
+                                <td class="day">الأحد</td> 
+                                <td class="day">الاثنين</td> 
+                                <td class="day">الثلاثاء</td> 
+                                <td class="day">الأربعاء</td> 
+                                <td class="day">الخميس</td> 
+                                <td class="day">الجمعة</td> 
+                                <td class="day">السبت</td>
+                            </table> 
+                            <div class="frame" style="margin-top: -2rem;"> 
+                            <table class="dates-table"> 
+                                <tbody class="tbody">             
+                                </tbody> 
+                            </table>
+                            </div> 
+                            
                         </div>
-</div>
-                <div class="events-container">
                 </div>
+<<<<<<< HEAD
     <div class="calendar-container">
       <div class="calendar"> 
         <!-- <div class="year-header"> 
@@ -195,6 +239,8 @@
     </div>
     
 
+=======
+>>>>>>> 625386e4fc508d6e9fd4554ad9f0b713399196f2
   <!-- Dialog Box-->
             </div>
         </div>

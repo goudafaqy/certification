@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
@@ -86,7 +87,8 @@ class CourseController extends Controller
     private function sessions($course, $type)
     {
         $sessions = $this->appointmentRepo->getAll($course->id);
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions]);
+        $currentDate = DateHelper::getCurrentDate();
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
     }
 
     private function questionnaires($course, $type)
