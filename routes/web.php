@@ -28,6 +28,7 @@ Auth::routes();
         Route::get('/', 'HomeController@dashboard')->name('dashboard');
         Route::get('edit-profile', 'ProfileController@edit')->name('edit-profile');
         Route::post('save-profile', 'ProfileController@save')->name('save-profile');
+        Route::post('save-qualifications', 'ProfileController@saveQualifications')->name('save-qualifications');
     });
 
 
