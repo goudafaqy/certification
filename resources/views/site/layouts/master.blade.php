@@ -427,7 +427,7 @@
                             <li><a href="contact.html"  class="problem-link"> <img src="{{asset('site-assets/images\lamp.png')}}" class="img-fluid"> اتصل بنا</a></li>
                             <li><a href="questions.html" class="problem-link"> <img src="{{asset('site-assets/images\book.png')}}" class="img-fluid"> الأسئلة الشائعة</a></li>
                             <li><a href="Centertrainingpolicies.html"  class="problem-link"> <img src="{{asset('site-assets/images\question.png')}}" class="img-fluid"> السياسات التدريبية للمركز</a></li>
-                            <li><a href="#"  class="problem-link"> <img src="{{asset('site-assets/images/XMLID_996_.png')}}" class="img-fluid"> اللوائح والأنظمة</a></li>
+                            <!-- <li><a href="#"  class="problem-link"> <img src="{{asset('site-assets/images/XMLID_996_.png')}}" class="img-fluid"> اللوائح والأنظمة</a></li> -->
                         </ul><!-- /.problems -->
                     </div>
                 </div>
@@ -448,7 +448,7 @@
                             <li><a href="condations.html">شروط الاستخدام</a></li>
                         </ul>
                         <p class="site-footer__copy">يدعم هذا الموقع جميع أنماط دقة الشاشة وكافة الأجهزة الذكية والمتصفحات</p>
-                        <p class="last-paragragh">جميع الحقوق محفوظة 1441هـ | 2020 م مركز التدريب العدلي المملكة العربية السعودية</p>
+                        <p class="last-paragragh">جميع الحقوق محفوظة لمركز التدريب العدلي ©️ 1442هـ - 2020م </p>
 
                     </div><!-- /.inner-container -->
                 </div><!-- /.container -->

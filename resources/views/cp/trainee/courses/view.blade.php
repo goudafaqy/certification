@@ -60,7 +60,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/cou.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="text"
                                                                        class="form-control" type="text"
@@ -74,7 +74,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/school.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
@@ -101,7 +101,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/man.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -114,7 +114,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/teacher.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'b')
                                                                     <input id="email" required="" name="email"
@@ -139,7 +139,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -152,7 +152,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -165,7 +165,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/medal.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -237,6 +237,10 @@
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'files']):"javascript:void(0);"}}"
                                            for="tab2"> <i class="far fa-file"></i> الملفات</a>
+                                    </li>
+                                    <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
+                                        <a href="{{$tab != 'tab3'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'sessions']):"javascript:void(0);"}}"
+                                           for="tab3"> <i class="far fa-copy"></i> المحاضرات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'update']):"javascript:void(0);"}}"

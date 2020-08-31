@@ -11,9 +11,9 @@
                                 <div class="container register">
                                     <div class="row">
                                         <div class="col-md-3 register-left">
-                                         
+
                                             <h3>{{$course->title_ar}}</h3>
-                                            <img src="{{url($course->image)}}" class="img-fluid" width="60" alt=""
+                                            <img src="{{url($course->image)}}" class="img-fluid" width="60" alt="img"
                                                  style="width:200px !important">
                                         </div>
                                         <div class="col-md-9 register-right">
@@ -29,7 +29,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/cou.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="text"
                                                                        class="form-control" type="text"
@@ -43,7 +43,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/school.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'live')
                                                                     <input id="email" required="" name="email"
@@ -70,7 +70,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/man.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -83,7 +83,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/teacher.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 @if($course->type == 'b')
                                                                     <input id="email" required="" name="email"
@@ -108,7 +108,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -121,7 +121,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/calendar2.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -134,7 +134,7 @@
                                                                           id="basic-addon1"><img
                                                                             src="{{ asset('images/medal.png') }}"
                                                                             class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
+                                                                            style="width:20px !important;height:20px !important" alt="img"></span>
                                                                 </div>
                                                                 <input id="email" required="" name="email"
                                                                        class="form-control" type="text" disabled
@@ -253,11 +253,21 @@
                                     @elseif($tab== 'tab6')
                                         @if(isset($action))
                                             @switch($action)
-                                                @case('add')
+                                                @case('form')
 
                                                 @include('cp.instructor.courses.view-sections.exam-form', ['id' => $course->id, 'type'=> $type, 'examType' => $examType])
 
-                                                @break('add')
+                                                @break('form')
+                                                @case('trainees')
+
+                                                @include('cp.instructor.courses.view-sections.exam-trainees', ['id' => $course->id, 'type'=> $type, 'examType' => $examType])
+
+                                                @break('trainees')
+                                                @case('trainee-answers')
+
+                                                @include('cp.instructor.courses.view-sections.exam-trainee-answers', ['id' => $course->id, 'type'=> $type, 'examType' => $examType])
+
+                                                @break('trainee-answers')
                                                 @default
 
                                                 @include('cp.instructor.courses.view-sections.exams', ['id' => $course->id, 'type'=> $type, 'exams' => $exams])

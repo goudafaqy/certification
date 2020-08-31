@@ -40,7 +40,7 @@
                                     @endif
             <table class="table" width="100%" >
                 <thead>
-                    <tr>
+                    <tr class="odd">
                         <th class="text-center">#</th>
                         <th class="text-center">الاسم</th>
                         <th class="text-center">وقت الدخول</th>
