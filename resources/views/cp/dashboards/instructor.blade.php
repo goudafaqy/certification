@@ -149,59 +149,19 @@
                     </div>
                     <div class="events-container">
                     </div>
-                    <div class="calendar-container">
-                        <div class="calendar"> 
-                            <div class="year-header"> 
-                            <span class="left-button" id="prev"> &lang; </span> 
-                            <span class="year" id="label"></span> 
-                            <span class="right-button" id="next"> &rang; </span>
-                            </div> 
-                            <table class="months-table"> 
-                            <tbody>
-                                <tr class="months-row">
-                                <td class="month">Jan</td> 
-                                <td class="month">Feb</td> 
-                                <td class="month">Mar</td> 
-                                <td class="month">Apr</td> 
-                                <td class="month">May</td> 
-                                <td class="month">Jun</td> 
-                                <td class="month">Jul</td>
-                                <td class="month">Aug</td> 
-                                <td class="month">Sep</td> 
-                                <td class="month">Oct</td>          
-                                <td class="month">Nov</td>
-                                <td class="month">Dec</td>
-                                </tr>
-                            </tbody>
-                            </table> 
-                            <table class="days-table"> 
-                                <td class="day">الأحد</td> 
-                                <td class="day">الاثنين</td> 
-                                <td class="day">الثلاثاء</td> 
-                                <td class="day">الأربعاء</td> 
-                                <td class="day">الخميس</td> 
-                                <td class="day">الجمعة</td> 
-                                <td class="day">السبت</td>
-                            </table> 
-                            <div class="frame" style="margin-top: -2rem;"> 
-                            <table class="dates-table"> 
-                                <tbody class="tbody">             
-                                </tbody> 
-                            </table>
-                            </div> 
-                            
-                        </div>
-                </div>
+               
     <div class="calendar-container">
       <div class="calendar"> 
-        <!-- <div class="year-header"> 
-          <span class="left-button" id="prev"> &lang; </span> 
-          <span class="year" id="label"></span> 
-          <span class="right-button" id="next"> &rang; </span>
-        </div>  -->
-        <table class="months-table" style="background:#a58661;padding:10px"> 
+         
+          
+          <span class="year" id="label" style="color:#000 !important"></span> 
+          
+         
+        <table  id="months-table" class="months-table" style="background:#a58661;padding:10px"> 
           <tbody>
-            <tr class="months-row">
+         
+             <tr class="months-row">
+             
             <td class="month">يناير</td> 
               <td class="month">فبراير</td> 
               <td class="month">مارس</td> 
@@ -214,7 +174,7 @@
               <td class="month">أكتوبر</td>          
               <td class="month">نوفمبر</td>
               <td class="month">ديسمبر</td>
-            </tr>
+            </tr> 
           </tbody>
         </table> 
         
@@ -240,10 +200,17 @@
 
   <!-- Dialog Box-->
             </div>
+
+            
         </div>
     </div>
 </div>
 @include('cp.common.dashboard-footer')
+<script>
+
+
+
+</script>
 <script>
     // Setup the calendar with the current date
 $(document).ready(function(){
@@ -252,7 +219,7 @@ $(document).ready(function(){
     // Set click handlers for DOM elements
     $(".right-button").click({date: date}, next_year);
     $(".left-button").click({date: date}, prev_year);
-    $(".month").click({date: date}, month_click);
+    $(".active-month").click({date: date}, month_click);
     $("#add-button").click({date: date}, new_event);
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
@@ -260,6 +227,7 @@ $(document).ready(function(){
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
 });
+
 
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
@@ -544,4 +512,22 @@ const months = [
     "نوفمبر", 
     "ديسمبر" 
 ];
+
+
 </script>
+
+<script>
+    var months= ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var now= new Date();
+var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
+var output = document.getElementById('output');
+console.log(thisMonth);
+
+ if(output.textContent !== undefined) {
+    output.textContent = thisMonth;
+  }
+  else {
+    output.innerText = thisMonth;
+  }
+</script>
+
