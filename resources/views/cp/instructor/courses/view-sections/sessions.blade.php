@@ -33,13 +33,17 @@
                     <tr class="odd" style="color:#283045;line-height:3.5rem">
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <!-- <td class="priority text-center">{{ $session->title }}</td> -->
-                        <td class="text-center">{{ $session->day }}</td>
-                        <td class="text-center">{{ $session->date }}</td>
-                        <td class="text-center">{{ explode(" ", $session->from_time)[0] }} @if(explode(" ", $session->from_time)[1] == 'AM') مساءً @else صباحاً @endif</td>
-                        <td class="text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') مساءً @else صباحاً @endif</td>
-                        <td class="text-center">
-                            <a style="padding: 10px 13px;background:#639fd3;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="زوم"   href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
-                            <a style="padding: 10px 13px;background:#28304585;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="ملفات" style="padding:8px;background:#2dce89;border-radius:5px;"  href="{{isset($session->webinar)?url('instructor/courses/webinar/'.$session->webinar->id.'/attendance'):'#'}}" target="_blanck"><i class="fa fa-list"></i></a>
+                        <td class="priority text-center">{{ $session->day }}</td>
+                        <td class="priority text-center">{{ $session->date }}</td>
+                        <td class="priority text-center">{{ explode(" ", $session->from_time)[0] }} @if(explode(" ", $session->from_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
+                        <td class="priority text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
+                        <td class="priority text-center">
+                            @if(explode(" ", $currentDate)[0] == $session->date && ((int)explode(":", explode(" ", date("h:i a"))[0])[0] >= (int)explode(":", explode(" ", $session->from_time)[0])[0] && (int)explode(":", explode(" ", date("h:i a"))[0])[0] < (int)explode(":", explode(" ", $session->to_time)[0])[0]))
+                            <a style="padding: 10px 13px;background:#639fd3;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="زوم" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
+                            @else
+                            <button style="padding: 7px; border: solid 1px #A1825C;" data-toggle="tooltip" data-placement="top" title="لا يمكن فتح المحاضرة في غير وقتها"><i class="far fa-play-circle"></i></button>
+                            @endif
+                            <a style="padding: 10px 13px;background:#28304585;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="ملفات الحضور" style="padding:8px;background:#2dce89;border-radius:5px;"  href="{{isset($session->webinar)?url('instructor/courses/webinar/'.$session->webinar->id.'/attendance'):'#'}}" target="_blanck"><i class="fa fa-list"></i></a>
                         </td>
                     </tr>
                     @endforeach

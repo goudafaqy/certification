@@ -83,41 +83,26 @@
                                 <li class="tab3">
                                     <label for="tab3"> <img src="{{asset('site-assets/images/bo.png')}}" style="width: 22px"> البحوث والدراسات</label>
                                 </li>
-
+                                <li class="tab4">
+                                    <label for="tab4"> <img src="{{asset('site-assets/images/bo.png')}}" style="width: 22px"> الدورات الحاصل عليها</label>
+                                </li>
                             </ul>
                         </nav>
                         <section>
                             <div class="tab1 Tab-form">
                                 <div class="instructor-items">
                                     <ul>
+                                        @foreach($mr->certificates as $cert)
                                         <li>
 
                                             <p>
-                                                حاصل على درجة الدكتوراه في القانون من جامعة كوينز بلفاست (Queen's University Belfast ) في قانون التجارة الدولية بتاريخ 15/ 8/2016 م.
+                                                {{$cert->body}}
                                             </p>
 
 
                                         </li>
-                                        <li>
+                                            @endforeach
 
-                                            <p>
-                                                حاصل على درجة الماجستير في القانون من جامعة ايست إنقيليا (University of East Anglia)، في تخصص (قانون التجارة الدولية) بتقدير (جيد جداً)، (Merit)، بتاريخ 3 / 12 /
-                                                2013 م.
-                                            </p>
-
-                                        </li>
-                                        <li>
-
-                                            <p>
-                                                حاصل على (دبلوم عالي في الأنظمة " القانون") من معهد الإدارة العامة، بتقدير (جيد جداً)، بتاريخ 18 / 7 / 1431ه. </p>
-
-                                        </li>
-                                        <li>
-
-                                            <p>
-                                                حاصل على درجة البكالوريوس من كلية الشريعة بجامعة الإمام محمد بن سعود الإسلامية بتقدير (جيد جداً) بتاريخ 21/ 6 / 1429ه </p>
-
-                                        </li>
                                     </ul>
 
                                 </div>
@@ -126,202 +111,17 @@
                             <div class="tab2 Tab-form">
                                 <div class="instructor-itemss">
                                     <ul>
+                                        @foreach($mr->experiences as $exp)
                                         <li>
                                             <div class="single-item">
                                                 <p>
-                                                    <i class="fa fa-list-ul"></i> عضو الهيئة السعودية للمحامين.
+                                                    <i class="fa fa-list-ul"></i> {{$exp->body}}.
 
                                                 </p>
                                             </div>
 
                                         </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> محكّم معتمد لدى المركز السعودي للتحكيم التجاري.
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> وسيط معتمد لدى المركز السعودي للتحكيم التجاري.
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> مستشار متفرغ بمركز التدريب العدلي- وزارة العدل من تاريخ20/4/2020م ، وحتى الآن.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> خبير غير متفرغ بمركز التدريب العدلي- وزارة العدل من تاريخ 20/10/2019م، وحتى 19/4/2020م.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> عضو فريق تطوير لائحة نظام المحاماة بوزارة العدل من تاريخ 23/10/2019م، وحتى الآن.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> مستشار وممثل قانوني غير متفرغ لعدد من الشركات المحلية والدولية في المملكة.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> تأسيس عدد من الشركات الأجنبية في المملكة.
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> صائغ قانوني معتمد من المجلس العربي للقضاء العرفي.
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> عميداً مكلفاً لعمادة البحث العلمي بالجامعة السعودية الإلكترونية من تاريخ 10-28/5/1441ه.
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> أمين المجلس العلمي بالجامعة السعودية الإلكترونية من تاريخ 25/12/1440ه، وحتى الآن.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> مستشار قانوني لمبادرة إنشاء مركز تدريب إلكتروني لصالح الجامعة السعودية الإلكترونية من تاريخ 1/1/2019م، 30/12/2019م.
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> عميد الدراسات العليا بالجامعة السعودية الإلكترونية من تاريخ 30/2/1440 ه، وحتى 17/9/1441ه.
-
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> رئيس فريق مشروع إعداد الرؤية التطويرية للجامعة 2020-2025م، من تاريخ 26/3/1440ه، وحتى تاريخ 25/12/1440ه.
-
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> أستاذ متعاون مع كلية الحقوق والعلوم السياسية بجامعة الملك سعود من تاريخ 2/6/1439 وحتى 29/8/1439 ه.
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> وكيل كلية العلوم والدراسات النظرية بالجامعة السعودية الإلكترونية من تاريخ 22/3/1439 ه وحتى 29/2/1440 ه.
-
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> رئيس قسم القانون بالجامعة السعودية الإلكترونية من تاريخ 9/3/1438 ه حتى 21/3/1439 ه.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> عضو هيئة التدريس بقسم القانون من عام 1438ه، وحتى الآن.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> محاضر بقسم القانون بالجامعة السعودية الإلكترونية، 1435 - 1438ه.
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fa fa-list-ul"></i> مستشاراً قانونياً في مكتب عسير القرني -محامون ومستشارون- لمدة من 25/4/2009مـ -24/5/2010 م.
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
@@ -329,213 +129,41 @@
                             <div class="tab3 Tab-form">
                                 <div class="instructor-itemss">
                                     <ul>
+                                        @foreach($mr->researches as $rec)
                                         <li>
                                             <div class="single-item">
                                                 <p>
-                                                    <i class="fas fa-book-open"></i> رسالة الدكتوراه بعنوان: (أثر النظام القانوني للمملكة العربية السعودية في تدفق الاستثمار الأجنبي إلى المملكة
-
+                                                    <i class="fas fa-book-open"></i> {{$rec->body}}
 
 
                                                 </p>
                                             </div>
 
                                         </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> أشكال العقود في الشريعة الإسلامية والنظام البريطاني –دراسة مقارنة
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> محكمة العدل الأوربية والمحكمة الأوربية لحقوق الإنسان – دراسة مقارنة
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> الاعتماد المستندي القانونية في التعاملات البنكية في قانون التجارة الدولية -دراسة حالة
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> عقود النفط والغاز -دراسة حالة
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> العيوب المتعلقة بعملية التوفيق بين قوانين التجارة الدولية.
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> الآلية القانونية للتحكيم التجاري في قضايا التجارة الدولية -دراسة حالة
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> الأنظمة القانونية الدولية المتعلقة بحوكمة الشركات – دراسة مقارنة
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> أطروحة الماجستير بعنوان (القيمة والأثر القانوني لمواد الاستقرار في عقود الاستثمار النفطي الدولية).
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> الشكل القانوني للشركات الأجنبية في الأنظمة السعودية – دراسة مقارنة
-
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> التحكيم كوسيلة لفض منازعات الاستثمار الأجنبي - دراسة تطبيقية في اتفاقية واشنطن 1965م.
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> تمويل التحكيم من طرف ثالث - رؤية وشرعية وقانونية
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> حق تملك الحصص والأسهم للمستثمر الأجنبي في القانون السعودي.
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-item">
-                                                <p>
-                                                    <i class="fas fa-book-open"></i> أثر نظام التجارة الإلكترونية السعودي الجديد في حماية استثمارات التجارة الإلكترونية في المملكة العربية السعودية.
-
-
-
-
-
-                                                </p>
-                                            </div>
-                                        </li>
-
-
+                                            @endforeach
                                     </ul>
                                 </div>
                             </div>
+
                             <div class="tab4 Tab-form">
-                                <form class="form repeater-default row">
-                                    <div class="col-lg-10">
-                                        <div class="ui-input-container">
-                                            <div data-repeater-list="group-a">
-                                                <div data-repeater-item="">
-                                                    <label class="ui-form-input-container">
-                                                        <textarea class="ui-form-input" id="word-count-input"></textarea>
-                                                        <span class="form-input-label"><img src="{{asset('site-assets/images/training.png')}}" style="width: 22px"><span data-repeater-delete="" type="button" value="Delete" class="delet">×</span></span>
-                                                    </label>
+                                <div class="instructor-itemss">
+                                    <ul>
+                                        @foreach($mr->courses_have_taken as $cour)
+                                            <li>
+                                                <div class="single-item">
+                                                    <p>
+                                                        <i class="fas fa-book-open"></i> {{$cour->body}}
 
+
+                                                    </p>
                                                 </div>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
-                                            <div class="">
-                                                <button class="btn login-form-btn" data-repeater-create="" type="button"><i class="bx bx-plus"></i>
-                                                    أضف
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="tab5 Tab-form">
-                                <form class="form repeater-default row">
-                                    <div class="col-lg-10">
-                                        <div class="ui-input-container">
-                                            <div data-repeater-list="group-a">
-                                                <div data-repeater-item="">
-                                                    <label class="ui-form-input-container">
-                                                        <textarea class="ui-form-input" id="word-count-input"></textarea>
-                                                        <span class="form-input-label"><img src="{{asset('site-assets/images/certificate.png')}}" style="width: 22px"><span data-repeater-delete="" type="button" value="Delete" class="delet">×</span></span>
-                                                    </label>
 
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
-                                            <div class="">
-                                                <button class="btn login-form-btn" data-repeater-create="" type="button"><i class="bx bx-plus"></i>
-                                                    أضف
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
 
                         </section>
                     </div>
@@ -550,13 +178,14 @@
                                 <div class="card-subtitle" style="text-align: center;">الدورات التدريبية من قبل المدرب</div>
                             </div>
                             <div class="row">
+                                @foreach($mr->courses as $course)
                                 <div class="col-lg-3">
 
                                     <div class="profile-card">
                                         <div class="card-header">
                                             <img class="profile-image" src="{{asset('site-assets/images/laww.png')}}" alt="profile image">
 
-                                            <div class="profile-role">قانون التجارة الدولية</div>
+                                            <div class="profile-role">{{$course->title}}</div>
 
                                             <div class="divider">
                                                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -574,73 +203,7 @@
                                     </div>
 
                                 </div>
-
-                                <div class="col-lg-3">
-                                    <div class="profile-card">
-                                        <div class="card-header">
-                                            <img class="profile-image" src="{{asset('site-assets/images/laww.png')}}" alt="profile image">
-
-                                            <div class="profile-role">أثر النظام القانوني</div>
-
-                                            <div class="divider">
-                                                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="contacts">
-                                                <div class="flex">
-                                                    <output dir="rtl" tabindex="0" role="slider" aria-readonly="true" aria-live="off" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" class="b-rating form-control align-items-center b-rating-inline form-control-sm d-inline-flex border-0 readonly" id="__BVID__107"><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><b aria-hidden="true" class="b-rating-value  ">3/5</b></output>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="profile-card">
-                                        <div class="card-header">
-                                            <img class="profile-image" src="{{asset('site-assets/images/law (4).png')}}" alt="profile image">
-
-                                            <div class="profile-role">دراسة مقارنة</div>
-
-                                            <div class="divider">
-                                                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="contacts">
-                                                <div class="flex">
-                                                    <output dir="rtl" tabindex="0" role="slider" aria-readonly="true" aria-live="off" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" class="b-rating form-control align-items-center b-rating-inline form-control-sm d-inline-flex border-0 readonly" id="__BVID__107"><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><b aria-hidden="true" class="b-rating-value  ">3/5</b></output>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="profile-card">
-                                        <div class="card-header">
-                                            <img class="profile-image" src="{{asset('site-assets/images/laws.png')}}" alt="profile image">
-
-                                            <div class="profile-role">الآلية القانونية للتحكيم التجاري</div>
-
-                                            <div class="divider">
-                                                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="contacts">
-                                                <div class="flex">
-                                                    <output dir="rtl" tabindex="0" role="slider" aria-readonly="true" aria-live="off" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" class="b-rating form-control align-items-center b-rating-inline form-control-sm d-inline-flex border-0 readonly" id="__BVID__107"><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-full"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star-fill b-icon bi text-rating"><g><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><span class="b-rating-star   b-rating-star-empty"><span class="b-rating-icon"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" alt="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-star b-icon bi text-rating"><g><path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"></path></g></svg></span></span><b aria-hidden="true" class="b-rating-value  ">3/5</b></output>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
