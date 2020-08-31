@@ -192,6 +192,52 @@
                             
                         </div>
                 </div>
+    <div class="calendar-container">
+      <div class="calendar"> 
+        <!-- <div class="year-header"> 
+          <span class="left-button" id="prev"> &lang; </span> 
+          <span class="year" id="label"></span> 
+          <span class="right-button" id="next"> &rang; </span>
+        </div>  -->
+        <table class="months-table" style="background:#a58661;padding:10px"> 
+          <tbody>
+            <tr class="months-row">
+            <td class="month">يناير</td> 
+              <td class="month">فبراير</td> 
+              <td class="month">مارس</td> 
+              <td class="month">أبريل</td> 
+              <td class="month">مايو</td> 
+              <td class="month">يونيو</td> 
+              <td class="month">يوليو</td>
+              <td class="month">أغسطس</td> 
+              <td class="month">سبتمبر</td> 
+              <td class="month">أكتوبر</td>          
+              <td class="month">نوفمبر</td>
+              <td class="month">ديسمبر</td>
+            </tr>
+          </tbody>
+        </table> 
+        
+        <table class="days-table"> 
+          <td class="day">الأحد</td> 
+          <td class="day">الاثنين</td> 
+          <td class="day">الثلاثاء</td> 
+          <td class="day">الأربعاء</td> 
+          <td class="day">الخميس</td> 
+          <td class="day">الجمعة</td> 
+          <td class="day">السبت</td>
+        </table> 
+        <div class="frame" style="margin-top: -2rem;"> 
+          <table class="dates-table"> 
+              <tbody class="tbody">             
+              </tbody> 
+          </table>
+        </div> 
+        
+      </div>
+    </div>
+    
+
   <!-- Dialog Box-->
             </div>
         </div>
