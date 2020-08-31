@@ -26,6 +26,7 @@
                     <th class="text-center">اخر موعد الاختبار</th>
                     <th class="text-center">مدة الاختبار (دقيقة)</th>
                     <th class="text-center">وقت بدأ الاختبار</th>
+                    <th class="text-center">النتيجة</th>
                     <th class="text-center">الإجراءات</th>
                 </tr>
                 </thead>
@@ -39,22 +40,27 @@
                         <td class="priority text-center">{{ $exam->duration }}</td>
                         <td class="priority text-center">
                             @if($exam->user_start_time)
-                                {{$exam->user_start_time}} {{$exam->time_spent?"({$exam->time_spent} د)":""}}
+                                {{$exam->user_start_time}} {{$exam->time_spent===false?"":"({$exam->time_spent} د)"}}
                             @else
                                 {{$exam->status == 1?'انتهي الوقت':'لم يبدأ بعد'}}
                             @endif
+                        </td>
+                        <td class="priority text-center">
+                            {{$exam->status==4?($exam->reviewed? "{$exam->exam_grade} / {$exam->full_mark}": "لم تعتمد بعد"):""}}
                         </td>
                         <td class="delete text-center" style="text-align: center;">
                             @if($exam->status == 0)
                                 <i class="fa fa-clock"></i>
                             @elseif($exam->status == 1)
-                                <i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="انتهى الاختبار"
-                                   style="color: red;"></i>
-                                @if($exam->time_spent)
+                                @if($exam->time_spent!==false)
                                     <a class="" data-toggle="tooltip" data-placement="top" title="مشاهدة الاجابات"
                                        href="{{route('trainee-course-exam-show', ['id' => $id, 'examId' => $exam->id])}}">
                                         <i class="fa fa-eye"></i>
                                     </a>
+                                @else
+                                    <i class="fa fa-times" data-toggle="tooltip" data-placement="top"
+                                       title="انتهى الاختبار"
+                                       style="color: red;"></i>
                                 @endif
                             @elseif($exam->status == 2)
                                 <a class="" data-toggle="tooltip" data-placement="top" title="بدأ الاختبار"

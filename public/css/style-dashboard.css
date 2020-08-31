@@ -570,7 +570,7 @@ a.social {
     width: 100%;
     background-repeat: no-repeat;
     height: 100%;
-   
+
 }
 #carouselExampleIndicators .carousel-inner .carousel-item .news .img-thumbnail{
     width:100%;
@@ -1671,8 +1671,8 @@ input[type="password"]:focus {
     width: 100%;
 }
 input[type="date"] {
- 
-  
+
+
     font-size:13px !important;
 
   }
@@ -2350,7 +2350,7 @@ table.course-view-table thead tr {
 
 table.course-view-table thead tr th {
     font-size: 1.7em !important;
-    
+
 }
 
 table.course-view-table tbody tr:hover {
@@ -2609,7 +2609,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
 }
 .icon-dates {
-   
+
     z-index: 999;
     pointer-events: none;
     font-size: 16px;
@@ -2618,7 +2618,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     padding: 12px 12px;
     position: absolute;
     /* padding: 17px; */
-     border-radius: 0rem !important; 
+     border-radius: 0rem !important;
     border-top-right-radius:5px !important ;
     border-bottom-right-radius:5px !important ;
     cursor: pointer;
@@ -2867,7 +2867,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .register-left img {
-   
+
     margin-bottom: 5%;
     width: 25%;
     border: 1px solid #ffffff40;
@@ -3564,7 +3564,7 @@ left: -100%;
 
 #carouselExampleIndicators .carousel-control.right {
     right: 4rem;
-    
+
 }
 
 #carouselExampleIndicators .carousel-control:hover,
@@ -3660,7 +3660,7 @@ left: -100%;
   #carouselExampleIndicators .carousel-control .glyphicon-chevron-right,
   #carouselExampleIndicators .carousel-control .icon-prev,
   #carouselExampleIndicators .carousel-control .icon-next {
-          
+
           font-size: 15px;
     }
 
@@ -3696,85 +3696,85 @@ pre {
     border: 1px solid #CCC;
     border-radius: 4px;
     }
-    
-    
-    
+
+
+
     #a-footer {
       margin: 20px 0;
     }
-    
+
     .new-react-version {
       padding: 20px 20px;
       border: 1px solid #eee;
       border-radius: 20px;
       box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-      
+
       text-align: center;
       font-size: 14px;
       line-height: 1.7;
     }
-    
+
     .new-react-version .react-svg-logo {
       text-align: center;
       max-width: 60px;
       margin: 20px auto;
       margin-top: 0;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     .success-box {
         padding: 10px 10px;
         border: 1px solid #eee;
         background: #f9f9f9;
         color: #35415a;
     }
-    
+
     .success-box img {
       margin-right:10px;
       display:inline-block;
       vertical-align:top;
     }
-    
+
     .success-box > div {
       vertical-align:top;
       display:inline-block;
       color:#888;
     }
-    
-    
-    
+
+
+
     /* Rating Star Widgets Style */
     .rating-stars ul {
       list-style-type:none;
       padding:0;
-      
+
       -moz-user-select:none;
       -webkit-user-select:none;
     }
     .rating-stars ul > li.star {
       display:inline-block;
       cursor: pointer;
-      
     }
-    
+
     /* Idle State of the stars */
     .rating-stars ul > li.star > i.fa {
       font-size:1.5em; /* Change the size of the stars */
       color:#ccc; /* Color on idle state */
     }
-    
+
     /* Hover state of the stars */
     .rating-stars ul > li.star.hover > i.fa {
       color:#FFCC36;
     }
-    
+
     /* Selected state of the stars */
     .rating-stars ul > li.star.selected > i.fa {
       color:#FF912C;
     }
+
     .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
     .file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
     .file-upload .file-select .file-select-button{float:right;background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}

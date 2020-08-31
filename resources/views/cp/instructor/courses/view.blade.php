@@ -11,7 +11,7 @@
                                 <div class="container register">
                                     <div class="row">
                                         <div class="col-md-3 register-left">
-                                         
+
                                             <h3>{{$course->title_ar}}</h3>
                                             <img src="{{url($course->image)}}" class="img-fluid" width="60" alt="img"
                                                  style="width:200px !important">
@@ -253,11 +253,21 @@
                                     @elseif($tab== 'tab6')
                                         @if(isset($action))
                                             @switch($action)
-                                                @case('add')
+                                                @case('form')
 
                                                 @include('cp.instructor.courses.view-sections.exam-form', ['id' => $course->id, 'type'=> $type, 'examType' => $examType])
 
-                                                @break('add')
+                                                @break('form')
+                                                @case('trainees')
+
+                                                @include('cp.instructor.courses.view-sections.exam-trainees', ['id' => $course->id, 'type'=> $type, 'examType' => $examType])
+
+                                                @break('trainees')
+                                                @case('trainee-answers')
+
+                                                @include('cp.instructor.courses.view-sections.exam-trainee-answers', ['id' => $course->id, 'type'=> $type, 'examType' => $examType])
+
+                                                @break('trainee-answers')
                                                 @default
 
                                                 @include('cp.instructor.courses.view-sections.exams', ['id' => $course->id, 'type'=> $type, 'exams' => $exams])
