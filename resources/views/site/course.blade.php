@@ -291,8 +291,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        
+                                    
+                                    
                                     <h2 class="course-title">
                                         <a href="{{url('course/'.$coursee->id)}}">{{$coursee->title}}</a>
                                     </h2>

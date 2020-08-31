@@ -192,7 +192,6 @@
                             
                         </div>
                 </div>
-<<<<<<< HEAD
     <div class="calendar-container">
       <div class="calendar"> 
         <!-- <div class="year-header"> 
@@ -239,8 +238,6 @@
     </div>
     
 
-=======
->>>>>>> 625386e4fc508d6e9fd4554ad9f0b713399196f2
   <!-- Dialog Box-->
             </div>
         </div>
