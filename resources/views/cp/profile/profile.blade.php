@@ -214,7 +214,7 @@
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
 
-                                                            <textarea name="body" class="ui-form-input"
+                                                            <textarea name="group-a[][body]" class="ui-form-input"
                                                                       id="word-count-input">{{$course->body}}</textarea>
                                                             <span class="form-input-label">
                                                                 <img src="{{ asset('images/school.png') }}"
@@ -272,7 +272,7 @@
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
-                                                            <textarea name="body" class="ui-form-input"
+                                                            <textarea name="group-a[][body]" class="ui-form-input"
                                                                       id="word-count-input">{{$research->body}}</textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/bo.png') }}"
@@ -329,7 +329,7 @@
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <label class="ui-form-input-container">
-                                                            <textarea name="body" class="ui-form-input"
+                                                            <textarea name="group-a[][body]" class="ui-form-input"
                                                                       id="word-count-input">{{$experiences->body}}</textarea>
                                                             <span class="form-input-label"><img
                                                                     src="{{ asset('images/training.png') }}"
