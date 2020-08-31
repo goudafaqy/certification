@@ -26,7 +26,7 @@
                href="{{route('instructor-course-assignment-add', ['id' => $id, 'type' => $type])}}">
                 إضافة واجب جديد
             </a>
-            <table class="course-view-table" style="overflow-x:auto;">
+            <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                 <tr>
                     <th class="text-center">#</th>
@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                 @foreach ($exams as $exam)
-                    <tr>
+                    <tr class="odd" style="color:#283045;line-height:3.5rem">
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td class="priority text-center">{{ $exam->title_ar }}</td>
                         <td class="priority text-center">{{ $exam->exam_date }}</td>

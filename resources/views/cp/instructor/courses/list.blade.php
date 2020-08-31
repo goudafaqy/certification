@@ -29,7 +29,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($courses as $course)
-                                            <tr>
+                                            <tr class="odd">
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $course->code }}</td>
                                                 <td class="text-center">{{ $course->title_ar }}</td>
