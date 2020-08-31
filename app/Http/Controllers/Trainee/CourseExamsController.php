@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\DateHelper;
 use App\Http\Helpers\FileHelper;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
@@ -58,8 +59,10 @@ class CourseExamsController extends Controller
 
         $userExam = $this->examRepo->getExamUserAnswers($userId, $examId, $exam->questions_no);
 
+
+        $currentDate = DateHelper::getCurrentDate();
         return view("cp.trainee.courses.view", [
-            'course' => $course,
+            'course' => $course, 'currentDate' => $currentDate,
             'userExam' => $userExam,
             'tab' => 'tab6',
             'action' => 'show'

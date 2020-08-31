@@ -2,7 +2,7 @@ $(function() {
 
     $('.event-slider').slick({
         vertical: true,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
         cssEase: 'linear',

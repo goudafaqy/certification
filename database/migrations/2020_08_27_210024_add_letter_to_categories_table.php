@@ -14,7 +14,7 @@ class AddLetterToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->char('letter');
+            $table->char('letter')->nullable();
         });
     }
 
