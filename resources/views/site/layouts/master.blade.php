@@ -468,6 +468,8 @@
 <script src="{{asset('site-assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('site-assets/js/slick.js')}}"></script>
 <script src="{{asset('site-assets/js/jquery.sticky-kit.min.js')}}"></script>
+<script src="{{asset('site-assets/js/stickySidebar.js')}}"></script>
+
 <script src="{{asset('site-assets/js/wow.min.js')}}"></script>
 <script>new WOW().init();</script>
 <script src="{{asset('site-assets/js/store.min.js')}}"></script>
@@ -476,6 +478,7 @@
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
 <script src="{{ asset('js/share.js') }}"></script>
+
 
 
 
