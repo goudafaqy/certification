@@ -24,6 +24,7 @@
                 <tbody>
                     @foreach ($files as $file)
                     <tr class="odd" style="color:#283045;line-height:3.5rem">
+
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td class="priority text-center">{{ $file->name_ar }}</td>
                         <td class="text-center">
