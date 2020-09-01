@@ -3543,7 +3543,7 @@ section.programs ul.nav-pills{
       font-size: 16px;
       font-weight: 400;
       color: #ffffff;
-      padding: 0 25px;
+  
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px;
@@ -3675,7 +3675,7 @@ section.programs ul.nav-pills{
   @media (min-width: 768px) {
       .sticky-sidebar{
           position: relative;
-          top: -390px;
+          top: -360px;
       }
   }
   .is_stuck{
@@ -4473,7 +4473,7 @@ element.style {
     font-size: 16px;
     font-weight: 400;
     color: #ffffff;
-    padding: 0 25px;
+    
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -4483,7 +4483,7 @@ element.style {
     -ms-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-    background-color: #c3a37e;
+    
     display: inline-block;
     text-transform: uppercase;
 }
