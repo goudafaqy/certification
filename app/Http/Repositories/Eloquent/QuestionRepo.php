@@ -20,18 +20,29 @@ class QuestionRepo extends Repository implements QuestionEloquent
         return Question::where('exam_id', $course_id)->get();
     }
 
-    function saveMulti($questions){
+    function saveMulti($questions)
+    {
         return Question::insert($questions);
     }
 
-    function loadExcel($file, $exam_id){
+    function deleteByExamId($examId)
+    {
+        return Question::where('exam_id', $examId)->delete();
+    }
+
+    function loadExcel($file, $exam_id)
+    {
         $questionsList = $this->toArray($file);
-        if(!isset($questionsList[0]))
+        if (!isset($questionsList[0]))
             return false;
+
         $questionsList = $questionsList[0];
+        if (count($questionsList) == 0)
+            return false;
+
         $questions = [];
-        foreach ($questionsList as $row){
-            if($q = $this->getQuestionFromExcel($row, $exam_id)){
+        foreach ($questionsList as $row) {
+            if ($q = $this->getQuestionFromExcel($row, $exam_id)) {
                 $questions[] = $q;
             }
         }
@@ -59,10 +70,10 @@ class QuestionRepo extends Repository implements QuestionEloquent
                     !isset($row[$i + 1]) || !$row[$i + 1])
                     continue;
 
-                $answers[$row[$i]] = $row[$i+1] == 'CORRECT';
+                $answers[$row[$i]] = $row[$i + 1] == 'CORRECT';
             }
 
-            if(count($answers) == 0) return false;
+            if (count($answers) == 0) return false;
 
             $mcAnswers = json_encode($answers);
         }

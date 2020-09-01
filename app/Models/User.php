@@ -38,7 +38,10 @@ class User extends Authenticatable
         'mobile',
         'birth_date',
         'gender',
-        'education'
+        'education',
+        'job_title',
+        'facebook_link',
+        'twitter_link'
     ];
 
     /**
@@ -86,5 +89,21 @@ class User extends Authenticatable
 
     public function getNameAttribute(){
         return $this["name_".App::getLocale()];
+    }
+
+    public function courses_have_taken(){
+        return $this->hasMany(Qualifications::class)->where('type','courses');
+    }
+
+    public function researches(){
+        return $this->hasMany(Qualifications::class)->where('type','researches');
+    }
+
+    public function experiences(){
+        return $this->hasMany(Qualifications::class)->where('type','experiences');
+    }
+
+    public function certificates(){
+        return $this->hasMany(Qualifications::class)->where('type','certificates');
     }
 }

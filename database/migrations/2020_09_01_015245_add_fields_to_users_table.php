@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLetterToCategoriesTable extends Migration
+class AddFieldsToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddLetterToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->char('letter')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('job_title')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('twitter_link')->nullable();
         });
     }
 
@@ -25,8 +27,8 @@ class AddLetterToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('letter');
+        Schema::table('users', function (Blueprint $table) {
+            //
         });
     }
 }

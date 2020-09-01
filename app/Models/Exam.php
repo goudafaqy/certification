@@ -44,4 +44,19 @@ class Exam extends Model
     {
         return $this->belongsTo('App\Models\Course', 'course_id');
     }
+
+    public function getEndDateTimeAttribute()
+    {
+        return $this->exam_date . " " . $this->end_time . ":59";
+    }
+
+    public function getStartDateTimeAttribute()
+    {
+        return $this->exam_date . " " . $this->start_time . ":00";
+    }
+
+    public function getFullMarkAttribute()
+    {
+        return $this->questions_no * $this->question_point;
+    }
 }

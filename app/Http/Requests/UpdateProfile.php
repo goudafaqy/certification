@@ -25,13 +25,14 @@ class UpdateProfile extends FormRequest
      */
     public function rules()
     {
+
         $user = Auth::user();
         return [
             'name_ar' => ['required', 'string', 'max:255'],
             'name_en' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'national_id' => ['required', 'numeric', Rule::unique('users')->ignore($user->id)],
-            'mobile' => 'required|regex:/(966)[0-9]{9}/|size:12',
+            'mobile' => 'required|size:10', //regex:/(966)[0-9]{9}
             'birth_date' => ['required', 'date'],
             'gender' => ['required'],
             'education' => ['required']

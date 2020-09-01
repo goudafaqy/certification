@@ -88,8 +88,12 @@
                         @endforeach
 
                         @if(!$userExam->submitted)
-                            <button class="btn btn-primary exam-save-btns" type="submit" name="action" value="save">حفظ</button>
-                            <button class="btn btn-primary exam-save-btns" type="submit" name="action" value="submit">إرسال</button>
+                            <button class="btn btn-primary exam-save-btns" type="submit" name="action" value="save">
+                                حفظ
+                            </button>
+                            <button class="btn btn-primary exam-save-btns" type="submit" name="action" value="submit">
+                                إرسال
+                            </button>
                         @endif
                         <a href="{{route("trainee-courses-view", ['id' => $id, 'tab' => 'exams'])}}"
                            class="btn btn-primary" style="background-color: #283045;" href="">العودة</a>
@@ -101,46 +105,48 @@
 </div>
 
 
-@push('scripts')
-    <script>
-        var the_interval = null;
-        $(document).ready(function () {
-            var dateToFinished = new Date("{{\Carbon\Carbon::make($userExam->start_time)->addMinutes($userExam->exam->duration)->format("Y-m-d H:i:s")}}");
+@if(!$userExam->isExamEnded())
+    @push('scripts')
+        <script>
+            var the_interval = null;
+            $(document).ready(function () {
+                var dateToFinished = new Date("{{\Carbon\Carbon::make($userExam->start_time)->addMinutes($userExam->exam->duration)->format("Y-m-d H:i:s")}}");
 
-            the_interval = setInterval(function () {
-                var now = new Date().getTime();
-                var distance = dateToFinished.getTime() - now;
+                the_interval = setInterval(function () {
+                    var now = new Date().getTime();
+                    var distance = dateToFinished.getTime() - now;
 
-                if(distance<=0){
-                    clearInterval(the_interval);
-                    $('.exam-save-btns').remove();
-                    $('#exam_time_spent').css('color', 'red').html('00:00');
-                }else {
-                    if(distance <= 1000 *60* 5) { //5 minutes
-                        $('#exam_time_spent').css('color', 'red');
+                    if (distance <= 0) {
+                        clearInterval(the_interval);
+                        $('.exam-save-btns').remove();
+                        $('#exam_time_spent').css('color', 'red').html('00:00');
+                    } else {
+                        if (distance <= 1000 * 60 * 5) { //5 minutes
+                            $('#exam_time_spent').css('color', 'red');
+                        }
+                        distance = Math.floor(distance / 1000);
+                        var seconds = Math.floor(distance % 60);
+
+                        distance = Math.floor(distance / 60);
+                        var minutes = Math.floor(distance % 60);
+
+                        distance = Math.floor(distance / 60);
+                        var hours = Math.floor(distance);
+
+                        var txt = "";
+                        if (hours > 0) {
+                            txt += hours < 10 ? '0' + hours.toString() : hours.toString();
+                            txt += ":"
+                        }
+
+                        txt += minutes < 10 ? '0' + minutes.toString() : minutes.toString();
+                        txt += ":";
+                        txt += seconds < 10 ? '0' + seconds.toString() : seconds.toString();
+
+                        $('#exam_time_spent').html(txt);
                     }
-                    distance = Math.floor(distance / 1000);
-                    var seconds = Math.floor(distance % 60);
-
-                    distance = Math.floor(distance / 60);
-                    var minutes = Math.floor(distance % 60);
-
-                    distance = Math.floor(distance / 60);
-                    var hours = Math.floor(distance);
-
-                    var txt = "";
-                    if (hours > 0) {
-                        txt += hours < 10 ? '0' + hours.toString() : hours.toString();
-                        txt += ":"
-                    }
-
-                    txt += minutes < 10 ? '0' + minutes.toString() : minutes.toString();
-                    txt += ":";
-                    txt += seconds < 10 ? '0' + seconds.toString() : seconds.toString();
-
-                    $('#exam_time_spent').html(txt);
-                }
-            }, 1000)
-        });
-    </script>
-@endpush
+                }, 1000)
+            });
+        </script>
+    @endpush
+@endif
