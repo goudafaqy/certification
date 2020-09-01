@@ -19,7 +19,7 @@
                                 @foreach($currentCourses as $course)
                                 <div class="col-md-6">
                                     <div class="course-box">
-                                        <img src="{{url($course->image)}}" alt="course-img" class="img-thumbnail">
+                                        <img src="{{url($course->image)}}" alt="" class="img-thumbnail">
                                         <div class="details">
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
@@ -63,7 +63,7 @@
                                 @foreach($previousCourses as $course)
                                 <div class="col-md-6 ">
                                     <div class=" course-box">
-                                        <img src="{{url($course->image)}}" alt="course-img" class="img-thumbnail">
+                                        <img src="{{url($course->image)}}" alt="" class="img-thumbnail">
                                         <div class="details">
                                             <h3><a href="{{route('instructor-courses-view',['id' => $course->id, 'type' => 'current'])}}"> {{ $course->title_ar }}</a></h3>
                                             <div class="d-flex justify-content-between price">
@@ -98,7 +98,7 @@
                     <div class="widget-header">
                         <div class=" d-flex justify-content-between">
                             <h3 class="widget-title"> الإعلانات</h3>
-                            <img src="{{ asset('images/speaker.png') }}" alt="advertisment-img" style="width: 25px; height: 25px">
+                            <img src="{{ asset('images/speaker.png') }}" style="width: 25px; height: 25px">
                         </div>
                     </div>
                     <div class="widget-body">
@@ -108,7 +108,7 @@
                                 <div class="carousel-item @if($loop->index == 0) active @endif">
                                     <div class="card">
                                         <div class="news">
-                                            <img src="{{ url($item->image) }}" alt="item" class="img-thumbnail">
+                                            <img src="{{ url($item->image) }}" alt="" class="img-thumbnail">
                                             <div class="details">
                                                 <h3>
                                                     <a href="#">{{$item->title_ar??'' }}</a>
@@ -140,6 +140,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="content widget " style="margin-top:-10px">
                     <div class="widget-header">
                             <div class=" d-flex justify-content-between">
@@ -198,6 +199,7 @@
     
 
   <!-- Dialog Box-->
+
             </div>
 
             
@@ -205,11 +207,7 @@
     </div>
 </div>
 @include('cp.common.dashboard-footer')
-<script>
 
-
-
-</script>
 <script>
     // Setup the calendar with the current date
 $(document).ready(function(){
@@ -529,4 +527,3 @@ console.log(thisMonth);
     output.innerText = thisMonth;
   }
 </script>
-

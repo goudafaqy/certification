@@ -330,7 +330,6 @@
                                     <span class="label">السعر</span>
                                     <div class="value ">
                                         {{$course->price}} ريـال
-
                                     </div>
                                 </div>
 
