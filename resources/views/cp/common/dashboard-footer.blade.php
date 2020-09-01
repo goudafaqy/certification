@@ -14,8 +14,6 @@
     <script src="{{ asset('js/carousel.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/jquery.simple-calendar.js') }}"></script>
-    <script src="{{ asset('js/slick.js') }}"></script>
-    <script src="{{ asset('js/mukhtar.js') }}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>

@@ -18,6 +18,7 @@ class ProfileController extends Controller
     }
 
     public function save(UpdateProfile $request){
+
         $user = Auth::user();
         $user->fill($request->all());
         if($request->file()) {
@@ -33,7 +34,7 @@ class ProfileController extends Controller
 
     public function saveQualifications(Request $request){
         $user = Auth::user();
-
+        Qualifications::where('user_id', $user->id)->where('type',$request->get('type'))->delete();
         foreach ($request->get('group-a') as $group) {
             Qualifications::create([
                 "user_id" => $user->id,

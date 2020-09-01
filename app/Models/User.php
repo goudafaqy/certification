@@ -38,7 +38,10 @@ class User extends Authenticatable
         'mobile',
         'birth_date',
         'gender',
-        'education'
+        'education',
+        'job_title',
+        'facebook_link',
+        'twitter_link'
     ];
 
     /**
