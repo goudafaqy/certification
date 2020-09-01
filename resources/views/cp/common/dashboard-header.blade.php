@@ -112,7 +112,7 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <i class="ik ik-chevron-down"></i>
-                                <img class="avatar" src="{{ asset(Auth::user()->image) }}" alt="">
+                                <img class="avatar" src="{{ url(Auth::user()->image) }}" alt="">
                                 <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->username }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
