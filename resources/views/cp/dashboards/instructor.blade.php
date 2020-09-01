@@ -224,8 +224,6 @@ $(document).ready(function(){
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
 });
-
-
 // Initialize the calendar by appending the HTML dates
 function init_calendar(date) {
     $(".tbody").empty();
@@ -275,14 +273,12 @@ function init_calendar(date) {
     calendar_days.append(row);
     $(".year").text(year);
 }
-
 // Get the number of days in a given month/year
 function days_in_month(month, year) {
     var monthStart = new Date(year, month, 1);
     var monthEnd = new Date(year, month + 1, 1);
     return (monthEnd - monthStart) / (1000 * 60 * 60 * 24);    
 }
-
 // Event handler for when a date is clicked
 function date_click(event) {
     $(".events-container").show(250);
@@ -291,7 +287,6 @@ function date_click(event) {
     $(this).addClass("active-date");
     show_events(event.data.events, event.data.month, event.data.day);
 };
-
 // Event handler for when a month is clicked
 function month_click(event) {
     $(".events-container").show(250);
@@ -303,7 +298,6 @@ function month_click(event) {
     date.setMonth(new_month);
     init_calendar(date);
 }
-
 // Event handler for when the year right-button is clicked
 function next_year(event) {
     $("#dialog").hide(250);
@@ -313,7 +307,6 @@ function next_year(event) {
     date.setFullYear(new_year);
     init_calendar(date);
 }
-
 // Event handler for when the year left-button is clicked
 function prev_year(event) {
     $("#dialog").hide(250);
@@ -323,7 +316,6 @@ function prev_year(event) {
     date.setFullYear(new_year);
     init_calendar(date);
 }
-
 // Event handler for clicking the new event button
 function new_event(event) {
     // if a date isn't selected then do nothing
@@ -347,7 +339,6 @@ function new_event(event) {
     });
   
 }
-
 // Adds a json event to event_data
 function new_event_json(name, count, date, day) {
     var event = {
@@ -359,7 +350,6 @@ function new_event_json(name, count, date, day) {
     };
     event_data["events"].push(event);
 }
-
 // Display all events of the selected date in card views
 function show_events(events, month, day) {
     // Clear the dates container
@@ -391,7 +381,6 @@ function show_events(events, month, day) {
         }
     }
 }
-
 // Checks if a specific date has any events
 function check_events(day, month, year) {
     var events = [];
@@ -405,7 +394,6 @@ function check_events(day, month, year) {
     }
     return events;
 }
-
 // Given data for events in JSON format
 var event_data = {
     "events": [
@@ -494,7 +482,6 @@ var event_data = {
     }
     ]
 };
-
 const months = [ 
     "يناير", 
     "فبراير", 
@@ -509,8 +496,6 @@ const months = [
     "نوفمبر", 
     "ديسمبر" 
 ];
-
-
 </script>
 
 <script>
@@ -519,7 +504,6 @@ var now= new Date();
 var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
 var output = document.getElementById('output');
 console.log(thisMonth);
-
  if(output.textContent !== undefined) {
     output.textContent = thisMonth;
   }
