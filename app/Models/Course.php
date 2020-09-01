@@ -76,14 +76,15 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Models\User','course_user');
+        return $this->belongsToMany('App\Models\User', 'course_user');
     }
 
     /**
      * Get the the title localized.
      */
-    public function getTitleAttribute(){
-        return $this["title_".App::getLocale()];
+    public function getTitleAttribute()
+    {
+        return $this["title_" . App::getLocale()];
     }
 
     /**
@@ -100,5 +101,10 @@ class Course extends Model
     public function materials()
     {
         return $this->hasMany('App\Models\Material', 'course_id');
+    }
+
+    public function getPassingScoreByFullScore($full_score)
+    {
+        return $this->pass_unit == 'n' ? $this->pass_grade : floor($this->pass_grade * $full_score / 100);
     }
 }
