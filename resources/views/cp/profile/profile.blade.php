@@ -200,7 +200,7 @@
                                                     </div>
                                                     <input id="facebook_link" required="" value="{!! $user->facebook_link !!}"
                                                            name="facebook_link" class="form-control" type="text"
-                                                           placeholder="رابط فيسبوك">
+                                                           placeholder="رابط لبنكدان">
                                                 </div>
 
                                                 @error('twitter_link')
