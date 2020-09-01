@@ -67,9 +67,9 @@ class CertificatesController extends Controller
 		$nameAR = $Arabic->utf8Glyphs($data['name_ar']); 
 		$courseAR = $Arabic->utf8Glyphs($data['course_ar']); 
 		$img = Image::make(public_path('images/certificate.jpeg')); 
-		$hourse = $Arabic->utf8Glyphs('ساعة '); 
-		// Name
+		$hourse = $Arabic->utf8Glyphs(' ساعة '); 
 
+		// Name
         $img->text($nameAR, 880, 280, function($font) {  
            $font->file(public_path('fonts/ae_AlHor.ttf'));  
            $font->size(28);  
@@ -90,7 +90,6 @@ class CertificatesController extends Controller
 
 
 	  // ID 
-
 	  $img->text($data['national_id'], 850, 320, function($font) {  
 		$font->file(public_path('fonts/arial.ttf'));  
 		$font->size(25);  
@@ -101,9 +100,7 @@ class CertificatesController extends Controller
 	  });  
 
 	   // Course 
-
-	   
-	   $img->text($courseAR, 765, 375, function($font) {  
+      $img->text($courseAR, 765, 375, function($font) {  
 		$font->file(public_path('fonts/ae_AlHor.ttf'));  
 		$font->size(27);  
 		$font->color('#000000');  
@@ -123,7 +120,6 @@ class CertificatesController extends Controller
 	  
 
 	  // Date 
-
 	  $img->text($data['date'], 850, 425, function($font) {  
 		$font->file(public_path('fonts/arial.ttf'));  
 		$font->size(22);  
@@ -136,7 +132,6 @@ class CertificatesController extends Controller
 
 
 	  // Hours 
-
 	  $img->text($hourse.' '.$data['hours'], 840, 460, function($font) {  
 		$font->file(public_path('fonts/ae_AlHor.ttf'));  
 		$font->size(22);  
@@ -145,8 +140,8 @@ class CertificatesController extends Controller
 		$font->valign('bottom');  
 		$font->angle(0);  
 	  });  
-	  $name = "certifcate".time();
-	  $img->save(public_path('certifcates/'.$name.'.jpg'));  
+	  $fileName = "certifcate".time();
+	  $img->save(public_path('uploads/certifcates/'.$fileName.'.jpg'));  
 	   
     }
 
