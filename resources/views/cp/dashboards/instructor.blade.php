@@ -149,7 +149,7 @@
                     </div>
                     <div class="events-container">
                     </div>
-                    <div class="calendar-container">
+                    <!-- <div class="calendar-container">
                         <div class="calendar"> 
                             <div class="year-header"> 
                             <span class="left-button" id="prev"> &lang; </span> 
@@ -191,7 +191,7 @@
                             </div> 
                             
                         </div>
-                </div>
+                    </div> -->
     <div class="calendar-container">
       <div class="calendar"> 
         <!-- <div class="year-header"> 
@@ -404,7 +404,7 @@ function show_events(events, month, day) {
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
+        var event_name = $("<div class='event-name'>لا يوجد دورات لك في هذا اليوم</div>");
         $(event_card).css({ "border-right": "10px solid rgb(209 236 241)" });
         $(event_card).append(event_name);
         $(".events-container").append(event_card);

@@ -376,13 +376,13 @@
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span class="label">تاريخ بدء التسجيل</span>
-                                        <span class="value">{{$course->start_date}}</span>
+                                        <span class="value">{{$course->reg_start_date}}</span>
 
                                     </li>
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span class="label">تاريخ نهاية التسجيل</span>
-                                        <span class="value">{{$course->end_date}}</span>
+                                        <span class="value">{{$course->reg_end_date}}</span>
 
                                     </li>
                                     <li class="skill-feature">
