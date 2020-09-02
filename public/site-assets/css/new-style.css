@@ -2331,8 +2331,7 @@ ul li{
     background: #f9f9f985;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.16);
     border-radius: 2px;
-    
-    z-index:999;
+    z-index:99;
 }
 .course-thumbnail img{
     width: 100%;
@@ -2341,6 +2340,9 @@ ul li{
     border-top-left-radius:10px;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
 }
+.switcher-icons{
+    z-index:9999 !important;
+  }
 
 
 element.style {
