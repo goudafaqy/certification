@@ -137,7 +137,7 @@
                                                 <a href="{{url('course/'.$course->id)}}">{{$course->title}}</a>
                                             </h2>
                                             <div class="course-meta">
-                                                <span> <i class="fa fa-user"></i>{{$course->students()->count()}} متدرب</span>
+                                                <span> <i class="fa fa-user"></i>{{$course->seats}} متدرب</span>
                                                 <span>
                               <i class="fa fa-tag"></i>
                               <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>

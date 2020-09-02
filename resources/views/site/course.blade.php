@@ -291,14 +291,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        
-                                    
-                                    
+
+
+
                                     <h2 class="course-title">
                                         <a href="{{url('course/'.$coursee->id)}}">{{$coursee->title}}</a>
                                     </h2>
                                     <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
+                                        <span> <i class="fa fa-user"></i>{{$coursee->seats}} متدرب</span>
                                         <span>
                                             <i class="fa fa-tag"></i>
                                             <a href="{{url('course/'.$coursee->id)}}">{{$coursee->category->title}}</a>
@@ -376,19 +376,19 @@
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span class="label">تاريخ بدء التسجيل</span>
-                                        <span class="value">{{$course->start_date}}</span>
+                                        <span class="value">{{ \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->start_date .'  00:00:01'))}}</span>
 
                                     </li>
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span class="label">تاريخ نهاية التسجيل</span>
-                                        <span class="value">{{$course->end_date}}</span>
+                                        <span class="value">{{\Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->end_date . ' 23:59:59'))}}</span>
 
                                     </li>
                                     <li class="skill-feature">
                                         <i class="far fa-clock"></i>
                                         <span class="label">مدة البرنامج</span>
-                                        <span class="value">{{$totalTime/60}} ساعات </span>
+                                        <span class="value">{{round($totalTime/60)}} ساعات </span>
 
                                     </li>
                                     <li class="skill-feature">
