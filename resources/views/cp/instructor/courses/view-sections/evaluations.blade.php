@@ -41,7 +41,7 @@
 
                     <div class="col-md-1">
                         <a id="term-form-toggle" href="javascript:void();" class="btn btn-primary"
-                           style="width: 100%; font-size: 1.3em; margin-top: 3px; padding: 8px; height: 45px;">
+                           style="width: 100%; font-size: 1.3em; margin-top: 3px; padding: 8px;">
                             <i class="fa fa-plus"></i>
                         </a>
                     </div>
@@ -110,7 +110,7 @@
                             @foreach ($evaluations as $term)
                                 <td class="text-center">
                                     <input type="number" name="evaluation[{{$trainee['id']}}][{{$term->id}}]"
-                                           value="{{$trainee['evaluations'][$term->id]}}" style="max-width: 70px"
+                                           value="{{$trainee['evaluations'][$term->id]}}" style="max-width: 50px"
                                            max="{{$term->score}}" min="0" data-trainee="{{$trainee['id']}}"
                                            class="evaluation_inputs" step="any">
                                 </td>
@@ -148,23 +148,21 @@
             const passingScore = {{$passingScore}};
 
             $('.evaluation_inputs').on('change', function () {
-                if (parseFloat(+$(this).val()) > parseFloat(+$(this).attr('max')))
-                    $(this).val(+$(this).attr('max'));
-                if (parseFloat(+$(this).val()) < parseFloat(+$(this).attr('min')))
-                    $(this).val(+$(this).attr('min'));
+                if (parseFloat($(this).val()) > parseFloat($(this).attr('max')))
+                    $(this).val($(this).attr('max'));
 
                 const trainee_id = $(this).data('trainee');
                 var traineeTotal = 0;
 
                 $('.evaluation_inputs').each(function () {
                     if ($(this).data('trainee') === trainee_id) {
-                        traineeTotal += parseFloat(+$(this).val());
+                        traineeTotal += parseFloat($(this).val());
                     }
                 });
 
                 const examsDivId = '.trainee-' + trainee_id + '-exams-grade';
                 $(examsDivId).each(function () {
-                    traineeTotal += parseFloat(+$(this).html());
+                    traineeTotal += parseFloat($(this).html());
                 });
 
                 const gradeDivId = '#trainee-' + trainee_id + '-total-grade';

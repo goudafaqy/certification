@@ -49,7 +49,7 @@ class CourseEvaluationsController extends Controller
         if (!$course) throw new NotFoundHttpException();
 
         $data = $request->input();
-        $data['name'] = $data['evaluation_type'] == 'new' ? $data['name'] : $data['evaluation_type'];
+        $data['name'] = $data['type'] == 'new' ? $data['name'] : $data['type'];
         $data['course_id'] = $course_id;
 
         $term = $this->evaluationRepo->save($data);

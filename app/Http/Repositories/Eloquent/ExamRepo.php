@@ -186,7 +186,6 @@ class ExamRepo extends Repository implements ExamEloquent
                     'id' => $student->id,
                     'name' => $student->name,
                     'hasExam' => true,
-                    'status' => $examinedStudents[$student->id]->reviewed? 2: 0,
                     'userExam' => $examinedStudents[$student->id],
                     'numAnswered' => $answered
                 ];
@@ -194,14 +193,12 @@ class ExamRepo extends Repository implements ExamEloquent
                 $trainees[] = [
                     'id' => $student->id,
                     'name' => $student->name,
-                    'hasExam' => false,
-                    'status' => 1
+                    'hasExam' => false
                 ];
             }
 
         }
 
-        $trainees = collect($trainees)->sortBy('status')->toArray();
         return $trainees;
     }
 

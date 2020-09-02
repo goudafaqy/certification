@@ -9,9 +9,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <h3>{{$userExam->user->name}}</h3>
                     <h3>{{$userExam->exam->title_ar}}</h3>
-                    <h3>درجة كل سؤال : {{$userExam->exam->question_point}}</h3>
+                    <h3>{{$userExam->user->name}}</h3>
                 </div>
                 @if (session('invalid'))
                     <div class="alert alert-danger alert-dismissible fade show">
@@ -92,21 +91,13 @@
                                         @endswitch
 
                                         @php
-                                        if($userQuestion->graded){
-                                            $answer_point = $userQuestion->grade;
+                                            $answer_point = $userQuestion->graded?$userQuestion->grade:($userQuestion->isAnswerCorrect()?$userExam->exam->question_point:0);
                                             $total += $answer_point;
-                                        }else{
-                                            $answer_point = '';
-                                            if($userQuestion->question->type != 'OC'){
-                                                $answer_point = $userQuestion->isAnswerCorrect()?$userExam->exam->question_point:0;
-                                                $total += $answer_point;
-                                            }
-                                        }
                                         @endphp
                                         <div>
                                             <label>الدرجة : </label>
-                                            <input class="gradeInputs" type="number" min="0" required
-                                                   max="{{$userExam->exam->question_point}}" step="any"
+                                            <input class="gradeInputs" type="number" min="0"
+                                                   max="{{$userExam->exam->question_point}}"
                                                    name="{{"grades[{$userQuestion->id}]"}}" value="{{$answer_point}}">
                                         </div>
                                     </div>
@@ -132,14 +123,9 @@
     <script>
         $(document).ready(function () {
             $('.gradeInputs').on('change', function () {
-                if (parseFloat(+$(this).val()) > parseFloat(+$(this).attr('max')))
-                    $(this).val(+$(this).attr('max'));
-                if (parseFloat(+$(this).val()) < parseFloat(+$(this).attr('min')))
-                    $(this).val(+$(this).attr('min'));
-
                 var total = 0;
                 $('.gradeInputs').each(function (input) {
-                    total += parseFloat(+$(this).val());
+                    total += parseInt($(this).val());
                 });
 
                 $("#gradeTotalSpan").html(total)
