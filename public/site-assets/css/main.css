@@ -107,7 +107,9 @@ body{
   --nav-color:#794C17;
   --Statistics-color:#273044;
   --p-header-color:#273044;
-  --blog-color:#F7F3EE
+  --blog-color:#F7F3EE;
+  --navbar-link2:#273044;
+  --sidebar-link:#828282
 
  
 }
@@ -143,7 +145,9 @@ body.dark {
   --nav-link-color:#fff;
   --p-header-color:#ffff;
   --links-color:#333;
-  --blog-color:#000
+  --blog-color:#000;
+  --navbar-link2:#ffff;
+  --sidebar-link:#fff
   
   
  
@@ -181,7 +185,9 @@ body.other{
   --Statistics-color:#838383;
   --nav-link-color:#000;
   --p-header-color:#000;
-  --blog-color:#838383
+  --blog-color:#838383;
+  --navbar-link2:#000;
+  --sidebar-link:#000
   
   
  
@@ -258,7 +264,7 @@ ul{
 }
 
 #owl{
-  z-index:999;
+ 
   overflow: hidden;
 }
 
@@ -273,7 +279,7 @@ ul{
   font-weight: 700;
 }
  .navbar-light .navbar-nav .nav-link:hover{
-    color:var(--nav-bg);
+    color:var(--nav-bg) !important;
     transition: 0.5s ease-in-out;
 }
 
@@ -684,7 +690,7 @@ opacity: 0;
   
 }
 #owl{
-  z-index:999;
+ 
 }
 .icon-caht{
   bottom:2rem;
@@ -2409,14 +2415,14 @@ section.programs ul.nav-pills{
       font-weight: 600;
       font-size: 22px;
       text-transform: none;
-      color: #202020;
+      color: var(--navbar-link2);
       line-height: 50px;
       margin: 0;
       font-family: "Almarai", Roboto, sans-serif;
   }
   
   .blog .nb-heading h2 span {
-      color: #c3a37e;
+      color: var(--nav-textt)
   
   }
   
@@ -2435,7 +2441,7 @@ section.programs ul.nav-pills{
   
   .event-slider .event-item {
       padding: 20px 0;
-      border-top: 1px solid #c3a37e;
+      border-top: 1px solid var(--nav-textt);
       display: block;
       height: auto !important
   }
@@ -2444,6 +2450,16 @@ section.programs ul.nav-pills{
       content: "";
       display: table;
       clear: both
+  }
+  .course-item-wrapper .course-meta span,
+  .course-item-wrapper .course-meta a,
+  .course-item-wrapper .course-meta .course-title a
+ 
+  {
+    /* color: #283045 !important;  */
+  }
+  .course-content{
+    background:var(--body-bg);
   }
   
   .event-slider .event-item .time-from:hover {
@@ -3475,7 +3491,7 @@ section.programs ul.nav-pills{
       position: relative;
   }
   .course-info-right .course-info-wrapper .right-col__content .right-col__wrapper{
-      background-color: #fff;
+      background-color: var(--body-bg);
       border: 1px solid #ebebeb;
       color: #505763;
       padding: 6px 6px 20px;
@@ -3522,7 +3538,7 @@ section.programs ul.nav-pills{
   .course-info-right .course-info-wrapper .right-col__content .right-col__wrapper .course-payment .course-price .value{
       font-size: 28px;
       font-weight: 500;
-      color: #273044;
+      color: var(--navbar-link2);
       margin: 0;
       padding: 0;
       line-height: 44px;
@@ -3598,7 +3614,7 @@ section.programs ul.nav-pills{
       margin: 0;
       display: inline-block;
       padding: 0 9px;
-      background: #ffffff;
+      background: var(--body-bg);
       overflow: hidden;
   }
   .course-info-right .course-info-wrapper .right-col__content .right-col__wrapper .social_share ul.thim-social-share li.heading{
@@ -4077,7 +4093,7 @@ section.programs ul.nav-pills{
       transition: .05s border-color ease-in-out;
   }
   button, input[type=submit] {
-      padding: 5px 25px;
+      /* padding: 5px 25px; */
       text-transform: uppercase;
       font-size: 13px;
       font-weight: 700;
@@ -4107,6 +4123,11 @@ section.programs ul.nav-pills{
       -ms-transition: all .5s ease-in-out;
       -o-transition: all .5s ease-in-out;
       transition: all .5s ease-in-out;
+  }
+  .course-item-wrapper:hover span,
+  .course-item-wrapper:hover a
+  {
+    color:#273044 !important
   }
   .course-item-wrapper:hover.course-item-wrapper .course-thumbnail .price{
       background: #a58661;
@@ -4164,7 +4185,7 @@ section.programs ul.nav-pills{
       transition: all .5s ease-in-out;
   }
   .course-item-wrapper .thim-course-content:hover{
-      background-color:#fff;
+      /* background-color:#fff; */
       -webkit-transition: all .5s ease-in-out;
       -khtml-transition: all .5s ease-in-out;
       -moz-transition: all .5s ease-in-out;
@@ -4282,7 +4303,7 @@ section.programs ul.nav-pills{
     transition: all .5s ease-in-out;
 }
 .course-item-wrapper:hover{
-    background-color:#fff;
+    /* background-color:#fff; */
     -webkit-transition: all .5s ease-in-out;
     -khtml-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
@@ -4346,7 +4367,7 @@ section.programs ul.nav-pills{
     transition: all .5s ease-in-out;
 }
 .course-item-wrapper .thim-course-content:hover{
-    background-color:#fff;
+    /* background-color:#fff; */
     -webkit-transition: all .5s ease-in-out;
     -khtml-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
