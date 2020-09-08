@@ -150,11 +150,12 @@ class CertificatesController extends Controller
 	  $certificate->user_name_ar  = $data['name_ar'];
 	  $certificate->user_name_en  = $data['name_en'];
 	  $certificate->national_id  = $data['national_id'];
-	  $certificate->course_name_ar  = $data['course_name_ar'];
-	  $certificate->course_name_en  = $data['course_name_en'];
+	  $certificate->course_name_ar  = $data['course_ar'];
+	  $certificate->course_name_en  = $data['course_en'];
 	  $certificate->date  = $data['date'];
 	  $certificate->hours  = $data['hours'];
 	  $certificate->printed  = 0;
+	  $certificate->user_id  = $data['user_id'];
 	  $certificate->certificate_key  = $this->_generateRandomString(10);
 	  $certificate->certificate_image  = 'uploads/certifcates/'.$fileName.'.jpg';
 	  $certificate->save();
@@ -169,31 +170,35 @@ class CertificatesController extends Controller
     {
 		$inputs = $request->input();
 		$course  = Course::find($inputs['course']);
-		
-		foreach($inputs['ids'] as $id){
+		if(isset($inputs['ids'])){
+			foreach($inputs['ids'] as $id){
 
-			$user = User::find($id);
-			$data = [];
-			$data['name_ar'] = $user->name_ar; 
-			$data['name_en'] = $user->name_en;
-			$data['national_id'] = $user->national_id;
-			$data['course_name_ar'] = $course->title_ar;
-			$data['course_name_en'] = $course->title_en;
-			$data['date'] = $course->start_date;
-			$data['hours'] = $course->course_hours;
-			$this->generate($data);
+				$user = User::find($id);
+				$data = [];
+				$data['name_ar'] = $user->name_ar; 
+				$data['name_en'] = $user->name_en;
+				$data['user_id'] = $id;
+				$data['national_id'] = $user->national_id;
+				$data['course_ar'] = $course->title_ar;
+				$data['course_en'] = $course->title_en;
+				$data['date'] = $course->start_date;
+				$data['hours'] = $course->course_hours;
+				$this->generate($data);
+
+			}
+		
+		      return redirect()->back()->with('added', 'تم استخراج وتخزين الشهادات الخاصة بهذة الدورة');
+		}else{
+			 return redirect()->back()->with('error', 'لابد من أختيار الطلبة');
 
 		}
-		
-		return redirect()->back()->with('added', 'تم استخراج وتخزين الشهادات الخاصة بهذة الدورة');
-
         
     }
 
 
     public function _generateRandomString($length)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, strlen($characters) - 1)];
