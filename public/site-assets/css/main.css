@@ -503,6 +503,7 @@ header .item .cover .header-content{
   -ms-transform: skew(15deg, 0deg);
   transform: skew(15deg, 0deg);
   font-family: "ArbFONTS-PNU-Bold.ttf";
+  font-size:28px !important
   }
   .btn05 {
       background-color: #a58661;
