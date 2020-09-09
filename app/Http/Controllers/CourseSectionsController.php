@@ -65,7 +65,7 @@ class CourseSectionsController extends Controller
            
             $Section = $this->SectionRepo->save($inputs);
             if($Section){
-                return redirect('sections/'.$inputs['course_id'])->with('added', __('app.Element Added Auccessfully'));
+                return redirect('sections/'.$inputs['course_id'])->with('added', __('app.Section Added Successfully'));
             }
         }
     }
@@ -98,7 +98,7 @@ class CourseSectionsController extends Controller
             unset($inputs['_token']);
             $classification = $this->SectionRepo->update($inputs, $inputs['id']);
             if($classification){
-                return redirect('sections/'.$inputs['course_id'])->with('updated', __('app.Element Updated Auccessfully'));
+                return redirect('sections/'.$inputs['course_id'])->with('updated', __('app.Section Updated Successfully'));
             }
         }
     }
@@ -111,7 +111,7 @@ class CourseSectionsController extends Controller
     {
         $result = $this->SectionRepo->delete($id);
         if($result){
-            return redirect('sections/'.$course_id)->with('deleted', __('app.Element Deleted Auccessfully'));
+            return redirect('sections/'.$course_id)->with('deleted', __('app.Section Deleted Successfully'));
         }
     }
 }
