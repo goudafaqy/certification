@@ -30,7 +30,9 @@
 .rvfs-4 .single-box,
 .rvfs-4 .path-tab li,
 .rvfs-4 .condations p span,
-.rvfs-4 .condations p #title
+.rvfs-4 .condations p #title,
+.rvfs-4 h1
+
 {
      font-size: 100%
 }
@@ -51,7 +53,8 @@
 .rvfs-5 .single-box,
 .rvfs-5 .path-tab li,
 .rvfs-5 .condations p span,
-.rvfs-5 .condations p #title
+.rvfs-5 .condations p #title,
+.rvfs-5 h1
 
 {
     font-size: 110% !important
@@ -73,7 +76,8 @@
 .rvfs-6 .single-box,
 .rvfs-6 .path-tab li,
 .rvfs-6 .condations p span,
-.rvfs-6 .condations p #title
+.rvfs-6 .condations p #title,
+.rvfs-6 h1
 {
     font-size: 120% !important
 }
@@ -94,7 +98,8 @@
 .rvfs-7 .single-box,
 .rvfs-7 .path-tab li,
 .rvfs-7 .condations p span,
-.rvfs-7 .condations p #title
+.rvfs-7 .condations p #title,
+.rvfs-7 h1
 {
     font-size: 130% !important
 }
@@ -103,7 +108,18 @@
 .rvfs-5 a, .rvfs-5 li a{ font-size: 105% !important}
 .rvfs-6 a, .rvfs-6 li a{ font-size: 110% !important}
 .rvfs-7 a, .rvfs-7 li a{ font-size: 120% !important}
-
+.rvfs-4 .course-info-left .entry-title{
+    font-size:25px !important;
+}
+.rvfs-5 .course-info-left .entry-title{
+    font-size:27px !important;
+}
+.rvfs-6 .course-info-left .entry-title{
+    font-size:30px !important;
+}
+.rvfs-7 .course-info-left .entry-title{
+    font-size:34px !important;
+}
 /* .rvfs-1 .nav-link{ font-size: 98.7% !important}
 .rvfs-2 .nav-link{ font-size: 99.8% !important}
 .rvfs-3 .nav-link{ font-size: 99.9% !important}   */
@@ -132,7 +148,7 @@
 .rvfs-4 .p-header,
 .rvfs-4 .swiper-slide .header-content h6,
 .rvfs-4 .footer .container .Important_links h4
-{ font-size: 28px}
+{ font-size: 24px}
 .rvfs-5 .p-header,
 .rvfs-5 .swiper-slide .header-content h6,
 .rvfs-5 .footer .container .Important_links h4
