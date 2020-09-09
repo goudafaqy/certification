@@ -20,7 +20,10 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "maatwebsite/excel": "^3.1",
-        "macsidigital/laravel-zoom": "^4.0"
+        "macsidigital/laravel-zoom": "^4.0",
+        "nesbot/carbon": "^2.38",
+        "panichd/panichd": "^0.19.0"
+
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.4",
