@@ -179,7 +179,7 @@
                             </div>
                             <div class="row">
                                 @foreach($mr->courses as $course)
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-sm-3">
 
                                     <div class="profile-card">
                                         <div class="card-header">

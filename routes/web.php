@@ -126,7 +126,7 @@ Auth::routes();
 
     Route::get('test', function (){
 
-      dd(Route::getCurrentRoute()->uri);
+      dd(\Carbon\Carbon::createFromTimeString('2020-08-01 00:00:00'));
     });
 
     // Course notifications routes ...
