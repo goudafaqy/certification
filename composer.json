@@ -14,7 +14,8 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
-        "jorenvanhocht/laravel-share": "^3.2",
+        "intervention/image": "^2.5",
+        "johntaa/ar-php": "dev-master",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
@@ -22,6 +23,7 @@
         "macsidigital/laravel-zoom": "^4.0",
         "nesbot/carbon": "^2.38",
         "panichd/panichd": "^0.19.0"
+
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.4",

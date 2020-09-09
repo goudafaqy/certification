@@ -513,6 +513,9 @@
 
                             if(content == true){
                                 $('#sccess').show();
+                                $("#newsletter").attr("disabled", true);
+                                $('#newsletter_email').val("");
+
                             }else{
                                 $('#fail').show();
                             }

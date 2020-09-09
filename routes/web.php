@@ -216,4 +216,11 @@ Route::prefix('trainee')->group(function (){
         Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@submitAnswer')->name('trainee-course-exam-answer');
 
     });
+
+
 });
+
+
+
+    Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
