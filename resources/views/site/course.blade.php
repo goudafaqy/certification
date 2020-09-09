@@ -330,7 +330,6 @@
                                     <span class="label">السعر</span>
                                     <div class="value ">
                                         {{$course->price}} ريـال
-
                                     </div>
                                 </div>
 
@@ -377,13 +376,11 @@
                                         <i class="fas fa-calendar-alt"></i>
                                         <span style="font-size: 12px" class="label"> بدء التسجيل</span>
                                         <span style="font-size: 12px" class="value">{{ \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->start_date .'  00:00:01'))}}</span>
-
                                     </li>
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span style="font-size: 12px" class="label"> نهاية التسجيل</span>
                                         <span style="font-size: 12px" class="value">{{\Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->end_date . ' 23:59:59'))}}</span>
-
                                     </li>
                                     <li class="skill-feature">
                                         <i class="far fa-clock"></i>

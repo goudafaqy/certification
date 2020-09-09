@@ -187,6 +187,7 @@
         @endif
     </div>
 </div>
+</div>
 @include('cp.common.dashboard-footer')
 <script>
 

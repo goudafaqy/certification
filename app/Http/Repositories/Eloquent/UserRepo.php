@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 namespace App\Http\Repositories\Eloquent;
 
 use App\Http\Interfaces\Eloquent\UserEloquent;
 use App\Http\Repositories\Eloquent\Repository;
-use App\Models\User;
+use App\User;
 class UserRepo extends Repository implements UserEloquent{
-    
+
     public function __construct()
     {
         parent::__construct(new User());

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\App;
@@ -41,7 +40,8 @@ class User extends Authenticatable
         'education',
         'job_title',
         'facebook_link',
-        'twitter_link'
+        'twitter_link',
+        'image'
     ];
 
     /**
@@ -106,4 +106,17 @@ class User extends Authenticatable
     public function certificates(){
         return $this->hasMany(Qualifications::class)->where('type','certificates');
     }
+
+
+    public function exams_score()
+    {
+        return $this->hasMany('App\Models\ExamUser', 'user_id');
+    }
+
+
+    public function evaluations_score()
+    {
+        return $this->hasMany('App\Models\EvaluationTermUser', 'user_id');
+    }
+
 }

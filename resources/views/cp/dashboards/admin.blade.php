@@ -26,7 +26,7 @@
                     <div class="widget-header">
                         <div class=" d-flex justify-content-between">
                             <h3 class="widget-title"> الإعلانات</h3>
-                            <img src="{{ asset('images/speaker.png') }}" style="width: 25px; height: 25px" alt="speaker-img">
+                            <img src="{{ asset('images/speaker.png') }}" style="width: 25px; height: 25px">
 
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 <div class="carousel-item @if($loop->index == 0) active @endif">
                                     <div class="card">
                                         <div class="news">
-                                            <img src="{{ url($item->image) }}" alt="item" class="img-thumbnail">
+                                            <img src="{{ url($item->image) }}" alt="" class="img-thumbnail">
                                             <div class="details">
                                                 <h3>
                                                     <a href="#">{{$item->title_ar??'' }}</a>

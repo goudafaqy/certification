@@ -14,22 +14,22 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <label for="title_ar">العنوان</label>
-                            <div class="form-group input-group">                      
+                            <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text course-group" id="basic-addon1"><i class="fas fa-bookmark" style="font-size:16px"></i></span>
                             </div>
-                            <input id="email" required="" name="text" class="form-control @error('title_ar') is-invalid @enderror" id="title_ar" name="title_ar" value="{{old('title_ar')}}" type="text">
+                            <input required class="form-control @error('title_ar') is-invalid @enderror" id="title_ar" name="title_ar" value="{{old('title_ar', @$exam->title_ar)}}" type="text">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-6">
                         <label for="questions_no">عدد الأسئلة</label>
-                            <div class="form-group input-group">                    
+                            <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text course-group" id="basic-addon1"><i class="fas fa-list-ol" style="font-size:16px"></i></span>
                                     </div>
-                                    <input id="email" required="" name="number" class="form-control @error('questions_no') is-invalid @enderror"
+                                    <input class="form-control @error('questions_no') is-invalid @enderror"
                                         id="questions_no" name="questions_no" value="{{old('questions_no', @$exam->questions_no)}}" type="text">
                                     </div>
                                     @error('questions_no')
@@ -38,14 +38,14 @@
                                     </span>
                                     @enderror
                             </div>
-                   
+
                     <div class="col-lg-6">
                     <label for="question_point">نقاط كل سؤال</label>
-                                <div class="form-group input-group">                      
+                                <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text course-group" id="basic-addon1"><i class="fas fa-question" style="font-size:16px"></i></span>
                                     </div>
-                                    <input id="email" required="" name="number" class="form-control @error('question_point') is-invalid @enderror"
+                                    <input class="form-control @error('question_point') is-invalid @enderror"
                                         id="question_point" name="question_point" value="{{old('question_point', @$exam->question_point)}}" type="text">
                                     </div>
                                 @error('question_point')
@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                     <label for="duration">مدة الامتحان</label>
-                                <div class="form-group input-group">                     
+                                <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text course-group" id="basic-addon1"><i class="far fa-clock" style="font-size:13px"></i></span>
                                     </div>
@@ -69,7 +69,7 @@
                                         id="duration" name="duration" value="{{old('duration', @$exam->duration)}}">
                                     <div class="input-group-append">
                                         <span class="input-group-text" style="background: #ebf0f3;font-size: 14px;color: #34405a;">MM</span>
-                                    </div>        
+                                    </div>
                                 </div>
                                 @error('duration')
                                 <span class="text-danger err-msg-duration" role="alert">
@@ -81,10 +81,10 @@
                     <label for="exam_date">تاريخ الامتحان</label>
                                     <div class="form-group input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
+                                            <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
                                         </div>
                                             <input placeholder="التاريخ" class="form-control  @error('exam_date') is-invalid @enderror"
-                                            id="exam_date" name="exam_date" value="{{old('exam_date', @$exam->exam_date)}}" name="date" type="date"  id="date" style=" padding-right:50px !important; ">
+                                            id="exam_date" name="exam_date" value="{{old('exam_date', @$exam->exam_date)}}" type="date" style=" padding-right:50px !important; ">
                                     </div>
                                             @error('exam_date')
                                             <span class="text-danger err-msg-duration" role="alert">
@@ -93,14 +93,14 @@
                                             @enderror
                     </div>
                     <div class="col-lg-3">
-                  
+
                         <label for="start_time">ساعة البداية</label>
                             <div class="input-group date1" id="datetimepicker3">
                             <span class="input-group-addon addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
                                 <input type="text" class="form-control @error('start_time') is-invalid @enderror"
-                                   id="start_time" name="start_time" value="{{old('start_time', @$exam->start_time)}}" name="time" value="">
+                                   id="start_time" name="start_time" value="{{old('start_time', @$exam->start_time)}}">
                             </div>
                         </div>
                         @error('start_time')
@@ -109,15 +109,15 @@
                         </span>
                         @enderror
                         <div class="col-lg-3">
-                    
+
                     <label for="end_time">ساعة النهاية</label>
                     <div class="input-group date1" id="datetimepicker4">
                         <span class="input-group-addon addon">
                             <span class="glyphicon glyphicon-time"></span>
                         </span>
                     <input type="text" class="form-control @error('end_time') is-invalid @enderror"
-                       id="end_time" name="end_time" value="{{old('end_time')}}" name="time">
-                   
+                       id="end_time" name="end_time" value="{{old('end_time', @$exam->end_time)}}">
+
                     </div>
                 </div>
                 @error('end_time')
@@ -125,7 +125,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-               
+
                 </div>
                     <div class="row">
                         <div class="col-lg-6">
@@ -135,7 +135,7 @@
                                             name="guide_ar">{{old('guide_ar', @$exam->guide_ar)}}</textarea>
                                         <span class="form-input-label text-area"><i class="fas fa-book-open" style="font-size:16px;color:#283045"></i></span>
                                     </label>
-                      
+
                                         @error('guide_ar')
                                         <span class="text-danger err-msg-guide_ar" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -147,8 +147,8 @@
                                     <div class="file-upload" style="margin-top:1rem">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">اختر ملف</div>
-                                                <div class="file-select-name" id="noFile">No file chosen...</div> 
-                                                    <input type="file" name="chooseFile" id="chooseFile">
+                                                <div class="file-select-name" id="noFile">No file chosen...</div>
+                                                    <input type="file" name="questions" id="chooseFile">
                                                 </div>
                                             </div>
                                              @error('questions')
@@ -162,13 +162,13 @@
                         <button style="width: 25%; margin-top: 50px;" type="submit" class="btn btn-primary">حفظ</button>
                     </div>
                     </div>
-                   
-                </div>
-                
-                
-                
 
-               
+                </div>
+
+
+
+
+
             </div>
             </div>
 

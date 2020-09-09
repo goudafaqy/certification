@@ -17,10 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Almarai|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('css/simple-calendar.css') }}"> -->
-    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
-  
+    <link rel="stylesheet" href="{{ asset('css/simple-calendar.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>    <link rel="stylesheet" href="{{ asset('css/theme-dashboard.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
@@ -115,7 +112,7 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <i class="ik ik-chevron-down"></i>
-                                <img class="avatar" src="{{ asset(Auth::user()->image) }}" alt="">
+                                <img class="avatar" src="{{ Auth::user()->image?url(Auth::user()->image): "#" }}" alt="">
                                 <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->username }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

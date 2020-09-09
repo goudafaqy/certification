@@ -41,7 +41,7 @@
                             @if(explode(" ", $currentDate)[0] == $session->date && ((int)explode(":", explode(" ", date("h:i a"))[0])[0] >= (int)explode(":", explode(" ", $session->from_time)[0])[0] && (int)explode(":", explode(" ", date("h:i a"))[0])[0] < (int)explode(":", explode(" ", $session->to_time)[0])[0]))
                             <a style="padding: 10px 13px;background:#639fd3;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="زوم" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
                             @else
-                            <button style="padding: 7px; border: solid 1px #A1825C;" data-toggle="tooltip" data-placement="top" title="لا يمكن فتح المحاضرة في غير وقتها"><i class="far fa-play-circle"></i></button>
+                            <button style="padding: 10px 13px;border: none !important;line-height: 0px;border-radius: 5px;" data-toggle="tooltip" data-placement="top" title="لا يمكن فتح المحاضرة في غير وقتها"><i class="far fa-play-circle"></i></button>
                             @endif
                             <a style="padding: 10px 13px;background:#28304585;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="ملفات الحضور" style="padding:8px;background:#2dce89;border-radius:5px;"  href="{{isset($session->webinar)?url('instructor/courses/webinar/'.$session->webinar->id.'/attendance'):'#'}}" target="_blanck"><i class="fa fa-list"></i></a>
                         </td>

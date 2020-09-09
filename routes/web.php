@@ -194,6 +194,11 @@ Route::prefix('instructor')->group(function (){
         Route::get('{id}/assignment/{examId}/review/{traineeId}', 'CourseExamsController@trainee_answers')->name('instructor-course-assignment-review-trainee');
         Route::post('{id}/exam/{examId}/review/{traineeId}', 'CourseExamsController@review')->name('instructor-course-exam-review-trainee-save');
 
+        Route::post('{id}/evaluation/term/save', 'CourseEvaluationsController@saveTerm')->name('instructor-evaluation-term-save');
+        Route::get('{id}/evaluation/term/delete/{termId}', 'CourseEvaluationsController@deleteTerm')->name('instructor-evaluation-term-delete');
+        Route::post('{id}/evaluation/save', 'CourseEvaluationsController@saveEvaluations')->name('instructor-evaluation-trainees-save');
+
+
         Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
         Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
     });
@@ -211,4 +216,11 @@ Route::prefix('trainee')->group(function (){
         Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@submitAnswer')->name('trainee-course-exam-answer');
 
     });
+
+
 });
+
+
+
+    Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');

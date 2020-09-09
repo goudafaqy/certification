@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
+use App\Http\Repositories\Eloquent\EvaluationRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\CourseUpdateRepo;
@@ -21,6 +22,7 @@ class CourseController extends Controller
     var $materialRepo;
     var $appointmentRepo;
     var $updateRepo;
+    var $evaluationRepo;
 
     /**
      * Create a new controller instance.
@@ -33,7 +35,8 @@ class CourseController extends Controller
         ExamRepo $examRepo,
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
-        CourseUpdateRepo $updateRepo
+        CourseUpdateRepo $updateRepo,
+        EvaluationRepo $evaluationRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -42,6 +45,7 @@ class CourseController extends Controller
         $this->materialRepo = $materialRepo;
         $this->appointmentRepo = $appointmentRepo;
         $this->updateRepo = $updateRepo;
+        $this->evaluationRepo = $evaluationRepo;
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -112,7 +116,21 @@ class CourseController extends Controller
 
     private function evaluations($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab7', 'type' => $type]);
+        $exams = $this->examRepo->getAll($course->id);
+        $evaluations = $this->evaluationRepo->getByCourse($course->id);
+        $total = $this->evaluationRepo->getEvaluationTotalScore($exams, $evaluations);
+        $passing = $course->getPassingScoreByFullScore($total);
+
+        $trainees = $this->evaluationRepo->getTraineesScores($this->courseRepo->getAllTrainees($course->id),
+            $exams, $evaluations);
+
+        return view("cp.instructor.courses.view", [
+            'course' => $course,
+            'tab' => 'tab7', 'type' => $type,
+            'exams' => $exams, 'evaluations' => $evaluations,
+            'totalScore' => $total, 'passingScore' => $passing,
+            'trainees' => $trainees
+        ]);
     }
 
     private function trainees($course, $type)
