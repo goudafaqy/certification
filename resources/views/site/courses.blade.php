@@ -198,7 +198,7 @@
                                     <div class="thim-course-content">
                                         <div class="course-author">
                                             <div class="course-author-content">
-                                                <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                <img alt="" src="{{ $course->instructor->image != null ? url($course->instructor->image ) : asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
                                                 <div class="author-contain">
                                                     <label>المعلم</label>
                                                     <div class="value" itemprop="name">
