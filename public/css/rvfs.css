@@ -99,10 +99,10 @@
     font-size: 130% !important
 }
 
-.rvfs-4 a, .rvfs-4 li a{ font-size: 100% }
+/* .rvfs-4 a, .rvfs-4 li a{ font-size: 100% }
 .rvfs-5 a, .rvfs-5 li a{ font-size: 105% !important}
 .rvfs-6 a, .rvfs-6 li a{ font-size: 110% !important}
-.rvfs-7 a, .rvfs-7 li a{ font-size: 120% !important}
+.rvfs-7 a, .rvfs-7 li a{ font-size: 120% !important} */
 
 /* .rvfs-1 .nav-link{ font-size: 98.7% !important}
 .rvfs-2 .nav-link{ font-size: 99.8% !important}
@@ -145,6 +145,19 @@
 .rvfs-7 .swiper-slide .header-content h6,
 .rvfs-7 .footer .container .Important_links h4
 { font-size: 36px !important}
+
+.rvfs-4 .course-info-left .entry-title{
+    font-size:25px !important;
+}
+.rvfs-5 .course-info-left .entry-title{
+    font-size:27px !important;
+}
+.rvfs-6 .course-info-left .entry-title{
+    font-size:30px !important;
+}
+.rvfs-7 .course-info-left .entry-title{
+    font-size:34px !important;
+}
 
 
 

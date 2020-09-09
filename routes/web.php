@@ -126,7 +126,7 @@ Auth::routes();
 
     Route::get('test', function (){
 
-      dd(Route::getCurrentRoute()->uri);
+      dd(\Carbon\Carbon::createFromTimeString('2020-08-01 00:00:00'));
     });
 
     // Course notifications routes ...
@@ -216,4 +216,11 @@ Route::prefix('trainee')->group(function (){
         Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@submitAnswer')->name('trainee-course-exam-answer');
 
     });
+
+
 });
+
+
+
+    Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');

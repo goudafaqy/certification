@@ -93,10 +93,12 @@ class WelcomeController extends Controller
 
     public function newsletter(Request $request){
 
-        $n = new Newsletter();
-        $n->email = $request->email;
-        $n->save();
-        return true;
+        if($request->ajax()){
+            $n = new Newsletter();
+            $n->email = $request->email;
+            $n->save();
+            return true;
+        }
 
     }
 }

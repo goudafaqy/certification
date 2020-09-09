@@ -179,7 +179,7 @@
                             </div>
                             <div class="row">
                                 @foreach($mr->courses as $course)
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-sm-3">
 
                                     <div class="profile-card">
                                         <div class="card-header">
@@ -211,4 +211,28 @@
             </div>
         </div>
     </div>
+    <script>
+    $("#learn-press-course-tabs ul li a").click(function() {
+        $("#learn-press-course-tabs ul li").removeClass("active");
+        $(this).parent().addClass('active');
+    });
+</script>
+    <script>
+    // Prevent closing from click inside dropdown
+    $(document).on('click', '.dropdown-menu', function(e) {
+        e.stopPropagation();
+    });
+    // make it as accordion for smaller screens
+    if ($(window).width() < 992) {
+        $('.dropdown-menu a').click(function(e) {
+            e.preventDefault();
+            if ($(this).next('.submenu').length) {
+                $(this).next('.submenu').toggle();
+            }
+            $('.dropdown').on('hide.bs.dropdown', function() {
+                $(this).find('.submenu').hide();
+            })
+        });
+    }
+</script>
     @endsection

@@ -10,6 +10,7 @@ use Facade\FlareClient\Http\Exceptions\NotFound;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\Advertisment;
+use App\Models\Certificate;
 
 class HomeController extends Controller
 {
@@ -77,8 +78,8 @@ class HomeController extends Controller
     private function traineeDashboard(){
         $trainee_id = Auth::id();
         $advertisments = Advertisment::all();
-
+        $certificates = Certificate::where('user_id',$trainee_id)->get();
         $courses = $this->userRepo->getTraineeCourses($trainee_id);
-        return view('cp.dashboards.trainee', ['courses' => $courses,'advertisments'=>$advertisments]);
+        return view('cp.dashboards.trainee', ['courses' => $courses,'advertisments'=>$advertisments, 'certificates'=>$certificates]);
     }
 }

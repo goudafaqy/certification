@@ -28,12 +28,56 @@
   width: 100px !important;
   margin-right:0rem !important;
 }
+.sticky-sidebar{
+  width:100%;
+  overflow: hidden;
+}
 .cover .header-content h2{
   font-size:30px !important;
 }
 .right-side{
   margin-top:10rem !important;
   
+}
+
+  
+.bars{
+  display: none;
+}
+.scale{
+  display: contents;
+}
+.amber-border{
+  padding-right:50px;
+}
+.searchclass .input-group-append{
+  right:0;
+  background:#273044;
+}
+.class_search .input-group-append{
+  background:none;
+}
+#basic-text1{
+  background:#273044 !important;
+  padding:.5rem;
+}
+.searchclass > .form-control{
+  border-radius:none !important;
+}
+
+
+.searchclass > .form-control {
+  color: #1c2172;
+  
+  border: 0;
+  width: 100%;
+  border-bottom: 1px solid #273044;
+  transition: ease-in-out .5s;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 12px;
+  background: none;
+  border-radius:none;
 }
 
 .left-side{
@@ -118,6 +162,140 @@ font-size:12px !important;
 }
 .ty{
   margin-top: 4.5rem;
+}
+
+  
+.item img {
+  display: block;
+  width: 100%;
+  height:100% !important
+}
+.item{
+height:400px !important
+}
+.cover .header-content h6{
+width:100% !important;
+font-size:10px !important;
+}
+.services li a {
+background: #C3A37E;
+padding: .4rem .5rem !important;
+color: #ffff;
+font-size: 10px !important;
+
+}
+.services ul img{
+width:12px !important
+}
+.log #img1{
+width:40px !important
+}
+.log #img2 {
+width: 100px !important;
+margin-right:0rem !important;
+}
+.cover .header-content h2{
+font-size:30px !important;
+}
+.right-side{
+margin-top:10rem !important;
+
+}
+.left-side{
+margin-top:10rem !important;
+
+} 
+.right-side li a img{
+width:30px !important;
+height:30px !important;
+}
+.left-side li a img{
+width:30px !important;
+height:30px !important;
+}
+.services {
+padding: 1rem !important;
+}
+.card{
+margin-top:0.5rem;
+}
+.top-image{
+margin-top:1rem;
+margin: auto;
+display: table;
+}
+.swiper-container {
+width: 100%; 
+height:400px !important;
+overflow: hidden;
+/* height: 34vw; */
+transition:opacity .6s ease, transform .3s ease;
+&:hover{
+  .swiper-button-prev,
+  .swiper-button-next{
+    transform:translateX(0);
+    opacity:1;
+    visibility:visible;
+  }
+}
+&.loading{
+  opacity:0;
+}
+&.scale-out{
+  transform:scale(.7);
+}
+&.scale-in{
+  transform:scale(1);
+}
+}
+.swiper-wrapper{
+
+}
+.body-box{
+margin-right:1rem;
+}
+.box-simple p{
+font-size:12px !important;
+}
+.footer h4 {
+text-align: center;
+}
+.footer-links{
+margin: auto;
+display: table;
+}
+.bottom-foot{
+margin: auto;
+display: table;
+}
+.bottom-foot li{
+margin-right:0.5rem;
+}
+.last-paragraghe {
+font-size: 12px;
+}
+.swiper-slide img{
+overflow: hidden;
+width: 100%;
+height:400px !important;
+
+
+}
+.ty{
+margin-top: 4.5rem;
+}
+.banner-wrapper h2{
+  font-size:20px;
+}
+.banner-wrapper h2 span{
+  float:none !important;
+}
+.product-tabs ul li label{
+  padding:7px !important;
+  font-size:11px;
+}
+.top_site_main .banner-wrapper h2{
+  font-size:20px;
 }
 
 }
