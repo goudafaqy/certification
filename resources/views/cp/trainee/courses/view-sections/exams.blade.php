@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>
                 @foreach ($exams as $exam)
-                    <tr style="color: #000">
+                    <tr style="color: #FFF">
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td class="priority text-center">{{ $exam->title_ar }}</td>
                         <td class="priority text-center">{{ $exam->exam_date." ". $exam->start_time.":00"}}</td>
