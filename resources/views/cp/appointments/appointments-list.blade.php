@@ -29,7 +29,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            <input value="{{ old('start_date') }}" class="form-control @error('start_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" name="start_date" id="date" style=" padding-right:50px !important; ">
+                                            <input min="{{ $course->reg_start_date }}" value="{{ old('start_date') }}" class="form-control @error('start_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" name="start_date" id="date" style=" padding-right:50px !important; ">
                                             @error('start_date')
                                                 <span class="text-danger err-msg-start_date" role="alert">
                                                     <strong>{{ $message }}</strong>

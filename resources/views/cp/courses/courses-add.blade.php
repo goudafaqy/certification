@@ -150,7 +150,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            <input value="{{ old('reg_start_date') }}" class="form-control @error('reg_start_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" name="reg_start_date" id="date" style=" padding-right:50px !important; ">
+                                            <input value="{{ old('reg_start_date') }}" class="form-control @error('reg_start_date') is-invalid @enderror" type="date" onfocus="(this.type = 'date')" name="reg_start_date" id="date_start_reg" style=" padding-right:50px !important; ">
                                         </div>
                                         @error('reg_start_date')
                                             <span class="text-danger err-msg-reg_start_date" role="alert">
@@ -165,7 +165,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text icon-dates" id="basic-addon1"><i class="fas fa-calendar-week"></i></span> 
                                             </div>
-                                            <input value="{{ old('reg_end_date') }}" class="form-control @error('reg_end_date') is-invalid @enderror" name="reg_end_date" type="date" onfocus="(this.type = 'date')" id="date" style=" padding-right:50px !important; ">
+                                            <input value="{{ old('reg_end_date') }}" class="form-control @error('reg_end_date') is-invalid @enderror" name="reg_end_date" type="date" onfocus="(this.type = 'date')" id="date_end_reg" style=" padding-right:50px !important; ">
                                         </div>
                                         @error('reg_end_date')
                                             <span class="text-danger err-msg-reg_end_date" role="alert">
@@ -254,13 +254,24 @@
     $('#reg_end_date').on('change', function(ev){
         $('.datepicker-inline').hide();
     });
+
+    $('#date_start_reg').change(function (){
+        $('#date_end_reg').attr('min', this.value);
+    });
+
     $(document).ready(function () {
-        $('.datepicker').datepicker({
-            inline: true,
-            sideBySide: false,
-            format: 'mm/dd/yyyy',
-            startDate: '-3d'
-        });
+        
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        var minDate = year + '-' + month + '-' + day;
+        $('#date_start_reg').attr('min', minDate);
+        
         $("#title_ar").keypress(function(){
             $(".err-msg-title_ar").hide();
             $("#title_ar").removeClass("is-invalid");
