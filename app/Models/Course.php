@@ -24,6 +24,7 @@ class Course extends Model
         'title_en',
         'code',
         'overview',
+        'objective',
         'instructor_id',
         'class_id',
         'cat_id',

@@ -52,6 +52,17 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+
+                                        <div class="form-group">
+                                         <div class="form-check" style="display: inline-block; position: relative; top: 45px">
+                                         @if($classification->home_page_display)
+                                                <input checked style="cursor: pointer;" type="checkbox" class="form-check-input" id="home_page_display" name="home_page_display">
+                                            @else
+                                                <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="home_page_display" name="home_page_display">
+                                            @endif
+                                            <label style="font-size: 0.9em; position: relative; bottom: 1px; right: 5px;" class="form-check-label" for="home_page_display">ظهور فى الصفحة الرئيسية</label>
+                                         </div>
+                                        </div>
                                     </div>
                                     <button style="width: 25%; margin-top: 50px;" type="submit" class="btn btn-primary">تعديل</button>
                                 </div>

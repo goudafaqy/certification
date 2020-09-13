@@ -80,7 +80,8 @@ Auth::routes();
         Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
         Route::get('appointments/reset/{id}', 'CourseAppointmentController@reset')->name('reset-appointment');
-        Route::get('appointments/zoom/{id}', 'CourseAppointmentController@scheduleOnZoom')->name('reset-appointment');
+        Route::post('appointments/zoom', 'CourseAppointmentController@scheduleOnZoom')->name('scheduleOnZoom-appointment');
+        Route::get('appointments/schedulezoom/generate', 'CourseAppointmentController@schedulingZoomAppointments')->name('scheduleOnZoom-appointment-cron');
     });
 
     // Course Materials routes ...

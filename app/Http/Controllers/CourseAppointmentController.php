@@ -131,31 +131,16 @@ class CourseAppointmentController extends Controller
     /**
      *
      */
-    public function scheduleOnZoom($course_id){
+    public function scheduleOnZoom(Request $request){
+        $inputs = $request->input();
+        $course_id = $inputs['course_id'];
+        $selected_appointments_id = $inputs['id'];
+        $this->courseAppRepo->updateBulk(array('hasZoom'=>true),$selected_appointments_id);
+
+        $dataCourse = [ 'zoom'  => 1,];
         $course = Course::find($course_id);
-        foreach ($course->appointments as $appointment) {
-            $startDateTime = Carbon::createFromTimeString($appointment->date . ' ' . $appointment->from_time)->format('Y-m-d H:i:s');
-            $start = Carbon::parse($appointment->from_time);
-            $end = Carbon::parse($appointment->to_time);
-            $data = [
-                'course_appointments_id'=>$appointment->id,
-                'course_id'=>$course->id,
-                "topic" => $appointment->title,
-                "type" => 5,
-                "start_time" => $startDateTime,
-                "duration" => $end->diffInRealMinutes($start),
-                "timezone" => "Asia/Riyadh",
-                "agenda" => substr($course, 0, 50),
-                "students"=>$course->students,
-            ];
-            $this->webinarRepo->save($data);
-        }
-        $dataCourse = [
-            'zoom'       => 1,
-        ];
         $this->courseRepo->update($dataCourse, $course_id);
         return redirect()->back();
-
     }
 
     /**
@@ -169,5 +154,34 @@ class CourseAppointmentController extends Controller
         if($result){
             return redirect('courses/appointments/'.$course_id)->with('deleted', 'تم حذف الموعد بنجاح');
         }
+    }
+
+    public function schedulingZoomAppointments(){
+
+        $appointments = $this->courseAppRepo->getBy("hasZoom",true);
+        print("=====Begin=====");
+        foreach ($appointments as $appointment) {
+            $course = Course::find($appointment->course_id);
+            //print_r("<pre>".$course."</pre>");
+            $startDateTime = Carbon::createFromTimeString($appointment->date . ' ' . $appointment->from_time)->format('Y-m-d H:i:s');
+            $start = Carbon::parse($appointment->from_time);
+            $end = Carbon::parse($appointment->to_time);
+            $data = [
+                'course_appointments_id'=>$appointment->id,
+                'course_id'=>$course->id,
+                "topic" => $appointment->title,
+                "type" => 5,
+                "start_time" => $startDateTime,
+                "duration" => $end->diffInRealMinutes($start),
+                "timezone" => "Asia/Riyadh",
+                "agenda" => substr($course->title_ar, 0, 50),
+                "students"=>$course->students,
+            ];
+            
+            $this->webinarRepo->save($data);
+            $this->courseAppRepo->update(array("hasZoom"=>2), $appointment->id);
+        }
+        print("=====End=====");
+        
     }
 }
