@@ -15,6 +15,9 @@
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/jquery.simple-calendar.js') }}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -153,6 +156,19 @@
 function responseMessage(msg) {
   $('.success-box').fadeIn(200);  
   $('.success-box div.text-message').html("<span>" + msg + "</span>");
+}
+function auto_search($dt){
+    var $api = $dt.api();
+    // Set the search text in the URL hash whenever a search is executed
+    $api.on( 'search.dt', function () {
+        window.location.hash = $api.search();
+    } );
+    // See if a search string is set in the URL hash, if so, execute a DT search
+    var search_str = window.location.hash.substring(1);
+    // Filter on load if theres anything in the hash
+    if(search_str) {
+        $api.search( search_str ).draw();
+    }
 }
     </script>
 

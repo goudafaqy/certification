@@ -54,6 +54,10 @@ class CertificatesController extends Controller
 				 'course_en'=>'',
 				 'hours'=>'65',
 				 'date'=>date('Y-M-d')];
+
+				 //$start = \Carbon\Carbon::createFromTimeString(date('Y-m-d H:i:s'));
+				 $start = \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString(date('Y-m-d H:i:s')));
+				 dd($start);
 		$this->generate($data);
         
     }
@@ -71,6 +75,8 @@ class CertificatesController extends Controller
 		$courseAR = $Arabic->utf8Glyphs($data['course_ar']); 
 		$img = Image::make(public_path('images/certificate.jpeg')); 
 		$hourse = $Arabic->utf8Glyphs(' ساعة '); 
+		$date = \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('en',\Carbon\Carbon::createFromTimeString(date('Y-m-d H:i:s', strtotime($data['date']))));
+		$date = $Arabic->utf8Glyphs($date); 
 
 		// Name
         $img->text($nameAR, 880, 280, function($font) {  
@@ -121,11 +127,10 @@ class CertificatesController extends Controller
 		$font->angle(0);  
 	  });  
 	  
-
 	  // Date 
-	  $img->text($data['date'], 850, 425, function($font) {  
-		$font->file(public_path('fonts/arial.ttf'));  
-		$font->size(22);  
+	  $img->text($date, 800, 425, function($font) {  
+		$font->file(public_path('fonts/ae_AlHor.ttf'));  
+		$font->size(24);  
 		$font->color('#000000');  
 		$font->align('center');  
 		$font->valign('bottom');  

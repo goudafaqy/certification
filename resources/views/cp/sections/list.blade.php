@@ -10,7 +10,7 @@
                             <div class=" d-flex justify-content-between align-items-center">
 
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('courses-update',['id' => $course_id])}}">{{$course->title_ar}}</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('courses-list')}}#{{$course->code}}">{{$course->title_ar}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{__('app.Sections')}}</li>
                             </ol>
                                 <a href="{{route('sections-add',['course_id' => $course_id])}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة عنصر  جديد </a>
