@@ -80,7 +80,8 @@ Auth::routes();
         Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
         Route::get('appointments/reset/{id}', 'CourseAppointmentController@reset')->name('reset-appointment');
-        Route::get('appointments/zoom/{id}', 'CourseAppointmentController@scheduleOnZoom')->name('reset-appointment');
+        Route::post('appointments/zoom', 'CourseAppointmentController@scheduleOnZoom')->name('scheduleOnZoom-appointment');
+        Route::get('appointments/schedulezoom/generate', 'CourseAppointmentController@schedulingZoomAppointments')->name('scheduleOnZoom-appointment-cron');
     });
 
     // Course Materials routes ...
@@ -126,7 +127,7 @@ Auth::routes();
 
     Route::get('test', function (){
 
-      dd(Route::getCurrentRoute()->uri);
+      dd(\Carbon\Carbon::createFromTimeString('2020-08-01 00:00:00'));
     });
 
     // Course notifications routes ...
@@ -221,4 +222,11 @@ Route::prefix('trainee')->group(function (){
         Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('trainee-course-support-ticket-comment-save');
 
     });
+
+
 });
+
+
+
+    Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');

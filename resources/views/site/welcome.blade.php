@@ -204,7 +204,7 @@
                                             <a href="{{url('course/'.$course->id)}}">{{$course->title}}</a>
                                         </h2>
                                         <div class="course-meta">
-                                            <span> <i class="fa fa-user"></i>{{$course->students()->count()}} متدرب</span>
+                                            <span> <i class="fa fa-user"></i>{{$course->seats}} متدرب</span>
                                             <span>
                               <i class="fa fa-tag"></i>
                               <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
@@ -458,9 +458,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><img src="{{asset('site-assets/images/mail.png')}}" class="img-fluid" style="width:20px !important;height:20px !important"></span>
                                             </div>
-                                            <input id="email" required="" name="email" class="form-control" type="email" placeholder="البريد الإلكتروني">
+                                            <input id="newsletter_email" required="" name="email" class="form-control" type="email" placeholder="البريد الإلكتروني">
                                         </div>
-                                        <button type="button" class="btn btn-vote"  style="background:#273044;color:#fff">
+                                        <button type="button" id="newsletter" class="btn btn-vote"  style="background:#273044;color:#fff">
                                         سجل الأن
                                     </button>
                                     </form>

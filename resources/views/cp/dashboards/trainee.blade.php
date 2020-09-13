@@ -108,22 +108,17 @@
                             <div class="col-md-12 ">
                                 <div class="owl-container">
                                     <div class="owl-carousel certi">
+                                    @foreach($certificates as $item)
                                         <div class="card">
                                             <div class="news">
-                                                <img src="{{ asset('images/cup.png') }}" alt="" class="img-thumbnail">
+                                                <img src="{{ url($item->certificate_image) }}" alt="" class="img-thumbnail">
                                                 <div class="details">
-                                                    <h3><a href="#">تهانينا نتيجة الدورة التدريبية </a></h3>
+                                                    <h3><a href="{{ url($item->certificate_image) }}" download> تحميل شهادة الدورة التدريبة </a></h3>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="news">
-                                                <img src="{{ asset('images/cup.png') }}" alt="" class="img-thumbnail">
-                                                <div class="details">
-                                                    <h3><a href="#">تهانينا نتيجة الدورة التدريبية </a></h3>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    @endforeach    
+                                       
                                     </div>
                                     <div class="slider-nav text-center">
                                         <a href="#" class="left-arrow owl-prev">
