@@ -148,7 +148,7 @@
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">اختر ملف</div>
                                                 <div class="file-select-name" id="noFile">No file chosen...</div>
-                                                    <input type="file" name="questions" id="chooseFile">
+                                                    <input type="file" name="chooseFile" id="chooseFile">
                                                 </div>
                                             </div>
                                              @error('questions')

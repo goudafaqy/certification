@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{asset('site-assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('site-assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('site-assets/css/slick-theme.css')}}">
-    <!-- <link rel="stylesheet" href="css/rvfs.css"> -->
+    <link rel="stylesheet" href="{{asset('site-assets/css/rvfs.css')}}">
     <link rel="stylesheet" href="{{asset('site-assets/css/main.css')}}">
 
     <link rel="stylesheet" href="{{asset('site-assets/css/new-style.css')}}">
@@ -228,7 +228,9 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                                    <i class="fas fa-bars"></i>
+                                <i class="fas fa-balance-scale scale"></i>
+                                <i class="fas fa-bars bars"></i>
+                                    
                                     الفئات المستهدفة
                                 </a>
 
@@ -274,12 +276,13 @@
                         <li class="nav-item">
                             <form action="{{route('courses')}}">
                                 <div class="input-group md-form form-sm form-2 pl-0 searchclass class_search">
+                                    
                                     <input name="q" value="{{isset($_GET['q'])?$_GET['q']:''}}" class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
                                     <button type="submit">
                                         <div class="input-group-append">
 
-                         <span class="input-group-text" id="basic-text1">
-                        <i class="fa fa-search" aria-hidden="true"></i></span>
+                                            <span class="input-group-text" id="basic-text1">
+                                            <i class="fa fa-search" aria-hidden="true"></i></span>
                                         </div>
                                     </button>
 
@@ -468,6 +471,8 @@
 <script src="{{asset('site-assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('site-assets/js/slick.js')}}"></script>
 <script src="{{asset('site-assets/js/jquery.sticky-kit.min.js')}}"></script>
+<script src="{{asset('site-assets/js/stickySidebar.js')}}"></script>
+
 <script src="{{asset('site-assets/js/wow.min.js')}}"></script>
 <script>new WOW().init();</script>
 <script src="{{asset('site-assets/js/store.min.js')}}"></script>
@@ -476,6 +481,7 @@
 <script src="{{asset('site-assets/js/mukhtar.js')}}"></script>
 <script src="{{asset('site-assets/js/setting.js')}}"></script>
 <script src="{{ asset('js/share.js') }}"></script>
+
 
 
 
@@ -510,6 +516,9 @@
 
                             if(content == true){
                                 $('#sccess').show();
+                                $("#newsletter").attr("disabled", true);
+                                $('#newsletter_email').val("");
+
                             }else{
                                 $('#fail').show();
                             }

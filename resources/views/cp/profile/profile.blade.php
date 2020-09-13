@@ -178,6 +178,7 @@
 
                                                     </select>
                                                 </div>
+                                                @if(in_array('instructor', $user->roles->pluck('name')->toArray()))
                                                 @error('job_title')
                                                 <div class="valid"><a href="#">{{$message}}</a></div>
                                                 @enderror
@@ -216,6 +217,7 @@
                                                            name="twitter_link" class="form-control" type="text"
                                                            placeholder="رابط تويتر">
                                                 </div>
+                                                @endif
 
                                                 <button type="submit" class="btn btn-primary mt-2 mx-auto">حفظ</button>
                                             </form>
