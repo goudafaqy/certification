@@ -25,32 +25,20 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-
-                                        <div class="form-group" style="margin-top: 20px;">
-                                            <label for="cat_id">الفئة المستهدفة</label>
-                                            <select class="form-control @error('cat_id') is-invalid @enderror" id="cat_id" name="cat_id">
-                                                <option value="">--</option>
-                                                @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->title_ar}}</option>
-                                                @endforeach
-                                            </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" >
+                                            <label for="title_en">العنوان بالانجليزية</label>
+                                            <input value="{{ old('title_en') }}" type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" >
                                         </div>
-                                        @error('cat_id')
-                                            <span class="text-danger err-msg-cat_id" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-
-                                        <div class="form-group" style="margin-top: 20px;">
-                                            <label for="price">سعر الدورة</label>
-                                            <input value="{{ old('price') }}" type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="SAR">
-                                        </div>
-                                        @error('price')
-                                            <span class="text-danger err-msg-price" role="alert">
+                                        @error('title_en')
+                                            <span class="text-danger err-msg-title_en" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="row justify-content-center" style="padding: 5px 50px;">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="instructor_id">المحاضر</label>
@@ -66,8 +54,51 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                    </div>
+                                <div class="col-md-3">                                   
+                                   <div class="form-group" >
+                                       <label for="price">سعر الدورة</label>
+                                       <input value="{{ old('price') }}" type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="SAR">
+                                   </div>
+                                   @error('price')
+                                       <span class="text-danger err-msg-price" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                       </span>
+                                   @enderror
+                                </div>    
+                                <div class="col-md-3">                                   
+                                    <div class="form-group" >
+                                       <label for="discount">الخصم</label>
+                                       <input value="{{ old('discount') }}" type="number" class="form-control @error('discount') is-invalid @enderror" id="discount" name="discount" placeholder="%">
+                                   </div>
+                                   @error('discount')
+                                       <span class="text-danger err-msg-discount" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                       </span>
+                                   @enderror
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="padding: 5px 50px;">
+                                   <div class="col-md-6">
+                                        <div class="form-group" >
+                                            <label for="cat_id">الفئة المستهدفة</label>
+                                            <select class="form-control @error('cat_id') is-invalid @enderror" id="cat_id" name="cat_id">
+                                                <option value="">--</option>
+                                                @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->title_ar}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('cat_id')
+                                            <span class="text-danger err-msg-cat_id" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
 
-                                        <div class="form-group" style="margin-top: 15px;">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" >
                                             <label for="class_id">التصنيف</label>
                                             <select class="form-control @error('class_id') is-invalid @enderror" id="class_id" name="class_id">
                                                 <option value="">--</option>
@@ -78,21 +109,11 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-
-                                        <div class="form-group" style="margin-top: 20px;">
-                                            <label for="discount">الخصم</label>
-                                            <input value="{{ old('discount') }}" type="number" class="form-control @error('discount') is-invalid @enderror" id="discount" name="discount" placeholder="%">
-                                        </div>
-                                        @error('discount')
-                                            <span class="text-danger err-msg-discount" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row" style="padding: 10px 50px;">
                                     <div class="col-md-4">
-                                        <div class="form-group" style="margin-top: 20px;">
+                                        <div class="form-group" >
                                             <label for="pass_grade">درجة النجاح</label>
                                             <input value="{{ old('pass_grade') }}" type="number" class="form-control @error('pass_grade') is-invalid @enderror" id="pass_grade" name="pass_grade">
                                         </div>
@@ -102,7 +123,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="margin:-15px 0px;">
                                         <div class="form-check radio-grade">
                                             <input class="form-check-input" type="radio" name="pass_unit" id="percent" value="p" checked>
                                             <label class="form-check-label" for="percent" style="position: relative; bottom: 1px; right: 5px;">
@@ -117,7 +138,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group" style="margin-top: 15px;">
+                                        <div class="form-group" >
                                             <label for="skill_level">مستوى الدورة</label>
                                             <select class="form-control @error('skill_level') is-invalid @enderror" id="skill_level" name="skill_level">
                                                 <option value="">--</option>
@@ -132,7 +153,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2" style="margin:-10px 0px;">
                                         <div class="form-check" style="display: inline-block; position: relative; top: 45px">
                                             <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="assi_check" name="assi_check">
                                             <label style="font-size: 0.9em; position: relative; bottom: 1px; right: 5px;" class="form-check-label" for="assi_check">واجبات</label>
@@ -182,6 +203,19 @@
                                         </div>
                                         @error('overview')
                                             <span class="text-danger err-msg-overview" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 10px 50px;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="objective">اهداف الدورة</label>
+                                            <textarea class="form-control @error('objective') is-invalid @enderror" id="objective" name="objective" rows="3">{{ old('objective') }}</textarea>
+                                        </div>
+                                        @error('objective')
+                                            <span class="text-danger err-msg-objective" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -276,6 +310,10 @@
             $(".err-msg-title_ar").hide();
             $("#title_ar").removeClass("is-invalid");
         });
+        $("#title_en").keypress(function(){
+            $(".err-msg-title_en").hide();
+            $("#title_en").removeClass("is-invalid");
+        });
         $("#instructor_id").change(function(){
             $(".err-msg-instructor_id").hide();
             $("#instructor_id").removeClass("is-invalid");
@@ -296,6 +334,12 @@
             $(".err-msg-overview").hide();
             $("#overview").removeClass("is-invalid");
         });
+        $("#objective").keypress(function(){
+            $(".err-msg-objective").hide();
+            $("#objective").removeClass("is-invalid");
+        });
+        
+
         $("#price").keypress(function(){
             $(".err-msg-price").hide();
             $("#price").removeClass("is-invalid");

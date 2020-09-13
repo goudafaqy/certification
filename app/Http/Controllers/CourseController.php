@@ -15,6 +15,7 @@ use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Mail\InstructorCourse;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use Carbon\Carbon;
 
 class CourseController extends Controller
 {
@@ -53,7 +54,8 @@ class CourseController extends Controller
     public function list()
     {
         $courses = $this->courseRepo->getAll();
-        return view("cp.courses.courses-list", ['courses' => $courses]);
+        $Current_date = new Carbon;
+        return view("cp.courses.courses-list", ['courses' => $courses,'Current_date'=>$Current_date]);
     }
 
 
@@ -77,7 +79,6 @@ class CourseController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
-
         $validator = $this->courseValidation->doValidate($inputs, 'insert');
         if ($validator->fails()) {
             return redirect('courses/add')->withErrors($validator)->withInput();
@@ -100,40 +101,49 @@ class CourseController extends Controller
                     'code'      => GenerateHelper::generateCourseCode($courseId, $categoryLetter, 1),
                 ], $courseId);
                 
-                // Send Notification ...
-                $instructor = $this->userRepo->getById($course->instructor_id);
-                $data = [
-                    'title_ar'=>   __('app.You have choosen to new course'),
-                    'title_en'=>   __('app.You have choosen to new course'),
-                    'message_ar'=>   ' لقد تم اختياركم لدورة    '.$course->title_ar .'  والتى نبدأ من   '. $course->reg_start_date.'  والتى تنتهى فى ' . $course->reg_end_date,
-                    'message_en'=> ' Your are showen for new course  '.$course->code .'  and will start in  '. $course->reg_start_date.' and will end in ' . $course->reg_end_date,
-                    'user_id'=>    $course->instructor_id,
-                    'type'=>       'info',
-                    'name'=>       $instructor->name,
-                    'email'=>      $instructor->email,
-                    'link' =>      '',
-                    'extra_text'=> '',
-                    'course' =>$course->title_ar
-                ];
-                $not = new NotificationsController();
-                $not->Send_Notification_And_Email($data, 'instructor_course_notification');
-                
+                try {
+                    $this->SendNotificationToInstructor($course);
+                } catch (Throwable $e) {
+                }          
                 return redirect('courses/list')->with('added', 'تمت إضافة دورة جديدة بنجاح');
             }
         }
     }
 
-
+    private function SendNotificationToInstructor($course){
+        // Send Notification to instructor...
+        $instructor = $this->userRepo->getById($course->instructor_id);
+        $data = [
+            'title_ar'=>   __('app.You have choosen to new course'),
+            'title_en'=>   __('app.You have choosen to new course'),
+            'message_ar'=>   ' لقد تم اختياركم لتدريب '.$course->title_ar,
+            'message_en'=> 'You have been selected as Instructor for '.$course->title_en. ' Course' ,
+            'user_id'=>    $course->instructor_id,
+            'type'=>       'info',
+            'name'=>       $instructor->name,
+            'email'=>      $instructor->email,
+            'link' =>      '',
+            'extra_text'=> '',
+            'course' =>$course->title_ar
+        ];
+        $Notification = new NotificationsController();
+        $Notification->Send_Notification_And_Email($data, 'instructor_course_notification');
+    }
     /**
      * Get update course page ...
      */
-    public function update($id)
-    {
-        $instructors        = $this->userRepo->getByRole('instructor');
-        $categories         = $this->categoryRepo->getAll();
+    public function update($id){
         $course = $this->courseRepo->getById($id);
-        $classifications = $this->classRepo->getByCat($course->cat_id);
-        return view("cp.courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories, 'classifications' => $classifications]);
+        $Current_date = new Carbon;
+        if($Current_date >= $course->reg_start_date){
+            //can not delete
+            return redirect('courses/list')->with('updated', 'لا يمكن تعديل الدورة حيث تم بدء عملية التسجيل على الدورة');
+        }else {
+          $instructors        = $this->userRepo->getByRole('instructor');
+          $categories         = $this->categoryRepo->getAll();
+          $classifications = $this->classRepo->getByCat($course->cat_id);
+          return view("cp.courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories, 'classifications' => $classifications]);
+        }
     }
 
     /**
@@ -159,7 +169,7 @@ class CourseController extends Controller
 
             $course = $this->courseRepo->update($inputs, $inputs['id']); 
             if($course){
-                return redirect('courses/list')->with('updated', 'تمت تعديل بيانات الدورة بنجاح');
+                return redirect('courses/list')->with('updated', 'تمت تعديل بيانات الدورة بنجصاح');
             }
         }
     }
@@ -170,10 +180,16 @@ class CourseController extends Controller
      */
     public function delete($id)
     {
-        $result = $this->courseRepo->delete($id);
-        if($result){
-            return redirect('courses/list')->with('deleted', 'تم حذف الدورة بنجاح');
-        }
+        $course = $this->courseRepo->getById($id);
+        $Current_date = new Carbon;
+        if($Current_date >= $course->reg_start_date){
+            //can not delete
+            return redirect('courses/list')->with('deleted', 'لا يمكن حذف الدورة حيث تم بدء عملية التسجيل على الدورة');
+        }else {
+            $result = $this->courseRepo->delete($id);
+            if($result)
+                return redirect('courses/list')->with('deleted', 'تم حذف الدورة بنجاح');
+        }        
     }
 
     /**

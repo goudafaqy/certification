@@ -25,7 +25,10 @@ class Repository implements MainEloquent{
         return ($with) ? $this->model->where('id', $id)->with($with)->first() : $this->model->where('id', $id)->first();
     }
 
-
+    public function getBy($AttributeName, $AttributeValue)
+    {
+        return $this->model->where($AttributeName, $AttributeValue)->get();
+    }
     public function getByIds($ids)
     {
         return $this->model->whereIn('id', $ids)->get();
@@ -41,9 +44,13 @@ class Repository implements MainEloquent{
         return $this->model->insert($inputs) ;
     }
 
-    public function update($inputs, $id)
-    {
+    public function update($inputs, $id){
         return $this->model->where('id', $id)->update($inputs);
+    }
+
+    public function updateBulk($inputs, $ids)
+    {
+        return $this->model->whereIn('id', $ids)->update($inputs);
     }
 
 

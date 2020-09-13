@@ -13,7 +13,7 @@
                         </div>
                         <div class="widget-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">{{ $course->title_ar }}   ( <code style="font-weight: bold;">{{ $course->code }}</code> )</h3>
+                                <h3 class="widget-title">{{ $course->title_ar }}   (<a href="{{ route('courses-list') }}#{{$course->code}}"> <code style="font-weight: bold;">{{ $course->code }}</code> </a>)</h3>
                                 <a style="font-size: 1.1em;" href="{{ route('courses-list') }}" class="widget-title">قائمة الدورات <i class="fa fa-arrow-left"></i></a>
                             </div>
                         </div>
@@ -108,16 +108,23 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">المواعيد الفعلية</h3>
+                                <h3 class="widget-title">{{ $course->title_ar }}   ( <a href="{{ route('courses-list') }}#{{$course->code}}"> <code style="font-weight: bold;">{{ $course->code }}</code> </a> )</h3>
+                              
                                 @if($course->zoom == 0)
                                 <a href="/courses/appointments/reset/<?php echo $course->id; ?>" style="color: #FFF; padding: 10px;" class="btn btn-primary">إعادة إستخراج مواعيد الدورة <i class="fa fa-sync-alt"></i></a>
                                 @endif
+                                @if($course->type == 'live' ||$course->type == 'blended') 
                                 @if($course->zoom == 0)
-                                <a href="/courses/appointments/zoom/<?php echo $course->id; ?>" style="color: #FFF; padding: 10px;" class="btn btn-primary">جدولة على زوم<i class="fa fa-calendar"></i></a>
+                                <form id="secheduleOnZoom" action="{{ route('scheduleOnZoom-appointment') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="course_id" value="<?php echo $course->id; ?>">
+                                <button style="color: #FFF; padding: 10px;" type="submit" class="btn btn-primary">جدولة على زوم<i class="fa fa-calendar"></i></button>
+                                </form>
                                 @else
                                 <div class="alert alert-success" style="padding: 10px 50px; border-radius: 3px;">
                                     <b>تمت جدولة المواعيد بنجاح <i class="fa fa-check-circle"></i></b>
                                 </div>
+                                @endif
                                 @endif
                                 <a style="font-size: 1.1em;" href="{{ route('courses-list') }}" class="widget-title">قائمة الدورات <i class="fa fa-arrow-left"></i></a>
                             </div>
@@ -144,15 +151,23 @@
                                                 <th class="th-sm text-center">وقت النهاية</th>
                                                 @if($course->zoom == 0)
                                                 <th class="th-sm text-center">الإجراءات</th>
+                                                @else
+                                                <th class="th-sm text-center"> الجدولة؟</th>
                                                 @endif
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($appointments as $appointment)
                                             <tr>
-                                                <td class="text-center">{{ $loop->index + 1 }}</td>
+                                                <td class="text-center">
+                                                @if($course->zoom == 0)
+                                                {{ $appointment->id }}
+                                                @else
+                                                {{ $loop->index+1 }}
+                                                @endif
+                                                </td>
                                                 <td class="text-center">{{ $appointment->title }}</td>
-                                                <td class="text-center">{{ $appointment->date }}</td>
+                                                <td class="text-center"> {{ $appointment->date }} </td>
                                                 <td class="text-center">{{ $appointment->day }}</td>
                                                 <td class="text-center">
                                                     @if(explode(" ", $appointment->from_time)[1] == 'PM')
@@ -172,6 +187,20 @@
                                                 <td class="text-center">
                                                     <a id="delete" href="/courses/appointments/delete/<?php echo $appointment->id; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="إلغاء الموعد"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
+                                                @else
+                                                <td class="text-center">
+                                                @if($appointment->hasZoom==0)
+                                                <img src="{{ asset('images/face-to-face-meeting-icon.png') }}" width="35px">
+                                                @endif
+                                                @if($appointment->hasZoom==1)
+                                                <img src="{{ asset('images/loading.gif') }}" width="28px">
+                                                @endif
+                                                @if($appointment->hasZoom==2)
+                                                <img src="{{ asset('images/zoom-logo-transparent.png')}}" width="60px" >
+                                                @endif
+
+                                                </td>
+                                                
                                                 @endif
                                             </tr>
                                             @endforeach
@@ -229,16 +258,10 @@
 
     $(document).ready(function () {
 
-        $('.datepicker').datepicker({
-            inline: true,
-            sideBySide: false,
-            format: 'mm/dd/yyyy',
-            startDate: '-3d'
-        });
 
         $('[data-toggle="tooltip"]').tooltip();
-        $('#dtBasicExample').DataTable({
-            "searching": false ,
+         var table= $('#dtBasicExample').DataTable({
+            "searching": true ,
             "language": {
                 "lengthMenu": "عرض _MENU_ موعد في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواعيد",
@@ -250,9 +273,36 @@
                     "next": "التالي",
                     "previous": "السابق",
                 }
-            }
+            },
+            @if($course->type == 'blended' && $course->zoom == 0)
+             "select":true,'columnDefs': [ { 'targets': 0, 'checkboxes': {'selectRow': true}}],'select': {'style': 'multi'}
+            @endif
         });
         $('.dataTables_length').addClass('bs-select');
+
+
+ // Handle form submission event
+ $('form#secheduleOnZoom').on('submit', function(event){
+      var form = this;
+      var rows_selected = table.column(0).checkboxes.selected();
+      // Iterate over all selected checkboxes
+      $.each(rows_selected, function(index, rowId){
+         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'id[]').val(rowId));
+      });
+
+     event.preventDefault();
+            $.ajax({
+                data: $(this).serialize(),
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                success: function(data) {
+                    $(this).submit();
+                    location.reload();
+                }
+            });
+            return false;  
+   });
+
     });
 
     $(document).on('click', 'a#delete', function(e) {
@@ -272,5 +322,6 @@
             }
         })
     });
+
 
 </script>

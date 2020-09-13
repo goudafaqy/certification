@@ -61,6 +61,7 @@ class ClassificationController extends Controller
         if ($validator->fails()) {
             return redirect('classifications/add')->withErrors($validator)->withInput();
         }else{
+            $inputs['home_page_display'] = (isset($inputs['home_page_display']) && $inputs['home_page_display'] == 'on') ? 1 : 0;
             $classification = $this->classRepo->save($inputs);
             if($classification){
                 return redirect('classifications/list')->with('added', 'تم إضافة تصنيف جديد بنجاح');
@@ -91,6 +92,7 @@ class ClassificationController extends Controller
             return redirect('classifications/update/'.$inputs['id'])->withErrors($validator)->withInput();
         }else{
             unset($inputs['_token']);
+            $inputs['home_page_display'] = (isset($inputs['home_page_display']) && $inputs['home_page_display'] == 'on') ? 1 : 0;
             $classification = $this->classRepo->update($inputs, $inputs['id']);
             if($classification){
                 return redirect('classifications/list')->with('updated', 'تمت تعديل بيانات التصنيف بنجاح');

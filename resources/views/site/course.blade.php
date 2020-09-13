@@ -284,7 +284,7 @@
                                                 <div class="course-author-content">
                                                     <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
                                                     <div class="author-contain">
-                                                        <label>المعلم</label>
+                                                        <label>المدرب</label>
                                                         <div class="value" itemprop="name">
                                                             <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
                                                         </div>
