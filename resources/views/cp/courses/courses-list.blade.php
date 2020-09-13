@@ -8,7 +8,9 @@
                     <div class="card">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                                <h3 class="widget-title">قائمة الدورات المتاحة</h3>
+                                <h3 class="widget-title">قائمة الدورات </h3>
+                                <a href="{{route('courses-add')}}" > <img src="{{ asset('images/add.png') }}" style="width: 20px;"> إضافة دورة جديدة </a>
+
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 5px">
@@ -74,13 +76,19 @@
                                                 <td class="text-center">{{ $course->classification->title_ar }}</td>
                                                 <td class="text-center">{{ $course->seats }}</td>
                                                 <td class="text-center courses-actions">
-                                                    <a class="btn btn-primary actions-btns" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top"  title="الاقسام"><i style="position: relative; top: -4px; right: -4px" class="fa fa-building"></i></a>
+                                                    <a class="btn btn-primary actions-btns" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top"  title="المخطط"><i style="position: relative; top: -4px; right: -4px" class="fa fa-building"></i></a>
                                                     <a class="btn btn-primary actions-btns" href="{{route('materials-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top" title="الملفات"><i style="position: relative; top: -4px; right: -4px" class="fa fa-file"></i></a>
-                                                    @if($course->type == 'face_to_face' || $course->type == 'live')
+                                                    @if($course->type == 'face_to_face' || $course->type == 'live'||$course->type == 'blended')
                                                     <a class="btn btn-primary actions-btns" href="/courses/appointments/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="المواعيد"><i style="position: relative; top: -4px; right: -4px" class="fa fa-clock"></i></a>
                                                     @endif
+                                                    @if($Current_date < $course->reg_start_date)
                                                     <a class="btn btn-primary actions-btns" href="/courses/update/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top"  title="إعادة تشغيل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-copy"></i></button>
+                                                    @endif
+
+                                                    @if($course->type != 'recorded')
                                                     <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="إعادة تشغيل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-copy"></i></button>
+                                                    @endif
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="duplicate_{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="duplicate{{$course->id}}" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -126,7 +134,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if($Current_date < $course->reg_start_date)
                                                     <a id="delete" href="/courses/delete-course/<?php echo $course->id; ?>" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -151,7 +161,8 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
-            "searching": false ,
+            "searching": true ,
+            "select":true,
             "language": {
                 "lengthMenu": "عرض _MENU_ دورة في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد دورات",
@@ -163,10 +174,19 @@
                     "next": "التالي",
                     "previous": "السابق",
                 }
-            }
+            },
+            
+                       
+
+            initComplete: function( settings, json ) {
+             auto_search(this);
+            } 
+
         });
+        
         $('.dataTables_length').addClass('bs-select');
     })
+
 
     $(document).on('click', 'a#delete', function(e) {
         e.preventDefault(); 
