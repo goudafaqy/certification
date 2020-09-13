@@ -61,7 +61,7 @@ class Course extends Model
      */
     public function instructor()
     {
-        return $this->belongsTo('App\Models\User', 'instructor_id');
+        return $this->belongsTo('App\User', 'instructor_id');
     }
 
     /**
@@ -77,7 +77,7 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Models\User', 'course_user');
+        return $this->belongsToMany('App\User', 'course_user');
     }
 
     /**
