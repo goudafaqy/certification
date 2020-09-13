@@ -2346,7 +2346,7 @@ table th, table td {
 
 table tbody tr {
     color: #000;
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-weight: bold;
     /* background-color: var(--table-background); */
 }
@@ -2967,7 +2967,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .tooltip {
-    top: -4rem !important;
+    top: -6rem !important;
     position: absolute;
 
 }

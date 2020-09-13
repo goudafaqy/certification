@@ -83,6 +83,7 @@
                                                     @endif
                                                     @if($Current_date < $course->reg_start_date)
                                                     <a class="btn btn-primary actions-btns" href="/courses/update/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top"  title="إعادة تشغيل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-copy"></i></button>
                                                     @endif
 
                                                     @if($course->type != 'recorded')
