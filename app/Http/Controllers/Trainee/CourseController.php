@@ -11,6 +11,7 @@ use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Support\Facades\Auth;
+use PanicHD\PanicHD\Models\Ticket;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CourseController extends Controller
@@ -114,7 +115,9 @@ class CourseController extends Controller
 
     private function support($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab9']);
+        $tickets = Ticket::where('user_id', Auth::user()->id)->get();
+
+        return view("cp.trainee.courses.view", ['course' => $course, 'tickets' => $tickets, 'currentDate' => $currentDate,'tab' => 'tab9']);
     }
 
 }

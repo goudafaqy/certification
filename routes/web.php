@@ -216,6 +216,11 @@ Route::prefix('trainee')->group(function (){
         Route::get('{id}/exam/{examId}/show', 'CourseExamsController@start')->name('trainee-course-exam-show');
         Route::post('{id}/exam/{examId}/answer', 'CourseExamsController@submitAnswer')->name('trainee-course-exam-answer');
 
+        Route::get('{id}/support/ticket', 'CourseSupportController@form')->name('trainee-course-support-form');
+        Route::post('{id}/support/ticket', 'CourseSupportController@saveTicket')->name('trainee-course-support-new-ticket');
+        Route::get('{id}/support/ticket/{ticketId}', 'CourseSupportController@show')->name('trainee-course-support-show');
+        Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('trainee-course-support-ticket-comment-save');
+
     });
 
 
