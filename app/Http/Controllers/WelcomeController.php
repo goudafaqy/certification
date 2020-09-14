@@ -43,6 +43,7 @@ class WelcomeController extends Controller
     }
 
 
+    
     /**
      * get course details
      * @param $id
@@ -51,6 +52,21 @@ class WelcomeController extends Controller
     public function course($id){
         $minutes = [];
         $course = Course::find($id);
+        $ratings =  $course->ratings;
+        $ratingsArray=array();
+        if(!isset($ratings)){
+        $avarage_rating=0;$sum=0;$sumAll=array();
+        $sumAll[1]=0;$sumAll[2]=0;$sumAll[3]=0;$sumAll[4]=0;$sumAll[5]=0;
+        foreach($ratings as $rating){ 
+         $sum+=$rating->rating;
+         $sumAll[$rating->rating]++;
+        }
+        $avarage_rating=$sum/count($ratings);
+        $ratingsArray=array('avarage_rating'=>$avarage_rating,'all'=>$sumAll,'ratingCounts'=>count($ratings));
+       }else{
+        $sumAll[1]=0;$sumAll[2]=0;$sumAll[3]=0;$sumAll[4]=0;$sumAll[5]=0;
+        $ratingsArray=array('avarage_rating'=>0,'all'=>$sumAll,'ratingCounts'=>1);
+       }
         $sections = Section::where('course_id',$id)->with('units')->get();
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
         $courseAppointments = $course->appointments;
@@ -61,7 +77,7 @@ class WelcomeController extends Controller
         }
         $totalTime = array_sum($minutes);
 
-        return view('site.course',compact('course','related_courses', 'sections','totalTime'));
+        return view('site.course',compact('course','related_courses', 'sections','totalTime','ratingsArray'));
     }
 
     /**
