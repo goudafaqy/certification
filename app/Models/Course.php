@@ -71,7 +71,9 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\CourseAppintment');
     }
-
+    public function ratings(){
+        return $this->hasMany('App\Models\CourseRating');
+    }
     /**
      * Get the students for the course.
      */

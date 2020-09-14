@@ -59,7 +59,7 @@ class HomeController extends Controller
         $categories = DB::table('categories')->get();
         $advertisments = Advertisment::all();
        // dd($advertisments);
-        return view('/cp/dashboards/admin', ['categories' => $categories ,'advertisments'=>$advertisments]);
+        return view('/cp/dashboards/admin', ['categories' => $categories ,'advertisments'=>$advertisments,'events'=>array()]);
     }
 
 
@@ -67,12 +67,20 @@ class HomeController extends Controller
 
         $instructor_id = Auth::id();
         $currentCourses = $this->courseRepo->getCurrentByInstructor($instructor_id);
-        $advertisments = Advertisment::all();
-
         $previousCourses = $this->courseRepo->getPastByInstructor($instructor_id);
-        //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
-
-        return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses ,'advertisments'=>$advertisments]);
+        $events=array();
+        foreach ($currentCourses as $key => $course)
+        foreach($course->appointments as $key1=>$appointment){
+            $start="{$appointment->date}{$appointment->fromtime}";
+            $end="{$appointment->date}{$appointment->totime}";
+            $events[]=array(
+                          'start'=>strtotime($start) * 1000
+                          ,'title'=>$appointment->title
+                          ,'end'=>strtotime($start) * 1000);
+        }
+        $advertisments = Advertisment::all();
+        //dd($advertisments);
+        return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses ,'advertisments'=>$advertisments,'events'=>$events]);
     }
 
     private function traineeDashboard(){
@@ -80,6 +88,18 @@ class HomeController extends Controller
         $advertisments = Advertisment::all();
         $certificates = Certificate::where('user_id',$trainee_id)->get();
         $courses = $this->userRepo->getTraineeCourses($trainee_id);
-        return view('cp.dashboards.trainee', ['courses' => $courses,'advertisments'=>$advertisments, 'certificates'=>$certificates]);
+         //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
+        $events=array();
+        foreach ($courses as $key => $course )
+        foreach($course->appointments as $key1=>$appointment){
+            $start="{$appointment->date}{$appointment->fromtime}";
+            $end="{$appointment->date}{$appointment->totime}";
+            $events[]=array(
+                          'start'=>strtotime($start) * 1000
+                          ,'title'=>$appointment->title
+                          ,'end'=>strtotime($start) * 1000);
+        }
+        //print_r($events);dd();
+        return view('cp.dashboards.trainee', ['courses' => $courses,'advertisments'=>$advertisments, 'certificates'=>$certificates,'events'=>$events]);
     }
 }

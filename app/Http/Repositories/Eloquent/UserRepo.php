@@ -4,7 +4,7 @@ namespace App\Http\Repositories\Eloquent;
 
 use App\Http\Interfaces\Eloquent\UserEloquent;
 use App\Http\Repositories\Eloquent\Repository;
-use App\User;
+use App\Models\User;
 class UserRepo extends Repository implements UserEloquent{
 
     public function __construct()

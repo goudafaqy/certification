@@ -9,7 +9,7 @@
                     </div>
                     <div class="profile-card-header">
                         <div class="circle">
-                            <img class="profile-pic" src="{{url($user->image)}}">
+                            <img class="profile-pic" src="{{$user->image != null ? url($user->image ):asset('site-assets/images/avatarman.png')}}">
                             <div class="p-image">
                                 <i class="fa fa-camera upload-button"></i>
                             </div>
@@ -65,9 +65,11 @@
                                                 <div class="valid"><a href="#">{{$message}}</a></div>
                                                 @enderror
                                                 <div class=" input-group">
+
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="far fa-envelope"></i></span>
+                                                                class="far fa-envelope"></i>
+                                                                <span class="la">البريد الإلكتروني</span></span>
                                                     </div>
                                                     <input id="email" value="{!! $user->email !!}" required=""
                                                            name="email" class="form-control" type="text"
@@ -79,7 +81,8 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="far fa-user"></i></span>
+                                                                class="far fa-user"></i>
+                                                                <span class="la">الاسم رباعى بالعربية</span></span>
                                                     </div>
                                                     <input id="name_ar" required="" value="{!! $user->name_ar !!}"
                                                            name="name_ar" class="form-control" type="text"
@@ -91,7 +94,8 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="far fa-user"></i></span>
+                                                                class="far fa-user"></i>
+                                                                <span class="la">الاسم رباعى بالانجليزية</span></span>
                                                     </div>
                                                     <input id="name_en" required="" value="{!! $user->name_en !!}"
                                                            name="name_en" class="form-control" type="text"
@@ -103,10 +107,11 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="far fa-id-card"></i></span>
+                                                                class="far fa-id-card"></i>
+                                                                <span class="la">رقم الهوية</span></span>
                                                     </div>
                                                     <input id="national_id" value="{{$user->national_id }}"
-                                                           required="" name="national_id" class="form-control"
+                                                            name="national_id" class="form-control"
                                                            type="text" placeholder="رقم الهوية">
                                                 </div>
                                                 @error('mobile')
@@ -115,26 +120,28 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="fas fa-mobile-alt"></i></span>
+                                                                class="fas fa-mobile-alt"></i>
+                                                                <span class="la">الجوال</span></span>
                                                     </div>
                                                     <input id="mobile" required="" value="{!! $user->mobile !!}"
                                                            name="mobile" class="form-control" type="text"
                                                            placeholder="الجوال">
                                                 </div>
+
                                                 @error('birth_date')
                                                 <div class="valid"><a href="#">{{$message}}</a></div>
                                                 @enderror
-                                                <div class="input-group">
+                                                <div class=" input-group">
                                                     <div class="input-group-prepend">
-                                                    <span class="input-group-text icon-date" id="basic-addon1"><i
-                                                            class="fas fa-calendar-week"></i></span>
+                                                        <span class="input-group-text" id="basic-addon1"><i
+                                                                class="fas fa-calendar-week"></i>
+                                                                <span class="la">تاريخ الميلاد</span></span>
                                                     </div>
-                                                    <input placeholder="تاريخ الميلاد" class="form-control" type="text"
+                                                     <input placeholder="تاريخ الميلاد" class="form-control" type="text"
                                                            onfocus="(this.type = 'date')" id="birth_date"
-                                                           style=" padding-right:50px !important; "
                                                            name="birth_date"
-                                                           value="{!! $user->birth_date !!}"
-                                                    >
+                                                           value="{!! $user->birth_date !!}" >
+                                                    
                                                 </div>
                                                 @error('gender')
                                                 <div class="valid"><a href="#">{{$message}}</a></div>
@@ -142,7 +149,8 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="fas fa-shield-alt"></i></span>
+                                                                class="fas fa-shield-alt"></i>
+                                                                <span class="la">الجنس</span></span>
                                                     </div>
                                                     <select id="gender" required="" name="gender"
                                                             class="form-control form-control-lg">
@@ -161,13 +169,14 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="fas fa-shield-alt"></i></span>
+                                                                class="fas fa-shield-alt"></i>
+                                                                <span class="la">المؤهل العلمي</span></span>
                                                     </div>
                                                     <select name="education" id="education"
                                                             class="form-control form-control-lg">
                                                         <option value="" hidden="">المؤهل العلمي</option>
                                                         <option value="1" {{($user->education == 1) ? 'selected' : ''}}>
-                                                            بكالريوس
+                                                            بكالوريوس
                                                         </option>
                                                         <option value="2" {{($user->education == 2) ? 'selected' : ''}}>
                                                             ماجستير
@@ -185,7 +194,8 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="fas fa-list-alt"></i></span>
+                                                                class="fas fa-list-alt"></i>
+                                                                <span class="la">المسمى الوظيفي</span></span>
                                                     </div>
                                                     <input id="job_title" required="" value="{!! $user->job_title !!}"
                                                            name="job_title" class="form-control" type="text"
@@ -198,7 +208,8 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="fas fa-facebook-f"></i></span>
+                                                                class="fas fa-facebook-f"></i>
+                                                                <span class="la">رابط لبنكدان</span></span>
                                                     </div>
                                                     <input id="facebook_link" required="" value="{!! $user->facebook_link !!}"
                                                            name="facebook_link" class="form-control" type="text"
@@ -211,7 +222,8 @@
                                                 <div class=" input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i
-                                                                class="fas fa-twitter"></i></span>
+                                                                class="fas fa-twitter"></i>
+                                                                <span class="la">رابط تويتر</span></span>
                                                     </div>
                                                     <input id="twitter_link" required="" value="{!! $user->twitter_link !!}"
                                                            name="twitter_link" class="form-control" type="text"

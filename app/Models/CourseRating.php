@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
-class CourseUser extends Model
+class CourseRating extends Model
 {
 
-    protected $table = 'course_user';
+    protected $table = 'courses_ratings';
 
     protected $primaryKey = 'id';
 
@@ -20,11 +19,23 @@ class CourseUser extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id',
+        'review',
+        'approved',
+        'date',
+        'rating',
         'user_id',
+        'course_id',
         'created_at',
         'updated_at',
     ];
 
-   
+    /**
+     * Get the course that owns the appointment.
+     */
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
+
+
 }

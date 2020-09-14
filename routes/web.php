@@ -84,6 +84,12 @@ Auth::routes();
         Route::get('appointments/schedulezoom/generate', 'CourseAppointmentController@schedulingZoomAppointments')->name('scheduleOnZoom-appointment-cron');
     });
 
+      // Course Appointments routes ...
+      Route::prefix('courses')->group(function () {
+        Route::get('ratings/{course_id}', 'CourseRatingController@list')->name('ratings-list');
+        Route::post('ratings/rate', 'CourseRatingController@rate')->name('rate_course');
+        Route::post('ratings/aprove_bulk', 'CourseRatingController@approve_bulk')->name('approve-bulk');
+     });
     // Course Materials routes ...
     Route::prefix('materials')->group(function () {
         Route::get('{course_id}', 'CourseMaterialsController@list')->name('materials-list');

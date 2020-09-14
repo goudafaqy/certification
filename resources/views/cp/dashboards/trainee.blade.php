@@ -50,6 +50,7 @@
                 </div>
             </div>
             <div class="col-md-4">
+                 @if (count($advertisments)>0)
                 <div class="widget ">
                     <div class="widget-header">
                         <div class=" d-flex justify-content-between">
@@ -96,6 +97,8 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                 @if (count($certificates)>0)
                 <div class="widget ">
                     <div class="widget-header">
                         <div class=" d-flex justify-content-between">
@@ -134,6 +137,21 @@
                         </div>
                     </div>
                 </div>
+                @endif
+                            <div class="widget ">
+                            <div class="widget-header">
+                                 <div class=" d-flex justify-content-between"> 
+                                  <h3 class="widget-title"> التقويم التدريبي </h3>
+                                  <img src="images/cal.png" style="width: 25px; height: 25px"> 
+
+                                </div>
+                              </div>
+                                   <div class="card cal">
+                                       <div id="ُevenCalandar" class="calendar-container"></div>
+
+                                </div>
+                            </div>
+                        </div>
             </div>
         </div>
     </div>
