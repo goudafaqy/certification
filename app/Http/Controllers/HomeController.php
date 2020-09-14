@@ -16,6 +16,7 @@ class HomeController extends Controller
 {
     var $courseRepo;
     var $userRepo;
+
     /**
      * Create a new controller instance.
      *
@@ -34,40 +35,47 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\Support\Renderable|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      * @throws NotFoundHttpException
      */
     public function dashboard()
     {
-        $role = Auth::user()->roles? Auth::user()->roles[0]: null;
-        if(!$role)
+        $role = Auth::user()->roles ? Auth::user()->roles[0] : null;
+        if (!$role)
             throw new NotFoundHttpException();
 
-        if($role->name == 'admin') //admin
+        if ($role->name == 'admin') //admin
             return $this->adminDashboard();
         elseif ($role->name == 'instructor')
             return $this->instructorDashboard();
         elseif ($role->name == 'trainee')
             return $this->traineeDashboard();
+        elseif ($role->name == 'trainee')
+            return $this->traineeDashboard();
+        elseif ($role->name == 'support')
+            return redirect('panichd/dashboard');
         else
             throw new NotFoundHttpException();
     }
 
 
-    private function adminDashboard(){
+    private function adminDashboard()
+    {
 
         $categories = DB::table('categories')->get();
         $advertisments = Advertisment::all();
-       // dd($advertisments);
         return view('/cp/dashboards/admin', ['categories' => $categories ,'advertisments'=>$advertisments,'events'=>array()]);
+
     }
 
 
-    private function instructorDashboard(){
+    private function instructorDashboard()
+    {
 
         $instructor_id = Auth::id();
         $currentCourses = $this->courseRepo->getCurrentByInstructor($instructor_id);
         $previousCourses = $this->courseRepo->getPastByInstructor($instructor_id);
+
         $events=array();
         foreach ($currentCourses as $key => $course)
         foreach($course->appointments as $key1=>$appointment){
@@ -81,9 +89,12 @@ class HomeController extends Controller
         $advertisments = Advertisment::all();
         //dd($advertisments);
         return view('cp.dashboards.instructor', ['currentCourses' => $currentCourses, 'previousCourses' => $previousCourses ,'advertisments'=>$advertisments,'events'=>$events]);
+
+        //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
     }
 
-    private function traineeDashboard(){
+    private function traineeDashboard()
+    {
         $trainee_id = Auth::id();
         $advertisments = Advertisment::all();
         $certificates = Certificate::where('user_id',$trainee_id)->get();

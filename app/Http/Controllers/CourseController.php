@@ -14,7 +14,7 @@ use App\Http\Repositories\Eloquent\ClassificationRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Mail\InstructorCourse;
 use Illuminate\Support\Facades\Mail;
-use App\Models\User;
+use App\User;
 use Carbon\Carbon;
 
 class CourseController extends Controller
@@ -31,8 +31,8 @@ class CourseController extends Controller
      * @return void
      */
     public function __construct(
-        CourseRepo $courseRepo, 
-        UserRepo $userRepo, 
+        CourseRepo $courseRepo,
+        UserRepo $userRepo,
         CategoryRepo $categoryRepo,
         ClassificationRepo $classRepo,
         MaterialRepo $materialRepo,
@@ -93,18 +93,17 @@ class CourseController extends Controller
             $inputs['reg_start_date'] = DateHelper::getDateFormate($inputs['reg_start_date']);
             $inputs['reg_end_date'] = DateHelper::getDateFormate($inputs['reg_end_date']);
 
-            $courseId = $this->courseRepo->save($inputs, true); 
+            $courseId = $this->courseRepo->save($inputs, true);
             if($courseId){
                 $course = $this->courseRepo->getById($courseId);
                 $categoryLetter = $course->category->letter;
                 $this->courseRepo->update([
                     'code'      => GenerateHelper::generateCourseCode($courseId, $categoryLetter, 1),
                 ], $courseId);
-                
                 try {
                     $this->SendNotificationToInstructor($course);
                 } catch (Throwable $e) {
-                }          
+                }
                 return redirect('courses/list')->with('added', 'تمت إضافة دورة جديدة بنجاح');
             }
         }
@@ -167,7 +166,7 @@ class CourseController extends Controller
             $inputs['reg_start_date'] = DateHelper::getDateFormate($inputs['reg_start_date']);
             $inputs['reg_end_date'] = DateHelper::getDateFormate($inputs['reg_end_date']);
 
-            $course = $this->courseRepo->update($inputs, $inputs['id']); 
+            $course = $this->courseRepo->update($inputs, $inputs['id']);
             if($course){
                 return redirect('courses/list')->with('updated', 'تمت تعديل بيانات الدورة بنجصاح');
             }
@@ -189,7 +188,7 @@ class CourseController extends Controller
             $result = $this->courseRepo->delete($id);
             if($result)
                 return redirect('courses/list')->with('deleted', 'تم حذف الدورة بنجاح');
-        }        
+        }
     }
 
     /**

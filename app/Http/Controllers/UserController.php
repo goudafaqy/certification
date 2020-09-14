@@ -25,8 +25,8 @@ class UserController extends Controller
      * @return void
      */
     public function __construct(
-        UserRepo $userRepo, 
-        RoleRepo $roleRepo, 
+        UserRepo $userRepo,
+        RoleRepo $roleRepo,
         UserRepoValidation $userValidation
         )
     {
@@ -70,15 +70,22 @@ class UserController extends Controller
             $pass = $inputs['password'];
             $inputs['password'] = Hash::make($inputs['password']);
             $roles = $inputs['role'];
+            ## to add support agent if the roles has 'support
+            if(array_search(4, $roles) !==false){
+                $inputs['panichd_agent'] = 1;
+            }
+            if(array_search(1, $roles) !==false){
+                $inputs['panichd_admin'] = 1;
+            }
             $inputs['birth_date'] = DateHelper::getDateFormate($inputs['birth_date']);
             unset($inputs['role']);
             unset($inputs['_token']);
-            
+
             unset($inputs['password_confirmation']);
             $userId = $this->userRepo->save($inputs, true);
             if($userId){
                  $this->userRepo->saveRoles($roles, $userId);
- 
+
                  if(in_array('2',$roles)){
                    // Send Mail Notification To Instructor
                     $inputs['password'] = $pass;
@@ -95,7 +102,7 @@ class UserController extends Controller
                         'link' =>       url('login'),
                         'extra_text'=> '',
                         'password' => $pass
-                        
+
                     ];
                     $not = new NotificationsController();
                     $not->Send_Notification_And_Email($data, 'instructor_account_notification');
@@ -139,7 +146,7 @@ class UserController extends Controller
             $inputs['birth_date'] = DateHelper::getDateFormate($inputs['birth_date']);
             $roles = $inputs['role'];
             unset($inputs['role']);
-            
+
             $user = $this->userRepo->update($inputs, $inputs['id']);
             $this->userRepo->saveRoles($roles, $inputs['id']);
             if($user){
