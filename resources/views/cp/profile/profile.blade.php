@@ -9,7 +9,7 @@
                     </div>
                     <div class="profile-card-header">
                         <div class="circle">
-                            <img class="profile-pic" src="{{url($user->image)}}">
+                            <img class="profile-pic" src="{{ $user->image ? url($user->image) :''}}">
                             <div class="p-image">
                                 <i class="fa fa-camera upload-button"></i>
                             </div>
