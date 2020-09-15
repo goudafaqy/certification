@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Helpers\ZoomHelper;
 use App\Models\Attendance;
 use App\Models\Course;
-use App\User;
+use App\Models\User;
 use App\Models\Webinar;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
