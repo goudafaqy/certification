@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+  
+
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Almarai|Roboto&display=swap" rel="stylesheet">
 
@@ -16,6 +19,18 @@
     <link rel="stylesheet"  href="{{ asset('css/main.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/style-login.css') }}">
+
+
+    <style>
+
+        label {
+            color:red;
+            margin-top :50px;
+            margin-left :87px;
+        }
+    </style>
+ 
+
 
 </head>
 

@@ -9,7 +9,11 @@
                     </div>
                     <div class="profile-card-header">
                         <div class="circle">
+<<<<<<< HEAD
                             <img class="profile-pic" src="{{$user->image != null ? url($user->image ):asset('site-assets/images/avatarman.png')}}">
+=======
+                            <img class="profile-pic" src="{{ $user->image ? url($user->image) :''}}">
+>>>>>>> 142b7db3d83e9aaca1aebab6737221730d188ab8
                             <div class="p-image">
                                 <i class="fa fa-camera upload-button"></i>
                             </div>
