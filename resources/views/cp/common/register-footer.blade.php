@@ -31,7 +31,7 @@
                     email: true,
                 },
  
-                message: {
+                name_en: {
                     required: true,
                     minlength: 50,
                     maxlength: 500,

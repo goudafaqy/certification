@@ -25,7 +25,7 @@
                             <input id="email" required="" name="email" class="form-control"
                                    type="text" placeholder="البريد الإلكتروني">
 
-                                   <label id="email-error" class="error" for="email">البريد الالكترونى مطلوب</label>
+                                   <label id="email-error" class="error" for="email" >البريد الالكترونى مطلوب</label>
                         </div>
 
                         @error('name_ar')

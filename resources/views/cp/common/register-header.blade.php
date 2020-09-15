@@ -21,14 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/style-login.css') }}">
 
 
-    <style>
 
-        label {
-            color:red;
-            margin-top :50px;
-            margin-left :87px;
-        }
-    </style>
  
 
 

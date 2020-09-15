@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> تسجيل الدخول</title>
+    <title> اعادة كلمة السر</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,16 +34,27 @@
                         <div class="container-login">
                             <div class="wrap-login">
 
-                                <form class="login-form" action="{{ route('login') }}" method="POST">
+                                <form class="login-form" action="{{ route('send_password_link') }}" method="POST">
                                     @csrf
                                     <div class="logo-centered">
                                         <a href="{{ url('/') }}">
                                             <img src="{{asset('site-assets/images/new-logo.png')}}" class="" alt="">
                                         </a>
                                     </div>
-                                    <span class="login-form-title ">
-					</span>
+                                    <span class="login-form-title "> </span>
+                   
+                    
+                                    @if (session('info'))
+                                        <div class="alert alert-info alert-dismissible fade show">
+                                            {{ session('info') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+
                                     <div class="row">
+                                    
                                         <div class="col-md-7" style="border-left: 1px solid">
                                             <!--                      <label class="label" for="">اسم المستخدم</label>-->
                                             <div class=" input-group">
@@ -58,38 +69,16 @@
                                                 @enderror                                            </div>
 
 
-                                            <!--                  <label class="label" for="">كلمة المرور </label>-->
-                                            <div class=" input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-unlock-alt"></i></span>
-                                                </div>
-                                                <input class="form-control input-login @error('password') is-invalid @enderror" type="password" id="password" name="password" required autocomplete="current-password" placeholder="كلمة المرور">
-                                                @error('password')
-                                                <span class="invalid-feedback" role="alert" style="font-size: 1em; margin-top: 10px;">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                @enderror                                            </div>
-
-                                            <div class=" d-flex justify-content-between">
-                                                <div class="">
-                                                    <label class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                        <span class="custom-control-label">&nbsp;تذكرني</span>
-                                                    </label>
-                                                </div>
-                                                <div class="">
-                                                    <a href="{{url('forgot')}}" class="forget">نسيت كلمة المرور ؟ </a>
-                                                </div>
-                                            </div>
+                                           
                                             <div style="text-align: center">
                                                 <button class="login-form-btn">
-                                                    تسجيل الدخول
+                                                    ارسال
                                                 </button>
                                             </div>
                                             <!-- <p  style="text-align: center">ان لم يكن لديك حساب فقم بإنشاء حساب</p> -->
                                             <div style="text-align: center">
-                                                <a  href="{{url('register')}}" class="login-link">
-                                                    إنشاء حساب
+                                                <a  href="{{url('login')}}" class="login-link">
+                                                تسجيل دخول
                                                 </a>
                                             </div>
                                         </div>

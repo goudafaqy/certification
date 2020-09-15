@@ -20,6 +20,14 @@ Route::get('/course/{id}','WelcomeController@course');
 Route::get('/profile/{id}','WelcomeController@instructorProfile');
 Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
 Route::get('/courses','WelcomeController@searchResults')->name('courses');
+Route::view('forgot', 'auth.forgot');
+
+Route::get('/reset/{token}' , 'Auth\ResetPasswordController@getSendResetLink');
+Route::post('/send-reset-password-email' , 'Auth\ResetPasswordController@sendResetLink')->name('send_password_link');
+
+Route::get('/reset-password' , 'Auth\ResetPasswordController@getResetPasswordPage');
+Route::post('/reset-password' , 'Auth\ResetPasswordController@resetPassword')->name('reset-password');
+
 
 Auth::routes();
 
