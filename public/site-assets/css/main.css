@@ -2893,9 +2893,7 @@ section.programs ul.nav-pills{
   }
   .course-meta .course-review .review-stars-rated{
       float: right;
-      height: 16px;
       line-height: 16px;
-      width: 80px;
       position: relative;
   }
   .course-meta .course-review .review-stars{
@@ -3395,9 +3393,7 @@ section.programs ul.nav-pills{
   .add-review .review-stars-rated,
   .course-review .review-stars-rated,
   .rating-box .review-stars-rated{
-      height: 16px;
-      line-height: 16px;
-      width: 80px;
+   
       margin: 0 auto;
   }
   .add-review .review-stars-rated .review-stars,
@@ -4509,3 +4505,5 @@ element.style {
     display: inline-block;
     text-transform: uppercase;
 }
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Trainee;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
+use App\Http\Repositories\Eloquent\CourseRatingRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
@@ -22,6 +23,7 @@ class CourseController extends Controller
     var $appointmentRepo;
     var $examRepo;
     var $updateRepo;
+    var $courseRatingRepo;
 
     /**
      * Create a new controller instance.
@@ -34,7 +36,8 @@ class CourseController extends Controller
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
         ExamRepo $examRepo,
-        CourseUpdateRepo $updateRepo
+        CourseUpdateRepo $updateRepo,
+        CourseRatingRepo $courseRatingRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -43,6 +46,7 @@ class CourseController extends Controller
         $this->appointmentRepo = $appointmentRepo;
         $this->examRepo = $examRepo;
         $this->updateRepo = $updateRepo;
+        $this->courseRatingRepo=$courseRatingRepo;
 
         $this->middleware(['auth', 'authorize.trainee']);
     }
@@ -57,42 +61,51 @@ class CourseController extends Controller
 
     public function view($id, $tab = 'guide')
     {
+        $trainee_id = Auth::id();
+        $courses = $this->userRepo->getTraineeCourses($trainee_id);
         $course = $this->courseRepo->getById($id);
 
-        if (!method_exists($this, $tab)) {
+        if(!isset($course))
+            throw new NotFoundHttpException(); 
+
+        if(!$courses->contains($course))
+         throw new NotFoundHttpException();
+        else{
+           if (!method_exists($this, $tab)) 
             throw new NotFoundHttpException();
-        }
-        $currentDate = DateHelper::getCurrentDate();
-        return $this->$tab($course, $currentDate);
+        
+           $currentDate = DateHelper::getCurrentDate();
+           return $this->$tab($course, $currentDate);
+         }
     }
 
     private function guide($course, $currentDate)
     {
         $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_t");
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab1', 'guide' => $guide]);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate, 'tab' => 'tab1', 'guide' => $guide]);
     }
 
     private function files($course, $currentDate)
     {
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_t");
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab2', 'files' => $files]);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab2', 'files' => $files]);
     }
 
     private function sessions($course, $currentDate)
     {
         $sessions = $this->appointmentRepo->getAll($course->id);
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab3', 'sessions' => $sessions]);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab3', 'sessions' => $sessions]);
     }
 
     private function questionnaires($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab4']);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab4']);
     }
 
     private function update($course, $currentDate)
     {
         $updates = $this->updateRepo->getAll($course->id);
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab5', 'updates' => $updates]);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab5', 'updates' => $updates]);
     }
 
     private function exams($course, $currentDate)
@@ -100,24 +113,25 @@ class CourseController extends Controller
 
         $exams = $this->examRepo->getExamsForTrainee($course->id, Auth::id());
 
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'exams' => $exams, 'tab' => 'tab6']);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'exams' => $exams, 'tab' => 'tab6']);
     }
 
     private function evaluations($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab7']);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab7']);
     }
 
     private function trainees($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab8']);
+        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab8']);
     }
 
     private function support($course, $currentDate)
     {
         $tickets = Ticket::where('user_id', Auth::user()->id)->get();
+        return view("cp.trainee.courses.view", ['course' => $course, 'tickets' => $tickets,  'currentDate' => $currentDate,'tab' => 'tab9']);
 
-        return view("cp.trainee.courses.view", ['course' => $course, 'tickets' => $tickets, 'currentDate' => $currentDate,'tab' => 'tab9']);
     }
+
 
 }

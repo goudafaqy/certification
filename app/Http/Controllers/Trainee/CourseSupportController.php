@@ -26,6 +26,7 @@ class CourseSupportController extends Controller
     var $supportRepoValidation;
 
 
+
     /**
      * Create a new controller instance.
      *
@@ -55,10 +56,7 @@ class CourseSupportController extends Controller
         if (!$course) throw new NotFoundHttpException();
 
         $currentDate = DateHelper::getCurrentDate();
-        return view("cp.trainee.courses.view", [
-            'course' => $course, 'currentDate' => $currentDate,
-            'tab' => 'tab9', 'action' => 'form'
-        ]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab9', 'action' => 'form']);
     }
 
 

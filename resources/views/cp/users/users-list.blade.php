@@ -9,7 +9,9 @@
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">قائمة المستخدمين</h3>
-                            </div>
+                            
+                             <a href="{{ route('users-add') }}"> <img    src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة مستخدم </a>
+                       </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">
                             <div class="row justify-content-center">

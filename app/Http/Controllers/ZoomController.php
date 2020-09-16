@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Helpers\ZoomHelper;
 use App\Http\Repositories\Eloquent\WebinarRepo;
 use App\Http\Repositories\Validation\WebinarRepoValidation;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use MacsiDigital\Zoom\Facades\Zoom;
 

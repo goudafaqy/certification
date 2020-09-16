@@ -1,4 +1,10 @@
 <div class="outer-container">
+    <div class="row">
+        <div class="col-12" style="color:#283045;">
+          <button type="button" class="btn btn-primaryy mt-2 mx-auto" data-toggle="modal" data-target="#AddNewMaterial"
+           style="padding:10px 24px;float: right;margin-right:10px !important">أضافة ملف جديد</button>
+        </div>
+    </div>
     @if(!isset($files))
     <div class="row">
         <div class="col-12" style="color: #FFF;">
@@ -6,7 +12,7 @@
                 لا يوجد ملفات لهذه الدورة <i class="fa fa-exclamation-circle"></i>
             </div>
         </div>
-    </div>
+    </div>@include('cp.materials.form-dialog')
     @else
     <div class="row">
         <div class="col-12">

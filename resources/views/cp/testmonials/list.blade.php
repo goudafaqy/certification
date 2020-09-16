@@ -10,6 +10,7 @@
                             <div class=" d-flex justify-content-between align-items-center">
 
                             <h3 class="widget-title">{{__('app.Testmonials')}}</h3>
+                            <a href="{{ route('testmonials-add') }}" class="menu-item">  <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة رأي جديد </a>
                             </div>
                         </div>
 
