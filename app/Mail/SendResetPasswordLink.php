@@ -17,9 +17,9 @@ class SendResetPasswordLink extends Mailable
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($link)
     {
-        $this->user = $user  ;
+        $this->link = $link ;
     }
 
     /**
@@ -29,9 +29,9 @@ class SendResetPasswordLink extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.reset_password_template')
-                        ->with(['user' => $this->user])
-                        ->from('mowosrty@gmail.com' , 'Reset Account Password Link')
-                        ->subject(__('Reset Account Password'));
+        return $this->view('emails.reset')
+                        ->with(['link' => $this->link])
+                        ->from('Jtc-Trainingplat@mail.moj.gov.sa' , ' العادلى للدورات التدريبة  ')
+                        ->subject('استرداد كلمة السر الخاصة بك');
     }
 }

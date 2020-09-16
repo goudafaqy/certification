@@ -3,7 +3,7 @@
     <div class="container-login">
         <div class="wrap-login">
 
-            <form class="login-form" method="post" action="{{ route('register') }}">
+            <form class="login-form" method="post" action="{{ route('register') }}" id="registerForm">
                 @csrf
                 <div class="logo-centered">
                     <a href="{{ url('/') }}">
@@ -24,6 +24,8 @@
                             </div>
                             <input id="email" required="" name="email" class="form-control"
                                    type="text" placeholder="البريد الإلكتروني">
+
+                                   <label id="email-error" class="error" for="email" >البريد الالكترونى مطلوب</label>
                         </div>
 
                         @error('name_ar')
@@ -48,6 +50,7 @@
                             </div>
                             <input id="name_en" required="" name="name_en" class="form-control"
                                    type="text" placeholder="الاسم رباعى بالانجليزية">
+                                   <br> <br> 
                         </div>
 
                         @error('password')
@@ -204,4 +207,9 @@
         </div>
     </div>
 </div>
+
+
 @include('cp.common.register-footer')
+
+
+   

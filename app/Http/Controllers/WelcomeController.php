@@ -104,6 +104,10 @@ class WelcomeController extends Controller
             $query->whereIn('cat_id	',$request->get('categories'));
 
         $courses = $query->paginate(12)->appends(['q'=>$request->get('q')]);
+        if(count($courses) < 1){
+            $Newquery = Course::query();
+            $courses = $Newquery->paginate(12);
+        }
         return view('site.searchResults',compact('courses','categories','classifications'));
     }
 
