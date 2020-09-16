@@ -29,6 +29,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/new-style2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
     <!-- End Style -->
 </head>
@@ -74,7 +75,7 @@
                                     </a>
                                 @endforeach
                                 </div>
-                                <!--<div class="footer"><a href="">كل الإشعارات</a></div>-->
+                                <div class="footer"><a href="">كل الإشعارات</a></div>
                             </div>
                         </div>
                         <div class="dropdown">
@@ -85,6 +86,17 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
+                                @foreach (Auth::user()->roles as $key=>$role)
+                                    @if ($role->name=='instructor')
+                                     <a class="dropdown-item" href="/dashboard/instructor">دخول كمدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @elseif ($role->name=='trainee')
+                                     <a class="dropdown-item" href="/dashboard/trainee">دخول كمتدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @elseif ($role->name=='support')
+                                     <a class="dropdown-item" href="/dashboard/support">دخول كمسئول دعم فنى<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @elseif ($role->name=='admin')
+                                     <a class="dropdown-item" href="/dashboard/admin">دخول كمدير للمنصة<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @endif
+                                @endforeach
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

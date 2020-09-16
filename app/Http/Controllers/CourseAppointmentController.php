@@ -184,4 +184,28 @@ class CourseAppointmentController extends Controller
         print("=====End=====");
         
     }
+
+    public static function isSessionStillValid($session_date,$session_from,$session_to){
+        $startH=(int)explode(":", explode(" ", $session_from)[0])[0];
+        $startM=explode(":", explode(" ", $session_from)[0])[1]; 
+        $endH=(int)explode(":", explode(" ", $session_to)[0])[0];
+        $endM=explode(":", explode(" ", $session_to)[0])[1]; 
+        $startAMPM=explode(" ", $session_from)[1];
+        $endAMPM=explode(" ", $session_to)[1];
+
+        if(($startAMPM=="PM")&&($startH!=12))
+           $startH=$startH+12;
+        if(($endAMPM=="PM")&&($endH!=12))
+           $endH=$endH+12;
+        
+        $st_time=strtotime($startH.$startM."00");
+        $end_time=strtotime($endH.$endM."00");
+
+        $cur_time   =   strtotime((int) date('Gis'));
+        //dd(array("start_time"=>$st_time,"end_time"=>$end_time,"now"=>$cur_time,"session_date"=>$session_date,"nowdate"=>date("Y-m-d")));
+        return (
+            ($st_time < $cur_time && $end_time >= $cur_time)&&
+            (date("Y-m-d") == $session_date) 
+              );
+    }
 }
