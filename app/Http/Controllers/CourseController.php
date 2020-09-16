@@ -14,7 +14,7 @@ use App\Http\Repositories\Eloquent\ClassificationRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Mail\InstructorCourse;
 use Illuminate\Support\Facades\Mail;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 
 class CourseController extends Controller

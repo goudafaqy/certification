@@ -20,7 +20,7 @@ class CourseRatingRepo extends Repository implements CourseRatingEloquent{
     {
         return CourseRating::where('course_id', $course_id)->delete();
     }
-    public function getRateForSpecificUser($course_id ,$user_id)
+    public static function  getRateForSpecificUser($course_id ,$user_id)
     {
         return CourseRating::where('course_id',$course_id)->where('user_id',$user_id)->first();
     }

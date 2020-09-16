@@ -1,5 +1,10 @@
 @include('cp.common.dashboard-header')
-@include('cp.common.sidebar', ['active' => 'dashboard'])
+@if($user->roles[0]->name == 'trainee')
+@include('cp.common.sidebar_trainee', ['active' => 'dashboard'])
+@elseif($user->roles[0]->name == 'instructor')
+@include('cp.common.sidebar_instructor', ['active' => 'dashboard'])
+@endif
+
 <div class="main-content">
     <div class="container-fluid">
         <div class="box box-default">

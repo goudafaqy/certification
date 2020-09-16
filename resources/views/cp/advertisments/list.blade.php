@@ -10,6 +10,8 @@
                             <div class=" d-flex justify-content-between align-items-center">
 
                             <h3 class="widget-title">{{__('app.Advertisments')}}</h3>
+                             <a href="{{ route('advertisments-add') }}" class="menu-item">
+                            <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة اعلان جديدة </a>
                             </div>
                         </div>
 

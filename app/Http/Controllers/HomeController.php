@@ -40,6 +40,7 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
+       // dd(Auth::user()->roles[1]->name);
         $role = Auth::user()->roles ? Auth::user()->roles[0] : null;
         if (!$role)
             throw new NotFoundHttpException();
@@ -59,7 +60,7 @@ class HomeController extends Controller
     }
 
 
-    private function adminDashboard()
+    public function adminDashboard()
     {
 
         $categories = DB::table('categories')->get();
@@ -69,7 +70,7 @@ class HomeController extends Controller
     }
 
 
-    private function instructorDashboard()
+    public function instructorDashboard()
     {
 
         $instructor_id = Auth::id();
@@ -93,7 +94,7 @@ class HomeController extends Controller
         //TODO $favCourses = DB::table('courses')->orderBy('id', 'DESC')->limit(4)->get();
     }
 
-    private function traineeDashboard()
+    public function traineeDashboard()
     {
         $trainee_id = Auth::id();
         $advertisments = Advertisment::all();

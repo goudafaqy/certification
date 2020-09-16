@@ -34,6 +34,11 @@ Auth::routes();
     // Home routes ...
     Route::prefix('dashboard')->group(function () {
         Route::get('/', 'HomeController@dashboard')->name('dashboard');
+        Route::get('/trainee', 'HomeController@traineeDashboard');
+        Route::get('/instructor', 'HomeController@instructorDashboard');
+        Route::get('/admin', 'HomeController@adminDashboard');
+        Route::get('/support', 'HomeController@supportDashboard');
+        
         Route::get('edit-profile', 'ProfileController@edit')->name('edit-profile');
         Route::post('save-profile', 'ProfileController@save')->name('save-profile');
         Route::post('save-qualifications', 'ProfileController@saveQualifications')->name('save-qualifications');
@@ -105,6 +110,7 @@ Auth::routes();
         Route::get('update/{id}/{course_id}', 'CourseMaterialsController@update')->name('materials-update');
         Route::post('update', 'CourseMaterialsController@edit')->name('update-materials');
         Route::post('save', 'CourseMaterialsController@create')->name('save-materials');
+        Route::post('saveAjex', 'CourseMaterialsController@createAjax')->name('saveAjax-materials');
         Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
     });
 
@@ -190,6 +196,8 @@ Auth::routes();
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance');
+        Route::get('session/{session_id}/attendance', 'AttendanceController@FaceToFaceindex')->name('attendance_facetoface');
+        
         Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');
 
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');

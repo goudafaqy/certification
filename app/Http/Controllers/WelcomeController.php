@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classification;
 use App\Models\Course;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -24,6 +24,7 @@ class WelcomeController extends Controller
         $advertisments = Advertisment::all();
         $testmonials = Testmonial::all();
         $sliderItems = Classification::where("home_page_display",1)->orderBy('created_at','DESC')->take(4)->get();
+
         return view('site.welcome',compact("sliderItems","advertisments",'testmonials'));
     }
 

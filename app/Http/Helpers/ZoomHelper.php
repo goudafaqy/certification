@@ -5,7 +5,7 @@ namespace App\Http\Helpers;
 
 
 use App\Models\Attendance;
-use App\User;
+use App\Models\User;
 use App\Models\Webinar;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
