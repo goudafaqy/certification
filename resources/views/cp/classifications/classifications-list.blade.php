@@ -9,6 +9,7 @@
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">قائمة بتصنيفات الدورات</h3>
+                              <a href="{{ route('classifications-add') }}"  class="menu-item "> <img  src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة تصنيف جديد </a>
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">

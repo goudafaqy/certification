@@ -65,12 +65,8 @@ class CourseMaterialsController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->input();
-
-        
         $validator = $this->validation->doValidate($inputs, 'insert');
-        
-        if ($validator->fails()) {
-            
+        if ($validator->fails()) {            
             return redirect('materials/add/'.$inputs['course_id'])->withErrors($validator)->withInput();
         }else{
             if($request->file()) {
@@ -84,7 +80,22 @@ class CourseMaterialsController extends Controller
             }
         }
     }
-
+    public function createAjax(Request $request)
+    {
+        $inputs = $request->input();
+        $validator = $this->validation->doValidate($inputs, 'insert');
+        if ($validator->fails()) {
+            return false;
+        }else{
+            if($request->file()) {
+                $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
+            }
+            $inputs['source'] = $filePath;
+            $inputs['status'] = 0;
+            $material = $this->MaterialRepo->save($inputs);
+            return redirect('instructor/courses/'.$inputs['course_id'] . '/files?type='.$inputs['course_type'] )->with('added', __('app.Material Added Successfully'));
+        }
+    }
 
     /**
      * Get update classification page ...

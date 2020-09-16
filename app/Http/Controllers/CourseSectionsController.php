@@ -114,4 +114,7 @@ class CourseSectionsController extends Controller
             return redirect('sections/'.$course_id)->with('deleted', __('app.Section Deleted Successfully'));
         }
     }
+
+
+  
 }

@@ -11,7 +11,7 @@
     <form action="{{route('generate_certificates')}}" method="post">
 
     <button type="submit" class="btn btn-primaryy mt-2 mx-auto"  style="padding:10px 24px;float: left;">استخراج الشهادات</button>
-    <button type="button" class="btn btn-primaryy mt-2 mx-auto" data-toggle="modal" data-target="#exampleModalCenter" style="padding:10px 24px;float: left;margin-left:10px !important">ايميل</button>
+    <button type="button" class="btn btn-primaryy mt-2 mx-auto" data-toggle="modal" data-target="#SendEmail" style="padding:10px 24px;float: left;margin-left:10px !important">ايميل</button>
    
 
     <div class="row">

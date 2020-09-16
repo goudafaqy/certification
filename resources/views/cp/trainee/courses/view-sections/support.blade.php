@@ -27,7 +27,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body" style="background-color: #a58661; color: #FFF; border-radius: 5px;">
-                                لا يوجد إعلانات
+                                لا يوجد تذاكر
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,6 @@ class CourseController extends Controller
         } else {
             throw new NotFoundHttpException();
         }
-
         return view("cp.instructor.courses.list", ['courses' => $courses, 'type' => $type]);
     }
 
@@ -68,24 +67,39 @@ class CourseController extends Controller
     {
         $type = \request('type');
         $course = $this->courseRepo->getById($id);
-
-        if (!method_exists($this, $tab)) {
-            throw new NotFoundHttpException();
+        if(!isset($course))
+            throw new NotFoundHttpException(); 
+        if($course->instructor_id!=Auth::id())
+            throw new NotFoundHttpException(); 
+        if ($type == 'current') {
+            $courses = $this->courseRepo->getCurrentByInstructor(Auth::id());
+        } elseif ($type == 'past') {
+            $courses = $this->courseRepo->getPastByInstructor(Auth::id());
         }
-
+       
+        
+        if (!method_exists($this, $tab)) {
+             throw new NotFoundHttpException();
+        }
         return $this->$tab($course, $type);
     }
 
     private function guide($course, $type)
     {
+
         $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_i");
         return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab1', 'type' => $type, 'guide' => $guide]);
     }
 
     private function files($course, $type)
     {
+        $types =  [
+            'book'      => 'كتاب',
+            'extra'     => 'مصادر إضافية',
+            'img'       => 'صورة',
+        ];
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_i");
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
+        return view("cp.instructor.courses.view", ['course' => $course,'types'=>$types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
     }
 
     private function sessions($course, $type)
