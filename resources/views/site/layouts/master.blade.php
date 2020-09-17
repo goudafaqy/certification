@@ -296,8 +296,23 @@
                     <ul class="navbar-nav mr-auto setting-menu" style="">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>
+                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>  
                                 
+                                
+                            <!-- <div class="dropdown">
+                            
+                                <a   class="btn  dropdown-toggle btn-outline-success" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{Auth::user()->username}}
+                                <i class="fas fa-chevron-down"></i>
+                                </a>
+                               
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/dashboard/edit-profile"> <i class="fas fa-user"></i> الملف الشخصي </a>
+                                <a class="dropdown-item" href="/dashboard/instructor"><i class="fas fa-unlock-alt  dropdown-icon"></i> دخول كمدرب </a>
+                                <a class="dropdown-item" href="/password/reset"><i class="fas fa-unlock-alt  dropdown-icon"></i> تغيير كلمة المرور  </a>
+                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
+                                </div>
+                            </div> -->
                             </li>
 
 
@@ -314,7 +329,11 @@
                         {{--                        </li>--}}
 
                         <li class="nav-item" >
-                            <a class="nav-link" href="{{ url('login') }} "> <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول"></a>
+                            <a class="nav-link" href="{{ url('login') }} ">
+                                <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول">
+                                <!-- <img class="avatar" src="http://127.0.0.1:8000/site-assets/images/avatarman.png" alt="" width="40" height="40"> -->
+                            </a>
+                            
                         </li>
 
                         <li class="nav-item">
