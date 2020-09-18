@@ -131,7 +131,7 @@
 });
   @else
 
-    var stars = $('li.star');
+    var stars = $('li.star'); 
     for (i = 0; i < {{$resultRating}}; i++) 
       $(stars[i]).addClass('selected');
   
@@ -140,173 +140,82 @@
 
 });
 </script>
-                                            <div class="col-md-9 register-right">
-                                                <div class="tab-content" id="myTabContent">
-                                                    <div class="tab-pane fade show active" id="home"
-                                                         role="tabpanel" aria-labelledby="home-tab">
-                                                        <div class="row register-form">
-                                                            <div class="col-md-6">
-                                                                <h6>رمز الدورة</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/cou.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    <input id="email" required="" name="text"
-                                                                           class="form-control" type="text"
-                                                                           disabled value="{{$course->code}}">
+                                                                                  <div class="col-md-9 register-right">
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home"  role="tabpanel" aria-labelledby="home-tab">
+                                                    <div class="row register-form">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"  id="basic-addon1"><img  src="{{ asset('images/cou.png') }}"   class="img-fluid"   style="width:20px !important;height:20px !important">
+                                                                    <span class="lacourse">رمز الدورة</span></span>
                                                                 </div>
+                                                                <input id="email" required="" name="text" class="form-control" type="text"  readonly value="{{$course->code}}">
+                                                            </div>
 
-                                                                <h6>نوع الدورة</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/school.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    @if($course->type == 'live')
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="التدريب عن بعد">
-                                                                    @elseif($course->type == 'recorded')
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="دورات مسجلة">
-                                                                    @elseif($course->type == 'face_to_face')
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="التدريب حضورياً">
-                                                                    @else
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="تعليم مدمج">
-                                                                    @endif
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"  id="basic-addon1"><img  src="{{ asset('images/school.png') }}"    class="img-fluid" style="width:20px !important;height:20px !important">
+                                                                            <span class="lacourse">نوع الدورة</span></span>
                                                                 </div>
-                                                                <h6>عدد المقاعد</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/man.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    <input id="email" required="" name="email"
-                                                                           class="form-control" type="text" disabled
-                                                                           value="{{ $course->seats }} مقعد">
-                                                                </div>
-                                                                <h6>مستوى الدورة</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/teacher.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    @if($course->type == 'b')
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="مبتدئ">
-                                                                    @elseif($course->type == 'm')
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="متوسط">
-                                                                    @else
-                                                                        <input id="email" required="" name="email"
-                                                                               class="form-control" type="text" disabled
-                                                                               value="متقدم">
-                                                                    @endif
-                                                                </div>
+                                                                @if($course->type == 'live')
+                                                                    <input 
+                                                                           class="form-control" type="text" readonly
+                                                                           value="التدريب عن بعد">
+                                                                @elseif($course->type == 'recorded')
+                                                                    <input 
+                                                                           class="form-control" type="text" readonly
+                                                                           value="دورات مسجلة">
+                                                                @elseif($course->type == 'face_to_face')
+                                                                    <input
+                                                                           class="form-control" type="text" readonly
+                                                                           value="التدريب حضورياً">
+                                                                @else
+                                                                    <input 
+                                                                           class="form-control" type="text" readonly
+                                                                           value="تعليم مدمج">
+                                                                @endif
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <h6>تاريخ بداية الدورة</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/calendar2.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    <input id="email" required="" name="email"
-                                                                           class="form-control" type="text" disabled
-                                                                           value="{{ $course->start_date }}">
-                                                                </div>
-                                                                <h6>تاريخ نهاية الدورة</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/calendar2.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    <input id="email" required="" name="email"
-                                                                           class="form-control" type="text" disabled
-                                                                           value="{{ $course->end_date }}">
-                                                                </div>
-                                                                <h6>عدد ساعات الدورة</h6>
-                                                                <div class="form-group input-group">
-                                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text"
-                                                                          id="basic-addon1"><img
-                                                                            src="{{ asset('images/medal.png') }}"
-                                                                            class="img-fluid"
-                                                                            style="width:20px !important;height:20px !important"></span>
-                                                                    </div>
-                                                                    <input id="email" required="" name="email"
-                                                                           class="form-control" type="text" disabled
-                                                                           value="{{ $course->course_hours }} ساعة">
-                                                                </div>
-                                                                <div class="form-group input-group">
-                                                                    <div class="maxl">
-                                                                        <span class="exam">اختبارات</span>
-                                                                        <label class="radio inline">
-                                                                            <input type="radio" name="gridRadios"
-                                                                                   id="gridRadios1" value="option1"
-                                                                                   @if($course->exam_check == 1) checked
-                                                                                   @endif disabled>
-                                                                            <span> نعم </span>
-                                                                        </label>
-                                                                        <label class="radio inline">
-                                                                            <input type="radio" name="gridRadios"
-                                                                                   id="gridRadios2" value="option1"
-                                                                                   @if($course->exam_check == 0) checked
-                                                                                   @endif disabled>
-                                                                            <span>لا</span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group input-group">
-                                                                    <div class="maxl">
-                                                                        <span class="exam"> واجبات</span>
-                                                                        <label class="radio inline">
-                                                                            <input type="radio" name="gridRadios2"
-                                                                                   id="gridRadios3" value="option1"
-                                                                                   @if($course->assi_check == 1) checked
-                                                                                   @endif disabled>
-                                                                            <span> نعم </span>
-                                                                        </label>
-                                                                        <label class="radio inline">
-                                                                            <input type="radio" name="gridRadios2"
-                                                                                   id="gridRadios4" value="option1"
-                                                                                   @if($course->assi_check == 0) checked
-                                                                                   @endif disabled>
-                                                                            <span>لا</span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                    
                                                         </div>
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/calendar2.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important">
+                                                                            <span class="lacourse">تاريخ بداية الدورة</span></span>
+                                                                </div>
+                                                                <input class="form-control" type="text" readonly
+                                                                       value="{{ explode(" ",$course->start_date)[0] }}">
+                                                             </div>
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"
+                                                                          id="basic-addon1"><img
+                                                                            src="{{ asset('images/calendar2.png') }}"
+                                                                            class="img-fluid"
+                                                                            style="width:20px !important;height:20px !important">
+                                                                            <span class="lacourse">تاريخ نهاية الدورة</span></span>
+                                                                </div>
+                                                                <input  class="form-control" type="text" readonly
+                                                                       value="{{ explode(" ",$course->end_date)[0] }}">
+                                                            </div>
+                                                        </div>   
+                                                        </div>    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                    مستوى التقدم فى الدورة
+                                                        <div id="course_preogress"></div>
                                                     </div>
                                                 </div>
+
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -334,7 +243,7 @@
                                         @if(($course->type == 'live' ) ||($course->type == 'face_to_face')||($course->type == 'blended')) 
                                         <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
                                             <a href="{{$tab != 'tab3'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'sessions']):"javascript:void(0);"}}"
-                                               for="tab3"> <i class="far fa-copy"></i> المحاضرات</a>
+                                               for="tab3"> <i class="far fa-copy"></i> الجدول الزمنى</a>
                                         </li>
 
                                         <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
@@ -424,5 +333,18 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+$('#course_preogress').LineProgressbar({
+  percentage: {{$progress}},
+  fillBackgroundColor:'#3498db',
+  backgroundColor:'#EEEEEE',
+  radius:'10px',
+  height:'10px',
+  width:'90%'
+});
+});
 
+</script>
+@include('cp.trainee.courses.trainee-dialog')
 @include('cp.common.dashboard-footer')

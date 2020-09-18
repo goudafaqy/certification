@@ -11,6 +11,7 @@ use App\Http\Repositories\Validation\WebinarRepoValidation;
 use App\Models\Course;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use DateTime;
 
 class CourseAppointmentController extends Controller
 {
@@ -52,6 +53,7 @@ class CourseAppointmentController extends Controller
         return view("cp.appointments.appointments-list", ['course' => $course, 'appointments' => $appointments]);
     }
 
+  
 
     /**
      * Generate Actual Appointments ...
@@ -109,8 +111,7 @@ class CourseAppointmentController extends Controller
     /**
      * Delete appointment ...
      */
-    public function reset($course_id)
-    {
+    public function reset($course_id){
         $dataCourse = [
             'from_time'       => null,
             'to_time'         => null,
@@ -186,26 +187,28 @@ class CourseAppointmentController extends Controller
     }
 
     public static function isSessionStillValid($session_date,$session_from,$session_to){
-        $startH=(int)explode(":", explode(" ", $session_from)[0])[0];
-        $startM=explode(":", explode(" ", $session_from)[0])[1]; 
-        $endH=(int)explode(":", explode(" ", $session_to)[0])[0];
-        $endM=explode(":", explode(" ", $session_to)[0])[1]; 
-        $startAMPM=explode(" ", $session_from)[1];
-        $endAMPM=explode(" ", $session_to)[1];
-
-        if(($startAMPM=="PM")&&($startH!=12))
-           $startH=$startH+12;
-        if(($endAMPM=="PM")&&($endH!=12))
-           $endH=$endH+12;
-        
-        $st_time=strtotime($startH.$startM."00");
-        $end_time=strtotime($endH.$endM."00");
-
-        $cur_time   =   strtotime((int) date('Gis'));
+        $new_startTime=date("H:i:s", strtotime($session_from));
+        $new_endTime=date("H:i:s", strtotime($session_to));
+        $cur_time=(Carbon::parse(date('H:i:s'))->format('H:i:s'));
+        $st_time=($new_startTime);
+        $end_time=($new_endTime);
+        //if("2020-09-18" == $session_date)
         //dd(array("start_time"=>$st_time,"end_time"=>$end_time,"now"=>$cur_time,"session_date"=>$session_date,"nowdate"=>date("Y-m-d")));
         return (
-            ($st_time < $cur_time && $end_time >= $cur_time)&&
-            (date("Y-m-d") == $session_date) 
+            ($st_time < $cur_time && $end_time >= $cur_time)&&   (date("Y-m-d") == $session_date) 
               );
+    }
+    public function isSessionValid($session_from,$session_to){
+        $new_startTime=date("H:i:s", strtotime($session_from));
+        $new_endTime=date("H:i:s", strtotime($session_to));
+        $st_time=strtotime($new_startTime);
+        $end_time=strtotime($new_endTime);
+        return (($st_time <  $end_time)&&($end_time >  $st_time));
+    }
+    public function validateTime(Request $request){
+        $inputs = $request->input();
+        $from_time = $inputs['from_time'];
+        $to_time = $inputs['to_time'];
+        return $this->isSessionValid($from_time,$to_time);
     }
 }

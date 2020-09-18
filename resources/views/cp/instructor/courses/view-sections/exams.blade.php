@@ -18,14 +18,18 @@
                     </button>
                 </div>
             @endif
-            <a class="btn btn-primary m-2 text-white"
+            @if($course->exam_check == 1) 
+               <a class="btn btn-primary m-2 text-white"
                href="{{route('instructor-course-exam-add', ['id' => $id, 'type' => $type])}}">
                 إضافة امتحان جديد
-            </a>
-            <a class="btn btn-primary m-2 text-white"
+              </a>
+            @endif 
+            @if($course->assi_check == 1)                                                 
+               <a class="btn btn-primary m-2 text-white"
                href="{{route('instructor-course-assignment-add', ['id' => $id, 'type' => $type])}}">
                 إضافة واجب جديد
-            </a>
+              </a>
+            @endif
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                 <tr>

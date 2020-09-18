@@ -1,10 +1,8 @@
-
-
-
 <div class="outer-container">
     <div class="row">
         <div class="col-12" style="color:#283045;">
-          <button type="button" class="btn btn-primaryy mt-2 mx-auto" data-toggle="modal" data-target="#AddNewSession" style="padding:10px 24px;float: right;margin-right:10px !important">أضافة محاضرة جديدة</button>
+          <button type="button" id="AddNewSessionButton" data-toggle="modal" data-target="#AddNewSession" style="display:none;"></button>
+          <button type="button" id="AddNewZoomSessionButton" data-toggle="modal" data-target="#AddNewZoomSession" style="display:none;"></button>
         </div>
     </div>
 
@@ -27,9 +25,9 @@
                         <th class="th-sm text-center">#</th>
                         <!-- <th class="text-center">اسم الدورة</th> -->
                         <th class="th-sm text-center">اليوم</th>
-                        <th class="th-sm text-center">تاريخ المحاضرة</th>
-                        <th class="th-sm text-center">وقت بداية المحاضرة</th>
-                        <th class="th-sm text-center">وقت نهاية المحاضرة</th>
+                        <th class="th-sm text-center">التاريخ </th>
+                        <th class="th-sm text-center">وقت البداية </th>
+                        <th class="th-sm text-center">وقت النهاية </th>
                         <th class="th-sm text-center">الإجراءات</th>
                     </tr>
                 </thead>
@@ -44,7 +42,7 @@
                         <td class="priority text-center">{{ $session->day }}</td>
                         <td class="priority text-center"> 
                         @if ($session->date==date('Y-m-d'))
-                            اليوم
+                            {{ $session->date }} اليوم
                         @else
                             {{ $session->date }}
                         @endif </td>
@@ -52,22 +50,26 @@
                         <td class="priority text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
                         <td class="priority text-center">
                             @if(App\Http\Controllers\CourseAppointmentController::isSessionStillValid($session->date,$session->from_time,$session->to_time))
-                            <a style="padding: 10px 13px;background:#639fd3;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="زوم" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
-                            @else
-                            <button style="padding: 10px 13px;border: none !important;line-height: 0px;border-radius: 5px;" data-toggle="tooltip" data-placement="top" title="لا يمكن فتح المحاضرة في غير وقتها"><i class="far fa-play-circle"></i></button>
+                               @if($session->hasZoom==0) <!--normal session-->
+                                 <a class='session_icon allowattand' data-placement="top"  data-original-title="أتاحة الحضور" data-toggle="modal" data-target="#allowattandance_{{$session->id}}" href="#"><i class="fa fa-desktop"></i></a>
+                               @else
+                                 <a class='session_icon' data-toggle="tooltip" data-placement="top" title="" data-original-title="زوم" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
+                               @endif
                             @endif
-                            <a style="padding: 10px 13px;background:#28304585;color: #fff;border-radius:5px;" data-toggle="tooltip" data-placement="top" title="" data-original-title="ملفات الحضور" style="padding:8px;background:#2dce89;border-radius:5px;"  
-                            href="
-                            @if($session->hasZoom==0)
-                                {{url('instructor/courses/session/'.$session->id.'/attendance')}}
-                            @else
-                             @if(isset($session->webinar))
-                                {{url('instructor/courses/webinar/'.$session->webinar->id.'/attendance')}}
-                             @else 
-                                 '#'
-                             @endif
-                            @endif
+
+                            @if(strtotime($session->date)<=strtotime(date('Y-m-d')))  
+                               <a class='session_icon' data-toggle="tooltip" data-placement="top" title="" data-original-title="ملفات الحضور"   href="
+                                @if($session->hasZoom==0)
+                                   {{url('instructor/courses/session/'.$session->id.'/attendance')}}
+                                @else
+                                   @if(isset($session->webinar))
+                                     {{url('instructor/courses/webinar/'.$session->webinar->id.'/attendance')}}
+                                   @else 
+                                     '#'
+                                   @endif
+                                @endif
                             " target="_blanck"><i class="fa fa-list"></i></a>
+                            @endif 
                         </td>
                     </tr>
                     @endforeach
@@ -82,7 +84,6 @@
 
 
 <script>
-
     function submit(id){
         $('#add-course-dates-'+id).submit();
     }
@@ -100,8 +101,21 @@
                 "paginate": {
                     "next": "التالي",
                     "previous": "السابق",
-                }
-            }
+                },},
+                "order": [[ 2, "asc" ]],
+                 dom: 'B<"clear">lfrtip',
+                 buttons: true,
+                 buttons: [
+                        @if($course->type == 'live')
+                           {text: 'أضافة زووم', action: function ( e, dt, node, config ) { $('#AddNewZoomSessionButton').trigger('click');}},
+                        @elseif($course->type == 'face_to_face')
+                           {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $('#AddNewSessionButton').trigger('click');}},
+                        @elseif($course->type == 'blended')
+                           {text: 'اضافة زووم ', action: function ( e, dt, node, config ) { $('#AddNewZoomSessionButton').trigger('click');}},
+                           {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $('#AddNewSessionButton').trigger('click');}},
+                        @endif
+                        ],
+            
         });
         $('.dataTables_length').addClass('bs-select');
     })

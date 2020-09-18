@@ -34,9 +34,10 @@ class CourseAppintment extends Model
     {
         return $this->belongsTo('App\Models\Course');
     }
-
-    public function webinar(){
-        return $this->hasOne('App\Models\Webinar','course_appointments_id');
+  
+    public function users(){
+     //   return $this->belongsToMany('App\Models\User')->using('App\Models\CourseAppointmentAttendance')->withPivot(['SessionID']);
     }
-
+    
 }
+
