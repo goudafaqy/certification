@@ -5,14 +5,11 @@ use App\Http\Repositories\Eloquent\AdvertismentRepo;
 use App\Http\Repositories\Validation\AdvertismentRepoValidation;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use App\Http\Helpers\FileHelper;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\User;
-
+use App\Http\Helpers\GenerateHelper;
 use Johntaa\Arabic\I18N_Arabic;
-use App\Mail\SendEmail;
 
 class CertificatesController extends Controller
 {
@@ -34,34 +31,7 @@ class CertificatesController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * List the application classification ...
-     */
-    public function certificates()
-    {
-
-        // $data = ['title_ar' => 'Sending Multiple Emails','message_ar'=>'Sending Multiple Emails','link'=>'lin','extra_text'=>''];
-        // $email = new SendEmail($data , __('app.Adly Training Center') ,$data['title_ar'] ,  'Generic');
-        // $evenMyMoreUsers = ['mohgood2020@gmail.com','devmogoud@gmail.com'];
-        // Mail::to([])
-        // ->bcc($evenMyMoreUsers)
-		// ->send($email);
-		// die('Sending');
-		$data =['name_ar'=>'   محمد محمد محمود ابوالجود',
-				 'name_en'=>'',
-				 'national_id'=>'19872200552',
-				 'course_ar'=>'أساسيات وسائل التواصل الاجتماعي',
-				 'course_en'=>'',
-				 'hours'=>'65',
-				 'date'=>date('Y-M-d')];
-
-				 //$start = \Carbon\Carbon::createFromTimeString(date('Y-m-d H:i:s'));
-				 $start = \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString(date('Y-m-d H:i:s')));
-				 dd($start);
-		$this->generate($data);
-        
-    }
-
+    
 
 	 /**
      * Generate Full Certificates
@@ -191,7 +161,7 @@ class CertificatesController extends Controller
 				$this->generate($data);
 
 			}
-		
+    		  GenerateHelper::SendNotificationToStudents($course->id, 'certificate');
 		      return redirect()->back()->with('added', 'تم استخراج وتخزين الشهادات الخاصة بهذة الدورة');
 		}else{
 			 return redirect()->back()->with('error', 'لابد من أختيار الطلبة');

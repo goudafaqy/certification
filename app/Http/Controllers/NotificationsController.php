@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use App\Models\NotificationSetting;
 use App\Models\Notification;
 use App\Models\Course;
-
 use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -50,7 +49,7 @@ class NotificationsController extends Controller
     /**
      * List the application classification ...
      */
-    public function SendNotificationToStudents($course, $data= [])
+    public function SendNotificationToStudents($course, $data = [])
     {
 
                 $evenMyMoreUsers = [];
@@ -58,16 +57,16 @@ class NotificationsController extends Controller
                 $notification = new Notification();
                 foreach($students as $student){
 
-                    $evenMyMoreUsers[] =[$student->email];
+                    $evenMyMoreUsers[]      =   [$student->email];
                     $notification->title_ar =   $data['title_ar'];
                     $notification->title_en =   $data['title_en'];
                     $notification->message_ar = $data['message_ar'];
                     $notification->message_en = $data['message_en'];
-                    $notification->type = 'info';
-                    $notification->user_id = $student->user_id;
-                    $notification->link = '';
+                    $notification->type =       'info';
+                    $notification->user_id =    $student->user_id;
+                    $notification->link =       '';
                     $notification->extra_text = '';
-                    $notification->is_read = 0;
+                    $notification->is_read =    0;
                     $notification->save();
 
                 }
