@@ -49,7 +49,7 @@ class SupportRepo extends Repository implements SupportEloquent
         $ticket->start_date = Carbon::now();
         $ticket->limit_date = null;
 
-        $ticket->category_id = 1;
+        $ticket->category_id = $request->category_id;
 
         $ticket->autoSelectAgent();
 

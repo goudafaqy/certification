@@ -120,4 +120,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\EvaluationTermUser', 'user_id');
     }
 
+    public function canAccessSupportSystem(){
+        $roleNames = $this->roles->pluck('name')->toArray();
+        return in_array('admin', $roleNames) || in_array('support', $roleNames);
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Trainee;
+namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\DateHelper;
@@ -18,7 +18,6 @@ class CourseSupportController extends Controller
     var $userRepo;
     var $supportRepo;
     var $supportRepoValidation;
-
 
 
     /**
@@ -39,28 +38,30 @@ class CourseSupportController extends Controller
         $this->supportRepoValidation = $supportRepoValidation;
 
 
-        $this->middleware(['auth', 'authorize.trainee']);
+        $this->middleware(['auth', 'authorize.instructor']);
     }
 
 
     public function form($courseId)
     {
+        $type = \request('type');
 
         $course = $this->courseRepo->getById($courseId);
         if (!$course) throw new NotFoundHttpException();
 
         $currentDate = DateHelper::getCurrentDate();
-
-      return view("cp.trainee.courses.view", [
+        return view("cp.instructor.courses.view", [
             'course' => $course, 'currentDate' => $currentDate,
             'categories' => Category::all(),
-            'tab' => 'tab9', 'action' => 'form'
+            'tab' => 'tab9', 'action' => 'form',
+            'type' => $type
         ]);
     }
 
 
     public function saveTicket($courseId, Request $request)
     {
+        $type = \request('type');
         $course = $this->courseRepo->getById($courseId);
         if (!$course) throw new NotFoundHttpException();
 
@@ -68,22 +69,25 @@ class CourseSupportController extends Controller
         $data = $request->input();
         $validator = $this->supportRepoValidation->doValidate($data, 'ticket');
         if ($validator->fails()) {
-            return redirect()->route('trainee-course-support-form', [
-                'id' => $courseId
+            return redirect()->route('instructor-course-support-form', [
+                'id' => $courseId,
+                'type' => $type
             ])->withErrors($validator)->withInput($data);
         }
 
         $ticket = $this->supportRepo->createTicket($request);
 
         if (!$ticket) {
-            return redirect()->route('trainee-course-support-form', [
-                'id' => $courseId
+            return redirect()->route('instructor-course-support-form', [
+                'id' => $courseId,
+                'type' => $type
             ])->with('invalid', 'خطأ فى إنشاء التذكرة')->withInput($data);
         }
 
-        return redirect()->route('trainee-courses-view', [
+        return redirect()->route('instructor-courses-view', [
             'id' => $courseId,
             'tab' => 'support',
+            'type' => $type
         ])->with('submit', "تم إنشاء التذكرة بنجاح");
 
     }
@@ -91,6 +95,7 @@ class CourseSupportController extends Controller
 
     public function show($courseId, $ticketId)
     {
+        $type = \request('type');
 
         $course = $this->courseRepo->getById($courseId);
         if (!$course) throw new NotFoundHttpException();
@@ -101,16 +106,18 @@ class CourseSupportController extends Controller
 
 
         $currentDate = DateHelper::getCurrentDate();
-        return view("cp.trainee.courses.view", [
+        return view("cp.instructor.courses.view", [
             'course' => $course, 'currentDate' => $currentDate,
             'ticket' => $ticket,
-            'tab' => 'tab9', 'action' => 'show'
+            'tab' => 'tab9', 'action' => 'show',
+            'type' => $type
         ]);
     }
 
 
     public function saveComment(Request $request, $courseId, $ticketId)
     {
+        $type = \request('type');
 
         $course = $this->courseRepo->getById($courseId);
         if (!$course) throw new NotFoundHttpException();
@@ -123,9 +130,10 @@ class CourseSupportController extends Controller
 
 
         if ($ticket->hidden || $ticket->status_id == 5 || $ticket->status_id == 6) {
-            return redirect()->route('trainee-course-support-show', [
+            return redirect()->route('instructor-course-support-show', [
                 'id' => $courseId,
-                'ticketId' => $ticketId
+                'ticketId' => $ticketId,
+                'type' => $type
             ])->with('invalid', 'عفوا لم تستطيع اضافة رد')->withInput($data);
 
         }
@@ -133,24 +141,27 @@ class CourseSupportController extends Controller
         //validation
         $validator = $this->supportRepoValidation->doValidate($data, 'comment');
         if ($validator->fails()) {
-            return redirect()->route('trainee-course-support-show', [
+            return redirect()->route('instructor-course-support-show', [
                 'id' => $courseId,
-                'ticketId' => $ticketId
+                'ticketId' => $ticketId,
+                'type' => $type
             ])->withErrors($validator)->withInput($data);
         }
 
         $comment = $this->supportRepo->addComment($request, $ticket);
 
         if (!$comment) {
-            return redirect()->route('trainee-course-support-show', [
+            return redirect()->route('instructor-course-support-show', [
                 'id' => $courseId,
-                'ticketId' => $ticketId
+                'ticketId' => $ticketId,
+                'type' => $type
             ])->with('invalid', 'خطأ فى إضافة الرد')->withInput($data);
         }
 
-        return redirect()->route('trainee-course-support-show', [
+        return redirect()->route('instructor-course-support-show', [
             'id' => $courseId,
-            'ticketId' => $ticketId
+            'ticketId' => $ticketId,
+            'type' => $type
         ])->with('submit', "تم إضافة الرد بنجاح");
     }
 
