@@ -46,7 +46,7 @@
 				<div class="section-slantedcard-card section-slantedcard-bottom"></div>
 				<div class="section-slantedcard-card section-slantedcard-top">
 					<div class="content-slantedcard-img">
-						<img src="{{ asset('images/teaching.png') }}" class="img-fluid" width="40px">
+						<!-- <img src="{{ asset('images/teaching.png') }}" class="img-fluid" width="40px"> -->
 					</div>
 					
 					<div class="content-slantedcard-text">
