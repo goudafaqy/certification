@@ -251,10 +251,10 @@
                                             <a href="{{$tab != 'tab6'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'exams']):"javascript:void(0);"}}"
                                                for="tab6"> <i class="far fa-address-book"></i> الامتحانات والواجبات</a>
                                         </li>
-                                        <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">
-                                            <a href="{{$tab != 'tab7'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'evaluations']):"javascript:void(0);"}}"
-                                               for="tab7"> <i class="fas fa-door-open"></i> مركز التقديرات</a>
-                                        </li>
+{{--                                        <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">--}}
+{{--                                            <a href="{{$tab != 'tab7'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'evaluations']):"javascript:void(0);"}}"--}}
+{{--                                               for="tab7"> <i class="fas fa-door-open"></i> مركز التقديرات</a>--}}
+{{--                                        </li>--}}
                                         <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                             <a href="{{$tab != 'tab9'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'support']):"javascript:void(0);"}}"
                                                for="tab9"><i class="fas fa-life-ring"></i> الدعم الفني</a>
@@ -288,8 +288,8 @@
                                             @else
                                                 @include('cp.trainee.courses.view-sections.exams', ['id' => $course->id, 'exams' => $exams])
                                             @endif
-                                        @elseif($tab== 'tab7')
-                                            @include('cp.trainee.courses.view-sections.evaluations', ['id' => $course->id])
+{{--                                        @elseif($tab== 'tab7')--}}
+{{--                                            @include('cp.trainee.courses.view-sections.evaluations', ['id' => $course->id])--}}
                                         @elseif($tab== 'tab8')
                                             @include('cp.trainee.courses.view-sections.trainees', ['id' => $course->id])
                                         @elseif($tab== 'tab9')

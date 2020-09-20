@@ -202,6 +202,13 @@ Route::prefix('instructor')->group(function (){
 
         Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
         Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
+
+
+        Route::get('{id}/support/ticket', 'CourseSupportController@form')->name('instructor-course-support-form');
+        Route::post('{id}/support/ticket', 'CourseSupportController@saveTicket')->name('instructor-course-support-new-ticket');
+        Route::get('{id}/support/ticket/{ticketId}', 'CourseSupportController@show')->name('instructor-course-support-show');
+        Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('instructor-course-support-ticket-comment-save');
+
     });
 });
 

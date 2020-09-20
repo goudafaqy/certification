@@ -280,7 +280,13 @@
                                     @elseif($tab== 'tab8')
                                         @include('cp.instructor.courses.view-sections.trainees', ['id' => $course->id, 'type'=> $type])
                                     @elseif($tab== 'tab9')
-                                        @include('cp.instructor.courses.view-sections.support', ['id' => $course->id, 'type'=> $type])
+                                        @if(isset($action) && $action == 'form')
+                                            @include('cp.instructor.courses.view-sections.support-form', ['id' => $course->id, 'type'=> $type])
+                                        @elseif(isset($action) && $action == 'show')
+                                            @include('cp.instructor.courses.view-sections.support-ticket', ['id' => $course->id, 'type'=> $type])
+                                        @else
+                                            @include('cp.instructor.courses.view-sections.support', ['id' => $course->id, 'type'=> $type])
+                                        @endif
                                     @endif
                                 </div>
                             </section>
@@ -303,13 +309,13 @@
           </button>
         </div>
         <div class="modal-body" style="background: #34405a;">
-            
+
             <div class="ui-input-container">
                 <h6>العنوان</h6>
                 <div class="form-group input-group">
-                                                                            
+
                     <div class="input-group-prepend">
-    
+
                     <span class="input-group-text" id="basic-addon1" style="background:#34405a;"><img src="images/man.png" class="img-fluid" style="width:20px !important;height:20px !important"></span>
                     </div>
                     <input id="email" required="" name="text" class="form-control" type="text">
@@ -321,15 +327,15 @@
                         </label>
                         <button type="button" class="btn btn-primary" style="margin:auto; display:table;width:120px">حفظ</button>
                     </div>
-                    
+
                 </div>
-                
-       
+
+
       </div>
     </div>
   </div>
 
- 
+
 
 @include('cp.common.dashboard-footer')
 <script>
@@ -337,7 +343,7 @@
 var checkboxItem = ":checkbox";
 
 $(selectAllItems).click(function() {
-  
+
   if (this.checked) {
     $(checkboxItem).each(function() {
       this.checked = true;
@@ -347,6 +353,6 @@ $(selectAllItems).click(function() {
       this.checked = false;
     });
   }
-  
+
 });
     </script>

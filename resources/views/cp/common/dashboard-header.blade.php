@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/simple-calendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>  
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
     <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset('css/theme-dashboard.css') }}">
@@ -122,6 +122,9 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                @if(Auth::user()->canAccessSupportSystem())
+                                    <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fa fa-support"></i> </a>
+                                @endif
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
