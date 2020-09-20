@@ -11,8 +11,29 @@
     @else
   <button type="button" id="SendEmailButton" data-toggle="modal" data-target="#SendEmail" style="display:none"></button>
     <form id="generatecertifacte" action="{{route('generate_certificates')}}" method="post">
+    @csrf
+    <input type="hidden" value="{{$course->id}}" name="course">
     <div class="row">
         <div class="col-12">
+        @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            @if (\Session::has('error'))
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{!! \Session::get('error') !!}</li>
+                    </ul>
+                </div>
+            @endif
+
+            <div class="alert alert-success" id="certificatesSuccess" style="display:none">
+                   تم أعتماد الشهادات بنجاح                
+            </div>
+            <img src="{{ asset('images/loading.gif') }}" id="loading" style="width: 100px; display:none">
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                     <tr>
@@ -21,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @csrf
+                    
                     <input type="hidden" value="{{$course->id}}" name="course" >
                     @foreach ($trainees as $trainee)
                     <tr>
@@ -107,6 +128,8 @@
 
 
  $('form#generatecertifacte').on('submit', function(event){
+       $('#loading').show();
+       $('#certificatesSuccess').hide();
       var form = this;
       var rows_selected = table.column(0).checkboxes.selected();
       $.each(rows_selected, function(index, rowId){
@@ -120,6 +143,8 @@
                 success: function(data) {
                     $(this).submit();
                     //location.reload();
+                    $('#certificatesSuccess').show();
+                    $('#loading').hide();
                 }
             });
             return false;  
