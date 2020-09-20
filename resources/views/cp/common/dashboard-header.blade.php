@@ -17,11 +17,11 @@
     <link href="https://fonts.googleapis.com/css?family=Almarai|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/simple-calendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
-    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="{{ asset('site-assets/css/simple-calendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('site-assets/DataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('site-assets/DataTables/Select-1.3.1/css/select.bootstrap.min.css') }}">
+    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/theme-dashboard.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
@@ -29,6 +29,8 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/new-style2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('site-assets/css/jquery.lineProgressbar.css') }}">
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
     <!-- End Style -->
 </head>
@@ -41,42 +43,6 @@
                     <div class="top-menu d-flex align-items-center">
                         @if(!isset($role) || $role == 1)
                         <a type="" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></a>
-
-                        <!-- <div class="nav-item dropdown">
-                            <a class=" dropdown-toggle" href="#" data-toggle="dropdown">
-                                <img src="{{ asset('images/school.png') }}" style="width: 20px">
-                                الدورات
-                                <i class="ik ik-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right" style="position: relative; right: 1px;">
-                                <a href="#" class="dropdown-item">
-                                    <i class="fa fa-gavel"></i>
-                                    أعوان القضاة
-                                </a>
-                                <li><a class="dropdown-item" href="#">
-                                        <i class="fa fa-gavel"></i>
-                                        القضاة
-                                        <i class="fa fa-angle-left float-left" style="line-height: 1.4;"></i>
-                                    </a>
-                                    <ul class="submenu dropdown-menu">
-                                        <li><a class="dropdown-item" href="">عموم القضاة </a></li>
-                                        <li><a class="dropdown-item" href="">قضاة الأحوال الشخصية </a></li>
-                                        <li><a class="dropdown-item" href="">قضاة الإستئناف</a></li>
-                                        <li><a class="dropdown-item" href="">قضاة التنفيذ </a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-user"></i> المحامون </a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-address-book"></i> الملازمون </a> </li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-outdent"></i> الموثقين </a> </li>
-                                <li><a class="dropdown-item" href="#"> <i class="fa fa-balance-scale"></i> كتاب العدل </a> </li>
-                            </ul>
-                        </div> -->
-                        <!-- <div class="nav-item">
-                            <a class="" href="#">
-                                <img src="{{ asset('images/computer.png') }}" style="width: 20px">
-                                المسارات
-                            </a>
-                        </div> -->
                         @endif
                     </div>
                     <div class="top-menu d-flex align-items-center">
@@ -116,11 +82,22 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <i class="ik ik-chevron-down"></i>
-                                <img class="avatar" src="{{ Auth::user()->image?url(Auth::user()->image): "#" }}" alt="">
-                                <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->username }}</span>
+                                <img class="avatar" src="{{ Auth::user()->image?url(Auth::user()->image): asset('site-assets/images/avatarman.png') }}" alt="">
+                                <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->name_ar }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
+                                @foreach (Auth::user()->roles as $key=>$role)
+                                    @if ($role->name=='instructor')
+                                     <a class="dropdown-item" href="/dashboard/instructor">دخول كمدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @elseif ($role->name=='trainee')
+                                     <a class="dropdown-item" href="/dashboard/trainee">دخول كمتدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @elseif ($role->name=='support')
+                                     <a class="dropdown-item" href="/dashboard/support">دخول كمسئول دعم فنى<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @elseif ($role->name=='admin')
+                                     <a class="dropdown-item" href="/dashboard/admin">دخول كمدير للمنصة<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                    @endif
+                                @endforeach
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
                                 @if(Auth::user()->canAccessSupportSystem())
                                     <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fa fa-support"></i> </a>

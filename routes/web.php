@@ -20,12 +20,25 @@ Route::get('/course/{id}','WelcomeController@course');
 Route::get('/profile/{id}','WelcomeController@instructorProfile');
 Route::post('/purchase','PurchaseController@purchase')->name('purchase-course');
 Route::get('/courses','WelcomeController@searchResults')->name('courses');
+Route::view('forgot', 'auth.forgot');
+
+Route::get('/reset/{token}' , 'Auth\ResetPasswordController@getSendResetLink');
+Route::post('/send-reset-password-email' , 'Auth\ResetPasswordController@sendResetLink')->name('send_password_link');
+
+Route::get('/reset-password' , 'Auth\ResetPasswordController@getResetPasswordPage');
+Route::post('/reset-password' , 'Auth\ResetPasswordController@resetPassword')->name('reset-password');
+
 
 Auth::routes();
 
     // Home routes ...
     Route::prefix('dashboard')->group(function () {
         Route::get('/', 'HomeController@dashboard')->name('dashboard');
+        Route::get('/trainee', 'HomeController@traineeDashboard');
+        Route::get('/instructor', 'HomeController@instructorDashboard');
+        Route::get('/admin', 'HomeController@adminDashboard');
+        Route::get('/support', 'HomeController@supportDashboard');
+        
         Route::get('edit-profile', 'ProfileController@edit')->name('edit-profile');
         Route::post('save-profile', 'ProfileController@save')->name('save-profile');
         Route::post('save-qualifications', 'ProfileController@saveQualifications')->name('save-qualifications');
@@ -78,12 +91,19 @@ Auth::routes();
     Route::prefix('courses')->group(function () {
         Route::get('appointments/{course_id}', 'CourseAppointmentController@list')->name('appointments-list');
         Route::post('appointments/generate', 'CourseAppointmentController@generate')->name('generate-appointment');
+        Route::post('appointments/validateTime', 'CourseAppointmentController@validateTime')->name('validate-appointment');
         Route::get('appointments/delete/{id}', 'CourseAppointmentController@delete')->name('delete-appointment');
         Route::get('appointments/reset/{id}', 'CourseAppointmentController@reset')->name('reset-appointment');
         Route::post('appointments/zoom', 'CourseAppointmentController@scheduleOnZoom')->name('scheduleOnZoom-appointment');
         Route::get('appointments/schedulezoom/generate', 'CourseAppointmentController@schedulingZoomAppointments')->name('scheduleOnZoom-appointment-cron');
     });
 
+      // Course Appointments routes ...
+      Route::prefix('courses')->group(function () {
+        Route::get('ratings/{course_id}', 'CourseRatingController@list')->name('ratings-list');
+        Route::post('ratings/rate', 'CourseRatingController@rate')->name('rate_course');
+        Route::post('ratings/aprove_bulk', 'CourseRatingController@approve_bulk')->name('approve-bulk');
+     });
     // Course Materials routes ...
     Route::prefix('materials')->group(function () {
         Route::get('{course_id}', 'CourseMaterialsController@list')->name('materials-list');
@@ -91,6 +111,7 @@ Auth::routes();
         Route::get('update/{id}/{course_id}', 'CourseMaterialsController@update')->name('materials-update');
         Route::post('update', 'CourseMaterialsController@edit')->name('update-materials');
         Route::post('save', 'CourseMaterialsController@create')->name('save-materials');
+        Route::post('saveAjex', 'CourseMaterialsController@createAjax')->name('saveAjax-materials');
         Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
     });
 
@@ -175,8 +196,20 @@ Auth::routes();
 // Instructor dashboard routes ...
 Route::prefix('instructor')->group(function (){
     Route::prefix('courses')->namespace('Instructor')->group(function () {
-        Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance');
+        Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance'); 
         Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');
+        Route::get('session/{session_id}/attendance', 'CourseAppointmentAttendenceController@FaceToFaceindex')->name('attendance_facetoface');
+        Route::get('session/{session_id}/bbbattendance', 'CourseAppointmentAttendenceController@BBBAttandence')->name('attendance_bbb');
+        Route::get('session/attend-status/{user_id}', 'CourseAppointmentAttendenceController@index')->name('attend-status');
+        Route::post('session/StartNewsession', 'CourseAppointmentAttendenceController@StartNewSession')->name('StartNewSession');
+        Route::post('session/ExpireAttandSession', 'CourseAppointmentAttendenceController@ExpireAttandSession')->name('ExpireAttandSession');
+        Route::post('session/attend_traineesbyInstructor', 'CourseAppointmentAttendenceController@Attend_traineesbyInstructor')->name('attend_traineesbyInstructor');
+        Route::get('session/{session_id}/{maxSessionId}/StartBBBSession', 'CourseController@StartBBBSession')->name('StartBBBSession');
+        Route::get('session/{session_id}/{maxSessionId}/EndBBBSession', 'CourseController@EndBBBSession')->name('EndBBBSession');
+
+        Route::post('appointments/AddNewAppointment', 'CourseController@AddNewAppointment')->name('AddNewAppointment');
+        Route::get('appointments/AddNewbbbAppointment', 'CourseController@AddNewbbbAppointment')->name('AddNewbbbAppointment');
+
 
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
         Route::get('{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
@@ -227,6 +260,9 @@ Route::prefix('trainee')->group(function (){
         Route::post('{id}/support/ticket', 'CourseSupportController@saveTicket')->name('trainee-course-support-new-ticket');
         Route::get('{id}/support/ticket/{ticketId}', 'CourseSupportController@show')->name('trainee-course-support-show');
         Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('trainee-course-support-ticket-comment-save');
+        Route::post('session/AttandSession', 'CourseAppointmentAttendenceController@AttandSession')->name('AttandSession');
+        Route::get('session/{session_id}/{maxSessionId}/JoinBBBSession', 'CourseController@JoinBBBSession')->name('JoinBBBSession');
+
 
     });
 

@@ -17,6 +17,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "johntaa/ar-php": "dev-master",
+        "joisarjignesh/bigbluebutton": "^1.1",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",

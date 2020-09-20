@@ -27,7 +27,7 @@
                     <div class="card" data-state="#about">
                         <div class="card-header">
                             <div class="card-cover"></div>
-                            <img class="card-avatar" src="{{$mr->image != null ? url($mr->image ):asset('images/Dr_Image.jpg')}}" alt="avatar" />
+                            <img class="card-avatar" src="{{$mr->image != null ? url($mr->image ):asset('site-assets/images/avatarman.png')}}" alt="{{$mr->name}}" />
                             <h1 class="card-fullname">{{$mr->name}}</h1>
                             <h2 class="card-jobtitle">{{$mr->job_title}}</h2>
                         </div>

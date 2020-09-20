@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classification;
 use App\Models\Course;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -24,6 +24,7 @@ class WelcomeController extends Controller
         $advertisments = Advertisment::all();
         $testmonials = Testmonial::all();
         $sliderItems = Classification::where("home_page_display",1)->orderBy('created_at','DESC')->take(4)->get();
+
         return view('site.welcome',compact("sliderItems","advertisments",'testmonials'));
     }
 
@@ -43,6 +44,7 @@ class WelcomeController extends Controller
     }
 
 
+    
     /**
      * get course details
      * @param $id
@@ -51,6 +53,21 @@ class WelcomeController extends Controller
     public function course($id){
         $minutes = [];
         $course = Course::find($id);
+        $ratings =  $course->ratings;
+        $ratingsArray=array();
+        if(!isset($ratings)){
+        $avarage_rating=0;$sum=0;$sumAll=array();
+        $sumAll[1]=0;$sumAll[2]=0;$sumAll[3]=0;$sumAll[4]=0;$sumAll[5]=0;
+        foreach($ratings as $rating){ 
+         $sum+=$rating->rating;
+         $sumAll[$rating->rating]++;
+        }
+        $avarage_rating=$sum/count($ratings);
+        $ratingsArray=array('avarage_rating'=>$avarage_rating,'all'=>$sumAll,'ratingCounts'=>count($ratings));
+       }else{
+        $sumAll[1]=0;$sumAll[2]=0;$sumAll[3]=0;$sumAll[4]=0;$sumAll[5]=0;
+        $ratingsArray=array('avarage_rating'=>0,'all'=>$sumAll,'ratingCounts'=>1);
+       }
         $sections = Section::where('course_id',$id)->with('units')->get();
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
         $courseAppointments = $course->appointments;
@@ -61,7 +78,7 @@ class WelcomeController extends Controller
         }
         $totalTime = array_sum($minutes);
 
-        return view('site.course',compact('course','related_courses', 'sections','totalTime'));
+        return view('site.course',compact('course','related_courses', 'sections','totalTime','ratingsArray'));
     }
 
     /**
@@ -88,6 +105,11 @@ class WelcomeController extends Controller
             $query->whereIn('cat_id	',$request->get('categories'));
 
         $courses = $query->paginate(12)->appends(['q'=>$request->get('q')]);
+        // dd($courses);
+        // if(count($courses) < 1){
+        //     $Newquery = Course::query();
+        //     $courses = $Newquery->paginate(12);
+        // }
         return view('site.searchResults',compact('courses','categories','classifications'));
     }
 

@@ -6,8 +6,18 @@
         <div class="col-xl-8 col-lg-8 col-md-9 my-auto">
             <div class="container-login">
                 <div class="wrap-login">
-                    <form class="login-form" action="/password/reset" method="post">
+                @if (session('info'))
+                                        <div class="alert alert-info alert-dismissible fade show">
+                                            {{ session('info') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+
+                    <form class="login-form" action="{{ route('reset-password') }}" method="post">
                         @csrf
+                        <input type="hidden" name="token" value="{{$token}}" >
                         <div class="logo-centered">
                             <a href="index.html">
                                 <img src="{{asset('images/new-logo.png')}}" class="" alt="">
@@ -17,15 +27,7 @@
 					</span>
                         <div class="row">
                             <div class="col-md-7" style="border-left: 1px solid">
-                                @error('password')
-                                <div class="valid"><a href="#">{{$message}}</a></div>
-                                @enderror
-                                <div class=" input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                                    </div>
-                                    <input class="form-control" type="password" id="password" required="" name="password" placeholder="كلمة المرور الحالية">
-                                </div>
+                               
                                 @error('new_password')
                                 <div class="valid"><a href="#">{{$message}}</a></div>
                                 @enderror

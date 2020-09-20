@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">الرئيسية</a></li>
             <li class="breadcrumb-item"><a href="/courses">الدورات التدريبية</a></li>
-            <li class="breadcrumb-item active" aria-current="page">المنازعات التجاريه</li>
+            <li class="breadcrumb-item active" aria-current="page"> {{$course->title}}</li>
         </ol>
     </div>
 </nav>
@@ -20,14 +20,13 @@
                     <h1 class="entry-title">
                         {{$course->title}}
                     </h1>
-                    <p> {{substr($course->overview,0,200)}} ...
-                    </p>
+                    <p> {{$course->overview}}    </p>
                 </div>
                 <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                     <div class="course-meta">
                         <div class="course-author">
                             <div class="course-author-content">
-                                <img alt="User Avatar" src="{{asset('site-assets/images/Dr_Image.jpg')}}" class="avatar avatar-96 photo" height="96" width="96">
+                                <img alt="User Avatar" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('site-assets/images/avatarman.png')}}" class="avatar avatar-96 photo" height="96" width="96">
                                 <div class="author-contain">
                                     <label itemprop="jobTitle">المدرب</label>
                                     <div class="value">
@@ -51,16 +50,8 @@
                             <label>التقيم</label>
                             <div class="value">
                                 <div class="review-stars-rated">
-                                    <ul class="review-stars">
-
-                                        <li><span class="far fa-star"></span></li>
-                                        <li><span class="far fa-star"></span></li>
-                                        <li><span class="far fa-star"></span></li>
-                                        <li><span class="far fa-star"></span></li>
-                                        <li><span class="far fa-star"></span></li>
-                                    </ul>
+                                <div id="AverageStars1">★★★★★</div>
                                 </div>
-                                {{-- <span>(تقيم)</span>--}}
                             </div>
                         </div>
                     </div>
@@ -100,7 +91,7 @@
                                 <li role="presentation" class="course-nav-tab-reviews thim-col-4">
                                     <a href="#tab-reviews" data-toggle="tab">
                                         <img src="{{asset('site-assets/images/laww.png')}}" class="img-fluid" width="20">
-                                        <span>المراجعات</span>
+                                        <span>الاراء</span>
                                     </a>
                                 </li>
                             </ul>
@@ -108,7 +99,10 @@
                                 <div class="tab-pane course-tab-panel-overview course-tab-panel active" id="tab-overview">
                                     <div class="course-description" id="learn-press-course-description">
                                         <div class="thim-course-content">
-                                            <h4> {{$course->overview}}</h4>
+                                            <h4> الهدف العام :</h4>
+                                            <p> {{$course->overview}}</p>
+                                            <h4> الأهداف التفصيلية:</h4>
+                                            <p>{{$course->objective}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -164,27 +158,23 @@
 
                                 <div class="tab-pane course-tab-panel-reviews course-tab-panel" id="tab-reviews">
                                     <div class="course-rating">
-                                        <div class="section-header wow fadeInDown" style="visibility: hidden; animation-name: none;">
-                                            <h4><span> المراجعات</span></h4>
-
-                                        </div>
+                                        
                                         <div class="average-rating">
-                                            <p class="rating-title">متوسط تقييم</p>
+                                            <p class="rating-title">التقيم الكلى</p>
                                             <div class="rating-box">
-                                                <div class="average-value" itemprop="ratingValue">0</div>
+                                                <div class="average-value" itemprop="ratingValue">{{round($ratingsArray['avarage_rating'],2)}}</div>
                                                 <div class="review-star">
                                                     <div class="review-stars-rated">
-                                                        <ul class="review-stars">
-                                                            <li><span class="far fa-star"></span></li>
-                                                            <li><span class="far fa-star"></span></li>
-                                                            <li><span class="far fa-star"></span></li>
-                                                            <li><span class="far fa-star"></span></li>
-                                                            <li><span class="far fa-star"></span></li>
-                                                        </ul>
+                                                       <div id="AverageStars2">★★★★★</div>
                                                     </div>
                                                 </div>
                                                 <div class="review-amount" itemprop="ratingCount">
-                                                    0 rating
+                                                    @if (round($ratingsArray['avarage_rating'],2)>0)
+                                                      عدد {{$ratingsArray['ratingCounts']}} متدرب
+                                                      @else
+                                                      لم يتم التقيم بعد
+                                                    @endif
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -195,58 +185,58 @@
                                                 <div class="detailed-rating">
                                                     <div class="stars">
                                                         <div class="key">
-                                                            ٥
+                                                            5
                                                         </div>
                                                         <div class="bar">
                                                             <div class="full_bar">
-                                                                <div style="width:50% "></div>
+                                                                <div style="width:{{round($ratingsArray['all'][5]/$ratingsArray['ratingCounts'],2)*100}}% "></div>
                                                             </div>
                                                         </div>
-                                                        <span>50%</span>
+                                                        <span>{{round($ratingsArray['all'][5]/$ratingsArray['ratingCounts'],2)*100}}%</span>
                                                     </div>
                                                     <div class="stars">
                                                         <div class="key">
-                                                            ٤
+                                                            4
                                                         </div>
                                                         <div class="bar">
                                                             <div class="full_bar">
-                                                                <div style="width:0%"></div>
+                                                                <div style="width:{{round($ratingsArray['all'][4]/$ratingsArray['ratingCounts'],2)*100}}%"></div>
                                                             </div>
                                                         </div>
-                                                        <span>0%</span>
+                                                        <span>{{round($ratingsArray['all'][4]/$ratingsArray['ratingCounts'],2)*100}}%</span>
                                                     </div>
                                                     <div class="stars">
                                                         <div class="key">
-                                                            ٣
+                                                            3
                                                         </div>
                                                         <div class="bar">
                                                             <div class="full_bar">
-                                                                <div style="width:0%"></div>
+                                                                <div style="width:{{round($ratingsArray['all'][3]/$ratingsArray['ratingCounts'],2)*100}}%"></div>
                                                             </div>
                                                         </div>
-                                                        <span>0%</span>
+                                                        <span>{{round($ratingsArray['all'][3]/$ratingsArray['ratingCounts'],2)*100}}%</span>
                                                     </div>
                                                     <div class="stars">
                                                         <div class="key">
-                                                            ٢
+                                                            2
                                                         </div>
                                                         <div class="bar">
                                                             <div class="full_bar">
-                                                                <div style="width:50%"></div>
+                                                                <div style="width:{{round($ratingsArray['all'][2]/$ratingsArray['ratingCounts'],2)*100}}%"></div>
                                                             </div>
                                                         </div>
-                                                        <span>50%</span>
+                                                        <span>{{round($ratingsArray['all'][2]/$ratingsArray['ratingCounts'],2)*100}}%</span>
                                                     </div>
                                                     <div class="stars">
                                                         <div class="key">
-                                                            ١
+                                                            1
                                                         </div>
                                                         <div class="bar">
                                                             <div class="full_bar">
-                                                                <div style="width:0%"></div>
+                                                                <div style="width:{{round($ratingsArray['all'][1]/$ratingsArray['ratingCounts'],2)*100}}%"></div>
                                                             </div>
                                                         </div>
-                                                        <span>0%</span>
+                                                        <span>{{round($ratingsArray['all'][1]/$ratingsArray['ratingCounts'],2)*100}}%</span>
                                                     </div>
 
                                                 </div>
@@ -268,7 +258,7 @@
                 </div>
                 <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                     <div class="related-courses">
-                        <h3 class="p-header">كورسات ذات صله</h3><span class="pull-left"></span>
+                        <h3 class="p-header">قد يهمك أيضا</h3><span class="pull-left"></span>
                         <div class="clear">
                             <div class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
 
@@ -277,12 +267,12 @@
                                     <div class="course-item-wrapper">
                                         <div class="course-thumbnail">
                                             <a href="{{url('course/'.$coursee->id)}}"><img src="{{url($coursee->image != null?$coursee->image:'site-assets/images/2.jpg')}}" alt=""></a>
-                                            <div class="price">{{$coursee->price}} SR</div>
+                                            <div class="price">{{$coursee->price}} ريال</div>
                                         </div>
                                         <div class="thim-course-content">
                                             <div class="course-author">
                                                 <div class="course-author-content">
-                                                    <img alt="" src="{{asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                    <img alt="{{$coursee->instructor->name}}" src="{{$coursee->instructor->image != null ? url($coursee->instructor->image ):asset('site-assets/images/avatarman.png')}}" class="avatar avatar-96 photo">
                                                     <div class="author-contain">
                                                         <label>المدرب</label>
                                                         <div class="value" itemprop="name">
@@ -340,8 +330,8 @@
                                         <input type="hidden" name="purchase-course-nonce" value="1ad69a85d7">
                                         <input type="hidden" name="course_id" value="{{$course->id}}">
                                         @php
-                                        $start = \Carbon\Carbon::createFromTimeString($course->start_date.' '.'00:00:01');
-                                        $end = \Carbon\Carbon::createFromTimeString($course->end_date.' '.'23:59:59');
+                                        $start = \Carbon\Carbon::createFromTimeString($course->start_reg_date.' '.'00:00:01');
+                                        $end = \Carbon\Carbon::createFromTimeString($course->end_reg_date.' '.'23:59:59');
                                         @endphp
 
                                         <button {{$course->students()->count() < $course->seats? "" : "disabled"}} {{$start->isPast()? "" : "disabled"}} {{$end->isPast()? "disabled" : ""}} type="submit" class="lp-button button button-purchase-course thim-enroll-course-button">
@@ -375,22 +365,22 @@
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span style="font-size: 12px" class="label"> بدء التسجيل</span>
-                                        <span style="font-size: 12px" class="value">{{ \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->start_date .'  00:00:01'))}}</span>
+                                        <span style="font-size: 12px" class="value">{{ \Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->start_reg_date .'  00:00:01'))}}</span>
                                     </li>
                                     <li class="duration-feature">
                                         <i class="fas fa-calendar-alt"></i>
                                         <span style="font-size: 12px" class="label"> نهاية التسجيل</span>
-                                        <span style="font-size: 12px" class="value">{{\Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->end_date . ' 23:59:59'))}}</span>
+                                        <span style="font-size: 12px" class="value">{{\Alkoumi\LaravelHijriDate\Hijri::DateMediumFormat('ar',\Carbon\Carbon::createFromTimeString($course->end_reg_date . ' 23:59:59'))}}</span>
                                     </li>
                                     <li class="skill-feature">
                                         <i class="far fa-clock"></i>
-                                        <span class="label">مدة البرنامج</span>
-                                        <span class="value">{{round($totalTime/60)}} ساعات </span>
+                                        <span class="label">مدة الدورة التدريبية</span>
+                                        <span class="value">عدد {{round($totalTime/60)}} ساعة </span>
 
                                     </li>
                                     <li class="skill-feature">
                                         <i class="fas fa-level-up-alt"></i>
-                                        <span class="label">مستوى البرنامج</span>
+                                        <span class="label">مستوى الدورة التدريبية</span>
                                         @if($course->skill_level == "m")
                                         <span class="value">متوسط</span>
                                         @elseif($course->skill_level == "l")
@@ -457,7 +447,7 @@
                                     </li>
                                     <li>
                                         <div class="googleplus-social">
-                                            <a target="_blank" class="googleplus" href="#" title="email">
+                                            <a target="_blank" class="googleplus" href="mailto:you@gmail.com?subject=مركز التدريب العدلى-{{$course->title}}&body={{URL::current()}}" title="email">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </div>
@@ -471,7 +461,7 @@
                                     </li>
                                     <li>
                                         <div class="pinterest-social">
-                                            <a id="copy" class="pinterest" href="#" title="copUrl">
+                                            <a id="copy" class="pinterest" href="#" title="copUrl"  onclick="javascript:location.href='{{URL::current()}}'">
                                                 <i class="far fa-copy"></i>
                                             </a>
                                         </div>
@@ -497,6 +487,7 @@
         $("#learn-press-course-tabs ul li").removeClass("active");
         $(this).parent().addClass('active');
     });
+
 </script>
 <script>
     // Prevent closing from click inside dropdown
@@ -517,3 +508,27 @@
     }
 </script>
 @endsection
+
+<style>
+<?php $percent=(round($ratingsArray['avarage_rating'],2)/5)*100 ;   ?>
+#AverageStars1 {
+  display: inline-block;
+  font-size: 22px;
+  font-family: Times;
+  line-height: 1;
+  letter-spacing: 3px;
+  background:linear-gradient(90deg, #fc0 <?php print $percent ?>%, #fff <?php print $percent ?>%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  
+}
+#AverageStars2 {
+  display: inline-block;
+  font-size: 30px;
+  font-family: Times;
+  line-height: 1;
+  letter-spacing: 3px;
+  background:linear-gradient(90deg, #fc0 <?php print $percent ?>%, #bdb3b3 <?php print $percent ?>%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  
+}
+</style>
