@@ -626,9 +626,7 @@ div.pub-ser2 {
     margin-top: -6px;
 }
 
-.dataTables_length {
-    display: block !important;
-}
+
 
 .tooltip-arrow, .tooltip > .tooltip-inner {
     background-color: #000440;
@@ -1709,7 +1707,7 @@ input[type="date"] {
 .ui-input-container {
     background-color: #fafcfd;
     border-radius: 4px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding: 10px;
 }
@@ -2597,6 +2595,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     border-top-right-radius: 10px !important;
     border-bottom-right-radius: 10px;
 }
+
 .course-group{
     background-color: #ebf0f3;
     border-top-right-radius: 5px !important;
@@ -2816,7 +2815,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
 @media (max-width: 991px) {
     .register .register-form {
-        margin-top: 16%;
+        margin-top: 1%;
     }
 }
 
@@ -2866,7 +2865,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 .register-left {
     text-align: center;
     color: #fff;
-    margin-top: 4%;
+   /* margin-top: 4%; */
 }
 
 .register-left input {
@@ -3333,7 +3332,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .register-form .form-group .input-group-text {
-    background-color: #aeb3bd30;
+    background-color: #555;
     border-top-right-radius: 10px !important;
     border-bottom-right-radius: 10px;
 }
@@ -3438,7 +3437,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .content-switch input:checked + .slider {
-    background-color: #1849AB;
+    background-color: #2dce89;
     outline: none !important;
 }
 
@@ -4005,4 +4004,33 @@ pre {
     color:#fff;
     padding:2px 20px;
     width:250px;
+}
+
+.input-group .lacourse{
+    color:#fff;
+    padding:2px 20px;
+    width:90px;
+}
+.dataTables_filter{
+    float:left;
+}
+
+.dataTables_length{
+    float:right;
+}
+.dataTables_info{
+float:right;
+}
+
+.session_icon{
+    padding: 10px 13px;background:#639fd3;color: #fff;border-radius:5px;
+}
+
+.session_icongreen{
+    padding: 10px 13px;background:#1db51d;color: #fff;border-radius:5px;
+}
+#SessionRandomCode{
+    color:green;
+    font-size:188px;
+    text-align:center;
 }

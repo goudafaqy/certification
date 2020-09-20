@@ -86,7 +86,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role');
     }
-
+    public function appointments()
+    {
+      //  return $this->belongsToMany('App\Models\CourseAppintment')->using('App\Models\CourseAppointmentAttendance');
+    }
     public function getNameAttribute(){
         return $this["name_".App::getLocale()];
     }

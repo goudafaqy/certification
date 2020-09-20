@@ -17,8 +17,8 @@
                                 <a style="font-size: 1.1em;" href="{{ route('courses-list') }}" class="widget-title">قائمة الدورات <i class="fa fa-arrow-left"></i></a>
                             </div>
                         </div>
-                        <div class="card-body" style="padding: 0 15px">
-                            <form id="form" action="{{ route('generate-appointment') }}" method="POST">
+                        <div class="card-body" style="padding: 0 15px">                           
+                         <form id="form" action="{{ route('generate-appointment') }}" method="POST">
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
                                     <div class="col-md-6">
@@ -41,7 +41,7 @@
                                         <div class="form-group">
                                             <label for="end_date">وقت بداية المحاضرة</label>
                                             <div class='input-group date1' id='datetimepicker3'>
-                                                <input type='text' class="form-control" name="from_time" />
+                                                <input type='text' class="form-control" name="from_time" id="from_time" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
                                                 </span>
@@ -52,7 +52,7 @@
                                         <div class="form-group">
                                             <label for="end_date">وقت نهاية المحاضرة</label>
                                             <div class='input-group date1' id='datetimepicker4'>
-                                                <input type='text' class="form-control" name="to_time" />
+                                                <input type='text' class="form-control" name="to_time"  id="to_time"/>
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
                                                 </span>
@@ -92,7 +92,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-3">
-                                        <button style="width: 100%; margin-top: 20px;" type="submit" id="generate" class="btn btn-primary">استخراج مواعيد الدورة</button>
+                                        <button style="width: 100%; margin-top: 20px;" type="button" id="generate" class="btn btn-primary">استخراج مواعيد الدورة</button>
                                     </div>
                                 </div>
                             </form>
@@ -122,7 +122,7 @@
                                 </form>
                                 @else
                                 <div class="alert alert-success" style="padding: 10px 50px; border-radius: 3px;">
-                                    <b>تمت جدولة المواعيد بنجاح <i class="fa fa-check-circle"></i></b>
+                                    <b>تم جدولة الموعيد   <i class="fa fa-check-circle"></i></b>
                                 </div>
                                 @endif
                                 @endif
@@ -220,23 +220,34 @@
 @include('cp.common.dashboard-footer')
 <script>
 
-    $(document).on("click", '#generate', function () {
-        $("div.spanner").removeClass("hide");
-        $("div.spanner").addClass("show");
-        $('#form').submit(function() {
-            event.preventDefault();
+        $(document).on("click", '#generate', function () {
+            $("div.spanner").removeClass("hide");
+            $("div.spanner").addClass("show");
             $.ajax({
-                data: $(this).serialize(),
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                success: function(data) {
-                    $("div.spanner").removeClass("show");
-                    $("div.spanner").addClass("hide");
-                    location.reload();
+                    data: {"_token": "{{ csrf_token() }}","from_time":$('#from_time').val(),"to_time":$('#to_time').val()},
+                    type: "POST",
+                    url: "{{route('validate-appointment')}}",
+                    success: function(result) {
+                            if (result){
+                            $.ajax({
+                                data: $('#form').serialize(),
+                                type: $('#form').attr('method'),
+                                url: $('#form').attr('action'),
+                                success: function(data) {
+                                $("div.spanner").removeClass("show");
+                                $("div.spanner").addClass("hide");
+                                location.reload();
+                                 }
+                                });
+                      } else{
+                          alert("وقت النهاية لا يمكن ان يكون قبل وقت البداية");
+                           $("div.spanner").removeClass("show");
+                            $("div.spanner").addClass("hide");
+                      }
                 }
             });
-            return false;
-        });
+
+       
     });
 
     $(function () {
@@ -257,8 +268,6 @@
     });
 
     $(document).ready(function () {
-
-
         $('[data-toggle="tooltip"]').tooltip();
          var table= $('#dtBasicExample').DataTable({
             "searching": true ,
@@ -283,6 +292,9 @@
 
  // Handle form submission event
  $('form#secheduleOnZoom').on('submit', function(event){
+    $("div.spanner").removeClass("hide");
+     $("div.spanner").addClass("show");
+        
       var form = this;
       var rows_selected = table.column(0).checkboxes.selected();
       // Iterate over all selected checkboxes
@@ -297,6 +309,9 @@
                 url: $(this).attr('action'),
                 success: function(data) {
                     $(this).submit();
+                    $("div.spanner").removeClass("show");
+                    $("div.spanner").addClass("hide");
+    
                     location.reload();
                 }
             });
@@ -322,6 +337,5 @@
             }
         })
     });
-
 
 </script>

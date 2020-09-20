@@ -31,12 +31,7 @@ public function __construct(CourseAppointmentRepo $appointmentRepo){
         $attendances  = $webinar->attendances;
         return view('cp.instructor.courses.attendance',compact('attendances'));
     }
-    public function FaceToFaceindex($session_id){
-        $session=$this->appointmentRepo->getById($session_id);
-        //$session
-        $attendances  =array();
-        return view('cp.instructor.courses.attendance',compact('attendances'));
-    }
+    
     /**
      * @param $course_id
      * @param $webinar_id
