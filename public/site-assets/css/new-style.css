@@ -76,6 +76,13 @@ body{
     border-radius: 8px
 }
 
+.btn-outline-succes:hover{
+
+    color:#fff !important
+}
+.navbar-light .setting-menu a.btn-outline-success:hover{
+    color:#fff !important
+}
 .navbar-light .navbar-nav .nav-link{
 
     color:#c5aa89;

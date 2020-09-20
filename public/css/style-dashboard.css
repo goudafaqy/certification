@@ -3970,6 +3970,15 @@ pre {
 .calendar{
     margin-top:10px;
 }
+.calendar table{
+    font-family: "Univers Next Arabic" !important;
+}
+.calendar header .btn{
+    margin-right: 10px;
+}
+.calendar header .btn{
+    margin-left:10px ;
+}
 .calendar .day{
     text-align: center !important;
 }
