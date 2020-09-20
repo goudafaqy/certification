@@ -90,7 +90,7 @@
                                                     <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="إعادة تشغيل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-copy"></i></button>
                                                     @endif
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="duplicate_{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="duplicate{{$course->id}}" aria-hidden="true">
+                                                    <div class="modal" id="duplicate_{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="duplicate{{$course->id}}" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <form id="add-course-dates-{{$course->id}}" action="{{ route('courses-duplicate') }}" method="POST">

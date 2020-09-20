@@ -4063,7 +4063,9 @@ float:right;
     padding: 30px 0 20px;
 	  
 }
-
+.modal.fade .modal-dialog{
+    transition: none !important;
+}
 .content-slantedcard {
     margin-right: auto;
     margin-left: auto;
