@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Helpers\DateHelper; 
+use App\Http\Helpers\BBBHelper;
 use App\Http\Repositories\Validation\CourseAppointmentRepoValidation;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\CourseAppointmentAttendanceRepo;
@@ -57,6 +58,31 @@ class CourseAppointmentAttendenceController extends Controller
         }
         return view('cp.instructor.courses.attendanceNormal',compact('attendances','details'));
     }
+    public function BBBAttandence($appointment_id){
+        $appDetails=$this->courseAppRepo->getById($appointment_id);
+        $details=array("Appointment_date"=>$appDetails->date,"Course_title"=>$appDetails->course->title,
+                       "Course_id"=>$appDetails->course);
+
+        $meeting_id=$appDetails->course->code.":".$appDetails->course->id.":".$appointment_id;
+                              
+        $attendances=array();
+        // foreach($appointments as $appointment){
+        //     $row=array();
+        //     $row['attand_time']= $appointment->attand_time;	
+	    //     $row['SessionID']=   $appointment->SessionID;
+        //     $row['attand']=      $appointment->attand;
+        //     $row['user_id']=    $appointment->user_id;
+        //     $row['id']=    $appointment->id;
+        //     $row['userName']=     $this->userRepo->getById($appointment->user_id)->name_ar;
+        //     $attendances[]=$row;
+        // }
+        
+        
+        $Meeting=BBBHelper::getMeetingInfo($meeting_id);
+        dd($Meeting);
+        return view('cp.instructor.courses.attendanceNormal',compact('attendances','details'));
+
+    }
     public function getMaxSessionId($appointment_id){
         $MaxSessionID=$this->courseAppointmentAttendenceRepo->getMaxSessionID($appointment_id);
         return $MaxSessionID;
@@ -109,7 +135,8 @@ class CourseAppointmentAttendenceController extends Controller
         }
        }
 
-       public function Attend_traineesbyInstructor(Request $request){
+   
+    public function Attend_traineesbyInstructor(Request $request){
         $inputs = $request->input();
         $SessionsIds=$inputs['ids'];
         $attandstatus=$inputs['attandstatus'];

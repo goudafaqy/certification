@@ -122,7 +122,7 @@
                                 </form>
                                 @else
                                 <div class="alert alert-success" style="padding: 10px 50px; border-radius: 3px;">
-                                    <b>جارى جدولة الموعيد على زووم <i class="fa fa-check-circle"></i></b>
+                                    <b>تم جدولة الموعيد   <i class="fa fa-check-circle"></i></b>
                                 </div>
                                 @endif
                                 @endif
@@ -292,7 +292,9 @@
 
  // Handle form submission event
  $('form#secheduleOnZoom').on('submit', function(event){
-
+    $("div.spanner").removeClass("hide");
+     $("div.spanner").addClass("show");
+        
       var form = this;
       var rows_selected = table.column(0).checkboxes.selected();
       // Iterate over all selected checkboxes
@@ -307,6 +309,9 @@
                 url: $(this).attr('action'),
                 success: function(data) {
                     $(this).submit();
+                    $("div.spanner").removeClass("show");
+                    $("div.spanner").addClass("hide");
+    
                     location.reload();
                 }
             });

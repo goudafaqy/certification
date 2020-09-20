@@ -19,6 +19,21 @@
     <div class="card-body" style="padding: 0 15px">
         <div class="row justify-content-center">
             <div class="col-md-12">
+
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            @if (\Session::has('error'))
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{!! \Session::get('error') !!}</li>
+                    </ul>
+                </div>
+            @endif
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                     <tr class="odd">
@@ -48,22 +63,58 @@
                         @endif </td>
                         <td class="priority text-center">{{ explode(" ", $session->from_time)[0] }} @if(explode(" ", $session->from_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
                         <td class="priority text-center">{{ explode(" ", $session->to_time)[0] }} @if(explode(" ", $session->to_time)[1] == 'AM') صباحاً @else مساءً @endif</td>
-                        <td class="priority text-center">
+                        <td class="priority text-center" style="@if ($session->date==date('Y-m-d')) background-color:#fff;color:#000;@endif">
                             @if(App\Http\Controllers\CourseAppointmentController::isSessionStillValid($session->date,$session->from_time,$session->to_time))
                                @if($session->hasZoom==0) <!--normal session-->
                                  <a class='session_icon allowattand' data-placement="top"  data-original-title="أتاحة الحضور" data-toggle="modal" data-target="#allowattandance_{{$session->id}}" href="#"><i class="fa fa-desktop"></i></a>
-                               @else
-                                 <a class='session_icon' data-toggle="tooltip" data-placement="top" title="" data-original-title="زوم" href="{{isset($session->webinar)?$session->webinar->start_url:'#'}}" target="_blanck"><i class="far fa-play-circle"></i></a>
+                               @elseif($session->hasZoom==2)
+                                   <?php
+                                   $OrgmaxSessionId=$maxSessionId;
+                                   $lastsessionid=($maxSessionId==0)?0:--$maxSessionId; 
+                                   ?>
+                                   @if(App\Http\Helpers\BBBHelper::IsMeetingRunning($course->code.":".$course->id.":".$session->id.":".$lastsessionid))
+                                   
+                                        <a class='session_icongreen' data-toggle="tooltip" data-placement="top" title="" data-original-title="أعادة دخول" href="{{url('instructor/courses/session/'.$session->id.'/'.$lastsessionid.'/StartBBBSession')}}" target="_blank">
+                                        أعادة دخول الجلسة النشطة<i style="position: relative; top: -2px; right: -2px" class="fa fa-share"></i></a>
+                                        <a id="delete" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="أنهاء " href="{{url('instructor/courses/session/'.$session->id.'/'.$lastsessionid.'/EndBBBSession')}}" >أنهاء الجلسة<i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                   @else
+                                        <a class='session_icongreen' data-toggle="tooltip" data-placement="top" title="" data-original-title="بدء " href="{{url('instructor/courses/session/'.$session->id.'/'.$OrgmaxSessionId.'/StartBBBSession')}}" target="_blank">
+                                            @if ($OrgmaxSessionId==0)
+                                            بدء الجلسة الاولى
+                                            @elseif ($OrgmaxSessionId==1)
+                                            بدء الجلسة التانية
+                                            @elseif ($OrgmaxSessionId==2)
+                                            بدء الجلسة الثالثة
+                                            @elseif ($OrgmaxSessionId==3)
+                                            بدء الجلسة الرابعة
+                                            @elseif ($OrgmaxSessionId==4)
+                                            بدء الجلسة الخامسة
+                                            @elseif ($OrgmaxSessionId==5)
+                                            بدء الجلسة السادسة
+                                            @elseif ($OrgmaxSessionId==6)
+                                            بدء الجلسة السابعة
+                                            @elseif ($OrgmaxSessionId==7)
+                                            بدء الجلسة الثامنة
+                                            @elseif ($OrgmaxSessionId==8)
+                                            بدء الجلسة التاسعة
+                                            @elseif ($OrgmaxSessionId==9)
+                                            بدء الجلسة العاشرة
+                                            @elseif ($OrgmaxSessionId>=11)
+                                            بدء الجلسة {{$OrgmaxSessionId}} 
+                                            @endif
+                                        
+                                        <i class="far fa-play-circle"></i></a>
+                                   @endif
                                @endif
                             @endif
 
                             @if(strtotime($session->date)<=strtotime(date('Y-m-d')))  
-                               <a class='session_icon' data-toggle="tooltip" data-placement="top" title="" data-original-title="ملفات الحضور"   href="
+                               <a class='session_icon' data-toggle="tooltip" data-placement="top" title="" data-original-title="قائمة الحضور"   href="
                                 @if($session->hasZoom==0)
                                    {{url('instructor/courses/session/'.$session->id.'/attendance')}}
-                                @else
-                                   @if(isset($session->webinar))
-                                     {{url('instructor/courses/webinar/'.$session->webinar->id.'/attendance')}}
+                                @else 
+                                   @if($session->hasZoom==2)
+                                    {{url('instructor/courses/session/'.$session->id.'/attendance')}}
                                    @else 
                                      '#'
                                    @endif

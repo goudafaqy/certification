@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\DateHelper;
+use App\Http\Helpers\BBBHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
+use App\Http\Repositories\Eloquent\CourseAppointmentAttendanceRepo;
 use App\Http\Repositories\Eloquent\CourseRatingRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\CourseUpdateRepo;
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use PanicHD\PanicHD\Models\Ticket;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\CourseAppointmentAttendance;
+use Illuminate\Support\Facades\Redirect;
 
 class CourseController extends Controller
 {
@@ -25,6 +28,7 @@ class CourseController extends Controller
     var $examRepo;
     var $updateRepo;
     var $courseRatingRepo;
+    var $courseAppointmentAttendenceRepo;
 
     /**
      * Create a new controller instance.
@@ -38,7 +42,8 @@ class CourseController extends Controller
         CourseAppointmentRepo $appointmentRepo,
         ExamRepo $examRepo,
         CourseUpdateRepo $updateRepo,
-        CourseRatingRepo $courseRatingRepo
+        CourseRatingRepo $courseRatingRepo,
+        CourseAppointmentAttendanceRepo $courseAppointmentAttendenceRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -48,6 +53,7 @@ class CourseController extends Controller
         $this->examRepo = $examRepo;
         $this->updateRepo = $updateRepo;
         $this->courseRatingRepo=$courseRatingRepo;
+        $this->courseAppointmentAttendenceRepo = $courseAppointmentAttendenceRepo;
 
         $this->middleware(['auth', 'authorize.trainee']);
     }
@@ -96,17 +102,20 @@ class CourseController extends Controller
     private function sessions($course, $currentDate,$progress)
     {
         $sessions = $this->appointmentRepo->getAll($course->id,true);
-        $ActiveSession=array();
+        $ActiveSession=array();   $maxSessionId=0;
         foreach($sessions as $key=>$session){
             if($session->date==date('Y-m-d')){
                 $Result=CourseAppointmentAttendance::where('appointment_id', $session->id)
                                            ->where('active',true)->where('user_id',Auth::id())->first();
-                if(isset($Result))
+                 $Resultmax=CourseAppointmentAttendance::where('appointment_id', $session->id)->max('SessionID');                          
+                 if(isset($Resultmax)){
                    $ActiveSession=$Result;
+                   $maxSessionId=$Resultmax;  
+              }
             break;
             }
         }
-        return view("cp.trainee.courses.view", ['course' => $course, 'progress'=>$progress,'ActiveSession'=>$ActiveSession, 'currentDate' => $currentDate,'tab' => 'tab3', 'sessions' => $sessions]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'progress'=>$progress,'maxSessionId'=>$maxSessionId,'ActiveSession'=>$ActiveSession, 'currentDate' => $currentDate,'tab' => 'tab3', 'sessions' => $sessions]);
     }
 
     private function questionnaires($course, $currentDate,$progress)
@@ -144,6 +153,7 @@ class CourseController extends Controller
         return view("cp.trainee.courses.view", ['course' => $course ,'progress'=>$progress,'tickets' => $tickets,  'currentDate' => $currentDate,'tab' => 'tab9']);
 
     }
+   
 
     public function getCourseProgress($course){
         $sessions = $this->appointmentRepo->getAll($course->id);
@@ -158,7 +168,31 @@ class CourseController extends Controller
         if(isset($sessions))
           return $percentage=round($countwhateverdone/$countAllSession,1)*100;
         else 
+
          return 0;
     }
 
+
+    public function JoinBBBSession($session_id,$SessionId){
+        $appointment=$this->appointmentRepo->getById($session_id);
+        $course= $this->courseRepo->getById($appointment->course_id);
+        $orgSessionId=$SessionId;
+        $lastsessionid=($SessionId==0)?1:++$SessionId; 
+        $attandenceSession=$this->courseAppointmentAttendenceRepo->getBySessionIDAndUserId($session_id,$lastsessionid,Auth::user()->id);
+        $traineeName=Auth::user()->name_ar;
+        $traineeID=Auth::user()->id;
+        $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$orgSessionId;
+        
+        $attandence=array();
+        $attandence['attand_time']= date("Y-m-d");	
+        $attandence['attand']=1;
+     
+        if(BBBHelper::IsMeetingRunning($meeting_id)){
+            $this->courseAppointmentAttendenceRepo->update($attandence,$attandenceSession->id);
+            $MeetingURL=BBBHelper::joinMeeting($meeting_id,$traineeID,$traineeName,"Trainee");
+            return Redirect::away($MeetingURL);
+        }
+        else
+          return redirect()->back()->with('error', 'الجلسة انتهت بالفعل');    
+    }
 }

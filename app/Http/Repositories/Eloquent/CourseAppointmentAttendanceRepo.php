@@ -20,4 +20,7 @@ class CourseAppointmentAttendanceRepo extends Repository implements CourseAppoin
     public function getBySessionID($appointment_id,$Session_id){
         return CourseAppointmentAttendance::where('appointment_id',$appointment_id)->where('SessionID', $Session_id)->pluck('id')->toArray();
     }
+    public function getBySessionIDAndUserId($appointment_id,$Session_id,$user_id){
+        return CourseAppointmentAttendance::where('appointment_id',$appointment_id)->where('user_id', $user_id)->where('SessionID', $Session_id)->first();
+    }
 }

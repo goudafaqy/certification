@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\BBBHelper;
 use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
+use App\Http\Repositories\Eloquent\CourseAppointmentAttendanceRepo;
 use App\Http\Repositories\Eloquent\EvaluationRepo;
 use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\CourseAppointmentAttendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 
 class CourseController extends Controller
 {
@@ -25,7 +29,7 @@ class CourseController extends Controller
     var $appointmentRepo;
     var $updateRepo;
     var $evaluationRepo;
-
+    var $courseAppointmentAttendenceRepo;
     /**
      * Create a new controller instance.
      *
@@ -38,7 +42,8 @@ class CourseController extends Controller
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
         CourseUpdateRepo $updateRepo,
-        EvaluationRepo $evaluationRepo
+        EvaluationRepo $evaluationRepo,
+        CourseAppointmentAttendanceRepo $courseAppointmentAttendenceRepo
     )
     {
         $this->courseRepo = $courseRepo;
@@ -46,6 +51,7 @@ class CourseController extends Controller
         $this->examRepo = $examRepo;
         $this->materialRepo = $materialRepo;
         $this->appointmentRepo = $appointmentRepo;
+        $this->courseAppointmentAttendenceRepo = $courseAppointmentAttendenceRepo;
         $this->updateRepo = $updateRepo;
         $this->evaluationRepo = $evaluationRepo;
         $this->middleware(['auth', 'authorize.instructor']);
@@ -107,7 +113,7 @@ class CourseController extends Controller
     }
 
     private function sessions($course, $type,$progress)
-    {
+{
         $sessions = $this->appointmentRepo->getAll($course->id,true);
         $currentDate = DateHelper::getCurrentDate();
         $maxSessionId=0;
@@ -207,9 +213,53 @@ public function AddNewAppointment(Request $request){
        return "1";
     }
     else
-       return "2";
-
-    
-    
+       return "2";    
 }
+public function EndBBBSession($session_id,$SessionId){
+    $appointment=$this->appointmentRepo->getById($session_id);
+    $course= $this->courseRepo->getById($appointment->course_id);
+    $InstructorName=$course->instructor->name_ar;
+    $InstructorId=$course->instructor->id;
+    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
+    if(BBBHelper::closeMeeting($meeting_id))
+       return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح'); 
+    else
+       return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة'); 
+}
+public function StartBBBSession($session_id,$SessionId){
+    $appointment=$this->appointmentRepo->getById($session_id);
+    $course= $this->courseRepo->getById($appointment->course_id);
+    $InstructorName=$course->instructor->name_ar;
+    $InstructorId=$course->instructor->id;
+    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
+    if(!BBBHelper::IsMeetingRunning($meeting_id)){
+        $this->StartNewBBBAttandenceSession($session_id,$SessionId);
+        $MeetingURL=BBBHelper::StartMeeting($meeting_id,$InstructorId,$InstructorName,"Trainer");
+        return Redirect::away($MeetingURL);
+    }else{
+        $MeetingURL=BBBHelper::joinMeeting($meeting_id,$InstructorId,$InstructorName,"Trainer");
+        return Redirect::away($MeetingURL);
+    }
+}
+public function StartNewBBBAttandenceSession($appointment_id,$SessionId){
+    $appointment= $this->appointmentRepo->getById($appointment_id); 
+    $course_id=$appointment->course_id;
+    $students=$this->courseRepo->getAllTrainees($course_id);
+    $SessionCode=rand(10000,10000000);
+    $Insertdata=array(); 
+    $StartattandanceTime=date('Y-m-d H:i:s'); 
+    foreach ($students as $day => $student) {
+        $row = [];   
+            $row['appointment_id']       = $appointment_id;
+            $row['user_id']        = $student->id;
+            $row['SessionID']= $SessionId+1;
+            $row['SessionCode']   =$SessionCode;
+            $row['duration']     = 1;
+            $row['StartattandanceTime']=$StartattandanceTime;
+            $Insertdata[] = $row;
+    }
+    return $this->courseAppointmentAttendenceRepo->saveBulk($Insertdata);       
+}
+
+
 }

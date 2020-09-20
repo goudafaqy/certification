@@ -12,6 +12,7 @@ use App\Models\Course;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DateTime;
+use App\Http\Helpers\BBBHelper;
 
 class CourseAppointmentController extends Controller
 {
@@ -22,6 +23,7 @@ class CourseAppointmentController extends Controller
     var $courseValidation;
     var $webinarRepo;
     var $webinarValidation;
+    var $virtualUtility="bbb";
     /**
      * Create a new controller instance.
      *
@@ -137,10 +139,10 @@ class CourseAppointmentController extends Controller
         $course_id = $inputs['course_id'];
         $selected_appointments_id = $inputs['id'];
         $this->courseAppRepo->updateBulk(array('hasZoom'=>true),$selected_appointments_id);
-
         $dataCourse = [ 'zoom'  => 1,];
         $course = Course::find($course_id);
         $this->courseRepo->update($dataCourse, $course_id);
+        $this->schedulingZoomAppointments();
         return redirect()->back();
     }
 
@@ -158,34 +160,50 @@ class CourseAppointmentController extends Controller
     }
 
     public function schedulingZoomAppointments(){
-
         $appointments = $this->courseAppRepo->getBy("hasZoom",true);
         print("=====Begin=====");
         foreach ($appointments as $appointment) {
-            $course = Course::find($appointment->course_id);
-            //print_r("<pre>".$course."</pre>");
-            $startDateTime = Carbon::createFromTimeString($appointment->date . ' ' . $appointment->from_time)->format('Y-m-d H:i:s');
-            $start = Carbon::parse($appointment->from_time);
-            $end = Carbon::parse($appointment->to_time);
-            $data = [
-                'course_appointments_id'=>$appointment->id,
-                'course_id'=>$course->id,
-                "topic" => $appointment->title,
-                "type" => 5,
-                "start_time" => $startDateTime,
-                "duration" => $end->diffInRealMinutes($start),
-                "timezone" => "Asia/Riyadh",
-                "agenda" => substr($course->title_ar, 0, 50),
-                "students"=>$course->students,
-            ];
-            
-            $this->webinarRepo->save($data);
-            $this->courseAppRepo->update(array("hasZoom"=>2), $appointment->id);
+            $this->createSession($appointment);
         }
         print("=====End=====");
-        
     }
-
+    private function createSession($appointment){
+        if($this->virtualUtility=="bbb")
+            $this->createBBBSession($appointment);
+        else if($this->virtualUtility=="zoom")            
+           $this->createZoomSession($appointment);
+    }
+    private function createBBBSession($appointment){
+        /*
+            $start = Carbon::parse($appointment->from_time);
+            $end = Carbon::parse($appointment->to_time);
+            $duration=$end->diffInRealMinutes($start);
+            $course=Course::find($appointment->course_id);
+            $meeting_id=$course->code.":".$course->id.":".$appointment->id;
+            $meeting_name=$course->title." ".$appointment->day." ".$appointment->date;
+            $meeting=BBBHelper::createMetting($meeting_id,$meeting_name,$duration);
+         */   
+            $this->courseAppRepo->update(array("hasZoom"=>2), $appointment->id);
+    }
+    private function createZoomSession($appointment){
+        $course = Course::find($appointment->course_id);
+        $startDateTime = Carbon::createFromTimeString($appointment->date . ' ' . $appointment->from_time)->format('Y-m-d H:i:s');
+        $start = Carbon::parse($appointment->from_time);
+        $end = Carbon::parse($appointment->to_time);
+        $data = [
+            'course_appointments_id'=>$appointment->id,
+            'course_id'=>$course->id,
+            "topic" => $appointment->title,
+            "type" => 5,
+            "start_time" => $startDateTime,
+            "duration" => $end->diffInRealMinutes($start),
+            "timezone" => "Asia/Riyadh",
+            "agenda" => substr($course->title_ar, 0, 50),
+            "students"=>$course->students,
+        ];
+        $this->webinarRepo->save($data);
+        $this->courseAppRepo->update(array("hasZoom"=>2), $appointment->id);
+     }
     public static function isSessionStillValid($session_date,$session_from,$session_to){
         $new_startTime=date("H:i:s", strtotime($session_from));
         $new_endTime=date("H:i:s", strtotime($session_to));

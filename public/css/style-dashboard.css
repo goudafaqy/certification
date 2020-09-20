@@ -4016,6 +4016,10 @@ float:right;
 .session_icon{
     padding: 10px 13px;background:#639fd3;color: #fff;border-radius:5px;
 }
+
+.session_icongreen{
+    padding: 10px 13px;background:#1db51d;color: #fff;border-radius:5px;
+}
 #SessionRandomCode{
     color:green;
     font-size:188px;
