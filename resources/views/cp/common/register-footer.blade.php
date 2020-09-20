@@ -13,7 +13,7 @@
 
      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+      <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
 <script>
     if ($("#registerForm").length > 0) {
@@ -22,20 +22,42 @@
             rules: {
                 name_ar: {
                     required: true,
-                    maxlength: 50
+                    minlength: 10
                 },
  
                 email: {
                     required: true,
-                    maxlength: 50,
+                    minlength: 10,
                     email: true,
                 },
  
                 name_en: {
                     required: true,
-                    minlength: 50,
-                    maxlength: 500,
+                    minlength: 10
                 },
+                mobile: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                password: {
+                    required: true,
+                    minlength: 10
+                },
+                password_confirmation: {
+                    required: true,
+                    minlength: 10
+                },
+                national_id: {
+                    required: true,
+                    minlength: 10
+                },
+                birth_date: {
+                    required: true
+                },
+                gender: {
+                    required: true
+                }
             },
             messages: {
  
@@ -48,9 +70,27 @@
                 email: {
                     required: "البريد الالكترونى مطلوب",
                     email: "أدخل بريد ألكترونى صحيح",
-                    maxlength: "The email name should less than or equal to 50 characters",
+                    minlength: "ايميل غير صالح",
                 },
- 
+                birth_date: {
+                    required: "تاريخ الميلاد مطلوب",
+                },
+                national_id: {
+                    required: "رقم الهوية الوطنية مطلوب",
+                },
+                mobile: {
+                    required: "رقم الجوال مطلوب",
+                },
+                password: {
+                    required: "كلمة السر مطلوبة",
+                },
+                password_confirmation: {
+                    required: "كلمة السر مطلوبة",
+                },
+                gender: {
+                    required: "الجنس مطلوب",
+                }
+                
             },
         })
     } 

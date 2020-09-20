@@ -11,11 +11,14 @@ class CourseAppointmentRepo extends Repository implements CourseAppointmentEloqu
         parent::__construct(new CourseAppintment());
     }
 
-    public function getAll($course_id = '')
+    public function getAll($course_id = '',$orderby=false)
     {
-        return CourseAppintment::where('course_id',$course_id)->get();
+        if($orderby)
+          return CourseAppintment::where('course_id',$course_id)->orderBy('date','asc')->get();
+        else
+          return CourseAppintment::where('course_id',$course_id)->get();
     }
-    
+   
     public function deleteByCourseId($course_id)
     {
         return CourseAppintment::where('course_id', $course_id)->delete();

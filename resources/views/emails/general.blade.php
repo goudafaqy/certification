@@ -3,16 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Email Design</title>
+<title>مركز التدريب العدلى</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link href="https://fonts.googleapis.com/css?family=Almarai|Roboto&display=swap" rel="stylesheet">
 </head>
 <body style="margin: 0; padding: 0; font-family: Almarai, Roboto, sans-serif;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-radius:10px;"> 
-        <td  align="center" style="text-align: center; padding-top:1rem;    text-align: center;
-        padding-top: 1rem;
-        font-weight: bold;
-        font-size: 13px;"> <span>عنوان الرسالة : تأكيد التسجيل  - المنصة الإلكترونية للتدريب </span></td>
+        
         <tr>
             <td style="padding: 10px 0 30px 0;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc;border-radius:10px; border-collapse: collapse;">
@@ -23,7 +20,6 @@
                         background-size: cover;
                         background-position: center;border-bottom:2px solid #153643;">
                         
-                            <!-- <img src="file:///E:/workk/tms1/images/inner-page.png" class="img-fluid" width="100%" height="100%" style="display: block"> -->
                              <img src="http://64.202.186.104:500/images/logo.png" alt="Creating Email Magic" width="250px" height="auto" style="display: block;" /> 
                              <div class="divider" style="    position: absolute;
                              bottom: 0;
@@ -54,7 +50,7 @@
                                 <tr>
                                 <td style="padding: 10px 0 10px 0;font-size: 15px;color: #153643; font-family: Almarai, Roboto, sans-serif; font-size: 18px; line-height: 20px;text-align: right">
                                      <p style="font-size: 15px;">عزيزي المتدرب / المتدربة</p>
-                                     <p style="font-size: 15px;">  {{$data['message_ar']}}   </p>
+                                     <p style="font-size: 15px;">  <?php echo $data['message_ar'] ?>   </p>
 
                                      @if($data['link'] != null )
                                        <p style="font-size: 15px;"> <a class="nav-link" href="{{ $data['link'] }} "> أضغط هنا </a> </p> 

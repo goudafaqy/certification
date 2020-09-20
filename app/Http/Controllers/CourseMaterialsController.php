@@ -5,6 +5,8 @@ use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Validation\MaterialRepoValidation;
 use Illuminate\Http\Request;
 use App\Http\Helpers\FileHelper;
+use App\Http\Helpers\GenerateHelper;
+
 use App\Models\Course;
 
 class CourseMaterialsController extends Controller
@@ -93,6 +95,7 @@ class CourseMaterialsController extends Controller
             $inputs['source'] = $filePath;
             $inputs['status'] = 0;
             $material = $this->MaterialRepo->save($inputs);
+            GenerateHelper::SendNotificationToStudents($inputs['course_id'], 'file', $material);
             return redirect('instructor/courses/'.$inputs['course_id'] . '/files?type='.$inputs['course_type'] )->with('added', __('app.Material Added Successfully'));
         }
     }
