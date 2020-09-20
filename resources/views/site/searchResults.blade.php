@@ -114,6 +114,7 @@
 {{--                                        </div>--}}
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="row">
+                            @if(count($courses)>0)
                             @foreach($courses as $course)
                                 <div class="col-sm-4">
                                     <div class="course-item-wrapper">
@@ -148,6 +149,12 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @else
+                            <h2 class="course-title" style="text-align: center;">
+                                  لا يوجد نتائج للبحث
+                            </h2>
+
+                            @endif
                         </div>
                     </div>
 
