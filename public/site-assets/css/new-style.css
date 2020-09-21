@@ -4481,7 +4481,10 @@ height:200px !important
     margin-left:10px;
 }
 
-
+.course-summary .thim-col-4 i{
+    font-size:16px;
+    color:#c3a37e
+}
 
 /* .dropdown-submenu:hover > ul.dropdown-menu {
   display: block;
