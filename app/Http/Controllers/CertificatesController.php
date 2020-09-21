@@ -136,7 +136,12 @@ class CertificatesController extends Controller
 	  $certificate->save();
     }
 
+	public function send_email_students(Request $request)
+	{
+		dd($request->ids);
+		//GenerateHelper::SendNotificationToStudents($inputs['course_id'], 'file');
 
+	}
 
     /**
      * Save classification date ...

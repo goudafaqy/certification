@@ -11,21 +11,26 @@
         <div class="modal-body" style="background: #34405a;">
          <div class="row justify-content-right" >
           <div class="col-md-12">
+          <form id="sendMaill" action="{{route('send_email_students')}}" method="post">
+          <input type="hidden" value="{{$course->id}}" name="course">
+
+           @csrf
             <div class="ui-input-container">
                 <h6>العنوان</h6>
                 <div class="form-group input-group">                                                                            
                     <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1" style="background:#34405a;"><img src="{{ asset('images/man.png') }}" class="img-fluid" style="width:20px !important;height:20px !important"></span>
                     </div>
-                    <input id="email" required="" name="text" class="form-control" type="text">
+                    <input id="email" required="" name="subject" class="form-control" type="text">
                     </div>
                     <h6>الرسالة</h6>
                 <label class="ui-form-input-container">
-                    <textarea class="ui-form-input" id="word-count-input" rows="10"></textarea>
+                    <textarea class="ui-form-input" id="word-count-input" rows="10" name="message"></textarea>
                         <span class="form-input-label"><img src="{{ asset('images/school.png') }}" style="width: 20px"></span>
                         </label>
-                        <button type="button" class="btn btn-primary" style="margin:auto; display:table;width:120px">حفظ</button>
-                    </div>                    
+                        <button type="submit" class="btn btn-primary" style="margin:auto; display:table;width:120px">حفظ</button>
+                    </div>      
+          </form>              
                 </div>
          </div>
          </div>       

@@ -33,6 +33,9 @@
             <div class="alert alert-success" id="certificatesSuccess" style="display:none">
                    تم أعتماد الشهادات بنجاح                
             </div>
+            <div class="alert alert-success" id="emailsSuccess" style="display:none">
+                   تم ارسال الرسالة بنجاح               
+            </div>
             <img src="{{ asset('images/loading.gif') }}" id="loading" style="width: 100px; display:none">
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
@@ -150,8 +153,30 @@
             return false;  
    });
 
-
-
+   $('form#sendMaill').on('submit', function(event){
+       $('#loading').show();
+       $('#emailsSuccess').hide();
+      var form = this;
+      var rows_selected = table.column(0).checkboxes.selected();
+      $.each(rows_selected, function(index, rowId){
+         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
+         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'course').val('<?php echo $course->id ?>'));
+      });
+     event.preventDefault();
+            $.ajax({
+                data: $(this).serialize(),
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                success: function(data) {
+                    $(this).submit();
+                    $('#emailsSuccess').show();
+                    location.reload();
+                    $('#loading').hide();
+                }
+            });
+            return false;  
+   });
+   
 
 
     });
