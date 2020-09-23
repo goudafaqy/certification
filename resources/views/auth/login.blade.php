@@ -78,7 +78,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="">
-                                                    <a href="" class="forget">نسيت كلمة المرور ؟ </a>
+                                                    <a href="{{url('forgot')}}" class="forget">نسيت كلمة المرور ؟ </a>
                                                 </div>
                                             </div>
                                             <div style="text-align: center">

@@ -14,6 +14,7 @@ class ProfileController extends Controller
 {
     public function edit(){
         $user = Auth::user()->load('roles');
+        //print_r($user->roles->toArray());dd();
         return view('cp.profile.profile',compact('user'));
     }
 

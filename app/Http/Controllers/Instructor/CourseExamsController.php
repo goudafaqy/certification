@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Http\Helpers\GenerateHelper;
 
 class CourseExamsController extends Controller
 {
@@ -100,6 +101,7 @@ class CourseExamsController extends Controller
                 " مع اضافة ($qCount) سؤال" :
                 " مع وجود خطأ فى تسحيل الأسئلة";
         }
+        GenerateHelper::SendNotificationToStudents($course_id, $data['type'] );
 
         return redirect()->route('instructor-courses-view', [
             'id' => $course->id,
