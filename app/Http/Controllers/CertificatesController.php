@@ -138,8 +138,8 @@ class CertificatesController extends Controller
 
 	public function send_email_students(Request $request)
 	{
-		dd($request->ids);
-		//GenerateHelper::SendNotificationToStudents($inputs['course_id'], 'file');
+		$inputs = ['title_ar'=>$request->subject, 'title_en'=>'' ,'message_ar'=>$request->message, 'message_en' =>'' ];
+		GenerateHelper::SendNotificationToStudents($request->course, 'sendmail', null, $inputs,$request->ids );
 
 	}
 
@@ -150,20 +150,25 @@ class CertificatesController extends Controller
     {
 		$inputs = $request->input();
 		$course  = Course::find($inputs['course']);
+		$ids= $inputs['ids'];
 		if(isset($inputs['ids'])){
-			foreach($inputs['ids'] as $id){
-
-				$user = User::find($id);
-				$data = [];
+			for ($i=0; $i <count($ids) ; $i++) { 
+				# code...
+			
+				
+				$user = User::find($ids[$i]);
+				
 				$data['name_ar'] = $user->name_ar; 
 				$data['name_en'] = $user->name_en;
-				$data['user_id'] = $id;
+				$data['user_id'] = $user->id;
 				$data['national_id'] = $user->national_id;
 				$data['course_ar'] = $course->title_ar;
 				$data['course_en'] = $course->title_en;
 				$data['date'] = $course->start_date;
 				$data['hours'] = $course->course_hours;
 				$this->generate($data);
+				unset($data);
+				unset($user);
 
 			}
     		  GenerateHelper::SendNotificationToStudents($course->id, 'certificate');

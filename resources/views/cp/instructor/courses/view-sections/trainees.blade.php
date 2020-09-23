@@ -157,12 +157,13 @@
        $('#loading').show();
        $('#emailsSuccess').hide();
       var form = this;
+
+      $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'course').val('<?php echo $course->id ?>'));
       var rows_selected = table.column(0).checkboxes.selected();
       $.each(rows_selected, function(index, rowId){
          $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
-         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'course').val('<?php echo $course->id ?>'));
       });
-     event.preventDefault();
+           event.preventDefault();
             $.ajax({
                 data: $(this).serialize(),
                 type: $(this).attr('method'),
@@ -170,7 +171,7 @@
                 success: function(data) {
                     $(this).submit();
                     $('#emailsSuccess').show();
-                    location.reload();
+                    //location.reload();
                     $('#loading').hide();
                 }
             });
