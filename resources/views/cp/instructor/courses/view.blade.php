@@ -189,7 +189,13 @@
                                     @elseif($tab== 'tab8')
                                         @include('cp.instructor.courses.view-sections.trainees', ['id' => $course->id, 'type'=> $type])
                                     @elseif($tab== 'tab9')
-                                        @include('cp.instructor.courses.view-sections.support', ['id' => $course->id, 'type'=> $type])
+                                        @if(isset($action) && $action == 'form')
+                                            @include('cp.instructor.courses.view-sections.support-form', ['id' => $course->id, 'type'=> $type])
+                                        @elseif(isset($action) && $action == 'show')
+                                            @include('cp.instructor.courses.view-sections.support-ticket', ['id' => $course->id, 'type'=> $type])
+                                        @else
+                                            @include('cp.instructor.courses.view-sections.support', ['id' => $course->id, 'type'=> $type])
+                                        @endif
                                     @endif
                                 </div>
                             </section>

@@ -14,6 +14,7 @@ use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Support\Facades\Auth;
+use PanicHD\PanicHD\Models\Ticket;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\CourseAppointmentAttendance;
 use Illuminate\Http\Request;
@@ -174,7 +175,9 @@ class CourseController extends Controller
 
     private function support($course, $type,$progress)
     {
-        return view("cp.instructor.courses.view", ['course' => $course,'progress'=>$progress, 'tab' => 'tab9', 'type' => $type]);
+        $tickets = Ticket::where('user_id', Auth::user()->id)->get();
+
+        return view("cp.instructor.courses.view", ['course' => $course,'progress'=>$progress, 'tickets' => $tickets, 'tab' => 'tab9', 'type' => $type]);
     }
 
 
