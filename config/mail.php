@@ -91,7 +91,7 @@ return [
 
     'from' => [
         'address' =>  'Jtc-Trainingplat@mail.moj.gov.sa',
-        'name' =>'العادلى للدورات التدريبة',
+        'name' =>'مركز التدريب العادلى للدورات التدريبة',
     ],
 
     /*

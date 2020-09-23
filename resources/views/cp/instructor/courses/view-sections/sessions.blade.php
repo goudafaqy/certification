@@ -18,8 +18,7 @@
            
     <div class="card-body" style="padding: 0 15px">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-
+            <div class="col-md-12">             
             @if (\Session::has('success'))
                 <div class="alert alert-success">
                     <ul>
@@ -78,7 +77,7 @@
                                         أعادة دخول الجلسة النشطة<i style="position: relative; top: -2px; right: -2px" class="fa fa-share"></i></a>
                                         <a id="delete" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="أنهاء " href="{{url('instructor/courses/session/'.$session->id.'/'.$lastsessionid.'/EndBBBSession')}}" >أنهاء الجلسة<i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                    @else
-                                        <a class='session_icongreen' data-toggle="tooltip" data-placement="top" title="" data-original-title="بدء " href="{{url('instructor/courses/session/'.$session->id.'/'.$OrgmaxSessionId.'/StartBBBSession')}}" target="_blank">
+                                        <a class='session_icongreen' id="startNewSessionevent" data-toggle="tooltip" data-placement="top" title="" data-original-title="بدء " href="{{url('instructor/courses/session/'.$session->id.'/'.$OrgmaxSessionId.'/StartBBBSession')}}" target="_blank">
                                             @if ($OrgmaxSessionId==0)
                                             بدء الجلسة الاولى
                                             @elseif ($OrgmaxSessionId==1)
@@ -99,8 +98,8 @@
                                             بدء الجلسة التاسعة
                                             @elseif ($OrgmaxSessionId==9)
                                             بدء الجلسة العاشرة
-                                            @elseif ($OrgmaxSessionId>=11)
-                                            بدء الجلسة {{$OrgmaxSessionId}} 
+                                            @elseif ($OrgmaxSessionId>=10)
+                                            بدء الجلسة  {{++$OrgmaxSessionId}}
                                             @endif
                                         
                                         <i class="far fa-play-circle"></i></a>
@@ -126,6 +125,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a href="{{url('instructor/courses/'.$course->id.'/attendance')}}" id="CourseAttandenceReportLink" style="display:none">قائمة الحضور الكلى</a>
         </div>
     </div>
     </div>
@@ -139,7 +139,8 @@
         $('#add-course-dates-'+id).submit();
     }
     $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
+        setTimeout(function(){ $('.alert').hide(); }, 5000);
         $('#dtBasicExample').DataTable({
             "searching": false ,
             "language": {
@@ -157,13 +158,14 @@
                  dom: 'B<"clear">lfrtip',
                  buttons: true,
                  buttons: [
+                           {text: 'قائمة الحضور الكلى', action: function ( e, dt, node, config ) { $('a#CourseAttandenceReportLink').trigger('click');}},
                         @if($course->type == 'live')
-                           {text: 'أضافة زووم', action: function ( e, dt, node, config ) { $('#AddNewZoomSessionButton').trigger('click');}},
+                           {text: 'أضافة جلسة اون لاين', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("2");$('#AddNewSessionButton').trigger('click');}},
                         @elseif($course->type == 'face_to_face')
-                           {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $('#AddNewSessionButton').trigger('click');}},
+                           {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("0");$('#AddNewSessionButton').trigger('click');}},
                         @elseif($course->type == 'blended')
-                           {text: 'اضافة زووم ', action: function ( e, dt, node, config ) { $('#AddNewZoomSessionButton').trigger('click');}},
-                           {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $('#AddNewSessionButton').trigger('click');}},
+                           {text: 'أضافة جلسة اون لاين', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("2"); $('#AddNewSessionButton').trigger('click');}},
+                           {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("0");$('#AddNewSessionButton').trigger('click');}},
                         @endif
                         ],
             
@@ -188,4 +190,22 @@
             }
         })
     });
+
+    $(document).on('click', '#startNewSessionevent', function(e) {
+            $("div.spanner").removeClass("hide");
+            $("div.spanner").addClass("show");
+            $.ajax({
+                    data: {"_token": "{{ csrf_token() }}"},
+                    type: 'GET',
+                    url:$(this).attr('href'),
+                    success: function(result) {
+                            window.open(result, "_blank"); 
+                            setTimeout(function(){
+                            location.reload();
+                            }, 9000);
+                    }
+            });
+        return false;
+        });
+
 </script>

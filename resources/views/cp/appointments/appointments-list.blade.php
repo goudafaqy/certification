@@ -102,10 +102,12 @@
             </div>
         </div>
         @else
+
         <div class="row">
             <div class="col-md-12">
                 <div class="widget">
                     <div class="card">
+                    <form id="secheduleOnZoom" action="{{ route('scheduleOnZoom-appointment') }}" method="POST">
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
                                 <h3 class="widget-title">{{ $course->title_ar }}   ( <a href="{{ route('courses-list') }}#{{$course->code}}"> <code style="font-weight: bold;">{{ $course->code }}</code> </a> )</h3>
@@ -115,11 +117,11 @@
                                 @endif
                                 @if($course->type == 'live' ||$course->type == 'blended') 
                                 @if($course->zoom == 0)
-                                <form id="secheduleOnZoom" action="{{ route('scheduleOnZoom-appointment') }}" method="POST">
+                                
                                 @csrf
                                 <input type="hidden" name="course_id" value="<?php echo $course->id; ?>">
                                 <button style="color: #FFF; padding: 10px;" type="submit" class="btn btn-primary">جدولة على زوم<i class="fa fa-calendar"></i></button>
-                                </form>
+                                
                                 @else
                                 <div class="alert alert-success" style="padding: 10px 50px; border-radius: 3px;">
                                     <b>تم جدولة الموعيد   <i class="fa fa-check-circle"></i></b>
@@ -162,7 +164,8 @@
                                                 <td class="text-center">
                                                 @if($course->zoom == 0)
                                                 {{ $appointment->id }}
-                                                @else
+                                                <input type="hidden" name="id[]" value="{{ $appointment->id }}">
+                                                @else 
                                                 {{ $loop->index+1 }}
                                                 @endif
                                                 </td>
@@ -206,10 +209,12 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+ 
                                 </div>
                             </h3>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -296,13 +301,15 @@
      $("div.spanner").addClass("show");
         
       var form = this;
-      var rows_selected = table.column(0).checkboxes.selected();
-      // Iterate over all selected checkboxes
-      $.each(rows_selected, function(index, rowId){
-         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'id[]').val(rowId));
-      });
+      @if($course->type == 'blended' && $course->zoom == 0)
+        var rows_selected = table.column(0).checkboxes.selected();
+        $.each(rows_selected, function(index, rowId){
+            $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'id[]').val(rowId));
+        });
+      @endif
 
      event.preventDefault();
+     console.log($(this).serialize());
             $.ajax({
                 data: $(this).serialize(),
                 type: $(this).attr('method'),

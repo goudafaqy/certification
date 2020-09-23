@@ -3878,7 +3878,7 @@ h3.p-header {
     text-transform: uppercase;
     color: #ffffff;
 }
-.author-contain { margin-right: 20px}
+.author-contain { }
 .author-contact p { color: #fff; margin-bottom: 6px}
 .author-contact p i { color: #A58661; margin-left: 10px; }
 
@@ -5128,4 +5128,14 @@ input[type=number]::-webkit-inner-spin-button {
   {
     padding-top:5px;
   }
+}
+
+.profile_start{
+    font-size: 27px;
+    color:#fc0;
+}
+
+.profile-role a{
+    color:#fff;
+    padding: 10px 0px;
 }
