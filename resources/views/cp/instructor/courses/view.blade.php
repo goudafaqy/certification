@@ -201,7 +201,7 @@
                                 <ul>
                                     <li class="tab1 {{$tab == 'tab1'? 'active': ''}}">
                                         <a href="{{$tab != 'tab1'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'guide']):"javascript:void(0);"}}"
-                                           for="tab1"> <i class="fas fa-book-reader"></i> الكتيب التدريبى  </a>
+                                           for="tab1"> <i class="fas fa-book-reader"></i> الكتيب التدريبى </a>
                                     </li>
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'files']):"javascript:void(0);"}}"
@@ -209,15 +209,15 @@
                                     </li>
                                     <li class="tab3 {{$tab == 'tab3'? 'active': ''}}">
                                         <a href="{{$tab != 'tab3'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'sessions']):"javascript:void(0);"}}"
-                                           for="tab3"> <i class="far fa-copy"></i>  المحاضرات</a>
+                                           for="tab3"> <i class="far fa-copy"></i> المحاضرات</a>
                                     </li>
                                     <li class="tab4 {{$tab == 'tab4'? 'active': ''}}">
                                         <a href="{{$tab != 'tab4'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'questionnaires']):"javascript:void(0);"}}"
-                                           for="tab4"><i class="fas fa-book-open"></i>  الإستبيانات</a>
+                                           for="tab4"><i class="fas fa-book-open"></i> الإستبيانات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'update']):"javascript:void(0);"}}"
-                                           for="tab5"><i class="far fa-bookmark"></i>  الاعلانات </a>
+                                           for="tab5"><i class="far fa-bookmark"></i> الاعلانات </a>
                                     </li>
 
                                     <li class="tab6 {{$tab == 'tab6'? 'active': ''}}">
@@ -226,15 +226,15 @@
                                     </li>
                                     <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">
                                         <a href="{{$tab != 'tab7'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'evaluations']):"javascript:void(0);"}}"
-                                           for="tab7"><i class="fas fa-door-open"></i>  مركز التقديرات</a>
+                                           for="tab7"><i class="fas fa-door-open"></i> مركز التقديرات</a>
                                     </li>
                                     <li class="tab8 {{$tab == 'tab8'? 'active': ''}}">
                                         <a href="{{$tab != 'tab8'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'trainees']):"javascript:void(0);"}}"
-                                           for="tab8"><i class="fas fa-user-friends"></i>  المتدربيين</a>
+                                           for="tab8"><i class="fas fa-user-friends"></i> المتدربيين</a>
                                     </li>
                                     <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                         <a href="{{$tab != 'tab9'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'support']):"javascript:void(0);"}}"
-                                           for="tab9"><i class="fas fa-life-ring"></i>  الدعم الفني</a>
+                                           for="tab9"><i class="fas fa-life-ring"></i> الدعم الفني</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -247,7 +247,14 @@
                                     @elseif($tab== 'tab3')
                                         @include('cp.instructor.courses.view-sections.sessions', ['id' => $course->id, 'type'=> $type, 'sessions' => $sessions])
                                     @elseif($tab== 'tab4')
-                                        @include('cp.instructor.courses.view-sections.questionnaires', ['id' => $course->id, 'type'=> $type])
+
+                                        @if(isset($action) && $action == 'form')
+                                            @include('cp.instructor.courses.view-sections.questionnaire-form', ['id' => $course->id, 'type'=> $type, 'questionnaire'=> @$questionnaire])
+                                        @elseif(isset($action) && $action == 'show')
+                                            @include('cp.instructor.courses.view-sections.questionnaire-show', ['id' => $course->id, 'type'=> $type, 'questionnaire'=> $questionnaire])
+                                        @else
+                                            @include('cp.instructor.courses.view-sections.questionnaires', ['id' => $course->id, 'type'=> $type])
+                                        @endif
                                     @elseif($tab== 'tab5')
                                         @include('cp.instructor.courses.view-sections.update', ['id' => $course->id, 'type'=> $type, 'updates' => $updates])
                                     @elseif($tab== 'tab6')
@@ -298,61 +305,64 @@
     </div>
 </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="padding:10px !important;">
-          <h5 class="modal-title" id="exampleModalCenterTitle">تواصل معنا</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="background: #34405a;">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:10px !important;">
+                <h5 class="modal-title" id="exampleModalCenterTitle">تواصل معنا</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="background: #34405a;">
 
-            <div class="ui-input-container">
-                <h6>العنوان</h6>
-                <div class="form-group input-group">
+                <div class="ui-input-container">
+                    <h6>العنوان</h6>
+                    <div class="form-group input-group">
 
-                    <div class="input-group-prepend">
+                        <div class="input-group-prepend">
 
-                    <span class="input-group-text" id="basic-addon1" style="background:#34405a;"><img src="images/man.png" class="img-fluid" style="width:20px !important;height:20px !important"></span>
-                    </div>
-                    <input id="email" required="" name="text" class="form-control" type="text">
+                            <span class="input-group-text" id="basic-addon1" style="background:#34405a;"><img
+                                    src="images/man.png" class="img-fluid"
+                                    style="width:20px !important;height:20px !important"></span>
+                        </div>
+                        <input id="email" required="" name="text" class="form-control" type="text">
                     </div>
                     <h6>الرسالة</h6>
-                <label class="ui-form-input-container">
-                    <textarea class="ui-form-input" id="word-count-input"></textarea>
+                    <label class="ui-form-input-container">
+                        <textarea class="ui-form-input" id="word-count-input"></textarea>
                         <span class="form-input-label"><img src="images/school.png" style="width: 20px"></span>
-                        </label>
-                        <button type="button" class="btn btn-primary" style="margin:auto; display:table;width:120px">حفظ</button>
-                    </div>
-
+                    </label>
+                    <button type="button" class="btn btn-primary" style="margin:auto; display:table;width:120px">حفظ
+                    </button>
                 </div>
 
+            </div>
 
-      </div>
+
+        </div>
     </div>
-  </div>
-
+</div>
 
 
 @include('cp.common.dashboard-footer')
 <script>
-     var selectAllItems = "#select-all";
-var checkboxItem = ":checkbox";
+    var selectAllItems = "#select-all";
+    var checkboxItem = ":checkbox";
 
-$(selectAllItems).click(function() {
+    $(selectAllItems).click(function () {
 
-  if (this.checked) {
-    $(checkboxItem).each(function() {
-      this.checked = true;
+        if (this.checked) {
+            $(checkboxItem).each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(checkboxItem).each(function () {
+                this.checked = false;
+            });
+        }
+
     });
-  } else {
-    $(checkboxItem).each(function() {
-      this.checked = false;
-    });
-  }
-
-});
-    </script>
+</script>

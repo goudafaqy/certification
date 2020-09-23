@@ -10,6 +10,7 @@ use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
+use App\Http\Repositories\Eloquent\QuestionnaireRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Support\Facades\Auth;
 use PanicHD\PanicHD\Models\Ticket;
@@ -24,6 +25,7 @@ class CourseController extends Controller
     var $appointmentRepo;
     var $updateRepo;
     var $evaluationRepo;
+    var $questionnaireRepo;
 
     /**
      * Create a new controller instance.
@@ -37,6 +39,7 @@ class CourseController extends Controller
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
         CourseUpdateRepo $updateRepo,
+        QuestionnaireRepo $questionnaireRepo,
         EvaluationRepo $evaluationRepo
     )
     {
@@ -47,6 +50,7 @@ class CourseController extends Controller
         $this->appointmentRepo = $appointmentRepo;
         $this->updateRepo = $updateRepo;
         $this->evaluationRepo = $evaluationRepo;
+        $this->questionnaireRepo = $questionnaireRepo;
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -98,7 +102,8 @@ class CourseController extends Controller
 
     private function questionnaires($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type]);
+        $questionnaires = $this->questionnaireRepo->getBy('type', 'instructor');
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type, 'questionnaires' => $questionnaires]);
     }
 
     private function update($course, $type)

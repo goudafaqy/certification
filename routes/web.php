@@ -209,6 +209,12 @@ Route::prefix('instructor')->group(function (){
         Route::get('{id}/support/ticket/{ticketId}', 'CourseSupportController@show')->name('instructor-course-support-show');
         Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('instructor-course-support-ticket-comment-save');
 
+        Route::get('{id}/questionnaire/create', 'CourseQuestionnairesController@form')->name('instructor-course-questionnaire-form');
+        Route::post('{id}/questionnaire/save', 'CourseQuestionnairesController@save')->name('instructor-course-questionnaire-save');
+        Route::get('{id}/questionnaire/{questId}/edit', 'CourseQuestionnairesController@form')->name('instructor-course-questionnaire-edit');
+        Route::post('{id}/questionnaire/{questId}/update', 'CourseQuestionnairesController@update')->name('instructor-course-questionnaire-update');
+        Route::get('{id}/questionnaire/{questId}/show', 'CourseQuestionnairesController@show')->name('instructor-course-questionnaire-show');
+        Route::get('{id}/questionnaire/{questId}', 'CourseQuestionnairesController@delete')->name('instructor-course-questionnaire-delete');
     });
 });
 
@@ -227,6 +233,9 @@ Route::prefix('trainee')->group(function (){
         Route::post('{id}/support/ticket', 'CourseSupportController@saveTicket')->name('trainee-course-support-new-ticket');
         Route::get('{id}/support/ticket/{ticketId}', 'CourseSupportController@show')->name('trainee-course-support-show');
         Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('trainee-course-support-ticket-comment-save');
+
+        Route::get('{id}/questionnaire/{questId}', 'CourseController@questionnaire')->name('trainee-course-questionnaire-show');
+        Route::post('{id}/questionnaire/{questId}/save', 'CourseController@saveQuestionnaire')->name('trainee-course-questionnaire-save');
 
     });
 
