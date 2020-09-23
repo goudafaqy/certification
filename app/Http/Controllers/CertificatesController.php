@@ -8,6 +8,8 @@ use Intervention\Image\Facades\Image;
 use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\CourseUser;
+
 use App\Http\Helpers\GenerateHelper;
 use Johntaa\Arabic\I18N_Arabic;
 
@@ -120,13 +122,17 @@ class CertificatesController extends Controller
 	  });  
 	  $fileName = "certifcate".time();
 	  $img->save(public_path('uploads/certifcates/'.$fileName.'.jpg'));  
-
+	  $certificateUser = CourseUser::where('course_id', $data['course_id'])->where('user_id',  $data['user_id'])->first();
+	  $certificateUser->certifcate = 1;
+	  $certificateUser->save();
+	  sleep(2);
 	  $certificate = new Certificate();
 	  $certificate->user_name_ar  = $data['name_ar'];
 	  $certificate->user_name_en  = $data['name_en'];
 	  $certificate->national_id  = $data['national_id'];
 	  $certificate->course_name_ar  = $data['course_ar'];
 	  $certificate->course_name_en  = $data['course_en'];
+	  $certificate->course_id  =     $data['course_id'];
 	  $certificate->date  = $data['date'];
 	  $certificate->hours  = $data['hours'];
 	  $certificate->printed  = 0;
@@ -150,31 +156,36 @@ class CertificatesController extends Controller
     {
 		$inputs = $request->input();
 		$course  = Course::find($inputs['course']);
-		$ids= $inputs['ids'];
-		if(isset($inputs['ids'])){
+		$ids = $inputs['ids'];
+		if(!empty($ids)){
 			for ($i=0; $i <count($ids) ; $i++) { 
-				# code...
 			
-				
 				$user = User::find($ids[$i]);
+				$certificate = CourseUser::where('course_id', $course->id)
+				 						   ->where('user_id',  $user->id)->first();
+				if($certificate->certifcate == 0){
+
+					$data['name_ar'] = $user->name_ar; 
+					$data['name_en'] = $user->name_en;
+					$data['user_id'] = $user->id;
+					$data['national_id'] = $user->national_id;
+					$data['course_ar'] = $course->title_ar;
+					$data['course_en'] = $course->title_en;
+					$data['date'] = $course->start_date;
+					$data['hours'] = $course->course_hours;
+					$data['course_id'] = $course->id;
+					$this->generate($data);
+					unset($data);
+					unset($user);
 				
-				$data['name_ar'] = $user->name_ar; 
-				$data['name_en'] = $user->name_en;
-				$data['user_id'] = $user->id;
-				$data['national_id'] = $user->national_id;
-				$data['course_ar'] = $course->title_ar;
-				$data['course_en'] = $course->title_en;
-				$data['date'] = $course->start_date;
-				$data['hours'] = $course->course_hours;
-				$this->generate($data);
-				unset($data);
-				unset($user);
+				 }
+				// unset($certificate);
 
 			}
-    		  GenerateHelper::SendNotificationToStudents($course->id, 'certificate');
-		      return redirect()->back()->with('added', 'تم استخراج وتخزين الشهادات الخاصة بهذة الدورة');
+			GenerateHelper::SendNotificationToStudents($course->id, 'certificate');
+			 
 		}else{
-			 return redirect()->back()->with('error', 'لابد من أختيار الطلبة');
+			return false;
 
 		}
         

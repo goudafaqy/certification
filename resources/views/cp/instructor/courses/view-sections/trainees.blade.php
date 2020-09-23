@@ -42,6 +42,7 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">اسم الطالب</th>
+                        <th class="text-center">الاعدات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,11 @@
                     <tr>
                         <td class="text-center">{{ $trainee->id }}</td>
                         <td class="priority text-center">{{ $trainee->name_ar }}</td>
+                        @if($trainee->getcert->certifcate == 1)
+                        <td class="priority text-center" style="color:#038103">تم أستخراج الشهادة</td>
+                        @else
+                        <td class="priority text-center">-</td>
+                        @endif
                     </tr>
                     @endforeach
                     
