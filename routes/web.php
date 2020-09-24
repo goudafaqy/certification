@@ -278,3 +278,6 @@ Route::prefix('trainee')->group(function (){
 
 
 
+    Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
+    Route::post('/send_email_students', 'CertificatesController@send_email_students')->name('send_email_students');
