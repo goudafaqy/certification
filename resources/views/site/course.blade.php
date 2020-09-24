@@ -72,19 +72,22 @@
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="course-nav-tab-overview active thim-col-4">
                                     <a href="#tab-overview" data-toggle="tab">
-                                        <img src="{{asset('site-assets/images/agenda (1).png')}}" class="img-fluid" width="20">
+                                    <i class="fas fa-gavel"></i>
+                                        <!-- <img src="{{asset('site-assets/images/agenda (1).png')}}" class="img-fluid" width="20"> -->
                                         <span>نظرة عامة</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="course-nav-tab-curriculum thim-col-4">
                                     <a href="#tab-curriculum" data-toggle="tab">
-                                        <img src="{{asset('site-assets/images/product-description.png')}}" class="img-fluid" width="20">
+                                    <i class="fas fa-chart-line"></i>
+                                        <!-- <img src="{{asset('site-assets/images/product-description.png')}}" class="img-fluid" width="20"> -->
                                         <span>المخطط</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="course-nav-tab-instructor thim-col-4">
                                     <a href="{{url('profile/'.$course->instructor_id)}}">
-                                        <img src="{{asset('site-assets/images/teacher.png')}}" class="img-fluid" width="20">
+                                    <i class="fas fa-user-edit"></i>
+                                        <!-- <img src="{{asset('site-assets/images/teacher.png')}}" class="img-fluid" width="20"> -->
                                         <span>المدرب</span>
                                     </a>
                                 </li>
