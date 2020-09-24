@@ -17,7 +17,7 @@
                     <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1" style="background:#34405a;"><img src="{{ asset('images/man.png') }}" class="img-fluid" style="width:20px !important;height:20px !important"></span>
                     </div>
-                    <input id="email" required="" name="text" class="form-control" type="text">
+                    <input id="email"   class="form-control" type="text">
                     </div>
                     <h6>الرسالة</h6>
                 <label class="ui-form-input-container">
