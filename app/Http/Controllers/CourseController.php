@@ -108,7 +108,7 @@ class CourseController extends Controller
                     'code'      => GenerateHelper::generateCourseCode($courseId, $categoryLetter, 1),
                 ], $courseId);
                 try {
-                    $this->SendNotificationToInstructor($course);
+                    //$this->SendNotificationToInstructor($course);
                 } catch (Throwable $e) {
                 }
                 return redirect('courses/list')->with('added', 'تمت إضافة دورة جديدة بنجاح');
@@ -156,7 +156,27 @@ class CourseController extends Controller
           ]);
         }
     }
+    public function view($id){
+        $course = $this->courseRepo->getById($id);
+        $Current_date = new Carbon;
+          $instructors        = $this->userRepo->getByRole('instructor');
+          $categories         = $this->categoryRepo->getAll();
+          $classifications = $this->classRepo->getByCat($course->cat_id);
 
+
+        
+        $course_types['recorded']="دورات مسجلة";
+        $course_types['face_to_face']="حضورياً ";
+        $course_types['live']="التدريب عن بعد";
+        $course_types['blended']="تعليم مدمج";
+
+        $course_skill_level['b']="مبتدئ";
+        $course_skill_level['m']="متوسط";
+        $course_skill_level['a']="متقدم";
+         
+        return view("cp.courses.courses-view", ['course' => $course ,'instructors' => $instructors,'course_skill_level'=>$course_skill_level[$course->skill_level],
+        'course_type'=>$course_types[$course->type], 'categories' => $categories, 'classifications' => $classifications]);
+    }
     /**
      * Update course date ...
      */

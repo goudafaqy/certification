@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\BBBHelper;
 use App\Http\Helpers\DateHelper;
+use App\Http\Helpers\GenerateHelper;
 use App\Http\Repositories\Eloquent\CourseAppointmentRepo;
 use App\Http\Repositories\Eloquent\CourseAppointmentAttendanceRepo;
 use App\Http\Repositories\Eloquent\EvaluationRepo;
@@ -95,19 +96,17 @@ class CourseController extends Controller
         if (!method_exists($this, $tab)) {
             throw new NotFoundHttpException();
         }
-        $progress = $this->getCourseProgress($course);
-        // dd($progress);
-        return $this->$tab($course, $type, $progress);
+        return $this->$tab($course, $type);
     }
 
-    private function guide($course, $type, $progress)
+    private function guide($course, $type)
     {
 
         $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_i");
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'tab' => 'tab1', 'type' => $type, 'guide' => $guide]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab1', 'type' => $type, 'guide' => $guide]);
     }
 
-    private function files($course, $type, $progress)
+    private function files($course, $type)
     {
         $types = [
             'book' => 'كتاب',
@@ -115,12 +114,12 @@ class CourseController extends Controller
             'img' => 'صورة',
         ];
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_i");
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'types' => $types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
+        return view("cp.instructor.courses.view", ['course' => $course,'types'=>$types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
     }
 
-    private function sessions($course, $type, $progress)
-    {
-        $sessions = $this->appointmentRepo->getAll($course->id, true);
+    private function sessions($course, $type)
+{
+        $sessions = $this->appointmentRepo->getAll($course->id,true);
         $currentDate = DateHelper::getCurrentDate();
         $maxSessionId = 0;
         foreach ($sessions as $key => $session) {
@@ -131,30 +130,29 @@ class CourseController extends Controller
                 break;
             }
         }
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'maxSessionId' => $maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
+        return view("cp.instructor.courses.view", ['course' => $course,'maxSessionId'=>$maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
     }
 
-    private function questionnaires($course, $type, $progress)
+    private function questionnaires($course, $type)
     {
-        $questionnaires = $this->questionnaireRepo->getBy('type', 'instructor');
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'tab' => 'tab4', 'type' => $type, 'questionnaires' => $questionnaires]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type]);
     }
 
-    private function update($course, $type, $progress)
+    private function update($course, $type)
     {
         $updates = $this->updateRepo->getAll($course->id);
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'tab' => 'tab5', 'type' => $type, 'updates' => $updates]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab5', 'type' => $type, 'updates' => $updates]);
     }
 
-    private function exams($course, $type, $progress)
+    private function exams($course, $type)
     {
 
         $exams = $this->examRepo->getAll($course->id);
 
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'exams' => $exams, 'tab' => 'tab6', 'type' => $type]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'exams' => $exams, 'tab' => 'tab6', 'type' => $type]);
     }
 
-    private function evaluations($course, $type, $progress)
+    private function evaluations($course, $type)
     {
         $exams = $this->examRepo->getAll($course->id);
         $evaluations = $this->evaluationRepo->getByCourse($course->id);
@@ -165,7 +163,7 @@ class CourseController extends Controller
             $exams, $evaluations);
 
         return view("cp.instructor.courses.view", [
-            'course' => $course, 'progress' => $progress,
+            'course' => $course,
             'tab' => 'tab7', 'type' => $type,
             'exams' => $exams, 'evaluations' => $evaluations,
             'totalScore' => $total, 'passingScore' => $passing,
@@ -173,70 +171,90 @@ class CourseController extends Controller
         ]);
     }
 
-    private function trainees($course, $type, $progress)
+    private function trainees($course, $type)
     {
         $trainees = $this->courseRepo->getAllTrainees($course->id);
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'tab' => 'tab8', 'type' => $type, 'trainees' => $trainees]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type, 'trainees' => $trainees]);
     }
 
-    private function support($course, $type, $progress)
+    private function support($course, $type)
     {
+
         $tickets = Ticket::where('user_id', Auth::user()->id)->get();
 
-        return view("cp.instructor.courses.view", ['course' => $course, 'progress' => $progress, 'tickets' => $tickets, 'tab' => 'tab9', 'type' => $type]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'tickets' => $tickets, 'tab' => 'tab9', 'type' => $type]);
     }
 
 
-    public function getCourseProgress($course)
-    {
-        $sessions = $this->appointmentRepo->getAll($course->id);
+    public function getCourseProgress($courseid){
+        $sessions = $this->appointmentRepo->getAll($courseid);
         $currentDate = DateHelper::getCurrentDate();
         $countAllSession = count($sessions);
         $countwhateverdone = 0;
         $currentDate = explode(" ", $currentDate)[0];
         foreach ($sessions as $key => $session) {
-            if (strtotime($session->date) <= strtotime($currentDate))
-                $countwhateverdone++;
+             if(strtotime($session->date)<=strtotime($currentDate))
+               $countwhateverdone++;
         }
-        if (isset($sessions))
-            return $percentage = round($countwhateverdone / $countAllSession, 1) * 100;
-        else
-            return 0;
+        if($countwhateverdone==0)
+        return 0;
+        if(isset($sessions))
+          return $percentage=round(($countwhateverdone/$countAllSession)*100);
+        else 
+         return 0;
     }
 
-    public function AddNewAppointment(Request $request)
-    {
-        $inputs = $request->input();
-        $row = array();
-        $row['title'] = $inputs['course_title'];
-        $row['date'] = $inputs['date'];
-        $row['day'] = DateHelper::getDayWeekStringFromNumber(date('w', strtotime($inputs['date'])));
-        $row['from_time'] = $inputs['from_time'];
-        $row['to_time'] = $inputs['to_time'];
-        $row['course_id'] = $inputs['course_id'];
+public function AddNewAppointment(Request $request){
+    $inputs = $request->input();
+    $row=array();
+    $row['title']       = $inputs['course_title'];
+    $row['date']        = $inputs['date'];
+    $row['day']         = DateHelper::getDayWeekStringFromNumber(date('w', strtotime($inputs['date'])));
+    $row['from_time']   = $inputs['from_time'];
+    $row['to_time']     = $inputs['to_time'];
+    $row['course_id']   = $inputs['course_id'];
+    $row['hasZoom']   = $inputs['hasZoom'];
+    //is this date already exist 
+    $isExist=$this->appointmentRepo->IsDateInCourse($row['course_id'],$row['date']);
+    if($isExist)
+     return "3";
 
-        $new_startTime = date("H:i:s", strtotime($row['from_time']));
-        $new_endTime = date("H:i:s", strtotime($row['to_time']));
-        $st_time = strtotime($new_startTime);
-        $end_time = strtotime($new_endTime);
-        if (($st_time < $end_time) && ($end_time > $st_time)) {
-            $this->appointmentRepo->save($row);
-            return "1";
-        } else
-            return "2";
+    $new_startTime=date("H:i:s", strtotime($row['from_time']));
+    $new_endTime=date("H:i:s", strtotime($row['to_time']));
+    $st_time=strtotime($new_startTime);
+    $end_time=strtotime($new_endTime);
+    if(($st_time <  $end_time)&&($end_time >  $st_time)){
+       $this->appointmentRepo->save($row);  
+       $request->session()->flash('success', 'تم الاضافة بنجاح');
+       return "1";
     }
-
-    public function EndBBBSession($session_id, $SessionId)
-    {
-        $appointment = $this->appointmentRepo->getById($session_id);
-        $course = $this->courseRepo->getById($appointment->course_id);
-        $InstructorName = $course->instructor->name_ar;
-        $InstructorId = $course->instructor->id;
-        $meeting_id = $course->code . ":" . $course->id . ":" . $appointment->id . ":" . $SessionId;
-        if (BBBHelper::closeMeeting($meeting_id))
-            return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح');
-        else
-            return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة');
+    else
+       return "2";    
+}
+public function EndBBBSession($session_id,$SessionId){
+    $appointment=$this->appointmentRepo->getById($session_id);
+    $course= $this->courseRepo->getById($appointment->course_id);
+    $InstructorName=$course->instructor->name_ar;
+    $InstructorId=$course->instructor->id;
+    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
+    if(BBBHelper::closeMeeting($meeting_id))
+       return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح'); 
+    else
+       return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة'); 
+}
+public function StartBBBSession($session_id,$SessionId){
+    $appointment=$this->appointmentRepo->getById($session_id);
+    $course= $this->courseRepo->getById($appointment->course_id);
+    $InstructorName=$course->instructor->name_ar;
+    $InstructorId=$course->instructor->id;
+    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
+    if(!BBBHelper::IsMeetingRunning($meeting_id)){
+        $this->StartNewBBBAttandenceSession($session_id,$SessionId);
+        $MeetingURL=BBBHelper::StartMeeting($meeting_id,$InstructorName,$InstructorId);
+        return $MeetingURL;
+    }else{
+        $MeetingURL=BBBHelper::joinMeeting($meeting_id,$InstructorId,$InstructorName,"Trainer");
+        return $MeetingURL;
     }
 
     public function StartBBBSession($session_id, $SessionId)

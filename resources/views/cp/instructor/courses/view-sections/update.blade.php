@@ -26,8 +26,8 @@
         @foreach($updates as $update)
         <div class="row">
             <div class="col-md-10">
-                <div class="card">
-                    <div class="card-body" style="background-color: #ddd; color: #273345; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                <!-- <div class="card box-simple">
+                    <div class="card-body">
                         <div class="actions" style="float: left; display: inline-block;">
                             <a id="delete" href="{{route('instructor-delete-update', ['id' => $update->id, 'course_id' => $update->course_id, 'type' => $type])}}" style="padding-left: 15px; padding-right: 15px; color: #FFF" class="btn btn-danger">حذف</a>
                         </div>
@@ -35,10 +35,36 @@
                             {{ $update->content }}
                         </div>
                     </div>
-                    <div class="card-footer text-left" style="background-color: #ddd; padding: 5px 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; color: #999">
+                    <div class="card-footer text-left">
                         {{ $update->created_at }}      
                     </div>
-                </div>
+                </div> -->
+
+                <div class="section-slantedcard">
+		<div class="content-slantedcard">
+			<div style="position: relative">
+				<div class="section-slantedcard-card section-slantedcard-bottom"></div>
+				<div class="section-slantedcard-card section-slantedcard-top">
+					<div class="content-slantedcard-img">
+                    
+						<!-- <img src="{{ asset('images/teaching.png') }}" class="img-fluid" width="40px"> -->
+					</div>
+					
+					<div class="content-slantedcard-text">
+                        <p>{{ $update->content }}</p>
+                        <div class="actions" style="float: left; display: inline-block;">
+                            <a id="delete" href="{{route('instructor-delete-update', ['id' => $update->id, 'course_id' => $update->course_id, 'type' => $type])}}" style="padding-left: 15px; padding-right: 15px; color: #FFF;margin-top: 3px;" class="btn btn-danger">حذف</a>
+                        </div>
+                        <div class="card-footer text-left">
+                        2020-09-20 14:41:07      
+                    </div>
+                    </div>
+                  
+				</div>
+			</div>
+		</div>
+	</div>
+                
             </div>
         </div>
         @endforeach

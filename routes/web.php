@@ -75,17 +75,18 @@ Route::prefix('classifications')->group(function () {
     Route::post('update-classification', 'ClassificationController@edit')->name('update-classification');
 });
 
-// Courses routes ...
-Route::prefix('courses')->group(function () {
-    Route::get('list', 'CourseController@list')->name('courses-list');
-    Route::get('add', 'CourseController@add')->name('courses-add');
-    Route::get('update/{id}', 'CourseController@update')->name('courses-update');
-    Route::post('duplicate', 'CourseController@duplicate')->name('courses-duplicate');
-    Route::post('save-course', 'CourseController@create')->name('save-course');
-    Route::get('delete-course/{id}', 'CourseController@delete')->name('delete-course');
-    Route::post('update-course', 'CourseController@edit')->name('update-course');
-    Route::get('class-by-cat', 'CourseController@getClassByCatId')->name('class-by-cat');
-});
+    // Courses routes ...
+    Route::prefix('courses')->group(function () {
+        Route::get('list', 'CourseController@list')->name('courses-list');
+        Route::get('add', 'CourseController@add')->name('courses-add');
+        Route::get('update/{id}', 'CourseController@update')->name('courses-update');
+        Route::get('view/{id}', 'CourseController@view')->name('course-view');
+        Route::post('duplicate', 'CourseController@duplicate')->name('courses-duplicate');
+        Route::post('save-course', 'CourseController@create')->name('save-course');
+        Route::get('delete-course/{id}', 'CourseController@delete')->name('delete-course');
+        Route::post('update-course', 'CourseController@edit')->name('update-course');
+        Route::get('class-by-cat', 'CourseController@getClassByCatId')->name('class-by-cat');
+    });
 
 // Course Appointments routes ...
 Route::prefix('courses')->group(function () {
@@ -98,22 +99,21 @@ Route::prefix('courses')->group(function () {
     Route::get('appointments/schedulezoom/generate', 'CourseAppointmentController@schedulingZoomAppointments')->name('scheduleOnZoom-appointment-cron');
 });
 
-// Course Appointments routes ...
-Route::prefix('courses')->group(function () {
-    Route::get('ratings/{course_id}', 'CourseRatingController@list')->name('ratings-list');
-    Route::post('ratings/rate', 'CourseRatingController@rate')->name('rate_course');
-    Route::post('ratings/aprove_bulk', 'CourseRatingController@approve_bulk')->name('approve-bulk');
-});
-// Course Materials routes ...
-Route::prefix('materials')->group(function () {
-    Route::get('{course_id}', 'CourseMaterialsController@list')->name('materials-list');
-    Route::get('add/{course_id}', 'CourseMaterialsController@add')->name('materials-add');
-    Route::get('update/{id}/{course_id}', 'CourseMaterialsController@update')->name('materials-update');
-    Route::post('update', 'CourseMaterialsController@edit')->name('update-materials');
-    Route::post('save', 'CourseMaterialsController@create')->name('save-materials');
-    Route::post('saveAjex', 'CourseMaterialsController@createAjax')->name('saveAjax-materials');
-    Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
-});
+      // Course Appointments routes ...
+      Route::prefix('courses')->group(function () {
+        Route::get('ratings/{course_id}', 'CourseRatingController@list')->name('ratings-list');
+        Route::post('ratings/rate', 'CourseRatingController@rate')->name('rate_course');
+        Route::post('ratings/aprove_bulk', 'CourseRatingController@approve_bulk')->name('approve-bulk');
+     });
+    // Course Materials routes ...
+    Route::prefix('materials')->group(function () {
+        Route::get('{course_id}', 'CourseMaterialsController@list')->name('materials-list');
+        Route::get('add/{course_id}', 'CourseMaterialsController@add')->name('materials-add');
+        Route::get('update/{id}/{course_id}', 'CourseMaterialsController@update')->name('materials-update');
+        Route::post('update', 'CourseMaterialsController@edit')->name('update-materials');
+        Route::post('save', 'CourseMaterialsController@create')->name('save-materials');
+        Route::get('delete/{id}/{course_id}', 'CourseMaterialsController@delete')->name('delete-materials');
+    });
 
 // Course Sections routes ...
 Route::prefix('sections')->group(function () {
@@ -207,7 +207,9 @@ Auth::routes();
 // Instructor dashboard routes ...
 Route::prefix('instructor')->group(function () {
     Route::prefix('courses')->namespace('Instructor')->group(function () {
-        Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance');
+        Route::get('{course_id}/getCourseProgress', 'CourseController@getCourseProgress')->name('getCourseProgress');
+
+        Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance'); 
         Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');
         Route::get('session/{session_id}/attendance', 'CourseAppointmentAttendenceController@FaceToFaceindex')->name('attendance_facetoface');
         Route::get('session/{session_id}/bbbattendance', 'CourseAppointmentAttendenceController@BBBAttandence')->name('attendance_bbb');
@@ -217,10 +219,11 @@ Route::prefix('instructor')->group(function () {
         Route::post('session/attend_traineesbyInstructor', 'CourseAppointmentAttendenceController@Attend_traineesbyInstructor')->name('attend_traineesbyInstructor');
         Route::get('session/{session_id}/{maxSessionId}/StartBBBSession', 'CourseController@StartBBBSession')->name('StartBBBSession');
         Route::get('session/{session_id}/{maxSessionId}/EndBBBSession', 'CourseController@EndBBBSession')->name('EndBBBSession');
-
+        
         Route::post('appointments/AddNewAppointment', 'CourseController@AddNewAppointment')->name('AddNewAppointment');
         Route::get('appointments/AddNewbbbAppointment', 'CourseController@AddNewbbbAppointment')->name('AddNewbbbAppointment');
 
+        Route::post('saveAjex', 'CourseMaterialsController@createAjax')->name('saveAjax-materials');
 
         Route::get('{type}/list', 'CourseController@list')->name('instructor-courses-list');
         Route::get('{id}/{tab?}', 'CourseController@view')->name('instructor-courses-view');
@@ -243,7 +246,9 @@ Route::prefix('instructor')->group(function () {
         Route::get('{id}/evaluation/term/delete/{termId}', 'CourseEvaluationsController@deleteTerm')->name('instructor-evaluation-term-delete');
         Route::post('{id}/evaluation/save', 'CourseEvaluationsController@saveEvaluations')->name('instructor-evaluation-trainees-save');
 
-
+        Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+        Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
+    
         Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
         Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
 
@@ -267,6 +272,8 @@ Route::get('newsletter', 'WelcomeController@newsletter')->name('newsletter');
 // Trainee dashboard routes ...
 Route::prefix('trainee')->group(function () {
     Route::prefix('courses')->namespace('Trainee')->group(function () {
+        Route::get('{course_id}/getCourseProgress', 'CourseController@getCourseProgress')->name('traineegetCourseProgress');
+
         Route::get('/list', 'CourseController@list')->name('trainee-courses');
         Route::get('{id}/{tab?}', 'CourseController@view')->name('trainee-courses-view');
 
@@ -289,6 +296,6 @@ Route::prefix('trainee')->group(function () {
 
 });
 
-
-Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
-Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
+    Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
+    Route::post('/send_email_students', 'CertificatesController@send_email_students')->name('send_email_students');

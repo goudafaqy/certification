@@ -361,17 +361,24 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#course_preogress').LineProgressbar({
-            percentage: {{$progress}},
-            fillBackgroundColor: '#3498db',
-            backgroundColor: '#EEEEEE',
-            radius: '10px',
-            height: '10px',
-            width: '90%'
-        });
-    });
-
+$(document).ready(function () {
+            $.ajax({
+                    data: {"_token": "{{ csrf_token() }}"},
+                    type: 'GET',
+                    url:"{{route('traineegetCourseProgress',$course->id)}}",
+                    success: function(result) {
+                        $('#course_preogress').LineProgressbar({
+                            percentage: result,
+                            fillBackgroundColor:'#3498db',
+                            backgroundColor:'#EEEEEE',
+                            radius:'10px',
+                            height:'10px',
+                            width:'90%'
+                            });
+                    }
+                    });   
+                    
+            });
 </script>
 @include('cp.trainee.courses.trainee-dialog')
 @include('cp.common.dashboard-footer')
