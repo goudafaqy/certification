@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddObjectiveToCoursesTable extends Migration
+class AddQuestionnairesFieldsToCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddObjectiveToCoursesTable extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->string('objective');
+            $table->bigInteger('instructor_quest_id')->nullable();
+            $table->bigInteger('trainee_quest_id')->nullable();
         });
     }
 
@@ -26,7 +27,7 @@ class AddObjectiveToCoursesTable extends Migration
     public function down()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn(['objective']);
+            $table->dropColumn(['instructor_quest_id', 'trainee_quest_id']);
         });
     }
 }

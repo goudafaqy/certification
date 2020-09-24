@@ -14,9 +14,7 @@ class AddCourseIdToWebinarsTable extends Migration
     public function up()
     {
         Schema::table('webinars', function (Blueprint $table) {
-            Schema::table('webinars', function (Blueprint $table) {
-                $table->integer('course_id')->nullable();
-            });
+            $table->integer('course_id')->nullable();
         });
     }
 
@@ -27,6 +25,9 @@ class AddCourseIdToWebinarsTable extends Migration
      */
     public function down()
     {
-
+        Schema::table('webinars', function (Blueprint $table) {
+            //
+            $table->dropColumn('course_id');
+        });
     }
 }

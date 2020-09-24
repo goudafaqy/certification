@@ -28,6 +28,7 @@ class AddHasZoomToCoursesAppointmentsTable extends Migration
     {
         Schema::table('courses_appointments', function (Blueprint $table) {
             //
+            $table->dropColumn(['hasZoom']);
         });
     }
 }

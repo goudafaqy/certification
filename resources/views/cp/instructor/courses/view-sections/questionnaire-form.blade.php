@@ -78,7 +78,7 @@ route('instructor-course-questionnaire-save', ['id' => $id, 'type' => $type])}}"
 
 
 @push('scripts')
-    <script negm="negm">
+    <script>
 
         let oldValues = {};
 
@@ -87,8 +87,6 @@ route('instructor-course-questionnaire-save', ['id' => $id, 'type' => $type])}}"
         function loadOldQuestions()
         {
             let questions = {!! json_encode(isset($questionnaire->questions)?$questionnaire->questions:[]) !!};
-
-            console.log(questions);
 
             if (questions.length === 0) {
                 addQuestionBlock();
@@ -117,7 +115,7 @@ route('instructor-course-questionnaire-save', ['id' => $id, 'type' => $type])}}"
             };
 
             if (question) {
-                const choices = question['choices'] ? JSON.parse(question['choices']) : [];
+                const choices = question['choices'] ? question['choices'] : [];
 
                 questionData = {
                     'quest': question['question'],
@@ -147,8 +145,6 @@ route('instructor-course-questionnaire-save', ['id' => $id, 'type' => $type])}}"
             const scSelect = questionData['type'] === 'SC' ? 'selected' : '';
             const nmSelect = questionData['type'] === 'NM' ? 'selected' : '';
 
-
-            console.log(questionData);
             $("#questions-section").append(`<div id="question_${questionsNum}-div" class="card col-12 ">
                     <div class="card-body">
                         <div class="row justify-content-between" style="padding: 5px 50px;">
@@ -223,12 +219,9 @@ route('instructor-course-questionnaire-save', ['id' => $id, 'type' => $type])}}"
 
         function addMCQuestionBlock(questionsNum, num, choices, selected = true)
         {
-            console.log(oldValues[questionsNum]);
-
             let choiceDiv = '';
             for (let i = 0; i < num; i++) {
                 oldValues[questionsNum][i] = choices[i];
-                console.log(oldValues[questionsNum]);
                 choiceDiv +=
                     `<div class="col-md-6">
                         <div class="form-group">

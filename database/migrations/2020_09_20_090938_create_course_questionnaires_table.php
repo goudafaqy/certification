@@ -15,7 +15,7 @@ class CreateCourseQuestionnairesTable extends Migration
     {
         Schema::create('course_questionnaires', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("course_id")->references('id')
+            $table->foreignId("course_id")->nullable()->references('id')
                 ->on('courses')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("user_id")->references('id')
                 ->on('users')->cascadeOnDelete()->cascadeOnUpdate();

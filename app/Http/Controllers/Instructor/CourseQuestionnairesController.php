@@ -77,7 +77,7 @@ class CourseQuestionnairesController extends Controller
         unset($data['_token']);
 
 
-        $questionnaire = $this->questionnaireRepo->saveQuestionnaire($data, $course_id, Auth::user()->id);
+        $questionnaire = $this->questionnaireRepo->saveQuestionnaire($data, Auth::user()->id, 'instructor', $course_id);
 
         if (!$questionnaire) {
             return redirect()->route('instructor-course-questionnaire-form', [

@@ -15,7 +15,7 @@ class AddLocationToadsTable extends Migration
     {
         Schema::table('ads', function (Blueprint $table) {
             $table->string('location')->nullable();
-           
+
         });
     }
 
@@ -27,5 +27,9 @@ class AddLocationToadsTable extends Migration
     public function down()
     {
         //
+        Schema::table('ads', function (Blueprint $table) {
+            //
+            $table->dropColumn('location');
+        });
     }
 }
