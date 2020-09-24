@@ -1,7 +1,7 @@
 
 <div class="outer-container">
     @if(!isset($trainees))
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-12" style="color: #FFF;">
             <div class="alert alert-info">
                 لا يوجد متدربين لهذه الدورة <i class="fa fa-exclamation-circle"></i>
@@ -13,9 +13,9 @@
     <form id="generatecertifacte" action="{{route('generate_certificates')}}" method="post">
     @csrf
     <input type="hidden" value="{{$course->id}}" name="course">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-12">
-        @if (\Session::has('success'))
+            @if (\Session::has('success'))
                 <div class="alert alert-success">
                     <ul>
                         <li>{!! \Session::get('success') !!}</li>
@@ -76,6 +76,7 @@
 <script>
 @if(isset($trainees))
     $(document).ready(function () {
+        setTimeout(function(){ $('.alert').hide(); }, 5000);
         document.title = "{{$course->title}}:المتدربين";
          var table= $('#dtBasicExample').DataTable({
             "searching": true ,
@@ -137,26 +138,21 @@
 
 
  $('form#generatecertifacte').on('submit', function(event){
-       $('#loading').show();
-       $('#certificatesSuccess').hide();
+     //event.preventDefault();
       var form = this;
       var rows_selected = table.column(0).checkboxes.selected();
-      $.each(rows_selected, function(index, rowId){
-         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
-      });
-     event.preventDefault();
-            $.ajax({
-                data: $(this).serialize(),
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                success: function(data) {
-                    $(this).submit();
-                    //location.reload();
-                    $('#certificatesSuccess').show();
-                    $('#loading').hide();
-                }
+      if(rows_selected.length==0){
+       alert("لابد من اختيار الطلاب");
+        return false;
+      }
+        else{ 
+            $.each(rows_selected, function(index, rowId){
+                $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
             });
-            return false;  
+            //alert($(this).serialize());
+            return true;
+        }
+         
    });
 
    $('form#sendMaill').on('submit', function(event){
