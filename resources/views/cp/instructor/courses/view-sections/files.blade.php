@@ -14,24 +14,9 @@
         </div>
     </div>@include('cp.materials.form-dialog')
     @else
-       <div class="row justify-content-center">
-            <div class="col-md-12">
-                            
-            @if (\Session::has('success'))
-                <div class="alert alert-success">
-                    <ul>
-                        <li>{!! \Session::get('success') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            @if (\Session::has('error'))
-                <div class="alert alert-danger">
-                    <ul>
-                        <li>{!! \Session::get('error') !!}</li>
-                    </ul>
-                </div>
-            @endif
-
+    <div class="row">
+        <div class="col-12">
+            
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                     <tr>

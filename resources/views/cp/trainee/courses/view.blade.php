@@ -265,7 +265,6 @@
                                             <a href="{{$tab != 'tab7'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'evaluations']):"javascript:void(0);"}}"
                                                for="tab7"> <i class="fas fa-door-open"></i> مركز التقديرات</a>
                                         </li>-->
-
                                         <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                             <a href="{{$tab != 'tab9'? route('trainee-courses-view', ['id' => $course->id, 'tab' => 'support']):"javascript:void(0);"}}"
                                                for="tab9"><i class="fas fa-life-ring"></i> الدعم الفني</a>
@@ -299,8 +298,8 @@
                                             @else
                                                 @include('cp.trainee.courses.view-sections.exams', ['id' => $course->id, 'exams' => $exams])
                                             @endif
-{{--                                        @elseif($tab== 'tab7')--}}
-{{--                                            @include('cp.trainee.courses.view-sections.evaluations', ['id' => $course->id])--}}
+                                        @elseif($tab== 'tab7')
+                                            @include('cp.trainee.courses.view-sections.evaluations', ['id' => $course->id])
                                         @elseif($tab== 'tab8')
                                             @include('cp.trainee.courses.view-sections.trainees', ['id' => $course->id])
                                         @elseif($tab== 'tab9')
@@ -336,23 +335,16 @@
 </div>
 <script>
 $(document).ready(function () {
-            $.ajax({
-                    data: {"_token": "{{ csrf_token() }}"},
-                    type: 'GET',
-                    url:"{{route('traineegetCourseProgress',$course->id)}}",
-                    success: function(result) {
-                        $('#course_preogress').LineProgressbar({
-                            percentage: result,
-                            fillBackgroundColor:'#3498db',
-                            backgroundColor:'#EEEEEE',
-                            radius:'10px',
-                            height:'10px',
-                            width:'90%'
-                            });
-                    }
-                    });   
-                    
-            });
+$('#course_preogress').LineProgressbar({
+  percentage: {{$progress}},
+  fillBackgroundColor:'#3498db',
+  backgroundColor:'#EEEEEE',
+  radius:'10px',
+  height:'10px',
+  width:'90%'
+});
+});
+
 </script>
 @include('cp.trainee.courses.trainee-dialog')
 @include('cp.common.dashboard-footer')

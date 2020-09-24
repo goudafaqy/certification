@@ -4514,26 +4514,3 @@ element.style {
 }
 
 
-
-
-
-.Homeavatar {
-  width: 50px;
-  height: 50px;
-  float: left;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    display: inline-block;
-    background: #ced4da no-repeat center/cover;
-    position: relative;
-    vertical-align: bottom;
-    font-size: .875rem;
-    user-select: none;
-}
-
-.homeusernamespan {
-  font-size: 12px; 
-  line-height: 4.6;
-  padding:0px 10px;
-}
