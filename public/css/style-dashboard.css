@@ -1574,7 +1574,7 @@ img {
 
 .profile-card-body p {
     color: #444;
-    text-align: right;
+    text-transform: capitalize;
 }
 
 .profile-card-footer {
@@ -1772,7 +1772,7 @@ textarea {
 
 .btn-primary {
     border-radius: 5px;
-    background-color: #6189a5;
+    background-color: #a58661;
     background-size: 200%;
     width: 200px;
     border: none;
@@ -1808,7 +1808,7 @@ textarea {
 
 .btn-primaryy {
     border-radius: 5px;
-    background-color: #34405a;
+    background-color: #a58661;
     height: 45px;
     font-family: "ArbFONTS-PNU-Medium.ttf";
     border: none;
@@ -4033,97 +4033,4 @@ float:right;
     color:green;
     font-size:188px;
     text-align:center;
-}
-.box-simple {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,0.125);
-    border-radius: .25rem;
-    background: #fff;
-    
-    transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    padding: 0.5rem;
-    position: relative;
-    z-index: 4;
-    margin: auto;
-    margin-top: 1rem;
-}
-
-.section-slantedcard {
-    overflow: hidden;
-    padding: 30px 0 20px;
-	  
-}
-.modal.fade .modal-dialog{
-    transition: none !important;
-}
-.content-slantedcard {
-    margin-right: auto;
-    margin-left: auto;
-    padding: 0 15px;
-    max-width: 1000px;
-    max-width: 900px;
-}
-
-.section-slantedcard-card {
-    padding: 20px;
-    box-shadow: 0 2px 4px 0 rgba(136,144,195,0.2), 0 5px 15px 0 rgba(37,44,97,0.15);
-    background-color: white;
-}
-
-.section-slantedcard-bottom {
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-    transform: rotate(-2deg);
-    box-shadow: 0 2px 4px 0 rgba(136,144,195,0.2), 0 5px 15px 0 rgba(37,44,97,0.15);
-    background-color: white;
-}
-
-.section-slantedcard-top {
-    position: relative;
-    z-index: 10;
-}
-
-.content-slantedcard-img i {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    margin: auto;
-    transform: translateY(-70%);
-    text-align: center;
-    font-size:20px;
-}
-
-.content-slantedcard-text {
-    line-height: 1.6;
-}
-
-@media (max-width: 767px) {    
-    .section-slantedcard-card {
-        padding: 60px 45px 35px;
-    }
-    
-    .section-slantedcard-bottom {
-        display: none;
-    }
-    
-    .section-slantedcard-top {
-        position: relative;
-        z-index: 10;
-    }
 }

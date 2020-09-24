@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\App;
 use App\Models\Qualifications;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -86,10 +87,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role');
     }
-    public function appointments()
-    {
-      //  return $this->belongsToMany('App\Models\CourseAppintment')->using('App\Models\CourseAppointmentAttendance');
-    }
+
     public function getNameAttribute(){
         return $this["name_".App::getLocale()];
     }

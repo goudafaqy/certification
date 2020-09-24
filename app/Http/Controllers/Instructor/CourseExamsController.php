@@ -74,11 +74,7 @@ class CourseExamsController extends Controller
         unset($data['_token']);
         unset($data['examType']);
         $data['type'] = $request->get('examType');
-        
-        $data['start_time']=date("H:i", strtotime($data['start_time']));
-        $data['end_time']=date("H:i", strtotime($data['end_time']));
-        
-        
+
         $validator = $this->examRepoValidation->doValidate($data, 'insert');
         if ($validator->fails()) {
             $routeName = $data['type'] == 'assignment' ? 'instructor-course-assignment-add' : 'instructor-course-exam-add';

@@ -83,7 +83,7 @@
                                             @elseif ($attendance['SessionID']==10)
                                                 الجلسة العاشرة
                                             @elseif ($attendance['SessionID']>=11)
-                                                الجلسة {{$attendance['SessionID']}}
+                                                الجلسة {{$maxSessionId}} 
                                             @endif
                                             </td>
                                             <td class="priority text-center">{{ $attendance['attand_time']}}</td>

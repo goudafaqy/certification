@@ -12,7 +12,6 @@ use App\Models\Advertisment;
 use App\Models\Testmonial;
 use App\Models\Newsletter;
 use App\Models\Section;
-use App\Http\Helpers\RatingHelper;
 
 class WelcomeController extends Controller
 {
@@ -25,7 +24,7 @@ class WelcomeController extends Controller
         $advertisments = Advertisment::all();
         $testmonials = Testmonial::all();
         $sliderItems = Classification::where("home_page_display",1)->orderBy('created_at','DESC')->take(4)->get();
-        //dd($sliderItems);
+
         return view('site.welcome',compact("sliderItems","advertisments",'testmonials'));
     }
 
@@ -51,11 +50,24 @@ class WelcomeController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-
-
     public function course($id){
         $minutes = [];
         $course = Course::find($id);
+        $ratings =  $course->ratings;
+        $ratingsArray=array();
+        if(!isset($ratings)){
+        $avarage_rating=0;$sum=0;$sumAll=array();
+        $sumAll[1]=0;$sumAll[2]=0;$sumAll[3]=0;$sumAll[4]=0;$sumAll[5]=0;
+        foreach($ratings as $rating){ 
+         $sum+=$rating->rating;
+         $sumAll[$rating->rating]++;
+        }
+        $avarage_rating=$sum/count($ratings);
+        $ratingsArray=array('avarage_rating'=>$avarage_rating,'all'=>$sumAll,'ratingCounts'=>count($ratings));
+       }else{
+        $sumAll[1]=0;$sumAll[2]=0;$sumAll[3]=0;$sumAll[4]=0;$sumAll[5]=0;
+        $ratingsArray=array('avarage_rating'=>0,'all'=>$sumAll,'ratingCounts'=>1);
+       }
         $sections = Section::where('course_id',$id)->with('units')->get();
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
         $courseAppointments = $course->appointments;
@@ -65,7 +77,7 @@ class WelcomeController extends Controller
             $minutes[] = $end->diffInRealMinutes($start);
         }
         $totalTime = array_sum($minutes);
-        $ratingsArray=RatingHelper::GetRating($course->ratings);    
+
         return view('site.course',compact('course','related_courses', 'sections','totalTime','ratingsArray'));
     }
 
