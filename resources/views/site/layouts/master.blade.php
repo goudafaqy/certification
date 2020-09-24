@@ -549,7 +549,39 @@
 
 
 </script>
+<script>
 
+
+var swiper = new Swiper("#swiperr", {
+  slidesPerView: 4,
+  loop: true,
+      speed:500,
+      navigation: {
+    
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+      autoplay:{
+        delay:5000
+      },
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  },
+  breakpoints: {
+    500: {
+      slidesPerView: 1
+    },
+    700: {
+      slidesPerView: 1
+    }
+  }
+});
+
+
+
+</script>
 @yield('script')
 </body>
 </html>
