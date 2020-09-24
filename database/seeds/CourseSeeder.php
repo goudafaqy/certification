@@ -43,7 +43,8 @@ class CourseSeeder extends Seeder
             "reg_end_date" => "2020-08-31",
             "seats" => 50,
             "start_date" => "2020-09-01",
-            "end_date" => "2020-11-01"
+            "end_date" => "2020-11-01",
+            'objective' => '',
         ]);
 
         DB::table('courses')->insert([
@@ -67,7 +68,8 @@ class CourseSeeder extends Seeder
             "reg_end_date" => "2020-08-31",
             "seats" => 50,
             "start_date" => "2020-09-01",
-            "end_date" => "2020-11-01"
+            "end_date" => "2020-11-01",
+            'objective' => '',
         ]);
 
         DB::table('courses')->insert([
@@ -91,7 +93,8 @@ class CourseSeeder extends Seeder
             "reg_end_date" => "2020-08-31",
             "seats" => 50,
             "start_date" => "2020-09-01",
-            "end_date" => "2020-11-01"
+            "end_date" => "2020-11-01",
+            'objective' => '',
         ]);
 
         DB::table('courses')->insert([
@@ -115,7 +118,8 @@ class CourseSeeder extends Seeder
             "reg_end_date" => "2020-08-31",
             "seats" => 50,
             "start_date" => "2020-09-01",
-            "end_date" => "2020-11-01"
+            "end_date" => "2020-11-01",
+            'objective' => '',
         ]);
     }
 }

@@ -106,8 +106,40 @@ class Course extends Model
         return $this->hasMany('App\Models\Material', 'course_id');
     }
 
+    /**
+     * Get the questionnaires for the course.
+     */
+    public function questionnaires()
+    {
+        return $this->hasMany('App\Models\Questionnaire', 'course_id');
+    }
+
+    /**
+     * Get the instructor questionnaire for the course.
+     */
+    public function instructor_questionnaire()
+    {
+        return $this->belongsTo('App\Models\Questionnaire', 'instructor_quest_id');
+    }
+
+    /**
+     * Get the trainee questionnaire for the course.
+     */
+    public function trainee_questionnaire()
+    {
+        return $this->belongsTo('App\Models\Questionnaire', 'trainee_quest_id');
+    }
+
+
+
     public function getPassingScoreByFullScore($full_score)
     {
         return $this->pass_unit == 'n' ? $this->pass_grade : floor($this->pass_grade * $full_score / 100);
+    }
+
+    public function getLastQuestionnaireAttribute()
+    {
+        return $this->questionnaires()->where('publish_date', '<=', date("Y-m-d"))
+            ->orderBy('publish_date', 'DESC')->first();
     }
 }

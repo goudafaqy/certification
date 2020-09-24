@@ -13,6 +13,7 @@ use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\CourseUpdateRepo;
 use App\Http\Repositories\Eloquent\MaterialRepo;
+use App\Http\Repositories\Eloquent\QuestionnaireRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
 use Illuminate\Support\Facades\Auth;
 use PanicHD\PanicHD\Models\Ticket;
@@ -31,7 +32,9 @@ class CourseController extends Controller
     var $appointmentRepo;
     var $updateRepo;
     var $evaluationRepo;
+    var $questionnaireRepo;
     var $courseAppointmentAttendenceRepo;
+
     /**
      * Create a new controller instance.
      *
@@ -44,6 +47,7 @@ class CourseController extends Controller
         MaterialRepo $materialRepo,
         CourseAppointmentRepo $appointmentRepo,
         CourseUpdateRepo $updateRepo,
+        QuestionnaireRepo $questionnaireRepo,
         EvaluationRepo $evaluationRepo,
         CourseAppointmentAttendanceRepo $courseAppointmentAttendenceRepo
     )
@@ -56,6 +60,7 @@ class CourseController extends Controller
         $this->courseAppointmentAttendenceRepo = $courseAppointmentAttendenceRepo;
         $this->updateRepo = $updateRepo;
         $this->evaluationRepo = $evaluationRepo;
+        $this->questionnaireRepo = $questionnaireRepo;
         $this->middleware(['auth', 'authorize.instructor']);
     }
 
@@ -77,19 +82,19 @@ class CourseController extends Controller
     {
         $type = \request('type');
         $course = $this->courseRepo->getById($id);
-        if(!isset($course))
-            throw new NotFoundHttpException(); 
-        if($course->instructor_id!=Auth::id())
-            throw new NotFoundHttpException(); 
+        if (!isset($course))
+            throw new NotFoundHttpException();
+        if ($course->instructor_id != Auth::id())
+            throw new NotFoundHttpException();
         if ($type == 'current') {
             $courses = $this->courseRepo->getCurrentByInstructor(Auth::id());
         } elseif ($type == 'past') {
             $courses = $this->courseRepo->getPastByInstructor(Auth::id());
         }
-       
-        
+
+
         if (!method_exists($this, $tab)) {
-             throw new NotFoundHttpException();
+            throw new NotFoundHttpException();
         }
         return $this->$tab($course, $type);
     }
@@ -103,10 +108,10 @@ class CourseController extends Controller
 
     private function files($course, $type)
     {
-        $types =  [
-            'book'      => 'كتاب',
-            'extra'     => 'مصادر إضافية',
-            'img'       => 'صورة',
+        $types = [
+            'book' => 'كتاب',
+            'extra' => 'مصادر إضافية',
+            'img' => 'صورة',
         ];
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_i");
         return view("cp.instructor.courses.view", ['course' => $course,'types'=>$types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
@@ -116,13 +121,13 @@ class CourseController extends Controller
 {
         $sessions = $this->appointmentRepo->getAll($course->id,true);
         $currentDate = DateHelper::getCurrentDate();
-        $maxSessionId=0;
-        foreach($sessions as $key=>$session){
-            if($session->date==date('Y-m-d')){
-                $Result=CourseAppointmentAttendance::where('appointment_id', $session->id)->max('SessionID');
-                if(isset($Result))
-                   $maxSessionId=$Result;
-            break;
+        $maxSessionId = 0;
+        foreach ($sessions as $key => $session) {
+            if ($session->date == date('Y-m-d')) {
+                $Result = CourseAppointmentAttendance::where('appointment_id', $session->id)->max('SessionID');
+                if (isset($Result))
+                    $maxSessionId = $Result;
+                break;
             }
         }
         return view("cp.instructor.courses.view", ['course' => $course,'maxSessionId'=>$maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
@@ -184,9 +189,9 @@ class CourseController extends Controller
     public function getCourseProgress($courseid){
         $sessions = $this->appointmentRepo->getAll($courseid);
         $currentDate = DateHelper::getCurrentDate();
-        $countAllSession=count($sessions);
-        $countwhateverdone=0;
-        $currentDate=explode(" ",$currentDate)[0];
+        $countAllSession = count($sessions);
+        $countwhateverdone = 0;
+        $currentDate = explode(" ", $currentDate)[0];
         foreach ($sessions as $key => $session) {
              if(strtotime($session->date)<=strtotime($currentDate))
                $countwhateverdone++;
@@ -251,26 +256,44 @@ public function StartBBBSession($session_id,$SessionId){
         $MeetingURL=BBBHelper::joinMeeting($meeting_id,$InstructorId,$InstructorName,"Trainer");
         return $MeetingURL;
     }
-}
-public function StartNewBBBAttandenceSession($appointment_id,$SessionId){
-    $appointment= $this->appointmentRepo->getById($appointment_id); 
-    $course_id=$appointment->course_id;
-    $students=$this->courseRepo->getAllTrainees($course_id);
-    $SessionCode=rand(10000,10000000);
-    $Insertdata=array(); 
-    $StartattandanceTime=date('Y-m-d H:i:s'); 
-    foreach ($students as $day => $student) {
-        $row = [];   
-            $row['appointment_id']       = $appointment_id;
-            $row['user_id']        = $student->id;
-            $row['SessionID']= $SessionId+1;
-            $row['SessionCode']   =$SessionCode;
-            $row['duration']     = 1;
-            $row['StartattandanceTime']=$StartattandanceTime;
-            $Insertdata[] = $row;
+
+    public function StartBBBSession($session_id, $SessionId)
+    {
+        $appointment = $this->appointmentRepo->getById($session_id);
+        $course = $this->courseRepo->getById($appointment->course_id);
+        $InstructorName = $course->instructor->name_ar;
+        $InstructorId = $course->instructor->id;
+        $meeting_id = $course->code . ":" . $course->id . ":" . $appointment->id . ":" . $SessionId;
+        if (!BBBHelper::IsMeetingRunning($meeting_id)) {
+            $this->StartNewBBBAttandenceSession($session_id, $SessionId);
+            $MeetingURL = BBBHelper::StartMeeting($meeting_id, $InstructorId, $InstructorName, "Trainer");
+            return Redirect::away($MeetingURL);
+        } else {
+            $MeetingURL = BBBHelper::joinMeeting($meeting_id, $InstructorId, $InstructorName, "Trainer");
+            return Redirect::away($MeetingURL);
+        }
     }
-    return $this->courseAppointmentAttendenceRepo->saveBulk($Insertdata);       
-}
+
+    public function StartNewBBBAttandenceSession($appointment_id, $SessionId)
+    {
+        $appointment = $this->appointmentRepo->getById($appointment_id);
+        $course_id = $appointment->course_id;
+        $students = $this->courseRepo->getAllTrainees($course_id);
+        $SessionCode = rand(10000, 10000000);
+        $Insertdata = array();
+        $StartattandanceTime = date('Y-m-d H:i:s');
+        foreach ($students as $day => $student) {
+            $row = [];
+            $row['appointment_id'] = $appointment_id;
+            $row['user_id'] = $student->id;
+            $row['SessionID'] = $SessionId + 1;
+            $row['SessionCode'] = $SessionCode;
+            $row['duration'] = 1;
+            $row['StartattandanceTime'] = $StartattandanceTime;
+            $Insertdata[] = $row;
+        }
+        return $this->courseAppointmentAttendenceRepo->saveBulk($Insertdata);
+    }
 
 
 }

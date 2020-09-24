@@ -38,11 +38,11 @@
                                                                             <span class="lacourse">نوع الدورة</span></span>
                                                                 </div>
                                                                 @if($course->type == 'live')
-                                                                    <input 
+                                                                    <input
                                                                            class="form-control" type="text" readonly
                                                                            value="التدريب عن بعد">
                                                                 @elseif($course->type == 'recorded')
-                                                                    <input 
+                                                                    <input
                                                                            class="form-control" type="text" readonly
                                                                            value="دورات مسجلة">
                                                                 @elseif($course->type == 'face_to_face')
@@ -50,12 +50,12 @@
                                                                            class="form-control" type="text" readonly
                                                                            value="التدريب حضورياً">
                                                                 @else
-                                                                    <input 
+                                                                    <input
                                                                            class="form-control" type="text" readonly
                                                                            value="تعليم مدمج">
                                                                 @endif
                                                             </div>
-                    
+
                                                         </div>
                                                         <div class="col-md-6">
 
@@ -83,8 +83,8 @@
                                                                 <input  class="form-control" type="text" readonly
                                                                        value="{{ explode(" ",$course->end_date)[0] }}">
                                                             </div>
-                                                        </div>   
-                                                        </div>    
+                                                        </div>
+                                                        </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
@@ -113,7 +113,7 @@
                                 <ul>
                                     <li class="tab1 {{$tab == 'tab1'? 'active': ''}}">
                                         <a href="{{$tab != 'tab1'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'guide']):"javascript:void(0);"}}"
-                                           for="tab1"> <i class="fas fa-book-reader"></i> الكتيب التدريبى  </a>
+                                           for="tab1"> <i class="fas fa-book-reader"></i> الكتيب التدريبى </a>
                                     </li>
                                     <li class="tab2 {{$tab == 'tab2'? 'active': ''}}">
                                         <a href="{{$tab != 'tab2'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'files']):"javascript:void(0);"}}"
@@ -125,11 +125,11 @@
                                     </li>
                                     <li class="tab4 {{$tab == 'tab4'? 'active': ''}}">
                                         <a href="{{$tab != 'tab4'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'questionnaires']):"javascript:void(0);"}}"
-                                           for="tab4"><i class="fas fa-book-open"></i>  الإستبيانات</a>
+                                           for="tab4"><i class="fas fa-book-open"></i> الإستبيانات</a>
                                     </li>
                                     <li class="tab5 {{$tab == 'tab5'? 'active': ''}}">
                                         <a href="{{$tab != 'tab5'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'update']):"javascript:void(0);"}}"
-                                           for="tab5"><i class="far fa-bookmark"></i>  الاعلانات </a>
+                                           for="tab5"><i class="far fa-bookmark"></i> الاعلانات </a>
                                     </li>
 
                                     <li class="tab6 {{$tab == 'tab6'? 'active': ''}}">
@@ -138,15 +138,15 @@
                                     </li>
                                     <li class="tab7 {{$tab == 'tab7'? 'active': ''}}">
                                         <a href="{{$tab != 'tab7'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'evaluations']):"javascript:void(0);"}}"
-                                           for="tab7"><i class="fas fa-door-open"></i>  مركز التقديرات</a>
+                                           for="tab7"><i class="fas fa-door-open"></i> مركز التقديرات</a>
                                     </li>
                                     <li class="tab8 {{$tab == 'tab8'? 'active': ''}}">
                                         <a href="{{$tab != 'tab8'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'trainees']):"javascript:void(0);"}}"
-                                           for="tab8"><i class="fas fa-user-friends"></i>  المتدربيين</a>
+                                           for="tab8"><i class="fas fa-user-friends"></i> المتدربيين</a>
                                     </li>
                                     <li class="tab9 {{$tab == 'tab9'? 'active': ''}}">
                                         <a href="{{$tab != 'tab9'? route('instructor-courses-view', ['id' => $course->id, 'type' => $type, 'tab' => 'support']):"javascript:void(0);"}}"
-                                           for="tab9"><i class="fas fa-life-ring"></i>  الدعم الفني</a>
+                                           for="tab9"><i class="fas fa-life-ring"></i> الدعم الفني</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -159,7 +159,14 @@
                                     @elseif($tab== 'tab3')
                                         @include('cp.instructor.courses.view-sections.sessions', ['id' => $course->id, 'type'=> $type, 'sessions' => $sessions])
                                     @elseif($tab== 'tab4')
-                                        @include('cp.instructor.courses.view-sections.questionnaires', ['id' => $course->id, 'type'=> $type])
+
+                                        @if(isset($action) && $action == 'form')
+                                            @include('cp.instructor.courses.view-sections.questionnaire-form', ['id' => $course->id, 'type'=> $type, 'questionnaire'=> @$questionnaire])
+                                        @elseif(isset($action) && $action == 'show')
+                                            @include('cp.instructor.courses.view-sections.questionnaire-show', ['id' => $course->id, 'type'=> $type, 'questionnaire'=> $questionnaire])
+                                        @else
+                                            @include('cp.instructor.courses.view-sections.questionnaires', ['id' => $course->id, 'type'=> $type])
+                                        @endif
                                     @elseif($tab== 'tab5')
                                         @include('cp.instructor.courses.view-sections.update', ['id' => $course->id, 'type'=> $type, 'updates' => $updates])
                                     @elseif($tab== 'tab6')

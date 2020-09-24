@@ -27,6 +27,7 @@ class AddCourseAppointmentsـidToWebinarsTable extends Migration
     {
         Schema::table('webinars', function (Blueprint $table) {
             //
+            $table->dropColumn('course_appointments_id');
         });
     }
 }

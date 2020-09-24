@@ -27,6 +27,7 @@ class AddZoomIdFiledToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropColumn('zoom_id');
         });
     }
 }
