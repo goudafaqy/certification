@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="course-review">
-                            <label>التقيم</label>
+                            <label>التقييم</label>
                             <div class="value">
                                 <div class="review-stars-rated">
                                 <div id="AverageStars1">★★★★★</div>
@@ -72,26 +72,29 @@
                             <ul class="nav nav-tabs">
                                 <li role="presentation" class="course-nav-tab-overview active thim-col-4">
                                     <a href="#tab-overview" data-toggle="tab">
-                                        <img src="{{asset('site-assets/images/agenda (1).png')}}" class="img-fluid" width="20">
+                                    <i class="fas fa-gavel"></i>
+                                        <!-- <img src="{{asset('site-assets/images/agenda (1).png')}}" class="img-fluid" width="20"> -->
                                         <span>نظرة عامة</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="course-nav-tab-curriculum thim-col-4">
                                     <a href="#tab-curriculum" data-toggle="tab">
-                                        <img src="{{asset('site-assets/images/product-description.png')}}" class="img-fluid" width="20">
+                                    <i class="fas fa-chart-line"></i>
+                                        <!-- <img src="{{asset('site-assets/images/product-description.png')}}" class="img-fluid" width="20"> -->
                                         <span>المخطط</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="course-nav-tab-instructor thim-col-4">
                                     <a href="{{url('profile/'.$course->instructor_id)}}">
-                                        <img src="{{asset('site-assets/images/teacher.png')}}" class="img-fluid" width="20">
+                                    <i class="fas fa-user-edit"></i>
+                                        <!-- <img src="{{asset('site-assets/images/teacher.png')}}" class="img-fluid" width="20"> -->
                                         <span>المدرب</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="course-nav-tab-reviews thim-col-4">
                                     <a href="#tab-reviews" data-toggle="tab">
                                         <img src="{{asset('site-assets/images/laww.png')}}" class="img-fluid" width="20">
-                                        <span>الاراء</span>
+                                        <span>التقييم</span>
                                     </a>
                                 </li>
                             </ul>
@@ -160,7 +163,7 @@
                                     <div class="course-rating">
                                         
                                         <div class="average-rating">
-                                            <p class="rating-title">التقيم الكلى</p>
+                                            <p class="rating-title">التقييم الكلى</p>
                                             <div class="rating-box">
                                                 <div class="average-value" itemprop="ratingValue">{{round($ratingsArray['avarage_rating'],2)}}</div>
                                                 <div class="review-star">
@@ -172,7 +175,7 @@
                                                     @if (round($ratingsArray['avarage_rating'],2)>0)
                                                       عدد {{$ratingsArray['ratingCounts']}} متدرب
                                                       @else
-                                                      لم يتم التقيم بعد
+                                                      لم يتم التقييم بعد
                                                     @endif
                                                    
                                                 </div>
@@ -274,7 +277,6 @@
                                                 <div class="course-author-content">
                                                     <img alt="{{$coursee->instructor->name}}" src="{{$coursee->instructor->image != null ? url($coursee->instructor->image ):asset('site-assets/images/avatarman.png')}}" class="avatar avatar-96 photo">
                                                     <div class="author-contain">
-                                                        <label>المدرب</label>
                                                         <div class="value" itemprop="name">
                                                             <a href="{{url('course/'.$coursee->id)}}">{{$coursee->instructor->name}}</a>
                                                         </div>
@@ -293,7 +295,7 @@
                                             <i class="fa fa-tag"></i>
                                             <a href="{{url('course/'.$coursee->id)}}">{{$coursee->category->title}}</a>
                                         </span>
-                                        <span class="star"><i class="fa fa-star"></i> 3</span>
+                                        <span class="star"><i class="fa fa-star"></i>{{App\Http\Helpers\RatingHelper::GetAvgRating($coursee->ratings)}}</span>
                                     </div>
                                 </div>
                             </div>

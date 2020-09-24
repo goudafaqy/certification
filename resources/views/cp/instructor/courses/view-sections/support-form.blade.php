@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <a class="float-left btn btn-danger"
-               href="{{route('trainee-courses-view', ['id' => $id, 'tab' => 'support'])}}" style="margin-bottom:0.5rem">الرجوع</a>
+               href="{{route('instructor-courses-view', ['id' => $id, 'tab' => 'support'])}}" style="margin-bottom:0.5rem">الرجوع</a>
         </div>
 
         @if (session('invalid'))
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form id="ticket-form" action="{{ route('trainee-course-support-new-ticket', ['id' => $id])}}" method="POST"
+        <form id="ticket-form" action="{{ route('instructor-course-support-new-ticket', ['id' => $id])}}" method="POST"
               enctype="multipart/form-data" style="width: 100%">
             @csrf
             <div class="row justify-content-center" style="padding: 5px 50px;">

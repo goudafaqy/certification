@@ -296,34 +296,30 @@
                     <ul class="navbar-nav mr-auto setting-menu" style="">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>  
-                                
-                                
-                            <!-- <div class="dropdown">
+                              <div class="dropdown">
                             
-                                <a   class="btn  dropdown-toggle btn-outline-success" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{Auth::user()->username}}
+                             <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-chevron-down"></i>
+                                <img class="Homeavatar" src="{{ Auth::user()->image?url(Auth::user()->image): asset('site-assets/images/avatarman.png') }}" alt="">
+                                <span class="homeusernamespan" >{{ Auth::user()->name_ar }}</span>
                                 </a>
                                
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="http://127.0.0.1:8000/dashboard/edit-profile"> <i class="fas fa-user"></i> الملف الشخصي </a>
-                                <a class="dropdown-item" href="/dashboard/instructor"><i class="fas fa-unlock-alt  dropdown-icon"></i> دخول كمدرب </a>
+                                <a class="dropdown-item" href="{{ route('dashboard') }}"> <i class="fas fa-user"></i>لوحة المعلومات </a>
+                                <a class="dropdown-item" href="{{ route('edit-profile') }}"> <i class="fas fa-user"></i> الملف الشخصي </a>
                                 <a class="dropdown-item" href="/password/reset"><i class="fas fa-unlock-alt  dropdown-icon"></i> تغيير كلمة المرور  </a>
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 </div>
-                            </div> -->
+                            </div> 
                             </li>
-
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 
                             
                         @else
                         <!-- <li class="nav-item">
                                 <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
                             </li> -->
-                        @endauth
-
-
+                        
                         {{--                        <li class="nav-item mr-2" >--}}
                         {{--                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>--}}
                         {{--                        </li>--}}
@@ -332,15 +328,12 @@
                             <a class="nav-link" href="{{ url('login') }} ">
                                 <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول">
                                 <!-- <img class="avatar" src="http://127.0.0.1:8000/site-assets/images/avatarman.png" alt="" width="40" height="40"> -->
-                            </a>
-                            
+                            </a>          
                         </li>
-
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="#"> <img src="{{ asset('images\2030.png') }}" class="img-fluid vision"></a>
                         </li>
-
-
                     </ul>
 
 
@@ -556,7 +549,39 @@
 
 
 </script>
+<script>
 
+
+var swiper = new Swiper("#swiperr", {
+  slidesPerView: 4,
+  loop: true,
+      speed:500,
+      navigation: {
+    
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+      autoplay:{
+        delay:5000
+      },
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  },
+  breakpoints: {
+    500: {
+      slidesPerView: 1
+    },
+    700: {
+      slidesPerView: 1
+    }
+  }
+});
+
+
+
+</script>
 @yield('script')
 </body>
 </html>

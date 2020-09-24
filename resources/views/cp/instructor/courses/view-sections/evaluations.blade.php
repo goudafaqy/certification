@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-md-1">
-                        <a id="term-form-toggle" href="javascript:void();" class="btn btn-primary"
+                        <a id="term-form-toggle"  class="btn btn-primary"
                            style="width: 100%; font-size: 1.3em; margin-top: 3px; padding: 8px;">
                             <i class="fa fa-plus"></i>
                         </a>
@@ -138,9 +138,8 @@
         $(document).ready(function () {
             $('#term_type').on('change', function () {
                 const val = $(this).val();
-
                 val === 'new' ? $('#term_name_container').show() : $('#term_name_container').hide();
-            })
+            });
 
             $('#term_type').change();
 
@@ -193,8 +192,7 @@
                     $(this).find('i').addClass('fa-times').removeClass('fa-plus');
                     $(this).addClass('btn-danger').removeClass('btn-primary')
                 }
-            })
+            });
         });
-
     </script>
 @endpush

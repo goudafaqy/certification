@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Almarai|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('site-assets/css/simple-calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('site-assets/DataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('site-assets/DataTables/Select-1.3.1/css/select.bootstrap.min.css') }}">
@@ -82,11 +83,13 @@
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <i class="ik ik-chevron-down"></i>
                                 <img class="avatar" src="{{ Auth::user()->image?url(Auth::user()->image): asset('site-assets/images/avatarman.png') }}" alt="">
-                                <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->name_ar }}</span>
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ Auth::user()->name_ar }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                               @if((Auth::user()->roles[0]->name == 'trainee')||(Auth::user()->roles[0]->name == 'instructor'))
                                 <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
-                                @foreach (Auth::user()->roles as $key=>$role)
+                              @endif
+                                {{-- @foreach (Auth::user()->roles as $key => $role)
                                     @if ($role->name=='instructor')
                                      <a class="dropdown-item" href="/dashboard/instructor">دخول كمدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
                                     @elseif ($role->name=='trainee')
@@ -96,8 +99,11 @@
                                     @elseif ($role->name=='admin')
                                      <a class="dropdown-item" href="/dashboard/admin">دخول كمدير للمنصة<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
                                     @endif
-                                @endforeach
+                                @endforeach --}}
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
+                                {{-- @if(Auth::user()->canAccessSupportSystem())
+                                    <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fa fa-support"></i> </a>
+                                @endif --}}
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf

@@ -40,7 +40,6 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-       // dd(Auth::user()->roles[1]->name);
         $role = Auth::user()->roles ? Auth::user()->roles[0] : null;
         if (!$role)
             throw new NotFoundHttpException();
@@ -49,8 +48,6 @@ class HomeController extends Controller
             return $this->adminDashboard();
         elseif ($role->name == 'instructor')
             return $this->instructorDashboard();
-        elseif ($role->name == 'trainee')
-            return $this->traineeDashboard();
         elseif ($role->name == 'trainee')
             return $this->traineeDashboard();
         elseif ($role->name == 'support')

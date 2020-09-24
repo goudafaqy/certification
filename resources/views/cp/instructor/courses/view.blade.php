@@ -7,6 +7,9 @@
             <div class="wrapper-box">
                 <div class="profile-card active">
                     <div class="profile-card-body">
+                     <div class="spanner">
+                            <div class="loader"></div>
+                        </div>
                         <div class="form-course">
                             <div class="user-ragistration">
                                 <div class="container register">
@@ -26,7 +29,7 @@
                                                                     <span class="input-group-text"  id="basic-addon1"><img  src="{{ asset('images/cou.png') }}"   class="img-fluid"   style="width:20px !important;height:20px !important">
                                                                     <span class="lacourse">رمز الدورة</span></span>
                                                                 </div>
-                                                                <input id="email" required="" name="text" class="form-control" type="text"  readonly value="{{$course->code}}">
+                                                                <input id="email" required=""  class="form-control" type="text"  readonly value="{{$course->code}}">
                                                             </div>
 
                                                             <div class="form-group input-group">
@@ -189,7 +192,13 @@
                                     @elseif($tab== 'tab8')
                                         @include('cp.instructor.courses.view-sections.trainees', ['id' => $course->id, 'type'=> $type])
                                     @elseif($tab== 'tab9')
-                                        @include('cp.instructor.courses.view-sections.support', ['id' => $course->id, 'type'=> $type])
+                                        @if(isset($action) && $action == 'form')
+                                            @include('cp.instructor.courses.view-sections.support-form', ['id' => $course->id, 'type'=> $type])
+                                        @elseif(isset($action) && $action == 'show')
+                                            @include('cp.instructor.courses.view-sections.support-ticket', ['id' => $course->id, 'type'=> $type])
+                                        @else
+                                            @include('cp.instructor.courses.view-sections.support', ['id' => $course->id, 'type'=> $type])
+                                        @endif
                                     @endif
                                 </div>
                             </section>
@@ -201,18 +210,25 @@
     </div>
 </div>
 
-            <script>
+<script>
 $(document).ready(function () {
-$('#course_preogress').LineProgressbar({
-  percentage: {{$progress}},
-  fillBackgroundColor:'#3498db',
-  backgroundColor:'#EEEEEE',
-  radius:'10px',
-  height:'10px',
-  width:'90%'
-});
-});
-
+            $.ajax({
+                    data: {"_token": "{{ csrf_token() }}"},
+                    type: 'GET',
+                    url:"{{route('getCourseProgress',$course->id)}}",
+                    success: function(result) {
+                        $('#course_preogress').LineProgressbar({
+                            percentage: result,
+                            fillBackgroundColor:'#3498db',
+                            backgroundColor:'#EEEEEE',
+                            radius:'10px',
+                            height:'10px',
+                            width:'90%'
+                            });
+                    }
+                    });   
+                    
+            });
 </script>
 @include('cp.instructor.courses.instructor-dialog')
 @include('cp.common.dashboard-footer')
