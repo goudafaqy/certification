@@ -78,8 +78,7 @@
                                     </a>
                                 @endforeach
                                 @else
-                                            <p class="heading-font-family" style="text-align:center">لايوجد اشعارات جديدة</p>
-
+                                    <p class="heading-font-family" style="text-align:center">لايوجد اشعارات جديدة</p>
                                 @endif
                                 </div>
                                 <div class="footer"><a href="{{ route('userNotifications') }}">كل الإشعارات</a></div>
