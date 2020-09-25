@@ -81,26 +81,19 @@ class NotificationsController extends Controller
 
     public function read(Request $request)
     {
-        
-
             $user = Auth::user()->id;
             Notification::where('user_id',$user)->update(['is_read'=>1]);
             return response()->json(['data' => [],'status'=>'true','message'=>'']); 
-
     }
 
     public function userNotifications(Request $request)
     {
         
-
             $user = Auth::user()->id;
             $notificationsObj = Notification::where('user_id',$user)->get();
             $notifications = [];
             foreach ($notificationsObj as  $value) {
-            
-
                 $notifications[] = [
-    
                     'id'=>$value->id ,
                     'title'=> $value->title_ar ,
                     'message'=> $value->message_ar,
@@ -110,9 +103,6 @@ class NotificationsController extends Controller
                     
                 ];
             }
-    
-       
-                
             return view("cp.notifications.userlist", ['notifications' => $notifications]);
 
 
@@ -121,71 +111,39 @@ class NotificationsController extends Controller
 
     public function dateDiff($date){
 
-        // Declare and define two dates 
-$date1 =  strtotime($date);  
-$date2 = strtotime('now');  
-// Formulate the Difference between two dates 
-$diff = abs($date2 - $date1);  
+            $date1 =  strtotime($date);  
+            $date2 = strtotime('now');  
+            $diff = abs($date2 - $date1);  
+            $years = floor($diff / (365*60*60*24));  
+            $months = floor(($diff - $years * 365*60*60*24) 
+                                        / (30*60*60*24));  
+            $days = floor(($diff - $years * 365*60*60*24 -  
+                        $months*30*60*60*24)/ (60*60*24)); 
+            $hours = floor(($diff - $years * 365*60*60*24  
+                - $months*30*60*60*24 - $days*60*60*24) 
+                                            / (60*60));  
+                                            
+            $minutes = floor(($diff - $years * 365*60*60*24  
+                    - $months*30*60*60*24 - $days*60*60*24  
+                                    - $hours*60*60)/ 60);  
+            $seconds = floor(($diff - $years * 365*60*60*24  
+                    - $months*30*60*60*24 - $days*60*60*24 
+                            - $hours*60*60 - $minutes*60));  
 
-
-// To get the year divide the resultant date into 
-// total seconds in a year (365*60*60*24) 
-$years = floor($diff / (365*60*60*24));  
-
-
-// To get the month, subtract it with years and 
-// divide the resultant date into 
-// total seconds in a month (30*60*60*24) 
-$months = floor(($diff - $years * 365*60*60*24) 
-                            / (30*60*60*24));  
-
-
-// To get the day, subtract it with years and  
-// months and divide the resultant date into 
-// total seconds in a days (60*60*24) 
-$days = floor(($diff - $years * 365*60*60*24 -  
-            $months*30*60*60*24)/ (60*60*24)); 
-            //return $days;
-
-// To get the hour, subtract it with years,  
-// months & seconds and divide the resultant 
-// date into total seconds in a hours (60*60) 
-$hours = floor(($diff - $years * 365*60*60*24  
-    - $months*30*60*60*24 - $days*60*60*24) 
-                                / (60*60));  
-                                
-
-// To get the minutes, subtract it with years, 
-// months, seconds and hours and divide the  
-// resultant date into total seconds i.e. 60 
-$minutes = floor(($diff - $years * 365*60*60*24  
-        - $months*30*60*60*24 - $days*60*60*24  
-                        - $hours*60*60)/ 60);  
-
-                      //  return $hours;
-// To get the minutes, subtract it with years, 
-// months, seconds, hours and minutes  
-$seconds = floor(($diff - $years * 365*60*60*24  
-        - $months*30*60*60*24 - $days*60*60*24 
-                - $hours*60*60 - $minutes*60));  
-
-// if($hours > 15 || $days > 0){
-//     $days = $days +1;
-// }
-$string = ' ';                
-if($days != 0){
-    $string.= '  منذ  ' .$days . ' ايام ';
-}
-if( $days <= 0 && $hours >= 1){
-    $string.= '  منذ  ' .$hours . ' ساعات ';
-}
-if($days <= 0 && $hours <= 0){
-    $string.= '  منذ  ' .$minutes . ' دقائق ';
-}
-if($days <= 0 && $hours <= 0 && $minutes < 5  ){
-    $string.= '  منذ  ' . $seconds  .' ثوانى ';
-}
-return $string;          
+            $string = ' ';                
+            if($days != 0){
+                $string.= '  منذ  ' .$days . ' ايام ';
+            }
+            if( $days <= 0 && $hours >= 1){
+                $string.= '  منذ  ' .$hours . ' ساعات ';
+            }
+            if($days <= 0 && $hours <= 0){
+                $string.= '  منذ  ' .$minutes . ' دقائق ';
+            }
+            if($days <= 0 && $hours <= 0 && $minutes < 5  ){
+                $string.= '  منذ  ' . $seconds  .' ثوانى ';
+            }
+            return $string;          
 
 
 

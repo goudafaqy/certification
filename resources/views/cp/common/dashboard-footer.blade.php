@@ -35,32 +35,18 @@
             </script>
             <script>
                 $(document).ready(function () {
-
-
-
                     $("#notiDropdown").on('click',function(){
-                        $('#notiDropdownCount').text("");
-                       
-                      
-
                         $.ajax({
                             type:'GET',
                             url: "<?php echo route('readNotifications') ?>",
                             data:'',
                             success:function(content){
-
                                 if(content == true){
-                                   
-                                    $('#newsletter_email').val("");
-
-                                }else{
-                                    $('#fail').show();
+                                    $('#notiDropdownCount').text("");
                                 }
-
                             }
                         });
-                    
-                        });
+                    });
 
 
                     $('.repeater').repeater({
