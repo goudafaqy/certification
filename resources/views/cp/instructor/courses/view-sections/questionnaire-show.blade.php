@@ -26,8 +26,8 @@
                                                 <div class="col-md-3">
                                                     <h4>
                                                         {{$choice}} : {{$question->answerCount($i)}}
-                                                        ({{($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}
-                                                        %)
+                                                        {{$questionnaire->userAnswersCount()==0? 0:
+($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
                                                     </h4>
                                                 </div>
                                             @endforeach
@@ -41,8 +41,8 @@
                                                 <div class="col-md-3">
                                                     <h4>
                                                         {{$choice}} : {{$question->answerCount($i)}}
-                                                        ({{($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}
-                                                        %)
+                                                        {{$questionnaire->userAnswersCount()==0? 0:
+($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
                                                     </h4>
                                                 </div>
                                             @endforeach
@@ -53,8 +53,8 @@
                                             @for($i=$question->min_num; $i<=$question->max_num; $i++)
                                                 <div class="col-md-3">
                                                     <h4> {{$i}} : {{$question->answerCount($i)}}
-                                                        ({{($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}
-                                                        %)
+                                                        {{$questionnaire->userAnswersCount()==0? 0:
+($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
                                                     </h4>
                                                 </div>
                                             @endfor

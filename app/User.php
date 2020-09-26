@@ -122,10 +122,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\EvaluationTermUser', 'user_id');
     }
 
+    public function getcert()
+    {
+        return $this->hasOne('App\Models\CourseUser');
+    }
 
     public function canAccessSupportSystem(){
-        $roleNames = $this->roles->pluck('name');
-        dd($roleNames);
+        $roleNames = $this->roles->pluck('name')->toArray();
         return in_array('admin', $roleNames) || in_array('support', $roleNames);
     }
 }
