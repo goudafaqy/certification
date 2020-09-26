@@ -57,6 +57,8 @@ class WelcomeController extends Controller
         $minutes = [];
         $course = Course::find($id);
         $sections = Section::where('course_id',$id)->with('units')->get();
+        $related_courses = Course::where("class_id",$course->class_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
+        if(count($related_courses)>0)
         $related_courses = Course::where("cat_id",$course->cat_id)->where("id","!=",$id)->orderBy('created_at','DESC')->take(6)->get();
         $courseAppointments = $course->appointments;
         foreach ($courseAppointments as $session){
@@ -80,25 +82,31 @@ class WelcomeController extends Controller
 
 
     public function searchResults(Request $request){
-        $classifications  = Classification::all();
         $categories = Category::all();
+        $SelectedCategories = $request->get('categories')==null?array():$request->get('categories');
+        $classifications=array();
+        $SelectedClassifications=$request->get('classifications')==null?array():$request->get('classifications');
         $query = Course::query();
+        $Instructors = User::whereHas('roles', function($q){
+                                                           $q->where('name', 'instructor');
+                                                           })->get();
+        $SelectedInstructors= $request->get('instructors')==null?array():$request->get('instructors');
         if ($request->has('q'))
             $query->where('title_ar','LIKE','%'.$request->get('q').'%');
 
-        if ($request->has('classifications'))
+        if($request->get('categories')){
+            $query->whereIn('cat_id',$request->get('categories'));
+            $classifications  = Classification::query()->whereIn('cat_id',$request->get('categories'))->get();
+            }   
+        if ($request->has('classifications')){
             $query->whereIn('class_id',$request->get('classifications'));
-
-        if ($request->has('categories'))
-            $query->whereIn('cat_id	',$request->get('categories'));
-
+            $classifications  = Classification::query()->whereIn('cat_id',$request->get('categories'))->get();
+            }
+        if ($request->has('instructors')){
+            $query->whereIn('instructor_id',$request->get('instructors'));
+            }    
         $courses = $query->paginate(12)->appends(['q'=>$request->get('q')]);
-        // dd($courses);
-        // if(count($courses) < 1){
-        //     $Newquery = Course::query();
-        //     $courses = $Newquery->paginate(12);
-        // }
-        return view('site.searchResults',compact('courses','categories','classifications'));
+        return view('site.searchResults',compact('courses','categories','classifications','Instructors','SelectedInstructors','SelectedCategories','SelectedClassifications'));
     }
 
     public function newsletter(Request $request){

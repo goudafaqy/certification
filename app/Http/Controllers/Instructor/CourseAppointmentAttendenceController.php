@@ -46,18 +46,45 @@ class CourseAppointmentAttendenceController extends Controller
         $details=array("Appointment_date"=>$appDetails->date,"Course_title"=>$appDetails->course->title,
                        "Course_id"=>$appDetails->course);
         $attendances=array();
-        foreach($appointments as $appointment){
-            $row=array();
-            $row['attand_time']= $appointment->attand_time;	
-	        $row['SessionID']=   $appointment->SessionID;
-            $row['attand']=      $appointment->attand;
-            $row['user_id']=    $appointment->user_id;
-            $row['id']=    $appointment->id;
-            $row['userName']=     $this->userRepo->getById($appointment->user_id)->name_ar;
-            $attendances[]=$row;
-        }
+        $isSessionFinished=$this->isSessionFinished($appDetails->date,$appDetails->from_time,$appDetails->to_time);
+        if($isSessionFinished){
+           if(count($appointments)==0){ //session notstarted all student appsent
+                  $this->SessionNotStarted($appDetails);
+                  $appointments=$this->courseAppointmentAttendenceRepo->getAll($appointment_id);
+              }
+          }
+                
+            foreach($appointments as $appointment){
+                $row=array();
+                $row['attand_time']= $appointment->attand_time;	
+                $row['SessionID']=   $appointment->SessionID;
+                $row['attand']=      $appointment->attand;
+                $row['user_id']=    $appointment->user_id;
+                $row['id']=    $appointment->id;
+                $row['userName']=     $this->userRepo->getById($appointment->user_id)->name_ar;
+                $attendances[]=$row;
+            }
+        
         return view('cp.instructor.courses.attendanceNormal',compact('attendances','details'));
     }
+
+    public function SessionNotStarted($appointment){
+        $course_id=$appointment->course_id;
+        $students=$this->courseRepo->getAllTrainees($course_id);
+        $Insertdata=array(); 
+        foreach ($students as $k => $student) {
+            $row = [];   
+                $row['appointment_id']       = $appointment->id;
+                $row['user_id']        = $student->id;
+                $row['SessionID']= 1;
+                $row['SessionCode']   =0;
+                $row['attand']   =0;
+                $row['active']   =0;
+                $Insertdata[] = $row;
+        }
+        $this->courseAppointmentAttendenceRepo->saveBulk($Insertdata);
+    }
+
     public function BBBAttandence($appointment_id){
         $appDetails=$this->courseAppRepo->getById($appointment_id);
         $details=array("Appointment_date"=>$appDetails->date,"Course_title"=>$appDetails->course->title,
@@ -97,6 +124,8 @@ class CourseAppointmentAttendenceController extends Controller
         $this->courseAppointmentAttendenceRepo->updateBulk(array('active'=>false),$OldSessions);
     }
 
+
+
     public function StartNewSession(Request $request){
         $inputs = $request->input();
         $appointment_id=$inputs['appointment_id'];
@@ -135,11 +164,28 @@ class CourseAppointmentAttendenceController extends Controller
         }
        }
 
-   
+
     public function Attend_traineesbyInstructor(Request $request){
         $inputs = $request->input();
         $SessionsIds=$inputs['ids'];
         $attandstatus=$inputs['attandstatus'];
+        //dd($SessionsIds);
         return $this->courseAppointmentAttendenceRepo->updateBulk(array('attand'=>$attandstatus),$SessionsIds);
        }
+    
+       public static function isSessionFinished($session_date,$session_from,$session_to){
+        $new_startTime=date("H:i:s", strtotime($session_from));
+        $new_endTime=date("H:i:s", strtotime($session_to));
+        $cur_time=(Carbon::parse(date('H:i:s'))->format('H:i:s'));
+        $st_time=($new_startTime);
+        $end_time=($new_endTime);
+        //if("2020-09-18" == $session_date)
+        //dd(array("start_time"=>$st_time,"end_time"=>$end_time,"now"=>$cur_time,"session_date"=>$session_date,"nowdate"=>date("Y-m-d")));
+        
+       if (strtotime(date("Y-m-d")) > strtotime($session_date))
+           return  true;
+        if(date("Y-m-d") == $session_date)
+           return (($st_time < $cur_time && $cur_time > $end_time));   
+        
+    }
 }

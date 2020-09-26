@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -124,8 +124,8 @@ class User extends Authenticatable
 
 
     public function canAccessSupportSystem(){
-        $roleNames = $this->roles->pluck('name')->toArray();
-        //dd($roleNames);
+        $roleNames = $this->roles->pluck('name');
+        dd($roleNames);
         return in_array('admin', $roleNames) || in_array('support', $roleNames);
     }
 }

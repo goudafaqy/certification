@@ -264,7 +264,6 @@
                         <h3 class="p-header">قد يهمك أيضا</h3><span class="pull-left"></span>
                         <div class="clear">
                             <div class="owl-carousel owl-carousell owl-theme slides" style="direction: ltr;">
-
                                 @foreach($related_courses as $coursee)
                                 <div class="item">
                                     <div class="course-item-wrapper">
@@ -283,27 +282,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-                                    <h2 class="course-title">
-                                        <a href="{{url('course/'.$coursee->id)}}">{{$coursee->title}}</a>
-                                    </h2>
-                                    <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>{{$coursee->seats}} متدرب</span>
-                                        <span>
-                                            <i class="fa fa-tag"></i>
-                                            <a href="{{url('course/'.$coursee->id)}}">{{$coursee->category->title}}</a>
-                                        </span>
-                                        <span class="star"><i class="fa fa-star"></i>{{App\Http\Helpers\RatingHelper::GetAvgRating($coursee->ratings)}}</span>
+                                        <h2 class="course-title">
+                                            <a href="{{url('course/'.$coursee->id)}}">{{$coursee->title}}</a>
+                                        </h2>
+                                        <div class="course-meta">
+                                            <span> <i class="fa fa-user"></i>{{$coursee->seats}} متدرب</span>
+                                            <span>
+                                                <i class="fa fa-tag"></i>
+                                                <a href="{{url('course/'.$coursee->id)}}">{{$coursee->category->title}}</a>
+                                            </span>
+                                            <span class="star"><i class="fa fa-star"></i>{{App\Http\Helpers\RatingHelper::GetAvgRating($coursee->ratings)}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                               </div>
+                             </div>
+                              @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     {{-- =============right side============--}}

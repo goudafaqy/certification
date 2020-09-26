@@ -101,7 +101,7 @@
                     <tbody>
                     @foreach ($trainees as $trainee)
                         <tr>
-                            <td class="text-center">{{$trainee['name_ar']}}</td>
+                            <td class="text-center">{{$trainee["name_ar"]}}</td>
                             <td class="text-center"
                                 id="trainee-{{$trainee['id']}}-total-grade">{{$trainee['total_grade']}}</td>
                             @foreach ($exams as $exam)
@@ -109,6 +109,9 @@
                             @endforeach
                             @foreach ($evaluations as $term)
                                 <td class="text-center">
+                                    @if($term->name=="الحضور")
+                                    <a class='session_icon allowattand' data-placement="top"  data-original-title="تقرير الحضور" data-toggle="modal" data-target="#attandanceReport_{{$trainee['id']}}" href="#"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                    @endif
                                     <input type="number" name="evaluation[{{$trainee['id']}}][{{$term->id}}]"
                                            value="{{$trainee['evaluations'][$term->id]}}" style="max-width: 50px"
                                            max="{{$term->score}}" min="0" data-trainee="{{$trainee['id']}}"
