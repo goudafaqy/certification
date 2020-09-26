@@ -28,43 +28,52 @@
                                     <aside class="widget-container thim-course-filter-wrapper">
                                         <form action="{{route('courses')}}" name="thim-course-filter" method="GET" class="thim-course-filter">
 
+                                      
+                                            
                                             <h4 class="filter-title">الفئة</h4>
-                                            <ul class="list-trainee-filter">
-{{--                                                <li class="trainee-item">--}}
-{{--                                                    <input type="radio" id="trainee-filter_all" name="trainee-type-filter" value="all">--}}
-{{--                                                    <label for="trainee-filter_all">--}}
-{{--                                                        الكل <span>({{$courses->tota}})</span>--}}
-{{--                                                    </label>--}}
-{{--                                                </li>--}}
-                                         @foreach($classifications as $class)
-                                                <li class="trainee-item">
-                                                    <input  type="checkbox" id="T1" name="classifications[]" value="{{$class->id}}">
-                                                    <label for="T1">
-                                                        &#8235; {{$class->title}} &#8236; 
-                                                    </label>
-                                                </li>
-                                         @endforeach
-                                            </ul>
-                                            <h4 class="filter-title">التصنيف</h4>
                                             <ul class="list-cate-filter">
                                                 @foreach($categories as $category)
                                                 <li class="term-item">
-                                                    <input type="checkbox" name="categories[]" id="commercial_law" class="filtered" value="{{$category->id}}">
-                                                    <label for="commercial_law">
+                                                  @if(in_array($category->id,$SelectedCategories)) 
+                                                    <input type="checkbox" checked name="categories[]" id="cat{{$category->id}}" class="filtered" value="{{$category->id}}">
+                                                  @else
+                                                     <input type="checkbox"  name="categories[]" id="cat{{$category->id}}" class="filtered" value="{{$category->id}}">
+                                                  @endif
+                                                    <label for="cat{{$category->id}}">
                                                         {{$category->title}} <span>({{$category->courses()->count()}})</span>
                                                     </label>
                                                 </li>
-                                                    @endforeach
+                                                @endforeach
                                             </ul>
-{{--                                            <h4 class="filter-title">المدرب</h4>--}}
-{{--                                            <ul class="list-instructor-filter">--}}
-{{--                                                <li class="instructor-item">--}}
-{{--                                                    <input type="checkbox" name="course-instructor-filter" id="1" value="1">--}}
-{{--                                                    <label for="1">--}}
-{{--                                                        د.فارس بن محمد بن عبد الله القرني <span>(29)</span>--}}
-{{--                                                    </label>--}}
-{{--                                                </li>--}}
-{{--                                            </ul>--}}
+                                            @if(count($classifications)>0)
+                                            <h4 class="filter-title">التصنيف</h4>
+                                                <ul class="list-trainee-filter">
+                                                @foreach($classifications as $class)
+                                                    <li class="trainee-item">
+                                                 @if(in_array($class->id,$SelectedClassifications)) 
+                                                        <input  type="checkbox"  checked id="class{{$class->id}}" name="classifications[]" value="{{$class->id}}">
+                                                  @else
+                                                        <input  type="checkbox" id="class{{$class->id}}" name="classifications[]" value="{{$class->id}}">
+                                                  @endif
+                                                        <label for="class{{$class->id}}">
+                                                            &#8235; {{$class->title}} &#8236; <span>({{$class->courses()->count()}})</span> 
+                                                        </label>
+                                                    </li>
+                                                @endforeach
+                                                </ul>
+                                            @endif
+
+                                           <h4 class="filter-title">المدرب</h4>
+                                           <ul class="list-instructor-filter">
+                                           @foreach($Instructors as $Instructor)
+                                               <li class="instructor-item">
+                                                   <input type="checkbox" name="instructors[]" id="instructor{{$Instructor->id}}" value="{{$Instructor->id}}">
+                                                   <label for="instructor{{$Instructor->id}}">
+                                                      &#8235; {{$Instructor->name_ar}} &#8236; <span>({{$Instructor->courses()->count()}})</span>
+                                                    </label>
+                                               </li>
+                                            @endforeach
+                                            </ul>
 {{--                                            <h4 class="filter-title">السعر</h4>--}}
 {{--                                            <ul class="list-price-filter">--}}
 {{--                                                <li class="price-item">--}}
@@ -113,7 +122,7 @@
 {{--                                            </div>--}}
 {{--                                        </div>--}}
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             @if(count($courses)>0)
                             @foreach($courses as $course)
                                 <div class="col-sm-4">
@@ -149,11 +158,13 @@
                                 </div>
                             @endforeach
                             @else
-                            <h2 class="course-title" style="text-align: center;">
+                             <div class="col-sm-12">
+                               <h2 class="course-title" style="text-align: center;">
                                   لا يوجد نتائج للبحث
-                            </h2>
+                              </h2>
 
                             @endif
+                            </div>
                         </div>
                     </div>
 
@@ -171,5 +182,8 @@
             </div>
         </div>
     </div>
+
+
+
 
 @endsection

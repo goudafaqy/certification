@@ -208,6 +208,10 @@ Auth::routes();
 Route::prefix('instructor')->group(function () {
     Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('{course_id}/getCourseProgress', 'CourseController@getCourseProgress')->name('getCourseProgress');
+        Route::get('{course_id}/attendance', 'CourseController@getCourseAttendance')->name('getCourseAttendance');
+        Route::get('{course_id}/{Trainee_id}/getTraineCourseAttendance', 'CourseController@getTraineCourseAttendance')->name('getTraineCourseAttendance');
+
+        
 
         Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance'); 
         Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');
@@ -299,3 +303,5 @@ Route::prefix('trainee')->group(function () {
     Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
     Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
     Route::post('/send_email_students', 'CertificatesController@send_email_students')->name('send_email_students');
+    Route::get('/readNotifications', 'NotificationsController@read')->name('readNotifications');
+    Route::get('/userNotifications', 'NotificationsController@userNotifications')->name('userNotifications');

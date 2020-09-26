@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12" style="color:#283045;">
           <button type="button" id="AddNewSessionButton" data-toggle="modal" data-target="#AddNewSession" style="display:none;"></button>
-          <button type="button" id="AddNewZoomSessionButton" data-toggle="modal" data-target="#AddNewZoomSession" style="display:none;"></button>
+          <button type="button" id="AddNewZoomSessionButton" data-toggle="modal" data-target="#AddNewZoomSession" style="display:none;"></button>          
         </div>
     </div>
 
@@ -125,7 +125,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <a href="{{url('instructor/courses/'.$course->id.'/attendance')}}" id="CourseAttandenceReportLink" style="display:none">قائمة الحضور الكلى</a>
         </div>
     </div>
     </div>
@@ -158,12 +157,14 @@
                  dom: 'B<"clear">lfrtip',
                  buttons: true,
                  buttons: [
-                           {text: 'قائمة الحضور الكلى', action: function ( e, dt, node, config ) { $('a#CourseAttandenceReportLink').trigger('click');}},
                         @if($course->type == 'live')
+                           {text: 'قائمة الحضور الكلى', action: function ( e, dt, node, config ) {window.open("{{url('instructor/courses/'.$course->id.'/attendance')}}", '_blank').focus();}},
                            {text: 'أضافة جلسة اون لاين', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("2");$('#AddNewSessionButton').trigger('click');}},
                         @elseif($course->type == 'face_to_face')
+                           {text: 'قائمة الحضور الكلى', action: function ( e, dt, node, config ) {window.open("{{url('instructor/courses/'.$course->id.'/attendance')}}", '_blank').focus();}},
                            {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("0");$('#AddNewSessionButton').trigger('click');}},
                         @elseif($course->type == 'blended')
+                           {text: 'قائمة الحضور الكلى', action: function ( e, dt, node, config ) {window.open("{{url('instructor/courses/'.$course->id.'/attendance')}}", '_blank').focus();}},
                            {text: 'أضافة جلسة اون لاين', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("2"); $('#AddNewSessionButton').trigger('click');}},
                            {text: 'اضافة يوم جديد', action: function ( e, dt, node, config ) { $("form#add-Appointment-form #hasZoom").val("0");$('#AddNewSessionButton').trigger('click');}},
                         @endif

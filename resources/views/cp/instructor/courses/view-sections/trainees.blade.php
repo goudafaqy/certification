@@ -15,6 +15,8 @@
     <input type="hidden" value="{{$course->id}}" name="course">
     <div class="row justify-content-center">
         <div class="col-12">
+
+        
             @if (\Session::has('success'))
                 <div class="alert alert-success">
                     <ul>

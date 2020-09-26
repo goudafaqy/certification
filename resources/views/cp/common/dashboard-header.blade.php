@@ -63,20 +63,25 @@
                             <?php
                               $notifications =\App\Models\Notification::where('is_read',0)->where('user_id',Auth::user()->id )->get();
                             ?>
-                                <i class="ik ik-bell"></i><span class="badge bg-danger">{{count($notifications)}}</span></a>
+                                <i class="ik ik-bell"></i><span class="badge bg-danger" id="notiDropdownCount">{{count($notifications)}}</span></a>
                             <div class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <h4 class="header">الإشعارات</h4>
                                 <div class="notifications-wrap">
+                                @if(count($notifications)>0)
                                 @foreach($notifications as $notification)
-                                    <a href="#" class="media">
-                                        <span class="d-flex"><i class="ik ik-check"></i> </span>
-                                        <span class="media-body">
+                                    <a href="#" class="media" style="pointer-events:none">
+                                       <span class="d-flex"><i class="ik ik-check"></i> </span>
+                                       &nbsp; 	&nbsp;
+                                        <span class="media-body" style="margin-top:5px">
                                             <span class="heading-font-family media-heading">{{$notification->title_ar}}</span>
                                         </span>
                                     </a>
                                 @endforeach
+                                @else
+                                    <p class="heading-font-family" style="text-align:center">لايوجد اشعارات جديدة</p>
+                                @endif
                                 </div>
-                                <div class="footer"><a href="">كل الإشعارات</a></div>
+                                <div class="footer"><a href="{{ route('userNotifications') }}">كل الإشعارات</a></div>
                             </div>
                         </div>
                         <div class="dropdown">
@@ -101,9 +106,9 @@
                                     @endif
                                 @endforeach --}}
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                {{-- @if(Auth::user()->canAccessSupportSystem())
-                                    <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fa fa-support"></i> </a>
-                                @endif --}}
+                                @if(Auth::user()->canAccessSupportSystem())
+                                <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="glyphicon glyphicon-wrensch dropdown-icon"></i> </a>
+                                @endif
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
