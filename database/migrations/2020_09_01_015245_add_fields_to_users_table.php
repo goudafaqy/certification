@@ -29,6 +29,7 @@ class AddFieldsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropColumn(['job_title', 'facebook_link', 'twitter_link']);
         });
     }
 }

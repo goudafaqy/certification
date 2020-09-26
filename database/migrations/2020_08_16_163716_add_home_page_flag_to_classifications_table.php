@@ -27,6 +27,7 @@ class AddHomePageFlagToClassificationsTable extends Migration
     {
         Schema::table('classifications', function (Blueprint $table) {
             //
+            $table->dropColumn('home_page_display');
         });
     }
 }

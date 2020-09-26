@@ -15,7 +15,7 @@ class AddTimeToadsTable extends Migration
     {
         Schema::table('ads', function (Blueprint $table) {
             $table->string('time')->nullable();
-           
+
         });
     }
 
@@ -27,5 +27,9 @@ class AddTimeToadsTable extends Migration
     public function down()
     {
         //
+        Schema::table('ads', function (Blueprint $table) {
+            //
+            $table->dropColumn('time');
+        });
     }
 }
