@@ -35,16 +35,19 @@ class CourseMaterialsController extends Controller
     {
         $inputs = $request->input();
         $validator = $this->validation->doValidate($inputs, 'insert');
+        $array = ['pdf', 'doc', 'png','jpeg','xlsx', 'docx','xlx' ];
+        if(!$request->has('source') || !in_array($request->file('source')->getClientOriginalExtension(), $array)  ){
+            return redirect('instructor/courses/'.$inputs['course_id'] . '/files?type='.$inputs['course_type'])->withErrors(['source'=>'ملفات غير صالحة']);
+        } 
         if ($validator->fails()) {
-            return false;
+            return redirect()->back()->withErrors($validator)->withInput();
         }else{
             if($request->file()) {
                 $filePath = FileHelper::uploadFiles($request->file('source'), 'uploads/materials/');
             }
             $inputs['source'] = $filePath;
-            $inputs['status'] = 0;
             $material = $this->MaterialRepo->save($inputs);
-            //GenerateHelper::SendNotificationToStudents($inputs['course_id'], 'file', $material);
+            GenerateHelper::SendNotificationToStudents($inputs['course_id'], 'file', $material);
             $request->session()->flash('success', __('app.Material Added Successfully'));
             return redirect('instructor/courses/'.$inputs['course_id'] . '/files?type='.$inputs['course_type'] );;
         }
