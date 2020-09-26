@@ -295,5 +295,89 @@ public function StartBBBSession($session_id,$SessionId){
         return $this->courseAppointmentAttendenceRepo->saveBulk($Insertdata);
     }
 
+public function getCourseAttendance($course_id){
+    $course = $this->courseRepo->getById($course_id);
+    $OrgAppointments=$this->appointmentRepo->getAll($course_id);
+    $attendances=array();
+    foreach($OrgAppointments as $k =>$orgappointment){
+        $appointments=$this->courseAppointmentAttendenceRepo->getAll($orgappointment->id);
+        $details=array("Appointment_date"=>$orgappointment->date,"Course_title"=>$orgappointment->course->title,
+                       "Course_id"=>$orgappointment->course);
+        
+            foreach($appointments as $appointment){
+                $row=array();
+                $row['Appointment_date']= $orgappointment->date;
+                $row['attand_time']= $appointment->attand_time;	
+                $row['SessionID']=   $appointment->SessionID;
+                $row['attand']=      $appointment->attand;
+                $row['user_id']=    $appointment->user_id;
+                $row['id']=    $appointment->id;
+                $row['userName']=     $this->userRepo->getById($appointment->user_id)->name_ar;
+                $attendances[]=$row;
+            }
+    }   
+    return view('cp.instructor.courses.CourseAttendanceNormal',compact('attendances','details'));  
+}
+public function getTraineCourseAttendance($course_id,$Traine_id){
+    $course = $this->courseRepo->getById($course_id);
+    $OrgAppointments=$this->appointmentRepo->getAll($course_id);  
+    $attendances=array();
+    $AttandCount=0;$AbsantCount=0; $SessionCount=0;
+    foreach($OrgAppointments as $k =>$orgappointment){
+        $appointments=$this->courseAppointmentAttendenceRepo->getAll($orgappointment->id);
+            foreach($appointments as $appointment){
+                if($Traine_id==$appointment->user_id) { 
+                    $SessionCount++;
+                    $row=array();
+                    $row['Appointment_date']= $orgappointment->date;
+                    $row['attand_time']= $appointment->attand_time;	
+                    $row['SessionID']=   $appointment->SessionID;
+                    if($appointment->attand)
+                        $AttandCount++;
+                    else
+                        $AbsantCount++;
+                    $row['attand']=      $appointment->attand;
+                    $row['user_id']=    $appointment->user_id;
+                    $row['id']=    $appointment->id;
+                    $attendances[]=$row;
+                }
+            }
+    }   
+    $attandceDetails=array();
+    $attandceDetails['Sumdays']=count($OrgAppointments);
+    $attandceDetails['SessionCount']=$SessionCount;
+    $attandceDetails['AttandCount']=$AttandCount;
+    $attandceDetails['AbsantCount']=$AbsantCount;
+    if($SessionCount>0){
+      $attandceDetails['attanddencePercantage']=round($AttandCount/$SessionCount,2)*100;
+      $attandceDetails['abcentePercantage']=round($AbsantCount/$SessionCount,2)*100;
+    }
+    else{
+    $attandceDetails['attanddencePercantage']="";
+    $attandceDetails['abcentePercantage']="";
+    }
+
+    return view('cp.instructor.courses.CourseTraineCourseAttendanceDialog',compact('attendances','attandceDetails'));  
+}
+public function getTraineCourseAttendancePercentage($Traine_id,$course_id){
+    $course = $this->courseRepo->getById($course_id);
+    $OrgAppointments=$this->appointmentRepo->getAll($course_id);
+    $OrgAppointmentsTotal=count($OrgAppointments);
+    $totalAttendance=0;
+    $totalAbsent=0;
+    foreach($OrgAppointments as $k =>$orgappointment){
+        $appointments=$this->getAllForUser->getAll($orgappointment->id,$Traine_id);        
+            foreach($appointments as $appointment){
+                if($appointment->attand)
+                   $totalAttendance++;
+                else
+                   $totalAbsent++; 
+            }
+    }
+    $AttandencePercent=$totalAttendance/$OrgAppointmentsTotal;
+    $AbcentPercent=$totalAbsent/$OrgAppointmentsTotal;
+}
+  
+
 
 }

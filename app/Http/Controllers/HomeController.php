@@ -51,7 +51,7 @@ class HomeController extends Controller
         elseif ($role->name == 'trainee')
             return $this->traineeDashboard();
         elseif ($role->name == 'support')
-            return redirect('panichd/dashboard');
+            return redirect('tickets');
         else
             throw new NotFoundHttpException();
     }

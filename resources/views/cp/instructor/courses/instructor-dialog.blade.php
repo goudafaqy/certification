@@ -260,3 +260,48 @@
   @endforeach
   @endif
   <!-- End Allow Attandance Dialog --> 
+
+
+  
+  <!-- Add Attendence Report for Trainee Dialog -->
+  @if ($tab=='tab7')
+  @foreach ($trainees as $trainee)
+<div class="modal fade bd-example-modal-lg" id="attandanceReport_{{$trainee['id']}}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="attandanceReport_{{$trainee['id']}}Title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="attandanceReport_{{$trainee['id']}}lTitle">تقرير الحضور للمتدرب {{$trainee['name_ar']}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #34405a;">
+          <div class="ui-input-container">
+              <div class="row justify-content-center">
+                 <div class="col-12">
+                          <iframe id="iframeAttandanceReport_{{$trainee['id']}}" src="" height="550" width="760"></iframe>
+                 </div>
+               </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="closebutton" data-dismiss="modal">اغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+@push('scripts')
+<script>
+    @foreach ($trainees as $trainee)
+     $(document).on('show.bs.modal',"#attandanceReport_{{$trainee['id']}}", function () {
+       $("iframe#iframeAttandanceReport_{{$trainee['id']}}").attr('src',"{{route('getTraineCourseAttendance',['course_id'=>$course->id,'Trainee_id'=>$trainee['id']])}}");
+    });
+    $(document).on('hide.bs.modal',"#attandanceReport_{{$trainee['id']}}", function () {
+       $("iframe#iframeAttandanceReport_{{$trainee['id']}}").attr('src',"");
+    });
+@endforeach
+ </script>
+@endpush
+@endif
+  <!-- End Allow Attandance Dialog --> 

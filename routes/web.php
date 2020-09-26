@@ -208,6 +208,10 @@ Auth::routes();
 Route::prefix('instructor')->group(function () {
     Route::prefix('courses')->namespace('Instructor')->group(function () {
         Route::get('{course_id}/getCourseProgress', 'CourseController@getCourseProgress')->name('getCourseProgress');
+        Route::get('{course_id}/attendance', 'CourseController@getCourseAttendance')->name('getCourseAttendance');
+        Route::get('{course_id}/{Trainee_id}/getTraineCourseAttendance', 'CourseController@getTraineCourseAttendance')->name('getTraineCourseAttendance');
+
+        
 
         Route::get('webinar/{webinar_id}/attendance', 'AttendanceController@index')->name('attendance'); 
         Route::get('webinar/attend-status/{user_id}', 'AttendanceController@index')->name('attend-status');

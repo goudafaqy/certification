@@ -106,9 +106,9 @@
                                     @endif
                                 @endforeach --}}
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                {{-- @if(Auth::user()->canAccessSupportSystem())
-                                    <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fa fa-support"></i> </a>
-                                @endif --}}
+                                @if(Auth::user()->canAccessSupportSystem())
+                                <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="glyphicon glyphicon-wrensch dropdown-icon"></i> </a>
+                                @endif
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
