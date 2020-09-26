@@ -82,22 +82,21 @@ class CourseController extends Controller
 
         if (!$courses->contains($course))
             throw new NotFoundHttpException();
-        
-           $currentDate = DateHelper::getCurrentDate();
-           return $this->$tab($course, $currentDate);
-         }
+
+        $currentDate = DateHelper::getCurrentDate();
+        return $this->$tab($course, $currentDate);
     }
 
     private function guide($course, $currentDate)
     {
         $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_t");
-        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate, 'tab' => 'tab1', 'guide' => $guide]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab1', 'guide' => $guide]);
     }
 
     private function files($course, $currentDate)
     {
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_t");
-        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab2', 'files' => $files]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab2', 'files' => $files]);
     }
 
     private function sessions($course, $currentDate)
@@ -117,18 +116,18 @@ class CourseController extends Controller
                 break;
             }
         }
-        return view("cp.trainee.courses.view", ['course' => $course, 'maxSessionId'=>$maxSessionId,'ActiveSession'=>$ActiveSession, 'currentDate' => $currentDate,'tab' => 'tab3', 'sessions' => $sessions]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'maxSessionId' => $maxSessionId, 'ActiveSession' => $ActiveSession, 'currentDate' => $currentDate, 'tab' => 'tab3', 'sessions' => $sessions]);
     }
 
     private function questionnaires($course, $currentDate)
     {
-        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab4']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab4']);
     }
 
     private function update($course, $currentDate)
     {
         $updates = $this->updateRepo->getAll($course->id);
-        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'tab' => 'tab5', 'updates' => $updates]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab5', 'updates' => $updates]);
     }
 
     private function exams($course, $currentDate)
@@ -136,7 +135,7 @@ class CourseController extends Controller
 
         $exams = $this->examRepo->getExamsForTrainee($course->id, Auth::id());
 
-        return view("cp.trainee.courses.view", ['course' => $course,  'currentDate' => $currentDate,'exams' => $exams, 'tab' => 'tab6']);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'exams' => $exams, 'tab' => 'tab6']);
     }
 
     private function support($course, $currentDate, $progress)
@@ -187,43 +186,44 @@ class CourseController extends Controller
         ])->with('submit', "شكرا لتعبئة الإستبيان");
     }
 
-    public function getCourseProgress($courseid){
+    public function getCourseProgress($courseid)
+    {
         $sessions = $this->appointmentRepo->getAll($courseid);
         $currentDate = DateHelper::getCurrentDate();
         $countAllSession = count($sessions);
         $countwhateverdone = 0;
         $currentDate = explode(" ", $currentDate)[0];
         foreach ($sessions as $key => $session) {
-             if(strtotime($session->date)<=strtotime($currentDate))
-               $countwhateverdone++;
+            if (strtotime($session->date) <= strtotime($currentDate))
+                $countwhateverdone++;
         }
-        if($countwhateverdone==0)
-        return 0;
-        if(isset($sessions))
-          return $percentage=round(($countwhateverdone/$countAllSession)*100);
-        else 
-         return 0;
+        if ($countwhateverdone == 0)
+            return 0;
+        if (isset($sessions))
+            return $percentage = round(($countwhateverdone / $countAllSession) * 100);
+        else
+            return 0;
     }
 
 
+    public function JoinBBBSession($session_id, $SessionId)
+    {
+        $appointment = $this->appointmentRepo->getById($session_id);
+        $course = $this->courseRepo->getById($appointment->course_id);
+        $orgSessionId = $SessionId;
+        $lastsessionid = ($SessionId == 0) ? 1 : ++$SessionId;
+        $attandenceSession = $this->courseAppointmentAttendenceRepo->getBySessionIDAndUserId($session_id, $lastsessionid, Auth::user()->id);
+        $traineeName = Auth::user()->name_ar;
+        $traineeID = Auth::user()->id;
+        $meeting_id = $course->code . ":" . $course->id . ":" . $appointment->id . ":" . $orgSessionId;
 
-    public function JoinBBBSession($session_id,$SessionId){
-        $appointment=$this->appointmentRepo->getById($session_id);
-        $course= $this->courseRepo->getById($appointment->course_id);
-        $orgSessionId=$SessionId;
-        $lastsessionid=($SessionId==0)?1:++$SessionId; 
-        $attandenceSession=$this->courseAppointmentAttendenceRepo->getBySessionIDAndUserId($session_id,$lastsessionid,Auth::user()->id);
-        $traineeName=Auth::user()->name_ar;
-        $traineeID=Auth::user()->id;
-        $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$orgSessionId;
-        
-        $attandence=array();
-        $attandence['attand_time']= date("Y-m-d");	
-        $attandence['attand']=1;
-     
-        if(BBBHelper::IsMeetingRunning($meeting_id)){
-            $this->courseAppointmentAttendenceRepo->update($attandence,$attandenceSession->id);
-            $MeetingURL=BBBHelper::joinMeeting($meeting_id,$traineeID,$traineeName,"Trainee");
+        $attandence = array();
+        $attandence['attand_time'] = date("Y-m-d");
+        $attandence['attand'] = 1;
+
+        if (BBBHelper::IsMeetingRunning($meeting_id)) {
+            $this->courseAppointmentAttendenceRepo->update($attandence, $attandenceSession->id);
+            $MeetingURL = BBBHelper::joinMeeting($meeting_id, $traineeID, $traineeName, "Trainee");
             return Redirect::away($MeetingURL);
         } else
             return redirect()->back()->with('error', 'الجلسة انتهت بالفعل');
