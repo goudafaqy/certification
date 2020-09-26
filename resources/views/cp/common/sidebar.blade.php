@@ -27,7 +27,7 @@
                 <a href="{{ route('categories-list') }}"><img src="{{ asset('images/categories.png') }}" style="width: 22px">
                     <span> الفئات المستهدفة </span>
                 </a>
-               
+
             </div>
         </nav>
     </div>
@@ -71,7 +71,7 @@
                 </div>
             </nav>
         </div> -->
-    
+
 
 
 
@@ -86,7 +86,7 @@
             </nav>
         </div>
 
-    
+
         <!-- Ads views -->
         <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">
@@ -106,11 +106,20 @@
             <div class="nav-item">
                 <a href="{{ route('testmonials-list') }}"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
                     <span>{{__('app.Testmonials')}} </span>
-                </a>        
+                </a>
             </div>
         </nav>
     </div>
 
+    <div class="nav-container">
+        <nav id="main-menu-navigation" class="navigation-main">
+            <div class="nav-item ">
+                <a href="{{ route('questionnaires-list') }}"><img src="{{ asset('images/courses.png') }}" style="width: 22px">
+                    <span> قائمة الإستبيانات </span>
+                </a>
+            </div>
+        </nav>
+    </div>
 
 </div>
 </div>

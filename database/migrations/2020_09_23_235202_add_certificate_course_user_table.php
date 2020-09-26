@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateDatatypeInUsersTable extends Migration
+class AddCertificateCourseUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateDatatypeInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('mobile')->change();
+        Schema::table('course_user', function (Blueprint $table) {
+            $table->integer('certifcate')->default(0);
         });
     }
 
@@ -25,9 +25,6 @@ class UpdateDatatypeInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->dropColumn(['mobile']);
-        });
+        //
     }
 }

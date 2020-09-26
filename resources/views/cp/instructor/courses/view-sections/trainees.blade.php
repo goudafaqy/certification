@@ -15,6 +15,8 @@
     <input type="hidden" value="{{$course->id}}" name="course">
     <div class="row justify-content-center">
         <div class="col-12">
+
+        
             @if (\Session::has('success'))
                 <div class="alert alert-success">
                     <ul>
@@ -29,11 +31,20 @@
                     </ul>
                 </div>
             @endif
+
+            <div class="alert alert-success" id="certificatesSuccess" style="display:none">
+                   تم أعتماد الشهادات بنجاح                
+            </div>
+            <div class="alert alert-success" id="emailsSuccess" style="display:none">
+                   تم ارسال الرسالة بنجاح               
+            </div>
+            <img src="{{ asset('images/loading.gif') }}" id="loading" style="width: 100px; display:none">
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">اسم الطالب</th>
+                        <th class="text-center">الاعدات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +54,11 @@
                     <tr>
                         <td class="text-center">{{ $trainee->id }}</td>
                         <td class="priority text-center">{{ $trainee->name_ar }}</td>
+                        @if($trainee->getcert->certifcate == 1)
+                        <td class="priority text-center" style="color:#038103">تم أستخراج الشهادة</td>
+                        @else
+                        <td class="priority text-center">-</td>
+                        @endif
                     </tr>
                     @endforeach
                     
@@ -141,8 +157,31 @@
          
    });
 
+   $('form#sendMaill').on('submit', function(event){
+       $('#loading').show();
+       $('#emailsSuccess').hide();
+      var form = this;
 
-
+      $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'course').val('<?php echo $course->id ?>'));
+      var rows_selected = table.column(0).checkboxes.selected();
+      $.each(rows_selected, function(index, rowId){
+         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
+      });
+           event.preventDefault();
+            $.ajax({
+                data: $(this).serialize(),
+                type: $(this).attr('method'),
+                url: $(this).attr('action'),
+                success: function(data) {
+                    $(this).submit();
+                    $('#emailsSuccess').show();
+                    //location.reload();
+                    $('#loading').hide();
+                }
+            });
+            return false;  
+   });
+   
 
 
     });

@@ -16,7 +16,7 @@ class AddLinkToNotificationsTable extends Migration
         Schema::table('notifications', function (Blueprint $table) {
             $table->string('link')->nullable();
             $table->string('extra_text')->nullable();
-            
+
         });
     }
 
@@ -28,5 +28,8 @@ class AddLinkToNotificationsTable extends Migration
     public function down()
     {
         //
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->dropColumn(['extra_text', 'link']);
+        });
     }
 }

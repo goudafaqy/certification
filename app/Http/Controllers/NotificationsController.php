@@ -7,6 +7,7 @@ use App\Models\Notification;
 use App\Models\Course;
 use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Mail;
+use Auth;
 
 class NotificationsController extends Controller
 {
@@ -76,5 +77,76 @@ class NotificationsController extends Controller
                 Mail::to([])->bcc($evenMyMoreUsers)->send($email);
 
     }
+
+
+    public function read(Request $request)
+    {
+            $user = Auth::user()->id;
+            Notification::where('user_id',$user)->update(['is_read'=>1]);
+            return response()->json(['data' => [],'status'=>'true','message'=>'']); 
+    }
+
+    public function userNotifications(Request $request)
+    {
+        
+            $user = Auth::user()->id;
+            $notificationsObj = Notification::where('user_id',$user)->get();
+            $notifications = [];
+            foreach ($notificationsObj as  $value) {
+                $notifications[] = [
+                    'id'=>$value->id ,
+                    'title'=> $value->title_ar ,
+                    'message'=> $value->message_ar,
+                    'type'=> $value->type,
+                    'date' => $this->dateDiff($value->created_at),
+                    'read' => $value->is_read,
+                    
+                ];
+            }
+            return view("cp.notifications.userlist", ['notifications' => $notifications]);
+
+
+    }
+
+
+    public function dateDiff($date){
+
+            $date1 =  strtotime($date);  
+            $date2 = strtotime('now');  
+            $diff = abs($date2 - $date1);  
+            $years = floor($diff / (365*60*60*24));  
+            $months = floor(($diff - $years * 365*60*60*24) 
+                                        / (30*60*60*24));  
+            $days = floor(($diff - $years * 365*60*60*24 -  
+                        $months*30*60*60*24)/ (60*60*24)); 
+            $hours = floor(($diff - $years * 365*60*60*24  
+                - $months*30*60*60*24 - $days*60*60*24) 
+                                            / (60*60));  
+                                            
+            $minutes = floor(($diff - $years * 365*60*60*24  
+                    - $months*30*60*60*24 - $days*60*60*24  
+                                    - $hours*60*60)/ 60);  
+            $seconds = floor(($diff - $years * 365*60*60*24  
+                    - $months*30*60*60*24 - $days*60*60*24 
+                            - $hours*60*60 - $minutes*60));  
+
+            $string = ' ';                
+            if($days != 0){
+                $string.= '  منذ  ' .$days . ' ايام ';
+            }
+            if( $days <= 0 && $hours >= 1){
+                $string.= '  منذ  ' .$hours . ' ساعات ';
+            }
+            if($days <= 0 && $hours <= 0){
+                $string.= '  منذ  ' .$minutes . ' دقائق ';
+            }
+            if($days <= 0 && $hours <= 0 && $minutes < 5  ){
+                $string.= '  منذ  ' . $seconds  .' ثوانى ';
+            }
+            return $string;          
+
+
+
+}
 
 }

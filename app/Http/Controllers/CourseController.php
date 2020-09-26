@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Helpers\DateHelper;
 use App\Http\Repositories\Eloquent\CategoryRepo;
+use App\Http\Repositories\Eloquent\QuestionnaireRepo;
 use App\Http\Repositories\Validation\CourseRepoValidation;
 use App\Http\Repositories\Eloquent\CourseRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
@@ -24,6 +25,7 @@ class CourseController extends Controller
     var $categoryRepo;
     var $classRepo;
     var $materialRepo;
+    var $questionnaireRepo;
     var $courseValidation;
     /**
      * Create a new controller instance.
@@ -36,6 +38,7 @@ class CourseController extends Controller
         CategoryRepo $categoryRepo,
         ClassificationRepo $classRepo,
         MaterialRepo $materialRepo,
+        QuestionnaireRepo $questionnaireRepo,
         CourseRepoValidation $courseValidation
     )
     {
@@ -44,6 +47,7 @@ class CourseController extends Controller
         $this->categoryRepo = $categoryRepo;
         $this->classRepo = $classRepo;
         $this->materialRepo = $materialRepo;
+        $this->questionnaireRepo = $questionnaireRepo;
         $this->courseValidation = $courseValidation;
         $this->middleware('auth');
     }
@@ -64,11 +68,13 @@ class CourseController extends Controller
      */
     public function add()
     {
-        $instructors        = $this->userRepo->getByRole('instructor');
-        $categories         = $this->categoryRepo->getAll();
+        $instructors            = $this->userRepo->getByRole('instructor');
+        $categories             = $this->categoryRepo->getAll();
+        $questionnaires         = $this->questionnaireRepo->getBy('type', 'certification');
         return view("cp.courses.courses-add", [
             'categories'        => $categories,
-            'instructors'       => $instructors
+            'instructors'       => $instructors,
+            'questionnaires'    => $questionnaires
         ]);
     }
 
@@ -90,6 +96,7 @@ class CourseController extends Controller
             unset($inputs['_token']);
             $inputs['assi_check'] = (isset($inputs['assi_check']) && $inputs['assi_check'] == 'on') ? 1 : 0;
             $inputs['exam_check'] = (isset($inputs['exam_check']) && $inputs['exam_check'] == 'on') ? 1 : 0;
+            $inputs['objective'] = (isset($inputs['objective']) && $inputs['objective']) ? $inputs['objective'] : '';
             $inputs['reg_start_date'] = DateHelper::getDateFormate($inputs['reg_start_date']);
             $inputs['reg_end_date'] = DateHelper::getDateFormate($inputs['reg_end_date']);
 
@@ -141,7 +148,12 @@ class CourseController extends Controller
           $instructors        = $this->userRepo->getByRole('instructor');
           $categories         = $this->categoryRepo->getAll();
           $classifications = $this->classRepo->getByCat($course->cat_id);
-          return view("cp.courses.courses-update", ['course' => $course, 'instructors' => $instructors, 'categories' => $categories, 'classifications' => $classifications]);
+          $questionnaires         = $this->questionnaireRepo->getBy('type', 'certification');
+          return view("cp.courses.courses-update", [
+              'course' => $course, 'instructors' => $instructors,
+              'categories' => $categories, 'classifications' => $classifications,
+              'questionnaires' => $questionnaires
+          ]);
         }
     }
     public function view($id){
@@ -183,6 +195,7 @@ class CourseController extends Controller
             unset($inputs['_token']);
             $inputs['assi_check'] = (isset($inputs['assi_check']) && $inputs['assi_check'] == 'on') ? 1 : 0;
             $inputs['exam_check'] = (isset($inputs['exam_check']) && $inputs['exam_check'] == 'on') ? 1 : 0;
+            $inputs['objective'] = (isset($inputs['objective']) && $inputs['objective']) ? $inputs['objective'] : '';
             $inputs['reg_start_date'] = DateHelper::getDateFormate($inputs['reg_start_date']);
             $inputs['reg_end_date'] = DateHelper::getDateFormate($inputs['reg_end_date']);
 

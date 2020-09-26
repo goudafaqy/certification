@@ -35,6 +35,18 @@
             </script>
             <script>
                 $(document).ready(function () {
+                    $("#notiDropdown").on('click',function(){
+                        $.ajax({
+                            type:'GET',
+                            url: "<?php echo route('readNotifications') ?>",
+                            data:'',
+                            success:function(content){
+                                if(content == true){
+                                    $('#notiDropdownCount').text("");
+                                }
+                            }
+                        });
+                    });
 
 
                     $('.repeater').repeater({

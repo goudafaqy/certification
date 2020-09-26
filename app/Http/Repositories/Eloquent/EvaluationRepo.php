@@ -99,7 +99,6 @@ class EvaluationRepo extends Repository implements ExamEloquent
             }
             DB::commit();
         } catch (\Throwable $e) {
-            dd($e->getMessage());
             DB::rollback();
             return false;
         }
