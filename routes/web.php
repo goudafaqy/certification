@@ -176,8 +176,6 @@ Route::prefix('advertisments')->group(function () {
 
 });
 
-// Course testmonials routes ...
-Route::prefix('testmonials')->group(function () {
 
 // Course testmonials routes ...
 Route::prefix('testmonials')->group(function () {

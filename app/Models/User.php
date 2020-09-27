@@ -128,13 +128,9 @@ class User extends Authenticatable
 
 
     public function canAccessSupportSystem(){
-<<<<<<< HEAD
-        $roleNames = $this->roles->pluck('name');
-=======
 
         $roleNames = $this->roles->pluck('name')->toArray();
 
->>>>>>> dev
         return in_array('admin', $roleNames) || in_array('support', $roleNames);
     }
 }
