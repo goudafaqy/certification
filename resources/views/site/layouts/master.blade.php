@@ -138,11 +138,11 @@
 <!-- start-social_media -->
 <div class="social_media">
     <ul>
-        <li class="twitter-icon"><a href="#" class="icon-btn"><i class="fab fa-twitter"></i></a></li>
-        <li class="snapchat-icon"><a href="#" class="icon-btn"><img src="{{asset('site-assets/images/snap.png')}}"></a></li>
-        <li class="face-book-icon"><a href="#" class="icon-btn"><i class="fab fa-facebook-f"></i></a></li>
-        <li class="insta-icon"><a href="#" class="icon-btn"><i class="fab fa-instagram"></i></a></li>
-        <li class="linkedin-icon"><a href="#" class="icon-btn"><i class="fab fa-linkedin-in"></i></a></li>
+        <li class="twitter-icon"><a href="https://twitter.com/jtc_ksa?lang=en" target="_blank" class="icon-btn"><i class="fab fa-twitter"></i></a></li>
+        <!--<li class="snapchat-icon"><a href="#" class="icon-btn"><img src="{{asset('site-assets/images/snap.png')}}"></a></li>-->
+        <li class="face-book-icon"><a href="https://m.facebook.com/jtcksa/" target="_blank" class="icon-btn"><i class="fab fa-facebook-f"></i></a></li>
+        <li class="insta-icon"><a href="https://instagram.com/jtc_ksa?igshid=1y0zuhyy3rt39" target="_blank" class="icon-btn"><i class="fab fa-instagram"></i></a></li>
+        <!--<li class="linkedin-icon"><a href="#" class="icon-btn"><i class="fab fa-linkedin-in"></i></a></li>-->
     </ul>
 </div>
 <!-- end-social_media -->
@@ -230,7 +230,6 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                 <i class="fas fa-balance-scale scale"></i>
                                 <i class="fas fa-bars bars"></i>
-                                    
                                     الفئات المستهدفة
                                 </a>
 
@@ -299,13 +298,14 @@
                               <div class="dropdown">
                             
                              <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-chevron-down"></i>
                                 <img class="Homeavatar" src="{{ Auth::user()->image?url(Auth::user()->image): asset('site-assets/images/avatarman.png') }}" alt="">
                                 <span class="homeusernamespan" >{{ Auth::user()->name_ar }}</span>
-                                </a>
-                               
+                                </a>                               
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="{{ route('dashboard') }}"> <i class="fas fa-user"></i>لوحة المعلومات </a>
+                                @if(Auth::user()->canAccessSupportSystem())
+                                <a class="dropdown-item" href="{{ url('panichd/dashboard') }}"><i class="glyphicon glyphicon-wrench"></i>نظام الدعم الفني  </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('edit-profile') }}"> <i class="fas fa-user"></i> الملف الشخصي </a>
                                 <a class="dropdown-item" href="/password/reset"><i class="fas fa-unlock-alt  dropdown-icon"></i> تغيير كلمة المرور  </a>
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
@@ -358,7 +358,7 @@
 
                         <ul class="footer-links">
                             <li>
-                                <a href="#"><img src="{{asset('site-assets/images\jnkjnkjn.png')}}" class="img-fluid">المركز الرئيسى - الرياض - حى الفلاح - شارع البركة </a>
+                                <a href="#"><img src="{{asset('site-assets/images/jnkjnkjn.png')}}" class="img-fluid">المركز الرئيسى - الرياض - حى الفلاح - شارع البركة </a>
                             </li>
                             <li>
                                 <a href="#"><img src="{{asset('site-assets/images/email-center.png')}}" class="img-fluid"> Jtc-Trainingplat@moj.gov.sa</a>
@@ -371,7 +371,7 @@
 
                         <!-- class bottom-footer -->
                         <ul class="bottom-footer">
-                            <li><a href="#"><img src="{{asset('site-assets/images\title-center.png')}}" class="img-fluid" width="32"></a></li>
+                            <li><a href="https://twitter.com/jtc_ksa?lang=en" target="_blank"><img src="{{asset('site-assets/images\title-center.png')}}" class="img-fluid" width="32"></a></li>
                             <!-- <li><a href="#"> <img src="{{asset('site-assets/images\play.png')}}" class="img-fluid" width="100"> </a></li>
                             <li><a href="#"><img src="{{asset('site-assets/images\apple.png')}}" class="img-fluid"  width="90"></a></li> -->
 

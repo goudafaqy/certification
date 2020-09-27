@@ -49,7 +49,7 @@
                                                 <th class="th-sm text-center">النوع</th>
                                                 <th class="th-sm text-center">المدرب</th>
                                                 <th class="th-sm text-center">الفئة</th>
-                                                <th class="th-sm text-center">التصنيف</th>
+
                                                 <th class="th-sm text-center">المقاعد</th>
                                                 <th class="th-sm text-center">الإجراءات</th>
                                             </tr>
@@ -75,7 +75,6 @@
                                                 </td>
                                                 <td class="text-center">{{ $course->instructor->name_ar }}</td>
                                                 <td class="text-center">{{ $course->category->title_ar }}</td>
-                                                <td class="text-center">{{ $course->classification->title_ar }}</td>
                                                 <td class="text-center">{{ $course->seats }}</td>
                                                 <td class="text-center courses-actions">
                                                     <a class="btn btn-primary actions-btns" href="{{route('sections-list',['course_id' => $course->id])}}" data-toggle="tooltip" data-placement="top"  title="المخطط"><i style="position: relative; top: -4px; right: -4px" class="fa fa-building"></i></a>

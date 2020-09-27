@@ -114,12 +114,12 @@ class CourseController extends Controller
             'img' => 'صورة',
         ];
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_i");
-        return view("cp.instructor.courses.view", ['course' => $course,'types'=>$types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'types' => $types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
     }
 
     private function sessions($course, $type)
-{
-        $sessions = $this->appointmentRepo->getAll($course->id,true);
+    {
+        $sessions = $this->appointmentRepo->getAll($course->id, true);
         $currentDate = DateHelper::getCurrentDate();
         $maxSessionId = 0;
         foreach ($sessions as $key => $session) {
@@ -130,12 +130,13 @@ class CourseController extends Controller
                 break;
             }
         }
-        return view("cp.instructor.courses.view", ['course' => $course,'maxSessionId'=>$maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
+        return view("cp.instructor.courses.view", ['course' => $course, 'maxSessionId' => $maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
     }
 
     private function questionnaires($course, $type)
     {
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type]);
+        $questionnaires = $this->questionnaireRepo->getBy('type', 'instructor');
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type, 'questionnaires' => $questionnaires]);
     }
 
     private function update($course, $type)
@@ -186,63 +187,65 @@ class CourseController extends Controller
     }
 
 
-    public function getCourseProgress($courseid){
+    public function getCourseProgress($courseid)
+    {
         $sessions = $this->appointmentRepo->getAll($courseid);
         $currentDate = DateHelper::getCurrentDate();
         $countAllSession = count($sessions);
         $countwhateverdone = 0;
         $currentDate = explode(" ", $currentDate)[0];
         foreach ($sessions as $key => $session) {
-             if(strtotime($session->date)<=strtotime($currentDate))
-               $countwhateverdone++;
+            if (strtotime($session->date) <= strtotime($currentDate))
+                $countwhateverdone++;
         }
-        if($countwhateverdone==0)
-        return 0;
-        if(isset($sessions))
-          return $percentage=round(($countwhateverdone/$countAllSession)*100);
-        else 
-         return 0;
+        if ($countwhateverdone == 0)
+            return 0;
+        if (isset($sessions))
+            return $percentage = round(($countwhateverdone / $countAllSession) * 100);
+        else
+            return 0;
     }
 
-public function AddNewAppointment(Request $request){
-    $inputs = $request->input();
-    $row=array();
-    $row['title']       = $inputs['course_title'];
-    $row['date']        = $inputs['date'];
-    $row['day']         = DateHelper::getDayWeekStringFromNumber(date('w', strtotime($inputs['date'])));
-    $row['from_time']   = $inputs['from_time'];
-    $row['to_time']     = $inputs['to_time'];
-    $row['course_id']   = $inputs['course_id'];
-    $row['hasZoom']   = $inputs['hasZoom'];
-    //is this date already exist 
-    $isExist=$this->appointmentRepo->IsDateInCourse($row['course_id'],$row['date']);
-    if($isExist)
-     return "3";
+    public function AddNewAppointment(Request $request)
+    {
+        $inputs = $request->input();
+        $row = array();
+        $row['title'] = $inputs['course_title'];
+        $row['date'] = $inputs['date'];
+        $row['day'] = DateHelper::getDayWeekStringFromNumber(date('w', strtotime($inputs['date'])));
+        $row['from_time'] = $inputs['from_time'];
+        $row['to_time'] = $inputs['to_time'];
+        $row['course_id'] = $inputs['course_id'];
+        $row['hasZoom'] = $inputs['hasZoom'];
+        //is this date already exist
+        $isExist = $this->appointmentRepo->IsDateInCourse($row['course_id'], $row['date']);
+        if ($isExist)
+            return "3";
 
-    $new_startTime=date("H:i:s", strtotime($row['from_time']));
-    $new_endTime=date("H:i:s", strtotime($row['to_time']));
-    $st_time=strtotime($new_startTime);
-    $end_time=strtotime($new_endTime);
-    if(($st_time <  $end_time)&&($end_time >  $st_time)){
-       $this->appointmentRepo->save($row);  
-       $request->session()->flash('success', 'تم الاضافة بنجاح');
-       return "1";
+        $new_startTime = date("H:i:s", strtotime($row['from_time']));
+        $new_endTime = date("H:i:s", strtotime($row['to_time']));
+        $st_time = strtotime($new_startTime);
+        $end_time = strtotime($new_endTime);
+        if (($st_time < $end_time) && ($end_time > $st_time)) {
+            $this->appointmentRepo->save($row);
+            $request->session()->flash('success', 'تم الاضافة بنجاح');
+            return "1";
+        } else
+            return "2";
     }
-    else
-       return "2";    
-}
-public function EndBBBSession($session_id,$SessionId){
-    $appointment=$this->appointmentRepo->getById($session_id);
-    $course= $this->courseRepo->getById($appointment->course_id);
-    $InstructorName=$course->instructor->name_ar;
-    $InstructorId=$course->instructor->id;
-    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
-    if(BBBHelper::closeMeeting($meeting_id))
-       return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح'); 
-    else
-       return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة'); 
-}
 
+    public function EndBBBSession($session_id, $SessionId)
+    {
+        $appointment = $this->appointmentRepo->getById($session_id);
+        $course = $this->courseRepo->getById($appointment->course_id);
+        $InstructorName = $course->instructor->name_ar;
+        $InstructorId = $course->instructor->id;
+        $meeting_id = $course->code . ":" . $course->id . ":" . $appointment->id . ":" . $SessionId;
+        if (BBBHelper::closeMeeting($meeting_id))
+            return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح');
+        else
+            return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة');
+    }
 
     public function StartBBBSession($session_id, $SessionId)
     {
@@ -281,6 +284,90 @@ public function EndBBBSession($session_id,$SessionId){
         }
         return $this->courseAppointmentAttendenceRepo->saveBulk($Insertdata);
     }
+
+public function getCourseAttendance($course_id){
+    $course = $this->courseRepo->getById($course_id);
+    $OrgAppointments=$this->appointmentRepo->getAll($course_id);
+    $attendances=array();
+    foreach($OrgAppointments as $k =>$orgappointment){
+        $appointments=$this->courseAppointmentAttendenceRepo->getAll($orgappointment->id);
+        $details=array("Appointment_date"=>$orgappointment->date,"Course_title"=>$orgappointment->course->title,
+                       "Course_id"=>$orgappointment->course);
+        
+            foreach($appointments as $appointment){
+                $row=array();
+                $row['Appointment_date']= $orgappointment->date;
+                $row['attand_time']= $appointment->attand_time;	
+                $row['SessionID']=   $appointment->SessionID;
+                $row['attand']=      $appointment->attand;
+                $row['user_id']=    $appointment->user_id;
+                $row['id']=    $appointment->id;
+                $row['userName']=     $this->userRepo->getById($appointment->user_id)->name_ar;
+                $attendances[]=$row;
+            }
+    }   
+    return view('cp.instructor.courses.CourseAttendanceNormal',compact('attendances','details'));  
+}
+public function getTraineCourseAttendance($course_id,$Traine_id){
+    $course = $this->courseRepo->getById($course_id);
+    $OrgAppointments=$this->appointmentRepo->getAll($course_id);  
+    $attendances=array();
+    $AttandCount=0;$AbsantCount=0; $SessionCount=0;
+    foreach($OrgAppointments as $k =>$orgappointment){
+        $appointments=$this->courseAppointmentAttendenceRepo->getAll($orgappointment->id);
+            foreach($appointments as $appointment){
+                if($Traine_id==$appointment->user_id) { 
+                    $SessionCount++;
+                    $row=array();
+                    $row['Appointment_date']= $orgappointment->date;
+                    $row['attand_time']= $appointment->attand_time;	
+                    $row['SessionID']=   $appointment->SessionID;
+                    if($appointment->attand)
+                        $AttandCount++;
+                    else
+                        $AbsantCount++;
+                    $row['attand']=      $appointment->attand;
+                    $row['user_id']=    $appointment->user_id;
+                    $row['id']=    $appointment->id;
+                    $attendances[]=$row;
+                }
+            }
+    }   
+    $attandceDetails=array();
+    $attandceDetails['Sumdays']=count($OrgAppointments);
+    $attandceDetails['SessionCount']=$SessionCount;
+    $attandceDetails['AttandCount']=$AttandCount;
+    $attandceDetails['AbsantCount']=$AbsantCount;
+    if($SessionCount>0){
+      $attandceDetails['attanddencePercantage']=round($AttandCount/$SessionCount,2)*100;
+      $attandceDetails['abcentePercantage']=round($AbsantCount/$SessionCount,2)*100;
+    }
+    else{
+    $attandceDetails['attanddencePercantage']="";
+    $attandceDetails['abcentePercantage']="";
+    }
+
+    return view('cp.instructor.courses.CourseTraineCourseAttendanceDialog',compact('attendances','attandceDetails'));  
+}
+public function getTraineCourseAttendancePercentage($Traine_id,$course_id){
+    $course = $this->courseRepo->getById($course_id);
+    $OrgAppointments=$this->appointmentRepo->getAll($course_id);
+    $OrgAppointmentsTotal=count($OrgAppointments);
+    $totalAttendance=0;
+    $totalAbsent=0;
+    foreach($OrgAppointments as $k =>$orgappointment){
+        $appointments=$this->getAllForUser->getAll($orgappointment->id,$Traine_id);        
+            foreach($appointments as $appointment){
+                if($appointment->attand)
+                   $totalAttendance++;
+                else
+                   $totalAbsent++; 
+            }
+    }
+    $AttandencePercent=$totalAttendance/$OrgAppointmentsTotal;
+    $AbcentPercent=$totalAbsent/$OrgAppointmentsTotal;
+}
+  
 
 
 }

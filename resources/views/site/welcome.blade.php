@@ -179,9 +179,12 @@
             <div class="tab-content">
                 @foreach($sliderItems as $class)
                 <div role="tabpanel" class="tab-pane @if($loop->index==0) active @endif" id="class-{{$class->id}}">
+                   <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <div id="swiperr" class="swiper-container loading no-printme">
+                    <div class="swiper-wrapper">
                             @php($courses  = $class->courses()->orderBy("created_at","DESC")->take(8)->get())
                             @foreach($courses as $course)
-                            <!-- <div class="item">
+                                <div class="swiper-slide" data-test-set="test">
                                 <div class="course-item-wrapper">
                                     <div class="course-thumbnail">
                                         <a href="{{url('course/'.$course->id)}}"><img src="{{url($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
@@ -211,196 +214,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             
                             @endforeach
+                   </div>  
+                   </div>  
+                   </div>  
                    </div>     
                 @endforeach
             </div>
-        <!-- swiper card -->
-        <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                <div id="swiperr" class="swiper-container loading no-printme">
-                    <div class="swiper-wrapper">
-                      
-                        <div class="swiper-slide" data-test-set="test">
-                            <div class="course-item-wrapper">
-                                <div class="course-thumbnail">
-                                    <a href="#"><img src="images/gr.png" alt=""></a>
-                                    <div class="price">$55.00</div>
-                                </div>
-                                <div class="thim-course-content">
-                                    <div class="course-author">
-                                        <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
-                                            <div class="author-contain">
-                                                <label>المعلم</label>
-                                                <div class="value" itemprop="name">
-                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2 class="course-title">
-                                        <a href="#">الأوراق التجارية ومنازعاتها</a>
-                                    </h2>
-                                    <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                        <span>
-                                            <i class="fa fa-tag"></i>
-                                            <a href="#">القانون التجاري</a>
-                                        </span>
-                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" data-test-set="test">
-                            <div class="course-item-wrapper">
-                                <div class="course-thumbnail">
-                                    <a href="#"><img src="images/gr.png" alt=""></a>
-                                    <div class="price">$55.00</div>
-                                </div>
-                                <div class="thim-course-content">
-                                    <div class="course-author">
-                                        <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
-                                            <div class="author-contain">
-                                                <label>المعلم</label>
-                                                <div class="value" itemprop="name">
-                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2 class="course-title">
-                                        <a href="#">الأوراق التجارية ومنازعاتها</a>
-                                    </h2>
-                                    <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                        <span>
-                                            <i class="fa fa-tag"></i>
-                                            <a href="#">القانون التجاري</a>
-                                        </span>
-                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" data-test-set="test">
-                            <div class="course-item-wrapper">
-                                <div class="course-thumbnail">
-                                    <a href="#"><img src="images/gr.png" alt=""></a>
-                                    <div class="price">$55.00</div>
-                                </div>
-                                <div class="thim-course-content">
-                                    <div class="course-author">
-                                        <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
-                                            <div class="author-contain">
-                                                <label>المعلم</label>
-                                                <div class="value" itemprop="name">
-                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2 class="course-title">
-                                        <a href="#">الأوراق التجارية ومنازعاتها</a>
-                                    </h2>
-                                    <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                        <span>
-                                            <i class="fa fa-tag"></i>
-                                            <a href="#">القانون التجاري</a>
-                                        </span>
-                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" data-test-set="test">
-                            <div class="course-item-wrapper">
-                                <div class="course-thumbnail">
-                                    <a href="#"><img src="images/gr.png" alt=""></a>
-                                    <div class="price">$55.00</div>
-                                </div>
-                                <div class="thim-course-content">
-                                    <div class="course-author">
-                                        <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
-                                            <div class="author-contain">
-                                                <label>المعلم</label>
-                                                <div class="value" itemprop="name">
-                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2 class="course-title">
-                                        <a href="#">الأوراق التجارية ومنازعاتها</a>
-                                    </h2>
-                                    <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                        <span>
-                                            <i class="fa fa-tag"></i>
-                                            <a href="#">القانون التجاري</a>
-                                        </span>
-                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" data-test-set="test">
-                            <div class="course-item-wrapper">
-                                <div class="course-thumbnail">
-                                    <a href="#"><img src="images/gr.png" alt=""></a>
-                                    <div class="price">$55.00</div>
-                                </div>
-                                <div class="thim-course-content">
-                                    <div class="course-author">
-                                        <div class="course-author-content">
-                                            <img alt="" src="images/face.png" class="avatar avatar-96 photo">
-                                            <div class="author-contain">
-                                                <label>المعلم</label>
-                                                <div class="value" itemprop="name">
-                                                    <a href="#">د.فارس بن محمد بن عبد الله القرني</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2 class="course-title">
-                                        <a href="#">الأوراق التجارية ومنازعاتها</a>
-                                    </h2>
-                                    <div class="course-meta">
-                                        <span> <i class="fa fa-user"></i>94 متدرب</span>
-                                        <span>
-                                            <i class="fa fa-tag"></i>
-                                            <a href="#">القانون التجاري</a>
-                                        </span>
-                                        <span class="star"><i class="fa fa-star"></i> 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                       
-                
-                        
-                
-                    </div>
-                
-                    <!-- If we need pagination -->
-                    <!-- <div class="swiper-pagination"></div> -->
-                    <div class="swiper_buttons">
-                     <a class="swiper-button-prev "></a>
-                     <a class="swiper-button-next"></a>
-                
-                    </div>
-                </div>
-        </div>
-        <!-- end swiper card -->
-
-
+      
 
     </section>
     <div id="swiper" class="articles d-flex align-items-center">

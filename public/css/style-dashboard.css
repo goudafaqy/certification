@@ -4127,3 +4127,11 @@ float:right;
         z-index: 10;
     }
 }
+
+.dtrg-level-0{
+  background-color:aliceblue;
+}
+
+.dtrg-level-1{
+  background-color:azure;
+}
