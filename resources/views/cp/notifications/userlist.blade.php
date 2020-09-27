@@ -1,6 +1,13 @@
 @include('cp.common.dashboard-header')
+
+@if($rolename == 'instructor')
+@include('cp.common.sidebar_instructor', ['active' => 'notify-list'])
+@elseif($rolename == 'trainee')
+@include('cp.common.sidebar_trainee', ['active' => 'notify-list'])
+@else
 @include('cp.common.sidebar', ['active' => 'notify-list'])
 
+@endif
 <style>
 
 .notification-content {

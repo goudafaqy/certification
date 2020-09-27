@@ -242,20 +242,7 @@ public function EndBBBSession($session_id,$SessionId){
     else
        return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة'); 
 }
-public function StartBBBSession($session_id,$SessionId){
-    $appointment=$this->appointmentRepo->getById($session_id);
-    $course= $this->courseRepo->getById($appointment->course_id);
-    $InstructorName=$course->instructor->name_ar;
-    $InstructorId=$course->instructor->id;
-    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
-    if(!BBBHelper::IsMeetingRunning($meeting_id)){
-        $this->StartNewBBBAttandenceSession($session_id,$SessionId);
-        $MeetingURL=BBBHelper::StartMeeting($meeting_id,$InstructorName,$InstructorId);
-        return $MeetingURL;
-    }else{
-        $MeetingURL=BBBHelper::joinMeeting($meeting_id,$InstructorId,$InstructorName,"Trainer");
-        return $MeetingURL;
-    }
+
 
     public function StartBBBSession($session_id, $SessionId)
     {

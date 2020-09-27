@@ -89,6 +89,7 @@ class NotificationsController extends Controller
     public function userNotifications(Request $request)
     {
         
+            $role = Auth::user()->roles ? Auth::user()->roles[0] : null;
             $user = Auth::user()->id;
             $notificationsObj = Notification::where('user_id',$user)->get();
             $notifications = [];
@@ -103,7 +104,7 @@ class NotificationsController extends Controller
                     
                 ];
             }
-            return view("cp.notifications.userlist", ['notifications' => $notifications]);
+            return view("cp.notifications.userlist", ['notifications' => $notifications, 'rolename'=>$role->name]);
 
 
     }
