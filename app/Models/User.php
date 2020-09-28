@@ -133,4 +133,11 @@ class User extends Authenticatable
 
         return in_array('admin', $roleNames) || in_array('support', $roleNames);
     }
+
+    public function hasRole($rolename){
+
+        $roleNames = $this->roles->pluck('name')->toArray();
+
+        return in_array($rolename, $roleNames);
+    }
 }

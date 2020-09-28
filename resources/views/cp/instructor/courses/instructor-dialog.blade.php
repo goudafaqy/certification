@@ -28,7 +28,7 @@
                     <textarea class="ui-form-input" id="word-count-input" rows="10" name="message"></textarea>
                         <span class="form-input-label"><img src="{{ asset('images/school.png') }}" style="width: 20px"></span>
                         </label>
-                        <button type="submit" class="btn btn-primary" style="margin:auto; display:table;width:120px">حفظ</button>
+                        <button type="submit" class="btn btn-primary" style="margin:auto; display:table;width:120px">أرسال</button>
                     </div>      
           </form>              
                 </div>

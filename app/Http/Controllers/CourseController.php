@@ -108,7 +108,7 @@ class CourseController extends Controller
                     'code'      => GenerateHelper::generateCourseCode($courseId, $categoryLetter, 1),
                 ], $courseId);
                 try {
-                    //$this->SendNotificationToInstructor($course);
+                    $this->SendNotificationToInstructor($course);
                 } catch (Throwable $e) {
                 }
                 return redirect('courses/list')->with('added', 'تمت إضافة دورة جديدة بنجاح');

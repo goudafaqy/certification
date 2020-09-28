@@ -51,33 +51,7 @@
                         <div class="card-body" style="padding: 0 15px">
                             <div class="row justify-content-center">
                                 <div class="col-md-12 table-container">
-                                    @if (session('added'))
-                                        <div class="alert alert-success alert-dismissible fade show">
-                                            {{ session('added') }}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    @endif
-                                    @if (session('deleted'))
-                                        <div class="alert alert-success alert-dismissible fade show">
-                                            {{ session('deleted') }}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    @endif
-                                    @if (session('updated'))
-                                        <div class="alert alert-success alert-dismissible fade show">
-                                            {{ session('updated') }}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    @endif
-
                                     <div class="dashboard-content">
-                               
                                         <div class="row">
                                             <div class="notification-content">
                                                 <ul class="notification-list">
@@ -85,7 +59,7 @@
                                                     @foreach($notifications as $notification )
                                                     <li class="notification-item">
                                                         <h4>{{$notification['title']}}</h4>
-                                                        <p> {{$notification['message']}}  </p>
+                                                        <pre>{!! $notification['message'] !!}</pre>
                                                         <span class="notification-time">{{$notification['date']}}</span>
                                                     </li>
                                                     @endforeach

@@ -34,7 +34,9 @@
 
     <!-- End Style -->
 </head>
-
+<?php $notifications=\Session::get('notifications');  ?>
+<?php $events=\Session::get('events'); ?>
+                        
 <body>
     <div class="wrapper">
         <header class="header-top" header-theme="">
@@ -46,42 +48,35 @@
                         @endif
                     </div>
                     <div class="top-menu d-flex align-items-center">
-                        <!-- <div class="input-group md-form form-sm form-2 pl-0 searchclass">
-                            <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                            <a href="#">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-text1">
-                                        <i class="fa fa-search" aria-hidden="true"></i></span>
-                                </div>
-                            </a>
-                        </div> -->
-                        <button type="button" class="nav-link ml-10 right-sidebar-toggle">
-                            <i class="far fa-calendar-alt"></i>
-                            <span class="badge bg-success">0</span></button>
+                        
+                       <button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="far fa-calendar-alt"></i><span class="badge bg-success">
+                        @if(isset($events)){{count($events)}}@endif</span></button>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" data-toggle="dropdown">
-                            <?php
-                              $notifications =\App\Models\Notification::where('is_read',0)->where('user_id',Auth::user()->id )->get();
-                            ?>
-                                <i class="ik ik-bell"></i><span class="badge bg-danger" id="notiDropdownCount">{{count($notifications)}}</span></a>
-                            <div class="dropdown-menu dropdown-menu-right notification-dropdown">
-                                <h4 class="header">الإشعارات</h4>
-                                <div class="notifications-wrap">
+                                <i class="ik ik-bell"></i>
                                 @if(count($notifications)>0)
-                                @foreach($notifications as $notification)
-                                    <a href="#" class="media" style="pointer-events:none">
-                                       <span class="d-flex"><i class="ik ik-check"></i> </span>
-                                       &nbsp; 	&nbsp;
-                                        <span class="media-body" style="margin-top:5px">
-                                            <span class="heading-font-family media-heading">{{$notification->title_ar}}</span>
-                                        </span>
-                                    </a>
-                                @endforeach
-                                @else
-                                    <p class="heading-font-family" style="text-align:center">لايوجد اشعارات جديدة</p>
-                                @endif
+                                <span class="badge bg-danger" id="notiDropdownCount">
+                                    {{count($notifications)}}
+                                </span>
+                                    @endif</a>
+                                <div class="dropdown-menu dropdown-menu-right notification-dropdown">
+                                    @if(count($notifications)>0)<h4 class="header">الإشعارات</h4>@endif
+                                <div class="notifications-wrap">
+                                    @if(isset($notifications))
+                                    @foreach($notifications as $notification)
+                                        <a href="#" class="media" style="pointer-events:none">
+                                        <span class="d-flex"><i class="ik ik-check"></i> </span>
+                                        &nbsp; 	&nbsp;
+                                            <span class="media-body" style="margin-top:5px">
+                                                <span class="heading-font-family media-heading">{{$notification->title_ar}}</span>
+                                            </span>
+                                        </a>
+                                    @endforeach
+                                    @else
+                                        <p class="heading-font-family" style="text-align:center">لايوجد اشعارات جديدة</p>
+                                    @endif
                                 </div>
-                                <div class="footer"><a href="{{ route('userNotifications') }}">كل الإشعارات</a></div>
+                                @if(count($notifications)>0)<div class="footer"><a href="{{ route('userNotifications') }}">كل الإشعارات</a></div>@endif
                             </div>
                         </div>
                         <div class="dropdown">
@@ -91,23 +86,12 @@
                                 <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ Auth::user()->name_ar }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                               @if((Auth::user()->roles[0]->name == 'trainee')||(Auth::user()->roles[0]->name == 'instructor'))
+                               @if(Auth::user()->hasRole('trainee')||Auth::user()->hasRole('instructor'))
                                 <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
-                              @endif
-                                {{-- @foreach (Auth::user()->roles as $key => $role)
-                                    @if ($role->name=='instructor')
-                                     <a class="dropdown-item" href="/dashboard/instructor">دخول كمدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                    @elseif ($role->name=='trainee')
-                                     <a class="dropdown-item" href="/dashboard/trainee">دخول كمتدرب<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                    @elseif ($role->name=='support')
-                                     <a class="dropdown-item" href="/dashboard/support">دخول كمسئول دعم فنى<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                    @elseif ($role->name=='admin')
-                                     <a class="dropdown-item" href="/dashboard/admin">دخول كمدير للمنصة<i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                    @endif
-                                @endforeach --}}
+                               @endif
                                 <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
                                 @if(Auth::user()->canAccessSupportSystem())
-                                <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="glyphicon glyphicon-wrensch dropdown-icon"></i> </a>
+                                <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fas fa-unlock-alt dropdown-icon"></i> </a>
                                 @endif
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -163,6 +163,7 @@
         $('#dtBasicExample').DataTable({
             "searching": true ,
             "select":true,
+           // "order": [[ 2, "asc" ]],
             "language": {
                 "lengthMenu": "عرض _MENU_ دورة في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد دورات",

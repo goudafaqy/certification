@@ -1,9 +1,33 @@
-
+            
+            
             <footer class="footer" style="text-align: center; color:#fff">
                 <div class="w-100 clearfix">
                     <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1442هـ | 2020 م </span>
                 </div>
             </footer>
+           
+
+            <?php $events=\Session::get('events'); ?>
+            @if(isset($events))
+            <aside class="right-sidebar">
+                <div class="sidebar-chat" data-plugin="chat-sidebar"> 
+                    <div class="sidebar-chat-info">
+                    </div>
+                    <div class="event-list">
+                        @foreach ($events as $key => $event )
+                            <a href="javascript:void(0)" class="">
+                                <h4 class="event">
+                                    <span class="date"><i class="far fa-clock"></i> {{$event['start']}}</span> 
+                                    <span class="name"><i class="fas fa-award"></i>{{$event['title']}} </span> 
+                                    <span class="desc"><i class="far fa-file-alt"></i>{{$event['title']}}</span> 
+                                </h4>
+                            </a>
+                        @endforeach  
+                    </div>
+                </div>
+            </aside>
+            @endif
+
         </div>
     </div>
 
@@ -24,17 +48,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
     <script src="{{ asset('site-assets/js/jquery.lineProgressbar.js') }}">></script>
             <script>
-
                 $('.repeater-default').repeater({
                     show: function () {
                         $(this).slideDown();
                     }
-
                 });
-
             </script>
             <script>
                 $(document).ready(function () {
+                    @if(isset($events))
+                     $("#ُevenCalandar").simpleCalendar({
+                     fixedStartDay: false,
+                     disableEmptyDetails: true,
+                     events: [
+                               @foreach ($events as $key => $event)
+                                  {
+                                   startDate: new Date({{$event['start']}}).toDateString(),
+                                   endDate: new Date({{$event['end']}}).toISOString(),
+                                   summary: "{{$event['title']}}"
+                                  },
+                               @endforeach                 
+                                ],
+                    });
+                    @endif
+
                     $("#notiDropdown").on('click',function(){
                         $.ajax({
                             type:'GET',
@@ -59,21 +96,7 @@
                         },
                         isFirstItemUndeletable: true
                     });
-                     @if (!empty($events))
-                    $("#ُevenCalandar").simpleCalendar({
-                     fixedStartDay: false,
-                     disableEmptyDetails: true,
-                      events: [
-                              @foreach ($events as $key => $event )
-                                  {
-                                  startDate: new Date({{$event['start']}}).toDateString(),
-                                  endDate: new Date({{$event['end']}}).toISOString(),
-                                  summary: "{{$event['title']}}"
-                                  },
-                                  @endforeach                 
-                                ],
-                               });
-                    @endif
+                     
                 });
             </script>
             <script>

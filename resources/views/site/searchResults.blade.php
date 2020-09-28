@@ -67,7 +67,11 @@
                                            <ul class="list-instructor-filter">
                                            @foreach($Instructors as $Instructor)
                                                <li class="instructor-item">
+                                                   @if(in_array($Instructor->id,$SelectedInstructors))
+                                                   <input type="checkbox" checked name="instructors[]" id="instructor{{$Instructor->id}}" value="{{$Instructor->id}}">
+                                                   @else
                                                    <input type="checkbox" name="instructors[]" id="instructor{{$Instructor->id}}" value="{{$Instructor->id}}">
+                                                   @endif
                                                    <label for="instructor{{$Instructor->id}}">
                                                       &#8235; {{$Instructor->name_ar}} &#8236; <span>({{$Instructor->courses()->count()}})</span>
                                                     </label>
@@ -122,7 +126,7 @@
 {{--                                            </div>--}}
 {{--                                        </div>--}}
                     <div class="wow fadeInUp" data-wow-offset="20" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-right">
                             @if(count($courses)>0)
                             @foreach($courses as $course)
                                 <div class="col-sm-4">
@@ -134,7 +138,7 @@
                                         <div class="thim-course-content">
                                             <div class="course-author">
                                                 <div class="course-author-content">
-                                                    <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
+                                                    <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('site-assets/images/avatarman.png')}}" class="avatar avatar-96 photo">
                                                     <div class="author-contain">
                                                         <div class="value" itemprop="name">
                                                             <a href="{{url('course/'.$course->id)}}">{{$course->instructor->name}}</a>

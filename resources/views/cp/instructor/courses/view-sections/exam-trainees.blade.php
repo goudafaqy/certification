@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <a class="float-left btn btn-danger"
-                       href="{{route('instructor-courses-view', ['id' => $id, 'type' => $type, 'tab' => 'exams'])}}">الرجوع</a>
+                       href="{{route('instructor-courses-view', ['id' => $id, 'type' => $type, 'tab' => 'exams'])}}">الرجوع الى الامتحانات والواجبات</a>
                 </div>
             </div>
             @if (session('invalid'))
@@ -24,7 +24,7 @@
                 </div>
             @endif
             <h2>{{$exam->name}}</h2>
-            <table class="course-view-table" style="overflow-x:auto;">
+            <table id="dtBasicExample" class="course-view-table" style="overflow-x:auto;">
                 <thead>
                 <tr>
                     <th class="text-center">#</th>
@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                 @foreach ($trainees as $trainee)
-                    <tr style="color: #FFF">
+                    <tr>
                         <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td class="priority text-center">{{ $trainee['name'] }}</td>
                         <td class="priority text-center">{{ $trainee['hasExam']?"تمت الاجابة":"لم يتم الاجابة"}}</td>
@@ -47,10 +47,8 @@
                         <td class="priority text-center">{{ $trainee['hasExam']?($trainee['numAnswered']." / ".$exam->questions_no):"" }}</td>
                         <td class="delete text-center" style="text-align: center;">
                             @if($trainee['hasExam'])
-                                <a href="{{route("instructor-course-{$exam->type}-review-trainee", [
-    'id' => $id, 'examId' => $exam->id, 'traineeId' => $trainee['id'], 'type' => $type])}}"
-                                   data-toggle="tooltip" data-placement="top" title="تصحيح">
-                                    <i class="fa fa-tasks"></i>
+                                <a href="{{route("instructor-course-{$exam->type}-review-trainee", ['id' => $id, 'examId' => $exam->id, 'traineeId' => $trainee['id'], 'type' => $type])}}"
+                                   data-toggle="tooltip" data-placement="top" title="تصحيح"><i class="fa fa-tasks"></i>
                                 </a>
                             @endif
                         </td>
@@ -61,3 +59,27 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "searching": true ,
+            "language": {
+                "lengthMenu": "عرض _MENU_ طالب في الصفحة الواحدة",
+                "zeroRecords": "لا يوجد طلاب",
+                "info": "الصفحة رقم _PAGE_ من _PAGES_",
+                "infoEmpty": "لا يوجد", 
+                "infoFiltered": "(نتيجة البحث من _MAX_  طلاب)",
+                "search": "بحث  ",
+                "paginate": {
+                    "next": "التالي",
+                    "previous": "السابق",
+                },},
+                "order": [[ 2, "asc" ]],
+                 dom: 'B<"clear">lfrtip',
+                 buttons: true,
+                 buttons: [],
+            
+        });
+        $('.dataTables_length').addClass('bs-select');
+    })
+</script>
