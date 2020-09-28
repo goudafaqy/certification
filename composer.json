@@ -24,7 +24,8 @@
         "maatwebsite/excel": "^3.1",
         "macsidigital/laravel-zoom": "^4.0",
         "nesbot/carbon": "^2.38",
-        "panichd/panichd": "^0.19.0"
+        "panichd/panichd": "^0.19.0",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.4",

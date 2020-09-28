@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'site'=>WebSite::class,
         'authorize.instructor' => \App\Http\Middleware\AuthorizeInstructor::class,
         'authorize.trainee' => \App\Http\Middleware\AuthorizeTrainee::class,
+        'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
     ];
 }
