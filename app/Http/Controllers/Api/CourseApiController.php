@@ -22,5 +22,6 @@ class CourseApiController extends Controller
             'success' => true,
             'data' => $courses,
         ]);
+        
     }
 }
