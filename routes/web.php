@@ -250,9 +250,9 @@ Route::prefix('instructor')->group(function () {
         Route::get('{id}/evaluation/term/delete/{termId}', 'CourseEvaluationsController@deleteTerm')->name('instructor-evaluation-term-delete');
         Route::post('{id}/evaluation/save', 'CourseEvaluationsController@saveEvaluations')->name('instructor-evaluation-trainees-save');
 
-        Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
+        Route::get('/certificates', 'CertificatesController@certificates')->name('certificates'); 
         Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
-    
+        
         Route::post('{id}/update/save', 'CourseUpdateController@create')->name('instructor-save-update');
         Route::get('{id}/update/delete', 'CourseUpdateController@delete')->name('instructor-delete-update');
 
@@ -261,13 +261,16 @@ Route::prefix('instructor')->group(function () {
         Route::post('{id}/support/ticket', 'CourseSupportController@saveTicket')->name('instructor-course-support-new-ticket');
         Route::get('{id}/support/ticket/{ticketId}', 'CourseSupportController@show')->name('instructor-course-support-show');
         Route::post('{id}/support/ticket/{ticketId}/comment', 'CourseSupportController@saveComment')->name('instructor-course-support-ticket-comment-save');
-
+        
         Route::get('{id}/questionnaire/create', 'CourseQuestionnairesController@form')->name('instructor-course-questionnaire-form');
         Route::post('{id}/questionnaire/save', 'CourseQuestionnairesController@save')->name('instructor-course-questionnaire-save');
         Route::get('{id}/questionnaire/{questId}/edit', 'CourseQuestionnairesController@form')->name('instructor-course-questionnaire-edit');
         Route::post('{id}/questionnaire/{questId}/update', 'CourseQuestionnairesController@update')->name('instructor-course-questionnaire-update');
         Route::get('{id}/questionnaire/{questId}/show', 'CourseQuestionnairesController@show')->name('instructor-course-questionnaire-show');
         Route::get('{id}/questionnaire/{questId}', 'CourseQuestionnairesController@delete')->name('instructor-course-questionnaire-delete');
+        Route::post('/send_email_students', 'CourseTrainesController@send_email_students')->name('send_email_students');
+        
+       
     });
 });
 
@@ -291,17 +294,21 @@ Route::prefix('trainee')->group(function () {
         Route::post('session/AttandSession', 'CourseAppointmentAttendenceController@AttandSession')->name('AttandSession');
         Route::get('session/{session_id}/{maxSessionId}/JoinBBBSession', 'CourseController@JoinBBBSession')->name('JoinBBBSession');
 
-
         Route::get('{id}/questionnaire/{questId}', 'CourseController@questionnaire')->name('trainee-course-questionnaire-show');
         Route::post('{id}/questionnaire/{questId}/save', 'CourseController@saveQuestionnaire')->name('trainee-course-questionnaire-save');
-
+        
     });
 
 
 });
 
     Route::get('/certificates', 'CertificatesController@certificates')->name('certificates');
-    Route::post('/generate_certificates', 'CertificatesController@generate_certificates')->name('generate_certificates');
-    Route::post('/send_email_students', 'CertificatesController@send_email_students')->name('send_email_students');
-    Route::get('/readNotifications', 'NotificationsController@read')->name('readNotifications');
     Route::get('/userNotifications', 'NotificationsController@userNotifications')->name('userNotifications');
+    Route::get('/readNotifications', 'NotificationsController@read')->name('readNotifications');
+
+    Route::get('/helpDesk', 'HelpDeskController@showhelpDesk')->name('showhelpDesk'); 
+    Route::get('support/ticket', 'HelpDeskController@form')->name('create-support-ticket');
+    Route::post('support/ticket', 'HelpDeskController@saveTicket')->name('support-new-ticket');
+    Route::get('support/ticket/{ticketId}', 'HelpDeskController@show')->name('support-show');
+    Route::post('support/ticket/{ticketId}/comment', 'HelpDeskController@saveComment')->name('support-ticket-comment-save');
+       

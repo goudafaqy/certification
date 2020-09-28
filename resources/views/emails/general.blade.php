@@ -44,7 +44,7 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td style="color: #153643;background:#faf8f5;padding:10px;border-radius:5px; font-family: Almarai, Roboto, sans-serif; font-size: 20px;text-align: center;">
-                                        <b style="font-size:14px;">المنصة الالكترونية للتدريب </b>
+                                        <b style="font-size:14px;">المنصة الالكترونية لمركز التدريب العدلى </b>
                                     </td>
                                 </tr>
                                 <tr>

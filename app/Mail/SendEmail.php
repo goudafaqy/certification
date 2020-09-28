@@ -42,7 +42,8 @@ class SendEmail extends Mailable
         return $this->view($view)
                         ->with(['data' => $this->data , 'title' => $this->title ,'type'=> $this->type])
                         ->from('Jtc-Trainingplat@moj.gov.sa' , $this->title)
-                        ->subject($this->subject);
+                        ->subject($this->subject)
+                        ->replyTo('Jtc-Trainingplat@moj.gov.sa');
     }
 }
 

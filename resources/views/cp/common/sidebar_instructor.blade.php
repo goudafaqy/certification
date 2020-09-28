@@ -26,5 +26,25 @@
             </div>
         </nav>
     </div>
+    
+    <div class="nav-container">
+        <nav id="main-menu-navigation" class="navigation-main">
+            <div class="nav-item @if($active == 'helpdesk') active @endif">
+                <a href="{{ route('showhelpDesk') }}"><img src="{{ asset('images/home.png') }}" style="width: 22px">
+                    <span>  الدعم الفنى </span>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="nav-container">
+        <nav id="main-menu-navigation" class="navigation-main">
+            <div class="nav-item @if($active == 'helpdesk') active @endif">
+                <a href="{{ route('showhelpDesk') }}"><img src="{{ asset('images/home.png') }}" style="width: 22px">
+                    <span>  التقويم التدريبى </span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
 </div>
 </div>

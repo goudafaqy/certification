@@ -65,9 +65,7 @@
                 </div>
             @endif
 
-            <form id="add-update-form"
-                  action="{{ route('instructor-evaluation-trainees-save', ['id' => $id, 'type' => $type]) }}"
-                  method="POST">
+            <form id="add-update-form"  action="{{ route('instructor-evaluation-trainees-save', ['id' => $id, 'type' => $type]) }}"method="POST">
                 @csrf
                 <table id="dtBasicExample" class="table course-table" width="100%">
                     <thead>
@@ -119,6 +117,7 @@
                                 </td>
                             @endforeach
                             <td class="text-center">
+                                <input type="hidden" id="evaluation{{$trainee['id']}}status" name="evaluation[{{$trainee['id']}}][status]" value="{{$trainee["status"]}}">
                                 <i class="fa fa-check-circle text-green {{$trainee['total_grade']<$passingScore?'hidden':''}}"
                                    id="trainee-{{$trainee['id']}}-pass-symbol"></i>
                                 <i class="fa fa-times-circle text-red {{$trainee['total_grade']>=$passingScore?'hidden':''}}"
@@ -150,10 +149,12 @@
             const passingScore = {{$passingScore}};
 
             $('.evaluation_inputs').on('change', function () {
+
                 if (parseFloat($(this).val()) > parseFloat($(this).attr('max')))
                     $(this).val($(this).attr('max'));
 
                 const trainee_id = $(this).data('trainee');
+                $("#evaluation"+trainee_id+"status").val("");
                 var traineeTotal = 0;
 
                 $('.evaluation_inputs').each(function () {
@@ -175,9 +176,11 @@
                 const passIcon = "#trainee-" + trainee_id + "-pass-symbol";
                 const failIcon = "#trainee-" + trainee_id + "-fail-symbol";
                 if (traineeTotal >= passingScore) {
+                    $("#evaluation"+trainee_id+"status").val(1);
                     $(passIcon).removeClass('hidden');
                     $(failIcon).addClass('hidden');
                 } else {
+                    $("#evaluation"+trainee_id+"status").val(0);
                     $(failIcon).removeClass('hidden');
                     $(passIcon).addClass('hidden');
                 }

@@ -16,7 +16,6 @@ use App\Models\CourseUser;
 
 use App\Http\Helpers\GenerateHelper;
 use Johntaa\Arabic\I18N_Arabic;
-use App\Mail\SendEmail;
 
 class CertificatesController extends Controller
 {
@@ -45,13 +44,6 @@ class CertificatesController extends Controller
     public function certificates()
     {
 
-        // $data = ['title_ar' => 'Sending Multiple Emails','message_ar'=>'Sending Multiple Emails','link'=>'lin','extra_text'=>''];
-        // $email = new SendEmail($data , __('app.Adly Training Center') ,$data['title_ar'] ,  'Generic');
-        // $evenMyMoreUsers = ['mohgood2020@gmail.com','devmogoud@gmail.com'];
-        // Mail::to([])
-        // ->bcc($evenMyMoreUsers)
-		// ->send($email);
-		// die('Sending');
 		$data =['name_ar'=>'   محمد محمد محمود ابوالجود',
 				 'name_en'=>'',
 				 'national_id'=>'19872200552',
@@ -159,28 +151,31 @@ class CertificatesController extends Controller
 	  $certificateUser->certifcate = 1;
 	  $certificateUser->save();
 	  sleep(2);
-	  $certificate = new Certificate();
-	  $certificate->user_name_ar  = $data['name_ar'];
-	  $certificate->user_name_en  = $data['name_en'];
-	  $certificate->national_id  = $data['national_id'];
-	  $certificate->course_name_ar  = $data['course_ar'];
-	  $certificate->course_name_en  = $data['course_en'];
-	  $certificate->course_id  =     $data['course_id'];
-	  $certificate->date  = $data['date'];
-	  $certificate->hours  = $data['hours'];
-	  $certificate->printed  = 0;
-	  $certificate->user_id  = $data['user_id'];
-	  $certificate->certificate_key  = $this->_generateRandomString(10);
-	  $certificate->certificate_image  = 'uploads/certifcates/'.$fileName.'.jpg';
-	  $certificate->save();
+	  //delete all old certificate of this course for this user
+	  $OldCertificate= Certificate::where('course_id', $data['course_id'])->where('user_id',  $data['user_id'])->get();
+	  if($OldCertificate) 
+		Certificate::where('course_id', $data['course_id'])->where('user_id',  $data['user_id'])->delete();
+		
+	   $this->saveCertificate($data,$fileName); 
     }
+    private function saveCertificate($data,$fileName){
+		$certificate = new Certificate();
+		$certificate->user_name_ar  = $data['name_ar'];
+		$certificate->user_name_en  = $data['name_en'];
+		$certificate->national_id  = $data['national_id'];
+		$certificate->course_name_ar  = $data['course_ar'];
+		$certificate->course_name_en  = $data['course_en'];
+		$certificate->user_id  = $data['user_id'];
+		$certificate->course_id  =  $data['course_id'];
+		$certificate->date  = $data['date'];
+		$certificate->hours  = $data['hours'];
+		$certificate->printed  = 0;
 
-	public function send_email_students(Request $request)
-	{
-		$inputs = ['title_ar'=>$request->subject, 'title_en'=>'' ,'message_ar'=>$request->message, 'message_en' =>'' ];
-		GenerateHelper::SendNotificationToStudents($request->course, 'sendmail', null, $inputs,$request->ids );
-
-	}
+		$certificate->certificate_key  = $this->_generateRandomString(10);
+		$certificate->certificate_image  = 'uploads/certifcates/'.$fileName.'.jpg';
+        $certificate->save();
+    }
+	
 
     /**
      * Save classification date ...
@@ -189,39 +184,38 @@ class CertificatesController extends Controller
     {
 		$inputs = $request->input();
 		$course  = Course::find($inputs['course']);
+	    if(strtotime(date("Y-m-d"))>strtotime($course->end_date)) 
+	    	return redirect()->back()->with('error', "لم تنتهى الدورة بعد لا يمكن أعتماد الشهادات بعد");			
+
+	
 		$ids = $inputs['ids'];
 		if(!empty($ids)){
 			for ($i=0; $i <count($ids) ; $i++) { 
-			
 				$user = User::find($ids[$i]);
-				$certificate = CourseUser::where('course_id', $course->id)
-				 						   ->where('user_id',  $user->id)->first();
-				if($certificate->certifcate == 0){
-
-					$data['name_ar'] = $user->name_ar; 
-					$data['name_en'] = $user->name_en;
-					$data['user_id'] = $user->id;
-					$data['national_id'] = $user->national_id;
-					$data['course_ar'] = $course->title_ar;
-					$data['course_en'] = $course->title_en;
-					$data['date'] = $course->start_date;
-					$data['hours'] = $course->course_hours;
-					$data['course_id'] = $course->id;
-					$this->generate($data);
-					unset($data);
-					unset($user);
-				
+				//dump($user);
+				$CourseUserDetails = CourseUser::where('course_id', $course->id)->where('user_id',  $user->id)->first();
+				if($CourseUserDetails->certifcate == 0){
+					if($CourseUserDetails->status == 1){  
+						$data['name_ar'] = $user->name_ar; 
+						$data['name_en'] = $user->name_en;
+						$data['user_id'] = $user->id;
+						$data['national_id'] = $user->national_id;
+						$data['course_ar'] = $course->title_ar;
+						$data['course_en'] = $course->title_en;
+						$data['date'] = $course->start_date;
+						$data['hours'] = $course->course_hours;
+						$data['course_id'] = $course->id;
+						$this->generate($data);
+						unset($data);
+					    unset($user);
+				  }
 				 }
-				// unset($certificate);
-
 			}
 			GenerateHelper::SendNotificationToStudents($course->id, 'certificate');
-			 
+			return redirect()->back()->with('success', "تمت أعتماد الشهادات للطلبة الناجحين بنجاح");			
 		}else{
-			return false;
-
+			return redirect()->back()->with('error', "توجد مشكلة فى أعتماد الشهادات");
 		}
-        
     }
 
 

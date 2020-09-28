@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+
 class CourseEvaluationsController extends Controller
 {
     var $courseRepo;
@@ -98,15 +99,12 @@ class CourseEvaluationsController extends Controller
 
 
     public function saveEvaluations($course_id, Request $request){
-
         $type = \request('type');
-
         $course = $this->courseRepo->getById($course_id);
         if (!$course) throw new NotFoundHttpException();
 
         $data = $request->input();
-
-        $check = $this->evaluationRepo->saveTraineesEvaluations($data['evaluation']);
+        $check = $this->evaluationRepo->saveTraineesEvaluations($data['evaluation'],$course_id);
 
         if($check){
             return redirect()->route('instructor-courses-view', [

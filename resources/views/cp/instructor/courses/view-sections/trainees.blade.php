@@ -31,34 +31,38 @@
                     </ul>
                 </div>
             @endif
-
-            <div class="alert alert-success" id="certificatesSuccess" style="display:none">
-                   تم أعتماد الشهادات بنجاح                
-            </div>
-            <div class="alert alert-success" id="emailsSuccess" style="display:none">
-                   تم ارسال الرسالة بنجاح               
-            </div>
-            <img src="{{ asset('images/loading.gif') }}" id="loading" style="width: 100px; display:none">
+       <!--disable button of generate certificate if end date not finished
+       issue of get status from DB-->
             <table id="dtBasicExample" class="table course-table" width="100%">
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">اسم الطالب</th>
-                        <th class="text-center">الاعدات</th>
+                        <th class="text-center">الحالة</th>
+                        <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <input type="hidden" value="{{$course->id}}" name="course" >
-                    @foreach ($trainees as $trainee)
+                   @foreach($trainees as $trainee)
                     <tr>
-                        <td class="text-center">{{ $trainee->id }}</td>
-                        <td class="priority text-center">{{ $trainee->name_ar }}</td>
-                        @if($trainee->getcert->certifcate == 1)
-                        <td class="priority text-center" style="color:#038103">تم أستخراج الشهادة</td>
-                        @else
-                        <td class="priority text-center">-</td>
-                        @endif
+                        <td class="text-center">{{ $trainee['id'] }}</td>
+                        <td class="priority text-center">{{ $trainee['name'] }}</td>
+                        <td class="priority text-center">
+                            @if($trainee['status'] == 1)
+                            ناجح <i class="fa fa-check-circle text-green"></i> 
+                            @else
+                            راسب <i class="fa fa-check-circle text-red"></i>
+                            @endif
+                        </td>
+                        <td class="priority text-center" style="color:#038103">
+                            @if($trainee['certifcate'] == 1)
+                            تم أعتماد الشهادة
+                            @else
+                            
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                     
@@ -140,46 +144,41 @@
 
 
  $('form#generatecertifacte').on('submit', function(event){
-     //event.preventDefault();
       var form = this;
       var rows_selected = table.column(0).checkboxes.selected();
       if(rows_selected.length==0){
-       alert("لابد من اختيار الطلاب");
-        return false;
+            alert("لابد من اختيار الطلاب");
+            return false;
       }
-        else{ 
+      else{ 
+            $("div.spanner").removeClass("hide");
+            $("div.spanner").addClass("show");
             $.each(rows_selected, function(index, rowId){
-                $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
+                  $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
             });
-            //alert($(this).serialize());
+            console.log($(this).serialize());
             return true;
         }
-         
    });
 
    $('form#sendMaill').on('submit', function(event){
-       $('#loading').show();
-       $('#emailsSuccess').hide();
       var form = this;
-
-      $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'course').val('<?php echo $course->id ?>'));
       var rows_selected = table.column(0).checkboxes.selected();
-      $.each(rows_selected, function(index, rowId){
-         $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
-      });
-           event.preventDefault();
-            $.ajax({
-                data: $(this).serialize(),
-                type: $(this).attr('method'),
-                url: $(this).attr('action'),
-                success: function(data) {
-                    $(this).submit();
-                    $('#emailsSuccess').show();
-                    //location.reload();
-                    $('#loading').hide();
-                }
+      if(rows_selected.length==0){
+            alert("لابد من اختيار الطلاب");
+            return false;
+      }else{ 
+            $('#SendEmail').hide();
+            $("div.spanner").removeClass("hide");
+            $("div.spanner").addClass("show");
+            $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'course').val('<?php echo $course->id ?>'));
+            var rows_selected = table.column(0).checkboxes.selected();
+            $.each(rows_selected, function(index, rowId){
+                $(form).append( $('<input>').attr('type', 'hidden').attr('name', 'ids[]').val(rowId));
             });
-            return false;  
+            return true;
+      }
+          
    });
    
 

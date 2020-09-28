@@ -21,6 +21,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\CourseAppointmentAttendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\CourseUser;
 
 
 class CourseController extends Controller
@@ -114,12 +115,12 @@ class CourseController extends Controller
             'img' => 'صورة',
         ];
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_i");
-        return view("cp.instructor.courses.view", ['course' => $course, 'types' => $types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
+        return view("cp.instructor.courses.view", ['course' => $course,'types'=>$types, 'tab' => 'tab2', 'type' => $type, 'files' => $files]);
     }
 
     private function sessions($course, $type)
-    {
-        $sessions = $this->appointmentRepo->getAll($course->id, true);
+{
+        $sessions = $this->appointmentRepo->getAll($course->id,true);
         $currentDate = DateHelper::getCurrentDate();
         $maxSessionId = 0;
         foreach ($sessions as $key => $session) {
@@ -130,13 +131,14 @@ class CourseController extends Controller
                 break;
             }
         }
-        return view("cp.instructor.courses.view", ['course' => $course, 'maxSessionId' => $maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
+        return view("cp.instructor.courses.view", ['course' => $course,'maxSessionId'=>$maxSessionId, 'tab' => 'tab3', 'type' => $type, 'sessions' => $sessions, 'currentDate' => $currentDate]);
     }
 
     private function questionnaires($course, $type)
     {
-        $questionnaires = $this->questionnaireRepo->getBy('type', 'instructor');
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab4', 'type' => $type, 'questionnaires' => $questionnaires]);
+        $questionnaires=$this->questionnaireRepo->getAll($course);
+
+        return view("cp.instructor.courses.view", ['course' => $course,'questionnaires'=>$questionnaires, 'tab' => 'tab4', 'type' => $type]);
     }
 
     private function update($course, $type)
@@ -159,10 +161,9 @@ class CourseController extends Controller
         $evaluations = $this->evaluationRepo->getByCourse($course->id);
         $total = $this->evaluationRepo->getEvaluationTotalScore($exams, $evaluations);
         $passing = $course->getPassingScoreByFullScore($total);
-
-        $trainees = $this->evaluationRepo->getTraineesScores($this->courseRepo->getAllTrainees($course->id),
-            $exams, $evaluations);
-
+        $trainees=$this->courseRepo->getAllTrainees($course->id);
+        $trainees = $this->evaluationRepo->getTraineesScores($trainees, $exams, $evaluations,$course->id);
+       //dd($trainees);
         return view("cp.instructor.courses.view", [
             'course' => $course,
             'tab' => 'tab7', 'type' => $type,
@@ -175,7 +176,15 @@ class CourseController extends Controller
     private function trainees($course, $type)
     {
         $trainees = $this->courseRepo->getAllTrainees($course->id);
-        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type, 'trainees' => $trainees]);
+        $newarray=array();
+        foreach($trainees as $k=>$trainee){
+            $courseUser = CourseUser::where('course_id', $course->id)->where('user_id',$trainee->id)->first();   
+            $newarray[$trainee->id]['id']=$trainee->id;
+            $newarray[$trainee->id]['name']=$trainee->name_ar;
+            $newarray[$trainee->id]['certifcate']=$courseUser->certifcate;
+            $newarray[$trainee->id]['status']=$courseUser->status;
+        }
+        return view("cp.instructor.courses.view", ['course' => $course, 'tab' => 'tab8', 'type' => $type, 'trainees' => $newarray]);
     }
 
     private function support($course, $type)
@@ -187,83 +196,78 @@ class CourseController extends Controller
     }
 
 
-    public function getCourseProgress($courseid)
-    {
+    public function getCourseProgress($courseid){
         $sessions = $this->appointmentRepo->getAll($courseid);
         $currentDate = DateHelper::getCurrentDate();
         $countAllSession = count($sessions);
         $countwhateverdone = 0;
         $currentDate = explode(" ", $currentDate)[0];
         foreach ($sessions as $key => $session) {
-            if (strtotime($session->date) <= strtotime($currentDate))
-                $countwhateverdone++;
+             if(strtotime($session->date)<=strtotime($currentDate))
+               $countwhateverdone++;
         }
-        if ($countwhateverdone == 0)
-            return 0;
-        if (isset($sessions))
-            return $percentage = round(($countwhateverdone / $countAllSession) * 100);
-        else
-            return 0;
+        if($countwhateverdone==0)
+        return 0;
+        if(isset($sessions))
+          return $percentage=round(($countwhateverdone/$countAllSession)*100);
+        else 
+         return 0;
     }
 
-    public function AddNewAppointment(Request $request)
-    {
-        $inputs = $request->input();
-        $row = array();
-        $row['title'] = $inputs['course_title'];
-        $row['date'] = $inputs['date'];
-        $row['day'] = DateHelper::getDayWeekStringFromNumber(date('w', strtotime($inputs['date'])));
-        $row['from_time'] = $inputs['from_time'];
-        $row['to_time'] = $inputs['to_time'];
-        $row['course_id'] = $inputs['course_id'];
-        $row['hasZoom'] = $inputs['hasZoom'];
-        //is this date already exist
-        $isExist = $this->appointmentRepo->IsDateInCourse($row['course_id'], $row['date']);
-        if ($isExist)
-            return "3";
+public function AddNewAppointment(Request $request){
+    $inputs = $request->input();
+    $row=array();
+    $row['title']       = $inputs['course_title'];
+    $row['date']        = $inputs['date'];
+    $row['day']         = DateHelper::getDayWeekStringFromNumber(date('w', strtotime($inputs['date'])));
+    $row['from_time']   = $inputs['from_time'];
+    $row['to_time']     = $inputs['to_time'];
+    $row['course_id']   = $inputs['course_id'];
+    $row['hasZoom']   = $inputs['hasZoom'];
+    //is this date already exist 
+    $isExist=$this->appointmentRepo->IsDateInCourse($row['course_id'],$row['date']);
+    if($isExist)
+     return "3";
 
-        $new_startTime = date("H:i:s", strtotime($row['from_time']));
-        $new_endTime = date("H:i:s", strtotime($row['to_time']));
-        $st_time = strtotime($new_startTime);
-        $end_time = strtotime($new_endTime);
-        if (($st_time < $end_time) && ($end_time > $st_time)) {
-            $this->appointmentRepo->save($row);
-            $request->session()->flash('success', 'تم الاضافة بنجاح');
-            return "1";
-        } else
-            return "2";
+    $new_startTime=date("H:i:s", strtotime($row['from_time']));
+    $new_endTime=date("H:i:s", strtotime($row['to_time']));
+    $st_time=strtotime($new_startTime);
+    $end_time=strtotime($new_endTime);
+    if(($st_time <  $end_time)&&($end_time >  $st_time)){
+       $this->appointmentRepo->save($row);  
+       $request->session()->flash('success', 'تم الاضافة بنجاح');
+       return "1";
     }
-
-    public function EndBBBSession($session_id, $SessionId)
-    {
-        $appointment = $this->appointmentRepo->getById($session_id);
-        $course = $this->courseRepo->getById($appointment->course_id);
-        $InstructorName = $course->instructor->name_ar;
-        $InstructorId = $course->instructor->id;
-        $meeting_id = $course->code . ":" . $course->id . ":" . $appointment->id . ":" . $SessionId;
-        if (BBBHelper::closeMeeting($meeting_id))
-            return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح');
-        else
-            return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة');
+    else
+       return "2";    
+}
+public function EndBBBSession($session_id,$SessionId){
+    $appointment=$this->appointmentRepo->getById($session_id);
+    $course= $this->courseRepo->getById($appointment->course_id);
+    $InstructorName=$course->instructor->name_ar;
+    $InstructorId=$course->instructor->id;
+    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
+    if(BBBHelper::closeMeeting($meeting_id))
+       return redirect()->back()->with('success', 'تم أنهاء الجلسة بنجاح'); 
+    else
+       return redirect()->back()->with('error', 'لا يمكن انهاء الجلسة'); 
+}
+public function StartBBBSession($session_id,$SessionId){
+    $appointment=$this->appointmentRepo->getById($session_id);
+    $course= $this->courseRepo->getById($appointment->course_id);
+    $InstructorName=$course->instructor->name_ar;
+    $InstructorId=$course->instructor->id;
+    $meeting_id=$course->code.":".$course->id.":".$appointment->id.":".$SessionId;
+    if(!BBBHelper::IsMeetingRunning($meeting_id)){
+        $this->StartNewBBBAttandenceSession($session_id,$SessionId);
+        $MeetingURL=BBBHelper::StartMeeting($meeting_id,$InstructorName,$InstructorId);
+        return $MeetingURL;
+    }else{
+        $MeetingURL=BBBHelper::joinMeeting($meeting_id,$InstructorId,$InstructorName,"Trainer");
+        return $MeetingURL;
     }
-
-    public function StartBBBSession($session_id, $SessionId)
-    {
-        $appointment = $this->appointmentRepo->getById($session_id);
-        $course = $this->courseRepo->getById($appointment->course_id);
-        $InstructorName = $course->instructor->name_ar;
-        $InstructorId = $course->instructor->id;
-        $meeting_id = $course->code . ":" . $course->id . ":" . $appointment->id . ":" . $SessionId;
-        if (!BBBHelper::IsMeetingRunning($meeting_id)) {
-            $this->StartNewBBBAttandenceSession($session_id, $SessionId);
-            $MeetingURL = BBBHelper::StartMeeting($meeting_id, $InstructorId, $InstructorName, "Trainer");
-            return Redirect::away($MeetingURL);
-        } else {
-            $MeetingURL = BBBHelper::joinMeeting($meeting_id, $InstructorId, $InstructorName, "Trainer");
-            return Redirect::away($MeetingURL);
-        }
-    }
-
+}
+ 
     public function StartNewBBBAttandenceSession($appointment_id, $SessionId)
     {
         $appointment = $this->appointmentRepo->getById($appointment_id);
@@ -349,25 +353,5 @@ public function getTraineCourseAttendance($course_id,$Traine_id){
 
     return view('cp.instructor.courses.CourseTraineCourseAttendanceDialog',compact('attendances','attandceDetails'));  
 }
-public function getTraineCourseAttendancePercentage($Traine_id,$course_id){
-    $course = $this->courseRepo->getById($course_id);
-    $OrgAppointments=$this->appointmentRepo->getAll($course_id);
-    $OrgAppointmentsTotal=count($OrgAppointments);
-    $totalAttendance=0;
-    $totalAbsent=0;
-    foreach($OrgAppointments as $k =>$orgappointment){
-        $appointments=$this->getAllForUser->getAll($orgappointment->id,$Traine_id);        
-            foreach($appointments as $appointment){
-                if($appointment->attand)
-                   $totalAttendance++;
-                else
-                   $totalAbsent++; 
-            }
-    }
-    $AttandencePercent=$totalAttendance/$OrgAppointmentsTotal;
-    $AbcentPercent=$totalAbsent/$OrgAppointmentsTotal;
-}
-  
-
 
 }

@@ -88,7 +88,9 @@ class GenerateHelper{
                 $Mails = implode(","  ,$Mails);
                 $Mails = explode(',', $Mails);
                 $email = new SendEmail($notification, __('app.Adly Training Center'), $data['title_ar'],  'Notify_Students');
-                Mail::to([])->bcc($Mails)->send($email);
-
+                $Mailer=Mail::to([])->bcc($Mails);
+                $Mailer->send($email);
     }
+
+
 }

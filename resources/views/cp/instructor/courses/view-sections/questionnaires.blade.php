@@ -22,17 +22,7 @@
                href="{{route('instructor-course-questionnaire-form', ['id' => $id])}}">
                 إنشاء إستبيان جديد
             </a>
-            @if(count($questionnaires) == 0)
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body" style="background-color: #a58661; color: #FFF; border-radius: 5px;">
-                                لا يوجد إستبيانات
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @else
+            
                 <table id="dtBasicExample" class="table course-table" width="100%">
                     <thead>
                     <tr>
@@ -69,7 +59,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            @endif
         </div>
     </div>
 </div>

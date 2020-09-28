@@ -5,7 +5,7 @@
                 <div class="d-flex justify-content-between">
                     <h3>{{$questionnaire->name}}</h3>
                     <h3>{{$questionnaire->publish_date}}</h3>
-                    <h3>عدد الاستبيانات : {{$questionnaire->userAnswersCount()}}</h3>
+                    <h3>عدد الردود : {{$questionnaire->userAnswersCount()}}</h3>
                 </div>
                 <div class="widget">
                     @foreach($questionnaire->questions as $question)
@@ -25,9 +25,11 @@
 
                                                 <div class="col-md-3">
                                                     <h4>
-                                                        {{$choice}} : {{$question->answerCount($i)}}
-                                                        {{$questionnaire->userAnswersCount()==0? 0:
-($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
+                                                        {{$choice}} : تم أختياره {{$question->answerCount($i)}} مرات
+                                                        ({{$questionnaire->userAnswersCount()==0? 0:
+
+    ($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
+
                                                     </h4>
                                                 </div>
                                             @endforeach
@@ -40,9 +42,11 @@
 
                                                 <div class="col-md-3">
                                                     <h4>
-                                                        {{$choice}} : {{$question->answerCount($i)}}
-                                                        {{$questionnaire->userAnswersCount()==0? 0:
-($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
+                                                        {{$choice}} : تم أختياره {{$question->answerCount($i)}} مرات
+                                                        ({{$questionnaire->userAnswersCount()==0? 0:
+
+    ($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
+
                                                     </h4>
                                                 </div>
                                             @endforeach
@@ -52,9 +56,10 @@
                                         <div class="row">
                                             @for($i=$question->min_num; $i<=$question->max_num; $i++)
                                                 <div class="col-md-3">
-                                                    <h4> {{$i}} : {{$question->answerCount($i)}}
-                                                        {{$questionnaire->userAnswersCount()==0? 0:
-($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
+                                                    <h4> {{$i}} : تم أختياره {{$question->answerCount($i)}} مرات
+                                                       ({{$questionnaire->userAnswersCount()==0? 0:
+
+    ($question->answerCount($i)/$questionnaire->userAnswersCount()) * 100}}%)
                                                     </h4>
                                                 </div>
                                             @endfor
