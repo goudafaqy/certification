@@ -13,7 +13,7 @@ class ChangeClassIdCoursesTableSetDefaultNull extends Migration
      */
     public function up()
     {
-        Schema::table('Courses', function (Blueprint $table) {
+        Schema::table('courses', function (Blueprint $table) {
             $table->text('class_id')->nullable()->change();
         });
     }
@@ -25,7 +25,7 @@ class ChangeClassIdCoursesTableSetDefaultNull extends Migration
      */
     public function down()
     {
-        Schema::table('Courses', function (Blueprint $table) {
+        Schema::table('courses', function (Blueprint $table) {
             //
         });
     }
