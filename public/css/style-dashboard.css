@@ -1574,7 +1574,7 @@ img {
 
 .profile-card-body p {
     color: #444;
-    text-align: right;
+    text-transform: capitalize;
 }
 
 .profile-card-footer {
@@ -1772,7 +1772,7 @@ textarea {
 
 .btn-primary {
     border-radius: 5px;
-    background-color: #6189a5;
+    background-color: #a58661;
     background-size: 200%;
     width: 200px;
     border: none;
@@ -1808,7 +1808,7 @@ textarea {
 
 .btn-primaryy {
     border-radius: 5px;
-    background-color: #34405a;
+    background-color: #a58661;
     height: 45px;
     font-family: "ArbFONTS-PNU-Medium.ttf";
     border: none;

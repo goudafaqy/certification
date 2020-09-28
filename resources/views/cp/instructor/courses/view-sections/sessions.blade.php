@@ -18,7 +18,8 @@
            
     <div class="card-body" style="padding: 0 15px">
         <div class="row justify-content-center">
-            <div class="col-md-12">             
+            <div class="col-md-12">
+
             @if (\Session::has('success'))
                 <div class="alert alert-success">
                     <ul>
@@ -77,7 +78,7 @@
                                         أعادة دخول الجلسة النشطة<i style="position: relative; top: -2px; right: -2px" class="fa fa-share"></i></a>
                                         <a id="delete" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="أنهاء " href="{{url('instructor/courses/session/'.$session->id.'/'.$lastsessionid.'/EndBBBSession')}}" >أنهاء الجلسة<i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                    @else
-                                        <a class='session_icongreen' id="startNewSessionevent" data-toggle="tooltip" data-placement="top" title="" data-original-title="بدء " href="{{url('instructor/courses/session/'.$session->id.'/'.$OrgmaxSessionId.'/StartBBBSession')}}" target="_blank">
+                                        <a class='session_icongreen' data-toggle="tooltip" data-placement="top" title="" data-original-title="بدء " href="{{url('instructor/courses/session/'.$session->id.'/'.$OrgmaxSessionId.'/StartBBBSession')}}" target="_blank">
                                             @if ($OrgmaxSessionId==0)
                                             بدء الجلسة الاولى
                                             @elseif ($OrgmaxSessionId==1)
@@ -98,8 +99,8 @@
                                             بدء الجلسة التاسعة
                                             @elseif ($OrgmaxSessionId==9)
                                             بدء الجلسة العاشرة
-                                            @elseif ($OrgmaxSessionId>=10)
-                                            بدء الجلسة  {{++$OrgmaxSessionId}}
+                                            @elseif ($OrgmaxSessionId>=11)
+                                            بدء الجلسة {{$OrgmaxSessionId}} 
                                             @endif
                                         
                                         <i class="far fa-play-circle"></i></a>
@@ -138,8 +139,7 @@
         $('#add-course-dates-'+id).submit();
     }
     $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        setTimeout(function(){ $('.alert').hide(); }, 5000);
+        $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
             "searching": false ,
             "language": {
@@ -191,22 +191,4 @@
             }
         })
     });
-
-    $(document).on('click', '#startNewSessionevent', function(e) {
-            $("div.spanner").removeClass("hide");
-            $("div.spanner").addClass("show");
-            $.ajax({
-                    data: {"_token": "{{ csrf_token() }}"},
-                    type: 'GET',
-                    url:$(this).attr('href'),
-                    success: function(result) {
-                            window.open(result, "_blank"); 
-                            setTimeout(function(){
-                            location.reload();
-                            }, 9000);
-                    }
-            });
-        return false;
-        });
-
 </script>

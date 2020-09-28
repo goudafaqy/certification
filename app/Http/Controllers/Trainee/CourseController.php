@@ -87,19 +87,19 @@ class CourseController extends Controller
         return $this->$tab($course, $currentDate);
     }
 
-    private function guide($course, $currentDate)
+    private function guide($course, $currentDate,$progress)
     {
         $guide = $this->materialRepo->getByCourseWhereField($course->id, "type", "guide_t");
         return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab1', 'guide' => $guide]);
     }
 
-    private function files($course, $currentDate)
+    private function files($course, $currentDate,$progress)
     {
         $files = $this->materialRepo->getByCourseWhereNotField($course->id, "type", "guide_t");
         return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab2', 'files' => $files]);
     }
 
-    private function sessions($course, $currentDate)
+    private function sessions($course, $currentDate,$progress)
     {
         $sessions = $this->appointmentRepo->getAll($course->id, true);
         $ActiveSession = array();
@@ -119,18 +119,18 @@ class CourseController extends Controller
         return view("cp.trainee.courses.view", ['course' => $course, 'maxSessionId' => $maxSessionId, 'ActiveSession' => $ActiveSession, 'currentDate' => $currentDate, 'tab' => 'tab3', 'sessions' => $sessions]);
     }
 
-    private function questionnaires($course, $currentDate)
+    private function questionnaires($course, $currentDate,$progress)
     {
         return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab4']);
     }
 
-    private function update($course, $currentDate)
+    private function update($course, $currentDate,$progress)
     {
         $updates = $this->updateRepo->getAll($course->id);
         return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate, 'tab' => 'tab5', 'updates' => $updates]);
     }
 
-    private function exams($course, $currentDate)
+    private function exams($course, $currentDate,$progress)
     {
 
         $exams = $this->examRepo->getExamsForTrainee($course->id, Auth::id());

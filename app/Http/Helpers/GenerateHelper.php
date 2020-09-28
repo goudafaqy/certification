@@ -22,6 +22,7 @@ class GenerateHelper{
 
     public static function SendNotificationToStudents($course_id, $type, $resource = null,  $input = [], $students = [] )
     {
+
                 $Mails = [];
                 $course = Course::find($course_id);
                 
@@ -33,21 +34,21 @@ class GenerateHelper{
                                  'message_en' => 'New file added to course '.$course->title_en];
                         break;
                     case 'certificate':
-                            $data = ['title_ar' =>   ' تم أعتماد الشهادة الخاصة بدورة   '.  $course->title_ar ,
-                                     'title_en' => ' New certificate issued to course '.$course->title_en,
-                                     'message_ar'=> '  تم أعتماد  الشهادة الخاصة  بدورة  <strong> '. $course->title_ar .' </strong>',
-                                     'message_en' => 'New certificate issued to course '.$course->title_en];
+                            $data = ['title_ar' =>   ' تم استخراج الشهادة الخاصة بدورة   '.  $course->title_ar ,
+                                     'title_en' => ' New certificate added to course '.$course->title_en,
+                                     'message_ar'=> '  تم استخراج  الشهادة الخاصة  بدورة  <strong> '. $course->title_ar .' </strong>',
+                                     'message_en' => 'New file added to course '.$course->title_en];
                     break;
                     case 'assignment':
-                        $data = ['title_ar' =>   ' تم اضافة واجب جديد لدورة    '.  $course->title_ar ,
+                        $data = ['title_ar' =>   ' تم اضافة  واجب جديد لدورة    '.  $course->title_ar ,
                                  'title_en' => ' New  assignment added to course '.$course->title_en,
-                                 'message_ar'=> '  تم اضافة واجب جديد لدورة  <strong> '. $course->title_ar .' </strong>',
+                                 'message_ar'=> '  تم اضافة  واجب جديد لدورة  <strong> '. $course->title_ar .' </strong>',
                                  'message_en' => 'New assignment added to course '.$course->title_en];
                     break;
                     case 'exam':
-                        $data = ['title_ar' =>   ' تم اضافة امتحان  جديد لدورة  '.  $course->title_ar ,
+                        $data = ['title_ar' =>   ' تم اضافة  امتحان  جديد لدورة  '.  $course->title_ar ,
                                  'title_en' => ' New exam added to course '.$course->title_en,
-                                 'message_ar'=> '  تم اضافة امتحان  جديد لدورة  <strong> '. $course->title_ar .' </strong>',
+                                 'message_ar'=> '  تم اضافة  امتحان  جديد لدورة  <strong> '. $course->title_ar .' </strong>',
                                  'message_en' => 'New exam added to course '.$course->title_en];
                     break;
                     case 'sendmail':
@@ -91,6 +92,5 @@ class GenerateHelper{
                 $Mailer=Mail::to([])->bcc($Mails);
                 $Mailer->send($email);
     }
-
 
 }

@@ -86,10 +86,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Role');
     }
+<<<<<<< HEAD
     public function appointments()
     {
       //  return $this->belongsToMany('App\Models\CourseAppintment')->using('App\Models\CourseAppointmentAttendance');
     }
+=======
+
+>>>>>>> 9df433ec95c2893e7d9f1ea13be71c571e2022b1
     public function getNameAttribute(){
         return $this["name_".App::getLocale()];
     }
@@ -122,6 +126,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\EvaluationTermUser', 'user_id');
     }
 
+<<<<<<< HEAD
     public function getcert()
     {
         return $this->hasOne('App\Models\CourseUser');
@@ -131,4 +136,6 @@ class User extends Authenticatable
         $roleNames = $this->roles->pluck('name')->toArray();
         return in_array('admin', $roleNames) || in_array('support', $roleNames);
     }
+=======
+>>>>>>> 9df433ec95c2893e7d9f1ea13be71c571e2022b1
 }

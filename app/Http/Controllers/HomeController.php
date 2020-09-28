@@ -41,6 +41,7 @@ class HomeController extends Controller
      */
     public function dashboard(Request $request)
     {
+       // dd(Auth::user()->roles[1]->name);
         $role = Auth::user()->roles ? Auth::user()->roles[0] : null;
         if (!$role)
             throw new NotFoundHttpException();

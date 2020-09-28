@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Instructor;
-
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 use App\Http\Repositories\Eloquent\AdvertismentRepo;
 use App\Http\Repositories\Validation\AdvertismentRepoValidation;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use App\Http\Helpers\FileHelper;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\User;
@@ -33,7 +29,7 @@ class CertificatesController extends Controller
     )
     {
         $this->validation = $validation;
-        $this->AdvertismentRepo = $AdvertismentRepo;
+		$this->AdvertismentRepo = $AdvertismentRepo;
 		$this->middleware(['auth', 'authorize.instructor']);
 
     }
@@ -59,6 +55,7 @@ class CertificatesController extends Controller
         
     }
 
+    
 
 	 /**
      * Generate Full Certificates

@@ -166,10 +166,8 @@
                     <ul class="nav nav-tabs nav-pills" role="tablist">
                         @foreach($sliderItems as $class)
                         <li role="presentation" class="nav-item">
-                           
-                            <a class="nav-link @if($loop->index==0) active @endif" href="#class-{{$class->id}}" aria-controls="commercial_law" role="tab" data-toggle="tab">
-                              {{$class->title}}
-                            </a>
+                            <a class="nav-link" href="#class-{{$class->id}}" aria-controls="commercial_law" role="tab" data-toggle="tab">
+                                {{$class->title}}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -183,20 +181,22 @@
                     <div id="swiperr" class="swiper-container loading no-printme">
                     <div class="swiper-wrapper">
                             @php($courses  = $class->courses()->orderBy("created_at","DESC")->take(8)->get())
+
                             @foreach($courses as $course)
                                 <div class="swiper-slide" data-test-set="test">
                                 <div class="course-item-wrapper">
                                     <div class="course-thumbnail">
                                         <a href="{{url('course/'.$course->id)}}"><img src="{{url($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
-                                        <div class="price"> ريال {{$course->price}}</div>
+                                        <div class="price">{{$course->price}} SR</div>
                                     </div>
                                     <div class="thim-course-content">
                                         <div class="course-author">
                                             <div class="course-author-content">
                                                 <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('images/Dr_Image.jpg')}}" class="avatar avatar-96 photo">
                                                 <div class="author-contain">
+                                                    <label>المعلم</label>
                                                     <div class="value" itemprop="name">
-                                                        <a href="{{url('course/'.$course->id)}}">{{$course->instructor->name}}-{{$class->id}}</a>
+                                                        <a href="{{url('course/'.$course->id)}}">{{$course->instructor->name}}</a>
                                                     </div>
                                                 </div>
                                             </div>

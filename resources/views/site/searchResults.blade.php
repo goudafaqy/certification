@@ -31,6 +31,23 @@
                                       
                                             
                                             <h4 class="filter-title">الفئة</h4>
+                                            <ul class="list-trainee-filter">
+{{--                                                <li class="trainee-item">--}}
+{{--                                                    <input type="radio" id="trainee-filter_all" name="trainee-type-filter" value="all">--}}
+{{--                                                    <label for="trainee-filter_all">--}}
+{{--                                                        الكل <span>({{$courses->tota}})</span>--}}
+{{--                                                    </label>--}}
+{{--                                                </li>--}}
+                                                @foreach($classifications as $class)
+                                                <li class="trainee-item">
+                                                    <input  type="checkbox" id="T1" name="classifications[]" value="{{$class->id}}">
+                                                    <label for="T1">
+                                                        &#8235; {{$class->title}} &#8236; <span>({{$class->courses->count()}})</span>
+                                                    </label>
+                                                </li>
+                                         @endforeach
+                                            </ul>
+                                            <h4 class="filter-title">التصنيف</h4>
                                             <ul class="list-cate-filter">
                                                 @foreach($categories as $category)
                                                 <li class="term-item">
@@ -133,13 +150,14 @@
                                     <div class="course-item-wrapper">
                                         <div class="course-thumbnail">
                                             <a href="{{url('course/'.$course->id)}}"><img src="{{url($course->image != null?$course->image:'site-assets/images/2.jpg')}}" alt=""></a>
-                                            <div class="price">{{$course->price}} ريال</div>
+                                            <div class="price">{{$course->price}} SR</div>
                                         </div>
                                         <div class="thim-course-content">
                                             <div class="course-author">
                                                 <div class="course-author-content">
                                                     <img alt="" src="{{$course->instructor->image != null ? url($course->instructor->image ):asset('site-assets/images/avatarman.png')}}" class="avatar avatar-96 photo">
                                                     <div class="author-contain">
+                                                        <label>المعلم</label>
                                                         <div class="value" itemprop="name">
                                                             <a href="{{url('course/'.$course->id)}}">{{$course->instructor->name}}</a>
                                                         </div>
@@ -152,10 +170,10 @@
                                             <div class="course-meta">
                                                 <span> <i class="fa fa-user"></i>{{$course->seats}} متدرب</span>
                                                 <span>
-                                                <i class="fa fa-tag"></i>
-                                                <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
-                                            </span>
-                                                <span class="star"><i class="fa fa-star"></i> {{App\Http\Helpers\RatingHelper::GetAvgRating($course->ratings)}}</span>
+                              <i class="fa fa-tag"></i>
+                              <a href="{{url('course/'.$course->id)}}">{{$course->category->title}}</a>
+                          </span>
+                                                <span class="star"><i class="fa fa-star"></i> 3</span>
                                             </div>
                                         </div>
                                     </div>

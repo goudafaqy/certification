@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\DateHelper;
+use App\Http\Helpers\FileHelper;
+use App\Http\Repositories\Eloquent\ExamRepo;
 use App\Http\Repositories\Eloquent\CourseRepo;
+use App\Http\Repositories\Eloquent\QuestionRepo;
 use App\Http\Repositories\Eloquent\SupportRepo;
 use App\Http\Repositories\Eloquent\UserRepo;
+use App\Http\Repositories\Validation\ExamRepoValidation;
 use App\Http\Repositories\Validation\SupportRepoValidation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PanicHD\PanicHD\Models\Category;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Excel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CourseSupportController extends Controller
@@ -50,12 +56,7 @@ class CourseSupportController extends Controller
         if (!$course) throw new NotFoundHttpException();
 
         $currentDate = DateHelper::getCurrentDate();
-
-      return view("cp.trainee.courses.view", [
-            'course' => $course, 'currentDate' => $currentDate,
-            'categories' => Category::all(),
-            'tab' => 'tab9', 'action' => 'form'
-        ]);
+        return view("cp.trainee.courses.view", ['course' => $course, 'currentDate' => $currentDate,'tab' => 'tab9', 'action' => 'form']);
     }
 
 

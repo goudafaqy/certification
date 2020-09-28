@@ -23,9 +23,5 @@ class CourseAppointmentRepo extends Repository implements CourseAppointmentEloqu
     {
         return CourseAppintment::where('course_id', $course_id)->delete();
     }
-    public function IsDateInCourse($course_id,$date)
-    {
-        return CourseAppintment::where('course_id', $course_id)->where('date',$date)->get()->count()==0?  false: true;
-    }
 
 }

@@ -295,7 +295,10 @@
                     <ul class="navbar-nav mr-auto setting-menu" style="">
                         @auth
                             <li class="nav-item">
-                              <div class="dropdown">
+                                <a class="nav-link btn btn-outline-success" href="{{ url('dashboard') }}"> {{Auth::user()->username}}   </a>  
+                                
+                                
+                            <!-- <div class="dropdown">
                             
                              <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="Homeavatar" src="{{ Auth::user()->image?url(Auth::user()->image): asset('site-assets/images/avatarman.png') }}" alt="">
@@ -310,16 +313,18 @@
                                 <a class="dropdown-item" href="/password/reset"><i class="fas fa-unlock-alt  dropdown-icon"></i> تغيير كلمة المرور  </a>
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
                                 </div>
-                            </div> 
+                            </div> -->
                             </li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+
 
                             
                         @else
                         <!-- <li class="nav-item">
                                 <a class="nav-link btn btn btn-light" href="#">انضم كمدرب   </a>
                             </li> -->
-                        
+                        @endauth
+
+
                         {{--                        <li class="nav-item mr-2" >--}}
                         {{--                            <a class="nav-link" href="#"> <img src="{{ asset('images/reg.png') }}" style="width: 26px" alt="تسجيل جديد"></a>--}}
                         {{--                        </li>--}}
@@ -328,12 +333,15 @@
                             <a class="nav-link" href="{{ url('login') }} ">
                                 <img src="{{ asset('site-assets/images/login.png') }}" style="width: 50px" caption="تسجيل الدخول">
                                 <!-- <img class="avatar" src="http://127.0.0.1:8000/site-assets/images/avatarman.png" alt="" width="40" height="40"> -->
-                            </a>          
+                            </a>
+                            
                         </li>
-                        @endauth
+
                         <li class="nav-item">
                             <a class="nav-link" href="#"> <img src="{{ asset('images\2030.png') }}" class="img-fluid vision"></a>
                         </li>
+
+
                     </ul>
 
 
@@ -549,39 +557,7 @@
 
 
 </script>
-<script>
 
-
-var swiper = new Swiper("#swiperr", {
-  slidesPerView: 4,
-  loop: true,
-      speed:500,
-      navigation: {
-    
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-      autoplay:{
-        delay:5000
-      },
-  spaceBetween: 30,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true
-  },
-  breakpoints: {
-    500: {
-      slidesPerView: 1
-    },
-    700: {
-      slidesPerView: 1
-    }
-  }
-});
-
-
-
-</script>
 @yield('script')
 </body>
 </html>

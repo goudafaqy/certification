@@ -1,16 +1,9 @@
-<div class="card-body" id="add-Appointment-formResult" style="padding: 0 15px">
-    <form id="add-Appointment-form" action="{{route('AddNewAppointment')}}" method="POST">
+<div class="card-body" id="add-Material-formResult" style="padding: 0 15px">
+    <form id="add-Material-form" action="{{route('AddNewAppointment')}}" method="POST">
     <input type="hidden" name="course_id" value="{{$course->id}}">
     <input type="hidden" name="course_title" value="{{$course->title}}">
     <input type="hidden" name="course_type" value="{{request()->get('type')}}">
-    <input type="hidden" name="hasZoom" value="" id="hasZoom">
-    
     @csrf
-    <div class="row justify-content-right" >
-        <div class="col-md-12">
-        <div class="alert alert-danger" id="errormessagehere" style="display:none;">  </div>
-      </div>
-    </div>         
     <div class="row justify-content-right" >
         <div class="col-md-12">
             <div class="form-group">
@@ -43,6 +36,7 @@
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
+            <span id="edndateerror"></span>
         </div>
         </div>
     </div>    
@@ -65,25 +59,22 @@
     });
 
     
-  $('form#add-Appointment-form').on('submit', function(event){
+  $('form#add-Material-form').on('submit', function(event){
      event.preventDefault();
-     $('#errormessagehere').hide();
      $.ajax({
-            data: $('#add-Appointment-form').serialize(),
-            type: $('#add-Appointment-form').attr('method'),
-            url:$('#add-Appointment-form').attr('action'),
+            data: $('#add-Material-form').serialize(),
+            type: $('#add-Material-form').attr('method'),
+            url:$('#add-Material-form').attr('action'),
             success: function(result) {
-                if(result=="1")
+                if(result==1){
+                 alert("تمت الاضافة بنجاح"); 
                   location.reload();                  
-                else if(result=="3"){    
-                 $('#errormessagehere').show();
-                 $('#errormessagehere').text("هذا اليوم مسجل من قبل بالفعل اختر يوم أخر");   
-                }else if(result=="2"){
-                 $('#errormessagehere').show();
-                 $('#errormessagehere').text("وقت النهاية لا يمكن ان يكون اقل من البداية");
-                }   
+                }else if(result==2){
+                   $('#edndateerror').text("وقت النهاية لا يمكن ان يكون اقل من البداية");  
+                   $('#edndateerror').addClass("alert alert-danger");
+                  } 
             }
         });
         return false;
-    });
+    })
 </script>
