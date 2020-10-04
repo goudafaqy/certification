@@ -12,15 +12,6 @@
                                 @if(count($currentCourses) > 0)
                                 <a href="{{route('instructor-courses-list', ['type' => 'current'])}}" class="btn btn-all"> المزيد</a>
                                 @endif
-                                <div class="input-group md-form form-sm form-2 pl-0 searchclass">
-                                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                                    <a href="#">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-text1">
-                                                <i class="fa fa-search" aria-hidden="true"></i></span>
-                                        </div>
-                                    </a>
-                                </div> 
                             </div>
                         </div>
                         <div class="card-body">
@@ -65,15 +56,6 @@
                                 @if(count($previousCourses) > 0)
                                 <a href="{{route('instructor-courses-list', ['type' => 'past'])}}" class="btn btn-all"> المزيد</a>
                                 @endif
-                                <div class="input-group md-form form-sm form-2 pl-0 searchclass">
-                                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="البحث" aria-label="Search">
-                                    <a href="#">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-text1">
-                                                <i class="fa fa-search" aria-hidden="true"></i></span>
-                                        </div>
-                                    </a>
-                                </div> 
                             </div>
                         </div>
                         <div class="card-body">
@@ -160,19 +142,21 @@
                     </div>
                 </div>
             @endif
-            <?php $events=\Session::get('events'); ?>
-            @if (isset($events))
-                        <div class="widget ">
+            @if (!empty($events))
+                      <div class="widget ">
                             <div class="widget-header">
                                  <div class=" d-flex justify-content-between"> 
-                                   <h3 class="widget-title"> التقويم التدريبي </h3>
-                                   <img src="images/cal.png" style="width: 25px; height: 25px"> 
-                                 </div>
-                            </div>
-                            <div class="card cal">
+                                  <h3 class="widget-title"> التقويم التدريبي </h3>
+                                  <img src="images/cal.png" style="width: 25px; height: 25px"> 
+
+                                </div>
+                              </div>
+                                   <div class="card cal">
                                        <div id="ُevenCalandar" class="calendar-container"></div>
+
+                                </div>
                             </div>
-                        </div> 
+                        </div>  
              @endif                  
              </div>
             </div>

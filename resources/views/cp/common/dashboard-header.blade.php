@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Almarai|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('site-assets/css/simple-calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('site-assets/DataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('site-assets/DataTables/Select-1.3.1/css/select.bootstrap.min.css') }}">
@@ -33,71 +34,27 @@
 
     <!-- End Style -->
 </head>
-<?php $notifications=\Session::get('notifications');  ?>
-<?php $events=\Session::get('events'); ?>
-                        
+
 <body>
     <div class="wrapper">
         <header class="header-top" header-theme="">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
-                        @if(!isset($role) || $role == 1)
-                        <a type="" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></a>
-                        @endif
+                       
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         
-                       <button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="far fa-calendar-alt"></i><span class="badge bg-success">
-                        @if(isset($events)){{count($events)}}@endif</span></button>
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" data-toggle="dropdown">
-                                <i class="ik ik-bell"></i>
-                                @if(count($notifications)>0)
-                                <span class="badge bg-danger" id="notiDropdownCount">
-                                    {{count($notifications)}}
-                                </span>
-                                    @endif</a>
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown">
-                                    @if(count($notifications)>0)<h4 class="header">الإشعارات</h4>@endif
-                                <div class="notifications-wrap">
-                                    @if(isset($notifications))
-                                    @foreach($notifications as $notification)
-                                        <a href="#" class="media" style="pointer-events:none">
-                                        <span class="d-flex"><i class="ik ik-check"></i> </span>
-                                        &nbsp; 	&nbsp;
-                                            <span class="media-body" style="margin-top:5px">
-                                                <span class="heading-font-family media-heading">{{$notification->title_ar}}</span>
-                                            </span>
-                                        </a>
-                                    @endforeach
-                                    @else
-                                        <p class="heading-font-family" style="text-align:center">لايوجد اشعارات جديدة</p>
-                                    @endif
-                                </div>
-                                @if(count($notifications)>0)<div class="footer"><a href="{{ route('userNotifications') }}">كل الإشعارات</a></div>@endif
-                            </div>
-                        </div>
+                        @if(session()->has('national_id'))
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
-                                <i class="ik ik-chevron-down"></i>
-                                <img class="avatar" src="{{ Auth::user()->image?url(Auth::user()->image): asset('site-assets/images/avatarman.png') }}" alt="">
-                                <span style="font-size: 11px; line-height: 4.6;">{{ Auth::user()->name_ar }}</span>
+                                <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
+                               
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ session('national_id') }} <a  href="{{ route('logout') }}" > خروج  </a></span>
+                                
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                               @if(Auth::user()->hasRole('trainee')||Auth::user()->hasRole('instructor'))
-                                <a class="dropdown-item" href="{{ route('edit-profile') }}">الملف الشخصي <i class="ik ik-user dropdown-icon"></i> </a>
-                               @endif
-                                <a class="dropdown-item" href="/password/reset">تغيير كلمة المرور <i class="fas fa-unlock-alt  dropdown-icon"></i> </a>
-                                @if(Auth::user()->canAccessSupportSystem())
-                                <a class="dropdown-item" href="{{ url('panichd/dashboard') }}">نظام الدعم الفني <i class="fas fa-unlock-alt dropdown-icon"></i> </a>
-                                @endif
-                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">تسجيل خروج <i class="ik ik-power dropdown-icon"></i> </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Course extends Authenticatable
+class Verification extends Authenticatable
 {
 
     /**
@@ -12,7 +12,7 @@ class Course extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'courses';
+    protected $table = 'verification';
     public $timestamps = false;
 
     /**
@@ -21,10 +21,9 @@ class Course extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'hours',
-        'days',
-        'date'
+        'email',
+        'national_id',
+        'code'
     ];
 
 

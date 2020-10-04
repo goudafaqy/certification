@@ -58,7 +58,9 @@
                                             @foreach ($courses as $course)
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
-                                                <td class="text-center">{{ $course->code }}</td>
+                                                <td class="text-center">
+                                                 <a class="btn btn-primary actions-btns" href="{{route('course-view',['id' => $course->id])}}" data-toggle="tooltip" data-placement="top"  title="عرض">{{ $course->code }}</a>
+                                                </td>
                                                 <td class="text-center">{{ $course->title_ar }}</td>
                                                 <td class="text-center">
                                                     @if($course->type == 'recorded')
@@ -82,14 +84,12 @@
                                                     @endif
                                                     @if($Current_date < $course->reg_start_date)
                                                     <a class="btn btn-primary actions-btns" href="/courses/update/<?php echo $course->id; ?>" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-edit"></i></a>
-                                                    <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top"  title="إعادة تشغيل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-copy"></i></button>
                                                     @endif
 
                                                     @if($course->type != 'recorded')
                                                     <button data-toggle="modal" data-target="#duplicate_{{$course->id}}" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="إعادة تشغيل"><i style="position: relative; top: -4px; right: -4px" class="fa fa-copy"></i></button>
-                                                    @endif
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="duplicate_{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="duplicate{{$course->id}}" aria-hidden="true">
+                                                    <div class="modal" id="duplicate_{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="duplicate{{$course->id}}" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <form id="add-course-dates-{{$course->id}}" action="{{ route('courses-duplicate') }}" method="POST">
@@ -133,6 +133,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                     @if($Current_date < $course->reg_start_date)
                                                     <a id="delete" href="/courses/delete-course/<?php echo $course->id; ?>" class="btn btn-primary actions-btns" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                     @endif
@@ -162,7 +163,6 @@
         $('#dtBasicExample').DataTable({
             "searching": true ,
             "select":true,
-           // "order": [[ 2, "asc" ]],
             "language": {
                 "lengthMenu": "عرض _MENU_ دورة في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد دورات",

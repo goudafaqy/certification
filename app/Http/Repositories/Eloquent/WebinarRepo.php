@@ -64,5 +64,6 @@ class WebinarRepo extends Repository implements WebinarEloquent
         $webinarArr["start_time"] = date('Y-m-d', strtotime($webinarArr["start_time"]));
 
       return  Webinar::create($webinarArr);
+
     }
 }

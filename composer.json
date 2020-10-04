@@ -17,14 +17,10 @@
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "johntaa/ar-php": "dev-master",
-        "joisarjignesh/bigbluebutton": "^1.1",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "maatwebsite/excel": "^3.1",
-        "macsidigital/laravel-zoom": "^4.0",
-        "nesbot/carbon": "^2.38",
-        "panichd/panichd": "^0.19.0",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

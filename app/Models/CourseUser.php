@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class CourseUser extends Model
+class CourseUser extends Authenticatable
 {
 
-    protected $table = 'course_user';
-
-    protected $primaryKey = 'id';
-
-    public $timestamps = true;
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users_courses';
 
     /**
      * The attributes that are mass assignable.
@@ -20,11 +20,16 @@ class CourseUser extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id',
-        'user_id',
-        'created_at',
-        'updated_at',
+        'name',
+        'email',
+        'national_id',
+        'title',
+        'phone',
+        'course'
     ];
+    public function details()
+    {
+        return $this->belongsTo('App\Models\Course','course');
+    }
 
-   
 }

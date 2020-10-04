@@ -12,7 +12,7 @@ class UserRepoValidation implements UserValidation{
             'insert' => [
                 'name_ar' => 'required',
                 'name_en' => 'required',
-                'username' => 'required|unique:users|username',
+                'username' => 'required',
                 'email' => 'required|unique:users|email',
                 'password' => 'required|confirmed',
                 'password_confirmation' => 'required',
@@ -21,8 +21,8 @@ class UserRepoValidation implements UserValidation{
             'update' => [
                 'name_ar' => 'required',
                 'name_en' => 'required',
-                'username' => 'required|unique:users|username',
-                'email' => 'required|unique:users|email',
+                'username' => 'required',
+                'email' => 'required|email',
                 'password' => 'required|confirmed',
                 'password_confirmation' => 'required',
                 'role' => 'required',

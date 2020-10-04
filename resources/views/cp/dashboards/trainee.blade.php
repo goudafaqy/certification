@@ -111,7 +111,7 @@
                             <div class="col-md-12 ">
                                 <div class="owl-container">
                                     <div class="owl-carousel certi">
-                                      @foreach($certificates as $item)
+                                    @foreach($certificates as $item)
                                         <div class="card">
                                             <div class="news">
                                                 <img src="{{ url($item->certificate_image) }}" alt="" class="img-thumbnail">
@@ -120,11 +120,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      @endforeach     
+                                    @endforeach    
+                                       
                                     </div>
-                                    <div class="slider-nav text-center"> 
-                                        <a href="#" class="left-arrow owl-prev"><i class="ik ik-chevron-right"></i></a>
-                                        <a href="#" class="right-arrow owl-next"><i class="ik ik-chevron-left"></i></a>
+                                    <div class="slider-nav text-center">
+                                        <a href="#" class="left-arrow owl-prev">
+                                            <i class="ik ik-chevron-right"></i>
+                                        </a>
+                                        <div class="slider-dot-container"></div>
+                                        <a href="#" class="right-arrow owl-next">
+                                            <i class="ik ik-chevron-left"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -132,20 +138,20 @@
                     </div>
                 </div>
                 @endif
-                <?php $events=\Session::get('events'); ?>
-                @if(isset($events))
-                        <div class="widget ">
+                            <div class="widget ">
                             <div class="widget-header">
-                                <div class=" d-flex justify-content-between"> 
-                                    <h3 class="widget-title"> التقويم التدريبي </h3>
-                                    <img src="images/cal.png" style="width: 25px; height: 25px"> 
+                                 <div class=" d-flex justify-content-between"> 
+                                  <h3 class="widget-title"> التقويم التدريبي </h3>
+                                  <img src="images/cal.png" style="width: 25px; height: 25px"> 
+
+                                </div>
+                              </div>
+                                   <div class="card cal">
+                                       <div id="ُevenCalandar" class="calendar-container"></div>
+
                                 </div>
                             </div>
-                            <div class="card cal">
-                                       <div id="ُevenCalandar" class="calendar-container"></div>
-                            </div>
                         </div>
-                @endif        
             </div>
         </div>
     </div>
