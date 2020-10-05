@@ -73,7 +73,7 @@
 
                                                
 
-                                                <input id="password" required name="password" class="form-control input-login @error('password') is-invalid @enderror" value="{{ old('password') }}" type="text" placeholder="كلمة السر" autocomplete="national_id" autofocus>
+                                                <input id="password" required name="password" class="form-control input-login @error('password') is-invalid @enderror" value="{{ old('password') }}" type="password" placeholder="كلمة السر" autocomplete="national_id" autofocus>
                                                 @error('national_id')
                                                 <span class="invalid-feedback text-right" role="alert" style="font-size: 1em; margin-top: 10px;">
                                                             <strong>{{ $message }}</strong>
