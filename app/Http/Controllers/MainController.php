@@ -48,7 +48,7 @@ class MainController extends Controller
                      // title
                      $img->text($title, 850, 240, function($font) {  
                          $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-                         $font->size(23);  
+                         $font->size(24);  
                          $font->color('#538d51');  
                          $font->align('center');  
                          $font->valign('bottom');  
@@ -57,7 +57,7 @@ class MainController extends Controller
                      // Name
                      $img->text($nameAR, 580, 240, function($font) {  
                         $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-                        $font->size(23);  
+                        $font->size(24);  
                         $font->color('#538d51');  
                         $font->align('center');  
                         $font->valign('bottom');  
@@ -67,19 +67,19 @@ class MainController extends Controller
                     
              
                    // ID 
-                   $img->text($data['national_id'], 660, 268, function($font) {  
+                   $img->text($data['national_id'], 650, 268, function($font) {  
                      $font->file(public_path('fonts/arial.ttf'));  
-                     $font->size(23);  
-                     $font->color('#000000');  
+                     $font->size(24);  
+                     $font->color('#808080');  
                      $font->align('center');  
                      $font->valign('bottom');  
                      $font->angle(0);  
                    });  
                    // Hourse 
                    $img->text($hours, 440, 335, function($font) {  
-                     $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-                     $font->size(23);  
-                     $font->color('#000000');  
+                     $font->file(public_path('fonts/arial.ttf'));  
+                     $font->size(24);  
+                     $font->color('#808080');  
                      $font->align('center');  
                      $font->valign('bottom');  
                      $font->angle(0);  
@@ -97,10 +97,10 @@ class MainController extends Controller
                     
 
                     // Date  
-                   $img->text($date, 350, 420, function($font) {  
+                   $img->text($date, 400, 422, function($font) {  
                      $font->file(public_path('fonts/arial.ttf'));  
-                     $font->size(25);  
-                     $font->color('#000000');  
+                     $font->size(24);  
+                     $font->color('#808080');  
                      $font->align('center');  
                      $font->valign('bottom');  
                      $font->angle(0);  
@@ -168,7 +168,7 @@ class MainController extends Controller
         $hours = $Arabic->utf8Glyphs($data['hours']);
         $course_name = $Arabic->utf8Glyphs($data['course_name']); 
         $date = $Arabic->utf8Glyphs($data['date']); 
-		$img = Image::make(public_path('images/certificat.jpeg')); 
+		 $img = Image::make(public_path('images/certificat.jpeg')); 
 
         // title
         $img->text($title, 850, 235, function($font) {  
@@ -195,16 +195,16 @@ class MainController extends Controller
 	  $img->text($data['national_id'], 625, 268, function($font) {  
 		$font->file(public_path('fonts/arial.ttf'));  
 		$font->size(23);  
-		$font->color('#000000');  
+		$font->color('#808080');  
 		$font->align('center');  
 		$font->valign('bottom');  
 		$font->angle(0);  
       });  
       // Hourse 
 	  $img->text($hours, 440, 335, function($font) {  
-		$font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
+		$font->file(public_path('fonts/arial.ttf'));  
 		$font->size(23);  
-		$font->color('#000000');  
+		$font->color('#808080');  
 		$font->align('center');  
 		$font->valign('bottom');  
 		$font->angle(0);  
@@ -222,7 +222,7 @@ class MainController extends Controller
 	  $img->text($date, 350, 420, function($font) {  
 		$font->file(public_path('fonts/arial.ttf'));  
 		$font->size(25);  
-		$font->color('#000000');  
+		$font->color('#808080');  
 		$font->align('center');  
 		$font->valign('bottom');  
 		$font->angle(0);  
