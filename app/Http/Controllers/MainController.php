@@ -48,7 +48,7 @@ class MainController extends Controller
                      // title
                      $img->text($title, 850, 240, function($font) {  
                          $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-                         $font->size(24);  
+                         $font->size(25);  
                          $font->color('#538d51');  
                          $font->align('center');  
                          $font->valign('bottom');  
@@ -57,7 +57,7 @@ class MainController extends Controller
                      // Name
                      $img->text($nameAR, 580, 240, function($font) {  
                         $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-                        $font->size(24);  
+                        $font->size(25);  
                         $font->color('#538d51');  
                         $font->align('center');  
                         $font->valign('bottom');  
@@ -69,7 +69,7 @@ class MainController extends Controller
                    // ID 
                    $img->text($data['national_id'], 650, 268, function($font) {  
                      $font->file(public_path('fonts/arial.ttf'));  
-                     $font->size(24);  
+                     $font->size(25);  
                      $font->color('#808080');  
                      $font->align('center');  
                      $font->valign('bottom');  
@@ -78,7 +78,7 @@ class MainController extends Controller
                    // Hourse 
                    $img->text($hours, 440, 335, function($font) {  
                      $font->file(public_path('fonts/arial.ttf'));  
-                     $font->size(24);  
+                     $font->size(25);  
                      $font->color('#808080');  
                      $font->align('center');  
                      $font->valign('bottom');  
@@ -87,7 +87,7 @@ class MainController extends Controller
                    // Course  
                    $img->text($course_name, 570, 390, function($font) {  
                      $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-                     $font->size(24);  
+                     $font->size(25);  
                      $font->color('#e1b54b');  
                      $font->align('center');  
                      $font->valign('bottom');  
@@ -99,7 +99,7 @@ class MainController extends Controller
                     // Date  
                    $img->text($date, 400, 422, function($font) {  
                      $font->file(public_path('fonts/arial.ttf'));  
-                     $font->size(24);  
+                     $font->size(25);  
                      $font->color('#808080');  
                      $font->align('center');  
                      $font->valign('bottom');  
@@ -212,7 +212,7 @@ class MainController extends Controller
       // Course  
 	  $img->text($course_name, 570, 390, function($font) {  
 		$font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-		$font->size(24);  
+		$font->size(25);  
 		$font->color('#e1b54b');  
 		$font->align('center');  
 		$font->valign('bottom');  
