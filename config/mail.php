@@ -41,12 +41,8 @@ return [
             'host' =>  'smtp.gmail.com',
             'port' => 587,
             'encryption' =>  'tls',
-            // 'host' =>  'smtp.gmail.com',
-           // 'username' => 'Jtc-Trainingplat',
-           // 'password' => 'Rui11237',
-          
-            'username' => 'adlytmscenter@gmail.com',
-            'password' => 'Adly2020',
+            'username' => 'adlycertificate@gmail.com',
+            'password' => 'AdlyCertificate@2020',
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -89,9 +85,9 @@ return [
     |
     */
 
-    'from' => [
+     'from' => [
         'address' =>  'Jtc-Trainingplat@mail.moj.gov.sa',
-        'name' =>'العادلى للدورات التدريبة',
+        'name' =>'Adly Training Center',
     ],
 
     /*
