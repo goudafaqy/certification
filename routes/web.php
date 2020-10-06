@@ -48,3 +48,5 @@ Route::post('import', 'MainController@import')->name('import');
 Route::get('generate', 'MainController@generate');
 Route::get('/', 'MainController@index');
 Route::get('/download/{course}', 'MainController@download')->name('download');
+Route::get('/mail', 'MainController@mail')->name('mail');
+Route::get('pdf','MainController@createPDF');

@@ -11,7 +11,9 @@
         "php": "^7.2.5",
         "ext-json": "*",
         "alkoumi/laravel-hijri-date": "^1.0",
+        "barryvdh/laravel-dompdf": "^0.8.7",
         "doctrine/dbal": "^2.10",
+        "dompdf/dompdf": "^0.8.6",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -47,8 +49,7 @@
         },
         "classmap": [
             "database/seeds",
-            "database/factories",
-            "app/Http/Controllers/Instructor"
+            "database/factories"
         ]
     },
     "autoload-dev": {
