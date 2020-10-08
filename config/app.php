@@ -179,7 +179,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\RipositoryServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
 
     ],
@@ -234,11 +235,16 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+<<<<<<< HEAD
 	    'QrCode' =>  SimpleSoftwareIO\QrCode\Facades\QrCode::class  
 
 
 
  
+=======
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        
+>>>>>>> e431079f48dd82aef2085019070461ca200d0b07
     ],
 
 ];

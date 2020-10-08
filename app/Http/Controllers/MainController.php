@@ -8,7 +8,9 @@ use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\CourseUser;
 use App\Models\Course;
+use PDF;
 
+<<<<<<< HEAD
 use Spiritix\Html2Pdf\Converter;
 use Spiritix\Html2Pdf\Input\UrlInput;
 use Spiritix\Html2Pdf\Output\DownloadOutput;
@@ -16,12 +18,50 @@ use Spiritix\Html2Pdf\Output\DownloadOutput;
 
 
 
+=======
+use App\Mail\EmailVerification;
+use Illuminate\Support\Facades\Mail;
+>>>>>>> e431079f48dd82aef2085019070461ca200d0b07
 use Johntaa\Arabic\I18N_Arabic;
 use Intervention\Image\Facades\Image;
 
 class MainController extends Controller
 {
 
+ 
+    // Generate PDF
+    public function createPDF() {
+      // retreive all records from db
+      
+      $courses = CourseUser::all();
+
+
+      $data =[
+        'title' =>'فضيلة الشيخ',  
+        'name_ar' => 'محمد مهدي سعود الشهراني',
+        'national_id'=>'1005615685','course'=>3,
+        'date'=>'الاحد الموافق 25 محرم 1445',
+        'days'=>'ثلاثة أيام',
+        'hours'=>'ساعتين تدريبتين',
+        'course_name'=>'الصياغة القضائية النيابية' ];
+    
+    $Arabic = new I18N_Arabic('Glyphs'); 
+    $nameAR = $Arabic->utf8Glyphs($data['name_ar']); 
+    $data = ['name'=>$nameAR];
+    //$nameAR = 'محمد مهدي سعود الشهراني';
+      // share data to view
+      view()->share('data',$data);
+      $pdf = PDF::loadView('pdf', $data);
+//dd($pdf);
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
+    }
+    public function mail()
+    {
+      
+      $email = new EmailVerification('20025' , 'مركز التدريب العدلى' ,'تأكيد الحساب الخاص بك');
+      Mail::to('mohgood2020@gmail.com')->send($email);
+    }
 
     public function index()
     {

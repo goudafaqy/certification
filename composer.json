@@ -12,8 +12,12 @@
         "ext-json": "*",
         "alkoumi/laravel-hijri-date": "^1.0",
         "barryvdh/laravel-dompdf": "^0.8.7",
+<<<<<<< HEAD
         "barryvdh/laravel-snappy": "^0.4.8",
+=======
+>>>>>>> e431079f48dd82aef2085019070461ca200d0b07
         "doctrine/dbal": "^2.10",
+        "dompdf/dompdf": "^0.8.6",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",

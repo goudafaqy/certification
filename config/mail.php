@@ -38,11 +38,13 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' =>  'smtp.gmail.com',
+            'host' =>  'smtp.office365.com',
             'port' => 587,
+            'username' => 'jtccertificate@jtc-certificate.com',
+            'password' => 'Mojjtc@135',
             'encryption' =>  'tls',
-            'username' => 'adlycertificate@gmail.com',
-            'password' => 'AdlyCertificate@2020',
+            // 'username' => 'adlycertificate@gmail.com',
+            // 'password' => 'AdlyCertificate@2020',
             'timeout' => null,
             'auth_mode' => null,
         ],
