@@ -27,66 +27,6 @@ use Spatie\Browsershot\Browsershot;
 class MainController extends Controller
 {
 
- 
-  function createPDF() {
-
-    Browsershot::html('<h1>محمد عبد الله </h1>')->save(public_path('example.pdf'));
-
-    die();
-    $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
-$fontDirs = $defaultConfig['fontDir'];
-
-$defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
-$fontData = $defaultFontConfig['fontdata'];
-    $mpdf = new \Mpdf\Mpdf([
-      'fontDir' => array_merge($fontDirs, [
-          public_path('fonts/'),
-      ]),
-      'fontdata' => $fontData + [
-          'frutiger' => [
-              'R' => 'arial.ttf',
-              'I' => 'arial.ttf'
-          ]
-      ],
-      'default_font' => 'frutiger',
-     
-  ]);
-  
-    $Arabic = new I18N_Arabic('Glyphs'); 
-    //$nameAR = $Arabic->utf8Glyphs(view('pdf')); 
-    $mpdf->WriteHTML(view('pdf'));
-          header('Content-Type: application/force-download,application/octet-stream,application/download,application/pdf');
-        $mpdf->Output();
-  }
-
-    // Generate PDF
-    public function createPDF2() {
-      // retreive all records from db
-      
-      $courses = CourseUser::all();
-
-
-      $data =[
-        'title' =>'فضيلة الشيخ',  
-        'name_ar' => 'محمد مهدي سعود الشهراني',
-        'national_id'=>'1005615685','course'=>3,
-        'date'=>'الاحد الموافق 25 محرم 1445',
-        'days'=>'ثلاثة أيام',
-        'hours'=>'ساعتين تدريبتين',
-        'course_name'=>'الصياغة القضائية النيابية' ];
-    
-    $Arabic = new I18N_Arabic('Glyphs'); 
-    $nameAR = $Arabic->utf8Glyphs($data['name_ar']); 
-    $data = ['name'=>$nameAR];
-    //$nameAR = 'محمد مهدي سعود الشهراني';
-      // share data to view
-      view()->share('data',$data);
-      //return view('pdf');
-      $pdf = PDF::loadView('pdf', $data);
-//dd($pdf);
-      // download PDF file with download method
-      return $pdf->download('pdf_file.pdf');
-    }
     public function mail()
     {
       

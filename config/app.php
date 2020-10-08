@@ -180,8 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\RipositoryServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+        
 
     ],
 
@@ -236,8 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
 	    'QrCode' =>  SimpleSoftwareIO\QrCode\Facades\QrCode::class  
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-        'PDF2' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+     
     
     ]
 ];
