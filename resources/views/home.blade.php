@@ -16,10 +16,13 @@
                         <div class="card-body" >
                             <div class="row">
                                
-                                <div class="col-md-6">
-                                  <a href="{{route('download',['course' => $course->details->id])}}" style="color: #A58661; text-align:center;font-size:15px" target="_blank"> تحميل شهادة ( {{$course->details->name}} ) </a>
+                                <!--<div class="col-md-6">
+                                  <a href="{{route('download',['national_id'=>$national_id,'course' => $course->details->id])}}" style="color: #A58661; text-align:center;font-size:15px" target="_blank"> تحميل شهادة ( {{$course->details->name}} ) </a>
                                 </div>
-                                
+                                 -->
+								  <div class="col-md-6">
+                                  <a href="{{route('print',['national_id'=>$national_id,'course' => $course->details->id])}}" style="color: #A58661; text-align:center;font-size:15px" target="_blank"> تحميل شهادة ( {{$course->details->name}} ) </a>
+                                </div>
                             </div>
                         </div>
                         @endforeach

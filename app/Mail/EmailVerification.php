@@ -35,7 +35,7 @@ class EmailVerification extends Mailable
         $view  = 'emails.verify';
       
         return $this->view($view)
-                        ->with(['code' => $this->data , 'title' => $this->title])
+                        ->with(['data' => $this->data , 'title' => $this->title])
                         ->from('Jtc-Trainingplat@moj.gov.sa' , $this->title)
                         ->subject($this->subject);
     }

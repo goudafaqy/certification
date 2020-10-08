@@ -33,10 +33,7 @@
                     <div class="col-xl-8 col-lg-8 col-md-9 my-auto">
                         <div class="container-login">
                             <div class="wrap-login">
-
-                                    <div class="alert alert-info" style="text-align:center">
-                                    لقد تم ارسال كود خاص بكم على البريد الالكترونى المسجل لدينا
-                                    </div>
+                                  
                                     <form class="d-inline" method="POST" action="{{ route('verification') }}">                                    @csrf
                                     <div class="logo-centered">
                                         <a href="{{ url('/') }}">
@@ -47,6 +44,11 @@
 					</span>
                                     <div class="row">
                                         <div class="col-md-7" style="border-left: 1px solid">
+								    @if (\Session::has('success'))     
+                                    <div class="alert alert-info" style="text-align:center">
+									{!! \Session::get('success') !!}
+                                    </div>
+									@endif
                                         @if (\Session::has('error'))
                                         <div class="alert alert-danger" style="text-align:center">
                                         {!! \Session::get('error') !!}

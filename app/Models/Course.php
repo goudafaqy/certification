@@ -24,7 +24,11 @@ class Course extends Authenticatable
         'name',
         'hours',
         'days',
-        'date'
+        'date',
+		'form',
+		'fromDate',
+		'toDate'
+						
     ];
 
 

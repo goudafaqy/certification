@@ -44,15 +44,16 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td style="color: #153643;background:#faf8f5;padding:10px;border-radius:5px; font-family: Almarai, Roboto, sans-serif; font-size: 20px;text-align: center;">
-                                        <b style="font-size:14px;">المنصة الالكترونية للتدريب </b>
+                                        <b style="font-size:14px;">المنصة الالكترونية لمركز التدريب العدلى </b>
                                     </td>
                                 </tr>
                                 <tr>
                                 <td style="padding: 10px 0 10px 0;font-size: 15px;color: #153643; font-family: Almarai, Roboto, sans-serif; font-size: 18px; line-height: 20px;text-align: right">
-                                     <p style="font-size: 15px;">عزيزي المتدرب / المتدربة</p>
-                                     <p style="font-size: 15px;">: كود التأكيد الخاص بكم هو  </p>
-
-                                     <p style="font-size: 15px;"> <strong>{{$code}}</strong>  </p>
+                                     <p style="font-size: 15px;"> <strong>{{$data['title']}}/ {{$data['name']}}</strong></p>
+									 <p style="font-size: 15px;">أهلا وسهلا بك فى المنصة الالكترونية لمركز التدريب العدلى</p>
+									 <br/>
+                                     <p style="font-size: 15px;">: رمز التحقق الخاص بكم هو  </p>
+                                     <p style="font-size: 15px;"> <strong>{{$data['code']}}</strong>  </p>
 
                                        
                                 </td>
@@ -72,54 +73,7 @@
                             
                                 <p align="center"   style="color:#fff;font-size:13px;margin-bottom:1rem;">جميع الحقوق محفوظة لمركز التدريب العدلي © 1442هـ - 2020م</p>
                             
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                               
-                                <tr class="row">
-                                   
-                                    <td align="left" width="25%">
-                                        <table border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="font-family: Almarai, Roboto, sans-serif; font-size: 13px; font-weight: bold;">
-                                                    <a href="#" style="color: #ffffff; text-decoration: none;">
-                                                        jtc-Trainingplat@moj.gov.sa
-                                                    </a>
-                                                </td>
-                                                
-                                                
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td align="center" width="25%">
-                                        <table border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="font-family: Almarai, Roboto, sans-serif; font-size: 13px; font-weight: bold;">
-                                                    <a href="#" style="color: #ffffff;text-decoration: none;">
-                                                          https://moj.gov.sa                           
-                                                    </a>
-                                                </td>
-                                                
-                                                
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td align="right" width="25%">
-                                        <table border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="font-family: Almarai, Roboto, sans-serif; font-size: 13px; font-weight: bold;">
-                                                    <a href="#" style="color: #ffffff;text-decoration: none;">
-                                                        0112947065
-                                                    </a>
-                                                </td>
-                                                
-                                                
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    
-                                   
-                                  
-                                </tr>
-                            </table>
+                          
                         </td>
 
                         

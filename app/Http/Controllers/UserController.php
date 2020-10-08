@@ -23,28 +23,38 @@ class UserController extends Controller
             return redirect('/');
         }
         $inputs = $request->input();
-        // admin login
-        if($inputs['national_id'] =='admin' && $inputs['password'] =='jtc@training'){
-            $request->session()->flash('sucess', 'تم الدخول بنجاح');
-            session(['user' => $inputs['national_id']]);
-            return redirect('/importExportView');
-        }else{
-            return redirect('admin_login')->with('error', 'بيانات غير صحيحة');
-        }
-    }
+
+	   // admin login		
+		$loginEmail=$inputs['national_id'];
+		$loginpassword=$inputs['password']; 
+		
+		//dump($inputs);
+		$admin=array();
+		$admin['husamsf@moj.gov.sa']=array("password"=>"123678", "name"=>"حسام الزهراني");
+		$admin['aaaqarrni@moj.gov.sa']=array("password"=>"125678", "name"=>"عائض القرني");
+		$admin['jibrinma@moj.gov.sa']=array("password"=>"123688", "name"=>"محمد الجبرين");
+		$admin['oshanqiti@moj.gov.sa']=array("password"=>"122678", "name"=>"عمر الشنقيطي");
+		 
+		foreach($admin as $mail=>$details){
+			 if(trim($loginEmail)==trim($mail)){
+				 if($loginpassword==$details['password']){
+					  $request->session()->flash('sucess', 'تم الدخول بنجاح');
+                      session(['user' => $details['name']]);
+		              return redirect('/importExportView');
+				 }
+				 else
+				     return redirect('admin_login')->with('error', 'بيانات غير صحيحة');
+			 }
+				 
+		 }
+	}
     public function login(Request $request)
     {
         if( session()->has('user')){
             return redirect('/');
         }
         $inputs = $request->input();
-        // admin login
-        if($inputs['national_id'] =='admin' && $inputs['password'] =='jtc@training'){
-            $request->session()->flash('sucess', 'تم الدخول بنجاح');
-            session(['user' => $inputs['national_id']]);
-            return redirect('/importExportView');
-        }
-
+       	
         $user = CourseUser::where('national_id',$inputs['national_id'])->first();
         if($user){
 
@@ -57,8 +67,14 @@ class UserController extends Controller
             $ver->code = $code;
             $ver->save();
            
+		   $data['name']=$user->name;
+		   $data['title']=$user->title;
+		   $data['code']=$code;
+		   
+           
+            
             session(['email' => $user->email]);
-            $email = new EmailVerification($code , 'مركز التدريب العدلى' ,'تأكيد الحساب الخاص بك');
+            $email = new EmailVerification($data , 'مركز التدريب العدلى' ,'رمز التحقق الخاص بك');
             Mail::to($user->email)->send($email);
            
             // if( $user->generated == null || $user->generated == 0){
@@ -67,7 +83,7 @@ class UserController extends Controller
             //     $inst = new MainController();
             //     $inst->generate($data);
             // }
-            return redirect('verificationForm');
+            return redirect('verificationForm')->with('success',"تم أرسال رمز الى  بريدك الالكترونى التالى يرجى التحقق وادخال الرمز لاستكمال عملية الدخول  ".$user->email);
         }else{
             return redirect('login')->with('error', 'لا يوجد بيانات لرقم الهوية');
         }
@@ -85,9 +101,10 @@ class UserController extends Controller
         $inputs = $request->input();
         $verify = Verification::where('email',$inputs['email'])->where('code',$inputs['code'])->first();
         if($verify){
-           
+           $user = CourseUser::where('national_id',$verify->national_id)->first();
+
             $request->session()->flash('sucess', 'تم الدخول بنجاح');
-            session(['national_id' => $verify->national_id]);
+            session(['national_id' => $verify->national_id,'user'=>$user]);
             return redirect('/');
         }else{
             return redirect('login')->with('error', 'لا يوجد بيانات لرقم الهوية');
