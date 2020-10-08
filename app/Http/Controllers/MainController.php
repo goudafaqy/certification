@@ -9,18 +9,51 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\CourseUser;
 use App\Models\Course;
 use PDF;
+use PDF2;
 
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Mail;
 use Johntaa\Arabic\I18N_Arabic;
 use Intervention\Image\Facades\Image;
+use Spatie\Browsershot\Browsershot;
 
 class MainController extends Controller
 {
 
  
+  function createPDF() {
+
+    Browsershot::html('<h1>محمد عبد الله </h1>')->save(public_path('example.pdf'));
+
+    die();
+    $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+$fontDirs = $defaultConfig['fontDir'];
+
+$defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+$fontData = $defaultFontConfig['fontdata'];
+    $mpdf = new \Mpdf\Mpdf([
+      'fontDir' => array_merge($fontDirs, [
+          public_path('fonts/'),
+      ]),
+      'fontdata' => $fontData + [
+          'frutiger' => [
+              'R' => 'arial.ttf',
+              'I' => 'arial.ttf'
+          ]
+      ],
+      'default_font' => 'frutiger',
+     
+  ]);
+  
+    $Arabic = new I18N_Arabic('Glyphs'); 
+    //$nameAR = $Arabic->utf8Glyphs(view('pdf')); 
+    $mpdf->WriteHTML(view('pdf'));
+          header('Content-Type: application/force-download,application/octet-stream,application/download,application/pdf');
+        $mpdf->Output();
+  }
+
     // Generate PDF
-    public function createPDF() {
+    public function createPDF2() {
       // retreive all records from db
       
       $courses = CourseUser::all();
@@ -41,6 +74,7 @@ class MainController extends Controller
     //$nameAR = 'محمد مهدي سعود الشهراني';
       // share data to view
       view()->share('data',$data);
+      //return view('pdf');
       $pdf = PDF::loadView('pdf', $data);
 //dd($pdf);
       // download PDF file with download method
@@ -209,7 +243,7 @@ class MainController extends Controller
 
         // title
         $img->text($title, 850, 235, function($font) {  
-            $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
+            $font->file(public_path('fonts/Calibri.TTF'));  
             $font->size(23);  
             $font->color('#538d51');  
             $font->align('center');  
@@ -218,7 +252,7 @@ class MainController extends Controller
         });  
 		// Name
         $img->text($nameAR, 580, 240, function($font) {  
-           $font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
+           $font->file(public_path('fonts/Calibri.TTF'));  
            $font->size(25);  
            $font->color('#538d51');  
            $font->align('center');  
@@ -264,7 +298,7 @@ class MainController extends Controller
 		$font->valign('bottom');  
 		$font->angle(0);  
       });  
-      $fileName = "certifcate".$data['national_id'].$data['course'];
+      $fileName = "certifcate".time();
       $img->save(public_path('uploads/certifcates/'.$fileName.'.jpeg'));  
       $user = CourseUser::where('national_id',$data['national_id'])->where('course',$data['course'])->first();
       $user->certifcate = 'uploads/certifcates/'.$fileName.'.jpeg';

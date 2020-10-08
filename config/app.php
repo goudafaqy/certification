@@ -179,7 +179,7 @@ return [
         App\Providers\RipositoryServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
 
     ],
 
@@ -234,7 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        
+        'PDF2' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
     ],
 
 ];
