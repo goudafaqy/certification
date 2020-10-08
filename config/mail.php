@@ -87,7 +87,7 @@ return [
     |
     */
 
-    'from' => [
+     'from' => [
         'address' =>  'Jtc-Trainingplat@mail.moj.gov.sa',
         'name' =>'Adly Training Center',
     ],

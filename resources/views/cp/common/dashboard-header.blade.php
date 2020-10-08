@@ -45,12 +45,13 @@
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         
-                        @if(session()->has('national_id'))
+                        @if(session()->has('user'))
+							<?php $user=\Session::get('user');  ?>
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
                                
-                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ session('national_id') }} <a  href="{{ route('logout') }}" > خروج  </a></span>
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ $user->name }} <a  href="{{ route('logout') }}" > خروج  </a></span>
                                 
                             </a>
                         </div>

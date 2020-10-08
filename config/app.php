@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //Jorenvh\Share\Providers\ShareServiceProvider::class,
         Alkoumi\LaravelHijriDate\LaravelHijriDateServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -233,8 +235,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+	    'QrCode' =>  SimpleSoftwareIO\QrCode\Facades\QrCode::class  
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'PDF2' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
-    ],
-
+    
+    ]
 ];
