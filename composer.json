@@ -27,9 +27,6 @@
         "laravel/ui": "^2.1",
         "maatwebsite/excel": "^3.1",
         "mpdf/mpdf": "^8.0",
-        "niklasravnsborg/laravel-pdf": "^4.0",
-        "spatie/browsershot": "^3.40",
-        "tymon/jwt-auth": "^1.0"
         "mikehaertl/php-pdftk": "^0.9.1",
         "niklasravnsborg/laravel-pdf": "^4.0",
         "simplesoftwareio/simple-qrcode": "~4",
