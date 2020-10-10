@@ -34,7 +34,7 @@
                         <div class="container-login">
                             <div class="wrap-login">
 
-                                <form class="login-form" action="{{ route('DologinAdmin') }}" method="POST">
+                                <form class="login-form" action="{{ route('login') }}" method="POST">
                                     @csrf
                                     <div class="logo-centered">
                                         <a href="{{ url('/') }}">
@@ -55,8 +55,8 @@
                                                     <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
                                                 </div>
 
-                                                <input id="national_id" required name="national_id" class="form-control input-login @error('national_id') is-invalid @enderror" value="{{ old('national_id') }}" type="text" placeholder="أسم المستخدم" autocomplete="national_id" autofocus>
-                                                @error('national_id')
+                                                <input id="email" required name="email" class="form-control input-login @error('email') is-invalid @enderror" value="{{ old('email') }}" type="text" placeholder="أسم المستخدم" autocomplete="email" autofocus>
+                                                @error('email')
                                                 <span class="invalid-feedback text-right" role="alert" style="font-size: 1em; margin-top: 10px;">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

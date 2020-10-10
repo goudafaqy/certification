@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CourseUser;
+use App\Models\User;
 use App\Models\Verification;
-
+use Illuminate\Support\Facades\Hash;
+use Auth;
 use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
@@ -112,9 +114,17 @@ class UserController extends Controller
         
     }
     
+    public function logoutAdmin(Request $request)
+    {
+        Auth::logout();
+        return redirect('admin_login');
+
+    }
+
     public function logout(Request $request)
     {
-        session()->forget('user');
+        $request->session()->forget('user');
+
         return redirect('login');
 
     }
@@ -128,6 +138,40 @@ class UserController extends Controller
         }
 
         return $randomString;
+    }
+
+    
+    public function list()
+    {
+        $items = User::all();
+        return view('cp.users.list',['items'=>$items]);
+    }
+
+    public function add()
+    {
+        $items = User::all();
+        return view('cp.users.form',['items'=>$items]);
+    }
+
+
+      /**
+     * Save user date ...
+     */
+    public function create(Request $request)
+    {
+            $inputs = $request->input();
+            $user = new User();
+            $user->name =  $inputs['name_ar'];
+            $user->email =  $inputs['email'];
+            $user->phone =  $inputs['mobile'];
+            $user->phone =  $inputs['mobile'];
+            $user->password = $inputs['password'] = Hash::make($inputs['password']);
+            unset($inputs['password_confirmation']);
+            $userId = $user->save();
+            if($userId){
+                return redirect('users/list')->with('added', 'تمت إضافة المستخدم بنجاح');
+            }
+        
     }
 
     

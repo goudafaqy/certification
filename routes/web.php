@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-
-//     if( empty(session()->has('user'))){
-//         return redirect('/login');
-//     }
-//     return view('home');
-// });
-
-
 Route::get('/login', function () {
     if( session()->has('user')){
         return redirect('/');
@@ -37,13 +28,14 @@ Route::get('/admin_login', function () {
 });
 
 Route::post('DologinAdmin', 'UserController@admin_login')->name('DologinAdmin');
-
 Route::post('Dologin', 'UserController@login')->name('Dologin');
-Route::get('logout', 'UserController@logout')->name('logout');
+Route::get('logout', 'UserController@logoutAdmin')->name('logout');
+Route::get('logout', 'UserController@logout')->name('logoutC');
+
 Route::get('verificationForm', 'UserController@verificationForm')->name('verificationForm');
 Route::post('verification', 'UserController@verification')->name('verification');
 Route::get('export', 'MainController@export')->name('export');
-Route::get('importExportView', 'MainController@importExportView');
+Route::get('importExportView', 'MainController@importExportView')->name('importExportView');
 Route::post('import', 'MainController@import')->name('import');
 Route::get('generate', 'MainController@generate');
 Route::get('/', 'MainController@index');
@@ -52,3 +44,31 @@ Route::get('/print/{national_id}/{course}', 'MainController@print')->name('print
 Route::get('/view/{national_id}/{course}', 'MainController@view')->name('view');
 Route::get('/mail', 'MainController@mail')->name('mail');
 Route::get('pdf','MainController@createPDF');
+
+Auth::routes();
+
+
+// Users routes ...
+Route::prefix('users')->group(function () {
+
+    Route::get('list', 'UserController@list')->name('users-list');
+    Route::get('add', 'UserController@add')->name('users-add');
+    Route::get('update/{id}', 'UserController@update')->name('users-update');
+    Route::post('save', 'UserController@create')->name('save-user');
+    Route::get('delete/{id}', 'UserController@delete')->name('delete-user');
+    Route::post('update', 'UserController@edit')->name('update-user');
+});
+
+// Users routes ...
+Route::prefix('courses')->group(function () {
+
+    Route::get('/', 'MainController@list')->name('courses-list');
+    Route::get('add', 'MainController@add')->name('courses-add');
+    Route::get('update/{id}', 'MainController@update')->name('courses-update');
+    Route::post('save', 'MainController@create')->name('save-course');
+    Route::get('delete/{id}', 'MainController@delete')->name('delete-course');
+    Route::post('update', 'MainController@edit')->name('update-course');
+});
+
+
+Route::get('/home', 'HomeController@index')->name('home');

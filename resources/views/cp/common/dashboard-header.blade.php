@@ -46,16 +46,26 @@
                     <div class="top-menu d-flex align-items-center">
                         
                         @if(session()->has('user'))
-							<?php $user=\Session::get('user');  ?>
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
                                
-                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ $user->name }} <a  href="{{ route('logout') }}" > خروج  </a></span>
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ session()->get('user')->name }} <a  href="{{ route('logoutC') }}" > خروج  </a></span>
+                                
+                            </a>
+                        </div>
+                        @else
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
+                                <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
+                               
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ Auth::user()->name }} <a  href="{{ route('logout') }}" > خروج  </a></span>
                                 
                             </a>
                         </div>
                         @endif
+                        
                     </div>
                 </div>
             </div>
@@ -64,7 +74,7 @@
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
                     <a id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></a>
-                    <a class="header-brand" href="{{ url('/') }}">
+                    <a class="header-brand" href="#">
                         <div class="logo-img">
                             <img src="{{ asset('images/new-logo.png') }}" class="header-brand-img" alt="jtc">
                         </div>

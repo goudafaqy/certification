@@ -7,6 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
 
+   
+    protected $table = 'admin_users';
+    public $timestamps = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -15,7 +19,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'phone',
+        'password'
     ];
 
     /**
@@ -28,12 +33,5 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    
 }

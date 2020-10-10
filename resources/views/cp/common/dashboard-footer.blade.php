@@ -1,6 +1,6 @@
             
             
-            <footer class="footer" style="text-align: center; color:#fff">
+            <footer class="footer" style="text-align: center; color:#fff;background:none">
                 <div class="w-100 clearfix">
                     <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1442هـ | 2020 م </span>
                 </div>
@@ -54,51 +54,7 @@
                     }
                 });
             </script>
-            <script>
-                $(document).ready(function () {
-                    @if(isset($events))
-                     $("#ُevenCalandar").simpleCalendar({
-                     fixedStartDay: false,
-                     disableEmptyDetails: true,
-                     events: [
-                               @foreach ($events as $key => $event)
-                                  {
-                                   startDate: new Date({{$event['start']}}).toDateString(),
-                                   endDate: new Date({{$event['end']}}).toISOString(),
-                                   summary: "{{$event['title']}}"
-                                  },
-                               @endforeach                 
-                                ],
-                    });
-                    @endif
-
-                    $("#notiDropdown").on('click',function(){
-                        $.ajax({
-                            type:'GET',
-                            url: "<?php echo route('readNotifications') ?>",
-                            data:'',
-                            success:function(content){
-                                if(content == true){
-                                    $('#notiDropdownCount').text("");
-                                }
-                            }
-                        });
-                    });
-
-
-                    $('.repeater').repeater({
-                        initEmpty: false,
-                        defaultValues: {
-                            'text-input': 'foo'
-                        },
-                        show: function () {
-                            $(this).slideDown();
-                        },
-                        isFirstItemUndeletable: true
-                    });
-                     
-                });
-            </script>
+           
             <script>
 $('#chooseFile').bind('change', function () {
   var filename = $("#chooseFile").val();
