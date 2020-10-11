@@ -55,6 +55,7 @@ class MainController extends Controller
                     'form'=>$course->form,
                     'fromDate'=>$course->fromDate,
                     'toDate'=>$course->toDate,
+                    'id'=>$course->id,
                     'qrcode'=>" يشهد مركز التدريب العدلي بأن هذه الشهادة: قد منحت لـ".$user->title." / ".$user->name." وذلك لإكماله الدورة التدريبة: ".$course->name .$lastStatment
                     
                     ]; 
