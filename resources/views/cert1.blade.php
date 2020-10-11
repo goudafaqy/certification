@@ -259,7 +259,7 @@ margin-right:3rem;
                                    
                                 </div>
                                
-								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(url('view/'.$national_id.'/'.$id)); !!}</div>
+								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(url('view/'.$data['national_id'].'/'.$data['id'])); !!}</div>
 							   </div>
                          
                            
