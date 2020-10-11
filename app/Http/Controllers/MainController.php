@@ -48,6 +48,7 @@ class MainController extends Controller
         $data = ['title' => $user->title,
                     'Trainee_name' => $user->name, 
                     'national_id'=>$this->enToAr($user->national_id),
+                    'n_id' => $user->national_id,
                     'date'=>$course->date,
                     'days'=>$course->days,
                     'hours'=>$course->hours,
@@ -78,7 +79,30 @@ class MainController extends Controller
             $output = $converter->convert();
             $output->download($course->name.'.pdf');
     }
-	
+    
+    public function verification($national_id,$course_id){
+
+        $user = CourseUser::where('national_id', $national_id)->where('course', $course_id)->first();
+        $course = Course::find($user->course);
+        $lastStatment=($course->form==1)? "بتاريخ ".$course->date:" فى الفترة من ".$course->fromDate. " إلى ".$course->toDate;
+
+        $data = ['title' => $user->title,
+                    'Trainee_name' => $user->name, 
+                    'national_id'=>$this->enToAr($user->national_id),
+                    'n_id' => $user->national_id,
+                    'date'=>$course->date,
+                    'days'=>$course->days,
+                    'hours'=>$course->hours,
+                    'course_name'=>$course->name,
+                    'form'=>$course->form,
+                    'fromDate'=>$course->fromDate,
+                    'toDate'=>$course->toDate,
+                    'id'=>$course->id,
+                    'qrcode'=>" يشهد مركز التدريب العدلي بأن هذه الشهادة: قد منحت لـ".$user->title." / ".$user->name." وذلك لإكماله الدورة التدريبة: ".$course->name .$lastStatment
+                    
+                    ]; 
+                    return view('verify_certificate',['data'=>$data]);
+    }
     
  
 
