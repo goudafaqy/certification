@@ -96,7 +96,7 @@ class MainController extends Controller
                     'form'=>$course->form,
                     'fromDate'=>$course->fromDate,
                     'toDate'=>$course->toDate,
-                    
+                    'id'=>$course->id
                     
                     ]; 
                     return view('verify_certificate',['data'=>$data]);
