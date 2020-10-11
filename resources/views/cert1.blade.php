@@ -259,7 +259,7 @@ margin-right:3rem;
                                    
                                 </div>
                                
-								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate($data['qrcode']); !!}</div>
+								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate('http://www.webnersolutions.com'); !!}</div>
 							   </div>
                          
                            
