@@ -116,6 +116,7 @@ class UserController extends Controller
     
     public function logoutAdmin(Request $request)
     {
+
         Auth::logout();
         return redirect('admin_login');
 

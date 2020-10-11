@@ -60,7 +60,7 @@
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
                                
-                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ Auth::user()->name }} <a  href="{{ route('logout') }}" > خروج  </a></span>
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ Auth::user()->name }} <a  href="{{ route('logout_admin') }}" > خروج  </a></span>
                                 
                             </a>
                         </div>

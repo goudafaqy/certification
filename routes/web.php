@@ -29,7 +29,7 @@ Route::get('/admin_login', function () {
 
 Route::post('DologinAdmin', 'UserController@admin_login')->name('DologinAdmin');
 Route::post('Dologin', 'UserController@login')->name('Dologin');
-Route::get('logout', 'UserController@logoutAdmin')->name('logout');
+Route::get('logout_admin', 'UserController@logoutAdmin')->name('logout_admin');
 Route::get('logout', 'UserController@logout')->name('logoutC');
 
 Route::get('verificationForm', 'UserController@verificationForm')->name('verificationForm');

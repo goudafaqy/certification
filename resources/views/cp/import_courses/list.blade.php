@@ -57,7 +57,7 @@
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $item->name }}</td>
                                                 <td class="text-center">{{ $item->date }}</td>
-                                                <td class="text-center">{{ $item->getUser->name }}</td>
+                                                <td class="text-center">{{ (!empty($item->getUser)) ? $item->getUser->name :'-' }}</td>
                                                    
                                             </tr>
                                             @endforeach
