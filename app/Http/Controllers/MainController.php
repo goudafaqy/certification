@@ -33,6 +33,7 @@ class MainController extends Controller
         if( !session()->has('user')){
             return redirect('/login');
         }
+       
        $national_id =  session()->get('national_id');
        $courses = CourseUser::where('national_id', $national_id)->get();
        return view('home',['courses'=>$courses,"national_id"=>$national_id]);
@@ -64,7 +65,8 @@ class MainController extends Controller
 
             $user = CourseUser::where('national_id', $national_id)->where('course', $course_id)->first();
             $course = Course::find($user->course);
-            $url="http://jtc-certificate.com/public/view/".$national_id.'/'.$course_id;	
+            $viewUrl = url('view').'/';
+            $url=$viewUrl.$national_id.'/'.$course_id;	
             $input = new UrlInput();
             $input->setUrl($url);  
             $converter = new Converter($input, new DownloadOutput());
