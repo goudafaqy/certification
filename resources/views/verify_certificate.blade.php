@@ -209,7 +209,7 @@ margin-right:3rem;
                                        <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 25px; font-family:AL-Mohanad"> وذلك لاكماله البرنامج التدريبى  <strong>  {{$data['course_name']}} </strong> </h4>
                                        <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 22px; font-family:AL-Mohanad"> بتاريخ  <strong>  {{$data['date']}} </strong> </h4>
                                       
-									   <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad;text-align:center"> <a  href="{{route('print',['national_id'=>$data['national_id'],'course' => $data['id'] ])}}" style="color: #538d51;  font-family:AL-Mohanad;text-align:center" >تحميل الشهادة</a></span>
+									   <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad;text-align:center"> <a  href="{{route('print',['national_id'=>$data['n_id'],'course' => $data['id'] ])}}" style="color: #538d51;  font-family:AL-Mohanad;text-align:center" >تحميل الشهادة</a></span>
 
                                           
                                         

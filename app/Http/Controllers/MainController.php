@@ -88,7 +88,6 @@ class MainController extends Controller
 
         $data = ['title' => $user->title,
                     'Trainee_name' => $user->name, 
-                    'national_id'=>$this->enToAr($user->national_id),
                     'n_id' => $user->national_id,
                     'date'=>$course->date,
                     'days'=>$course->days,
@@ -97,8 +96,7 @@ class MainController extends Controller
                     'form'=>$course->form,
                     'fromDate'=>$course->fromDate,
                     'toDate'=>$course->toDate,
-                    'id'=>$course->id,
-                    'qrcode'=>" يشهد مركز التدريب العدلي بأن هذه الشهادة: قد منحت لـ".$user->title." / ".$user->name." وذلك لإكماله الدورة التدريبة: ".$course->name .$lastStatment
+                    
                     
                     ]; 
                     return view('verify_certificate',['data'=>$data]);
