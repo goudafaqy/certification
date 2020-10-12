@@ -48,7 +48,6 @@ Route::get('pdf','MainController@createPDF');
 Auth::routes();
 Route::get('/verification/{national_id}/{course}', 'MainController@verification')->name('verificationCertificate');
 
-
 // Users routes ...
 Route::prefix('users')->group(function () {
 
@@ -58,6 +57,9 @@ Route::prefix('users')->group(function () {
     Route::post('save', 'UserController@create')->name('save-user');
     Route::get('delete/{id}', 'UserController@delete')->name('delete-user');
     Route::post('update', 'UserController@edit')->name('update-user');
+    Route::get('password', 'UserController@password')->name('password');
+    Route::post('change', 'UserController@changePassword')->name('changePassword');
+
 });
 
 // Users routes ...

@@ -181,6 +181,24 @@ class UserController extends Controller
         
     }
 
+    public function password()
+    {
+        return view('cp.users.password');
+    }
+
+
+    public function changePassword(Request $request)
+    {
+            $inputs = $request->input();
+            $user = User::find(Auth::user()->id);
+            $user->password = $inputs['password'] = Hash::make($inputs['password']);
+            $userId = $user->save();
+            if($userId){
+                return redirect()->back()->with('added', 'تم تغيير كلمة السر بنجاح');
+            }
+        
+    }
+
     
     
 }

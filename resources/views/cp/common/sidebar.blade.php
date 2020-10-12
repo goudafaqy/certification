@@ -27,7 +27,17 @@
             </div>
         </nav>
     </div>
+ <!-- Categories views -->
+ <div class="nav-container">
+        <nav id="main-menu-navigation" class="navigation-main">
+            <div class="nav-item">
+                <a href="{{ route('password') }}"><img src="{{ asset('images/categories.png') }}" style="width: 22px">
+                    <span> تغيير كلمة السر </span>
+                </a>
 
+            </div>
+        </nav>
+    </div>
 
 </div>
 </div>
