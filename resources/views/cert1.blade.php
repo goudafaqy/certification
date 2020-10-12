@@ -259,7 +259,7 @@ margin-right:3rem;
                                    
                                 </div>
                                
-								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verification',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
+								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
 							   </div>
                          
                            

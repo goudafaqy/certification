@@ -46,7 +46,7 @@ Route::get('/mail', 'MainController@mail')->name('mail');
 Route::get('pdf','MainController@createPDF');
 
 Auth::routes();
-Route::get('/verification/{national_id}/{course}', 'MainController@verification')->name('verification');
+Route::get('/verification/{national_id}/{course}', 'MainController@verification')->name('verificationCertificate');
 
 
 // Users routes ...
