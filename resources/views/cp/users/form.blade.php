@@ -82,6 +82,18 @@
                                             </span>
                                         @enderror
 
+                                        <div class="form-group" >
+                                            <label for="role">الدور الوظيفى</label>
+                                            <select class="form-control" id="role" name="role">
+                                                <option value="admin">مدير نظام</option>
+                                                <option value="course">مدخل الدورات</option>
+                                            </select>
+                                        </div>
+                                        @error('role')
+                                            <span class="text-danger err-msg-role" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                        
 
                                       

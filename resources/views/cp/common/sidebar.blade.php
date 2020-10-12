@@ -3,7 +3,7 @@
 
 <div class="sidebar-content">
    
-
+  @if(Auth::user()->role == 'admin')
     <!-- Users views -->
     <div class="nav-container">
         <nav id="main-menu-navigation" class="navigation-main">
@@ -14,6 +14,7 @@
             </div>
         </nav>
     </div>
+   @endif
 
     <!-- Categories views -->
     <div class="nav-container">

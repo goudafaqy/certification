@@ -230,7 +230,11 @@ class MainController extends Controller
 
     public function list()
     {
-        $items = Course::all();
+        if(Auth::user()->role == 'admin'){
+            $items = Course::all();
+        }else{
+            $items = Course::where('created_by',Auth::user()->id)->get(); 
+        }
         return view('cp.import_courses.list',['items'=>$items]);
     }
 

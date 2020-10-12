@@ -48,7 +48,7 @@
                                                 <th class="th-sm text-center">#</th>
                                                 <th class="th-sm text-center">الاسم</th>
                                                 <th class="th-sm text-center">البريد الالكترونى</th>
-                                                <th class="th-sm text-center">{{__('app.Actions')}}</th>
+                                                <th class="th-sm text-center">الدور الوظيفى</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -58,6 +58,7 @@
                                                 <td class="text-center">{{ $item->name }}</td>
                                                 <td class="text-center">{{ $item->email }}</td>
                                                 <td class="text-center">
+                                                {{ $item->role }}
                                                    </td>
                                             </tr>
                                             @endforeach

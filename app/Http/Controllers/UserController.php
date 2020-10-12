@@ -144,14 +144,20 @@ class UserController extends Controller
     
     public function list()
     {
-        $items = User::all();
-        return view('cp.users.list',['items'=>$items]);
+        if(Auth::user()->role == 'admin'){
+            $items = User::all();
+            return view('cp.users.list',['items'=>$items]);
+        }
+        return redirect()->back();
+        
     }
 
     public function add()
     {
-        $items = User::all();
-        return view('cp.users.form',['items'=>$items]);
+        if(Auth::user()->role == 'admin'){
+           return view('cp.users.form');
+        }
+        return redirect()->back();
     }
 
 
@@ -165,7 +171,7 @@ class UserController extends Controller
             $user->name =  $inputs['name_ar'];
             $user->email =  $inputs['email'];
             $user->phone =  $inputs['mobile'];
-            $user->phone =  $inputs['mobile'];
+            $user->role =  $inputs['role'];
             $user->password = $inputs['password'] = Hash::make($inputs['password']);
             unset($inputs['password_confirmation']);
             $userId = $user->save();
