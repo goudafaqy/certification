@@ -9,8 +9,8 @@
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
 
-                            <h3 class="widget-title">الدورات التدريبة</h3>
-                            <a href="{{ route('courses-add') }}" class="menu-item">  <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة دورة جديد </a>
+                            <h3 class="widget-title"> المتدربون فى دورة <strong>{{$course->name}} </strong></h3>
+                            <a href="{{ $route }}" class="menu-item">  <img src="{{ asset('images/add.png') }}" style="width: 20px"> إضافة متدرب جديد </a>
                             </div>
                         </div>
 
@@ -46,10 +46,10 @@
                                         <thead>
                                             <tr>
                                                 <th class="th-sm text-center">#</th>
-                                                <th class="th-sm text-center">اسم الدورة</th>
-                                                <th class="th-sm text-center">التاريخ</th>
-                                                <th class="th-sm text-center">بواسطة</th>
-                                                <th class="th-sm text-center">المتدربين</th>
+                                                <th class="th-sm text-center">الاسم</th>
+                                                <th class="th-sm text-center">البريد الالكترونى</th>
+                                                <th class="th-sm text-center">رقم الهوية</th>
+                                                <th class="th-sm text-center">الاعدادت</th>
 
                                             </tr>
                                         </thead>
@@ -58,10 +58,13 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $item->name }}</td>
-                                                <td class="text-center">{{ $item->date }}</td>
-                                                <td class="text-center">{{ (!empty($item->getUser)) ? $item->getUser->name :'-' }}</td>
-                                                <td class="text-center"><a href="{{ route('trainees-list',['course'=>$item->id])}}">المتدربين</a></td>
-                                                                             
+                                                <td class="text-center">{{ $item->email }}</td>
+                                                <td class="text-center">{{ $item->national_id }}</td>
+                                                <td class="text-center">
+                                                    <a class="btn btn-info" href="{{route('trainees-update',['course' => $item->course ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
+                                                    <a id="delete" href="{{route('delete-trainees',['course' => $item->course ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
+                                                </td>
+                                                   
                                             </tr>
                                             @endforeach
                                         </tbody>
