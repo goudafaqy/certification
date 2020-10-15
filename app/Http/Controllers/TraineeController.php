@@ -22,9 +22,9 @@ class TraineeController extends Controller
         $items = CourseUser::where('course',$id)->get();
         $finalItems=array();
         foreach($items as $item){
-          $course = CourseUser::where('email',$item->email)->where('national_id',$item->national_id)->get();
-          $courseuser = Course::find($course->course);
-          $item->courses=$courseuser;
+          $courseuser = CourseUser::where('email',$item->email)->where('national_id',$item->national_id)->get();
+          $i = Course::find($courseuser->course);
+          $item->courses=$i;
           $finalItems[]=$item;
         }
         $route = route('trainees-add',['course'=>$id]);
