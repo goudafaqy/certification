@@ -177,7 +177,7 @@ class MainController extends Controller
         $course->created_by = Auth::user()->id ;
 	    $course->fromDate = $this->enToAr($request->fromDate) ;
 	    $course->toDate = $this->enToAr($request->toDate) ;
-        $course->save();
+        $course->update();
         $request->request->add(['course_id' => $course->id]);
         Excel::import(new UsersImport,$request->file);
 

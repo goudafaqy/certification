@@ -63,13 +63,15 @@
                                                 <td class="text-center">{{ $item->email }}</td>
                                                 <td class="text-center">{{ $item->national_id }}</td>
                                                 <td class="text-center">@if($item->sex==0)أنثى @else ذكر  @endif</td>
-                                                <td class="text-center">    
+                                                <td class="text-center">
+                                                    @if(isset($item->courses)&&!empty($item->courses))    
                                                        <select name="TraineeCourses" class="TraineeCourses">
                                                            <option>أختر دورة للمعاينة</option>
                                                             @foreach($item->courses as $course)
                                                                 <option value="{{$course->id}}:{{ $item->national_id }}">{{$course->name}}</option>
                                                             @endforeach    
                                                         <select>
+                                                    @endif        
                                                 </td>
                                                 <td class="text-center">                                                  
                                                     <a class="btn btn-info" href="{{route('trainees-update',['course' => $item->course ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
@@ -140,13 +142,13 @@
 
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
-            "searching": false ,
+            "searching": true ,
             "language": {
-                "lengthMenu": "عرض _MENU_ تصنيف في الصفحة الواحدة",
+                "lengthMenu": "عرض _MENU_ متدرب في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواد",
                 "info": "الصفحة رقم _PAGE_ من _PAGES_",
                 "infoEmpty": "لا يوجد", 
-                "infoFiltered": "(نتيجة البحث من _MAX_ تصنيفات)",
+                "infoFiltered": "(نتيجة البحث من _MAX_ متدرب)",
                 "search": "بحث  ",
                 "paginate": {
                     "next": "التالي",

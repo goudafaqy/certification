@@ -25,6 +25,7 @@ class TraineeController extends Controller
           $courseuser = CourseUser::where('email',$item->email)->where('national_id',$item->national_id)->get();
           foreach($courseuser as $c){
             $i = Course::find($c->course);
+            if($i)
             $item->courses[]=$i;
         }
         $finalItems[]=$item;

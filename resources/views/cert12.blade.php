@@ -231,7 +231,7 @@ margin-right:3rem;
                                      @if($data['form']==1)
                                        <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span> </h6>
 									@elseif($data['form']==2)
-									   <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey"> إلي</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
+									   <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey">إلى</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
                                     @endif 
                                     
 									<span style="color: grey;font-size:24px;font-size: 30px ; font-family:AL-Mohanad">والله الموفق </span> 
