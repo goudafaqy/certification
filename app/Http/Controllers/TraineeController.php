@@ -23,7 +23,7 @@ class TraineeController extends Controller
         $finalItems=array();
         foreach($items as $item){
           $course = CourseUser::where('email',$item->email)->where('national_id',$item->national_id)->get();
-          $courseuser = Course::find($course->id);
+          $courseuser = Course::find($course->course);
           $item->courses=$courseuser;
           $finalItems[]=$item;
         }
