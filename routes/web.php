@@ -82,7 +82,7 @@ Route::prefix('trainees')->group(function () {
     Route::get('add/{course}', 'TraineeController@add')->name('trainees-add');
     Route::get('update/{id}', 'TraineeController@update')->name('trainees-update');
     Route::post('save', 'TraineeController@create')->name('save-trainees');
-    Route::get('delete/{id}/{course}', 'TraineeController@delete')->name('delete-trainees');
+    Route::get('delete/{id}', 'TraineeController@delete')->name('delete-trainees');
     Route::post('update', 'TraineeController@edit')->name('update-trainees');
 });
 

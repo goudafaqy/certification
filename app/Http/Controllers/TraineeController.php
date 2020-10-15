@@ -95,11 +95,11 @@ class TraineeController extends Controller
     /**
      * Delete classification date ...
      */
-    public function delete($id,$course_id)
+    public function delete($id)
     {
         $result = CourseUser::where('id',$id)->delete();
         if($result){
-            return redirect('trainees/'.$course_id)->with('added', 'تمت حذف المتدرب بنجاح');
+            return redirect()->back()->with('added', 'تمت حذف المتدرب بنجاح');
 
         }
     }
