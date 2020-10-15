@@ -59,6 +59,13 @@ class TraineeController extends Controller
             $user->national_id =  $inputs['national_id'];
             $user->sex =  $inputs['sex'];
             $user->course = $inputs['course'];
+
+           
+
+            $check = CourseUser::where('course',$inputs['course'])->where('email',$inputs['email'])->where('national_id',$inputs['national_id'])->get();
+            if($check)
+            return redirect()->back()->with('deleted', 'البريد موجود بالفعل او رقم الهوية');
+
             $userId = $user->save();
             if($userId){
                 return redirect('trainees/'.$inputs['course'])->with('added', 'تمت إضافة المتدرب بنجاح');

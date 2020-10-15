@@ -12,6 +12,14 @@
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0 15px">
+                            @if (session('deleted'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                {{ session('deleted') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                             <form id="add-user-form" action="{{ $route }}" method="POST">
                                 @csrf
                                 <div class="row justify-content-center" style="padding: 20px 50px;">
@@ -87,10 +95,10 @@
                                         <div class="form-group" >
                                             <label for="sex"> الجنس</label>
                                             <select  class="form-control @error('sex') is-invalid @enderror"  id="sex" name="sex">
-                                            @if($item->sex)
+                                            @if($item->sex??'')
                                                 <option value="1" selected>ذكر</option>
                                                 <option value="0">أنثى</option>
-                                            @elseif($item->sex==0)   
+                                            @elseif($item->sex??''==0)   
                                                 <option value="1">ذكر</option>
                                                 <option value="0" selected>أنثى</option>
                                             @endif   

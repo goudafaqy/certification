@@ -134,37 +134,6 @@ class MainController extends Controller
         return redirect('/courses')->with('added', 'تم اضافة الدورة');
     }
 
-    public function importExcel($request){
-        // Get current data from items table
-        $titles = Item::lists('title')->toArray();
-    
-        if(Input::hasFile('file')){
-            $path = Input::file('file')->getRealPath();
-            $data = Excel::load($path, function($reader) {})->get();
-    
-            if(!empty($data) && $data->count()){
-                $insert = array();
-    
-                foreach ($data as $key => $value) {
-                    // Skip title previously added using in_array
-                    if (in_array($value->title, $titles))
-                        continue;
-    
-                      dump($value);
-
-                    //$insert[] = ['title' => $value->title, 'name' => $value->name];
-    
-                    // Add new title to array
-                    $titles[] = $value->title;
-                }
-    
-                if(!empty($insert)){
-                    DB::table('items')->insert($insert);
-                    return back()->with('success','done successfully');    
-                }
-            }
-        }
-    }
     
     
     public function enToAr($string) {
@@ -177,11 +146,45 @@ class MainController extends Controller
         if(Auth::user()->role == 'admin'){
             $items = Course::all();
         }else{
-            $items = Course::where('created_by',Auth::user()->id)->orderBy('')->get(); 
+            $items = Course::where('created_by',Auth::user()->id)->orderBy('created_at','desc')->get(); 
         }
         return view('cp.import_courses.list',['items'=>$items]);
     }
 
+    public function delete($id){
+        $trainees= CourseUser::where('course', $id)->get();
+        foreach($trainees as $trainee){
+            $trainee->delete();
+        }
+        $course = Course::find($id);
+        $result = $course->delete();
+        if($result)
+             return redirect('/courses')->with('deleted', 'تم حذف الدورة بنجاح');
+    }
+    public function edit($id){
+        $course = Course::find($id);
+        return view('cp.import_courses.edit',['course'=>$course]);
+    } 
+    public function update(Request $request) 
+    {
+
+        $course = new Course();
+        $course->name = $request->course ;
+        $course->hours = $this->enToAr($request->hours) ;
+        $course->days = $this->enToAr($request->days) ;
+        $course->date = $this->enToAr($request->date) ;
+        $course->form = $request->form ;
+        $course->created_by = Auth::user()->id ;
+	    $course->fromDate = $this->enToAr($request->fromDate) ;
+	    $course->toDate = $this->enToAr($request->toDate) ;
+        $course->save();
+        $request->request->add(['course_id' => $course->id]);
+        Excel::import(new UsersImport,$request->file);
+
+        return redirect('/courses')->with('added', 'تم تعديل الدورة');
+    }
+
+   
     public function add()
     {
         $items = Course::all();

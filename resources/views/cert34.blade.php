@@ -210,7 +210,7 @@
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{$data['title']}}<span >/  </span>{{$data['Trainee_name']}}</h5>
                                         <h5 class="" style="color: grey;text-align: center;margin-bottom:1.5rem;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
                                        	<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif  <span style="color:#e1b54b;font-size:24px;"> {{$data['course_name']}} </span></h4>
-										<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">ضمن برنامج تأهيل الموثقين والموثقات</h4>
+										<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">ضمن برنامج تأهيل الموثقين </h4>
                                         <h4 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey"> وحتى تاريخ</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
                                     </p>
                                     
