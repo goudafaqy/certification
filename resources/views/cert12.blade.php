@@ -18,6 +18,9 @@
     <body id="body"> 
 
        <style>
+     .page{
+    page-break-inside: avoid;
+    }       
 @font-face {
     font-family: 'AL-Mohanad';
     src: url('{{asset("fonts/ae_AlMohanad.ttf")}}') format('truetype');
@@ -193,7 +196,7 @@ margin-right:3rem;
        </style>
 	
         
-        <div class="auth-wrapper">
+        <div class="auth-wrapper page">
             <div class=" " style="overflow: hidden;">
                 <div class="row flex-row h-100">
                     <div class=" col-md-12 p-0 d-md-block d-lg-block">

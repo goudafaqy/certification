@@ -17,6 +17,9 @@
     <body id="body"> 
 
 <style>
+    .page{
+    page-break-inside: avoid;
+    }
             @font-face {
                 font-family: 'AL-Mohanad';
                 src: url('{{asset("fonts/ae_AlMohanad.ttf")}}') format('truetype');
@@ -186,7 +189,7 @@
             } */
 </style>
 	
-        <div class="auth-wrapper">
+        <div class="auth-wrapper page">
             <div class=" " style="overflow: hidden;">
                 <div class="row flex-row h-100">
                     <div class=" col-md-12 p-0 d-md-block d-lg-block">
@@ -244,7 +247,7 @@
                                    
                                 </div>
                                
-								<div class="qrcode" style="text-align:left; margin-top:-60px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
+								<div class="qrcode" style="text-align:left; margin-top:-40px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
 							   </div>
                          
                            
