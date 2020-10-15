@@ -165,6 +165,10 @@
 			  validationRules=validateRulesForForm1;
 			  validationMessages=validationMessagesForFomr1;
 		  }
+          if(form==4){
+            $('#days').attr("type","text"); 
+
+          }
 		  console.log([validationRules,validationMessages]);
 		 }		 
 	 });
