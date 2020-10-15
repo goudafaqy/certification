@@ -21,11 +21,13 @@ class TraineeController extends Controller
         $course = Course::find($id);
         $items = CourseUser::where('course',$id)->get();
         $finalItems=array();
-        foreach($items as $item){
+        foreach($items as $k=>$item){
           $courseuser = CourseUser::where('email',$item->email)->where('national_id',$item->national_id)->get();
-          $i = Course::find($courseuser->course);
-          $item->courses=$i;
-          $finalItems[]=$item;
+          foreach($courseuser as $c){
+            $i = Course::find($c->course);
+            $item->courses[]=$i;
+        }
+        $finalItems[]=$item;
         }
         $route = route('trainees-add',['course'=>$id]);
 
