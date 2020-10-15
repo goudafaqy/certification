@@ -249,7 +249,7 @@ margin-right:3rem;
                                             position: absolute;
                                             width: 230px;"> 
                                             <h3 style="font-family:AL-Mohanad">مدير عام مركز التدريب العدلي</h3>
-                                            <h4 style="margin-top:1rem ; font-family:AL-Mohanad">د.فارس بن محمد القرني</h4>
+                                            <h4 style="font-family:AL-Mohanad">د.فارس بن محمد القرني</h4>
                                         </div>
                                      
                                     </div>

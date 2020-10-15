@@ -201,16 +201,16 @@
                                     <img src="{{asset('site-assets/images/certificate/logo.png') }}" class="img-fluid" width="150">
                                  
 								  </a>
-                                <div class="box" style="margin-top:-5rem;">
+                                <div class="box" style="margin-top:-3rem;">
 									
                                     <p class="center">
 									   <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad">شهادة حضور</span>
                                   
-                                        <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 32px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن</h4>
+                                        <h4 class="center" style="color: grey;;font-size: 32px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن</h4>
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{$data['title']}}<span >/  </span>{{$data['Trainee_name']}}</h5>
-                                        <h5 class="" style="color: grey;text-align: center;margin-bottom:1.5rem;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
-                                       	<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif  <span style="color:#e1b54b;font-size:24px;"> {{$data['course_name']}} </span></h4>
-										<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">ضمن برنامج تأهيل الموثقين  @if($data['form']==3)والموثقات@endif</h4>
+                                        <h5 class="" style="color: grey;text-align: center;;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
+                                       	<h4 class="center" style="color: grey;;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif  <span style="color:#e1b54b;font-size:24px;"> {{$data['course_name']}} </span></h4>
+										<h4 class="center" style="color: grey;;font-size: 30px; font-family:AL-Mohanad">ضمن برنامج تأهيل الموثقين  @if($data['form']==3)والموثقات@endif</h4>
                                         <h4 style="color: grey;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span> {{$data['fromDate']}} </span> <span> وحتى تاريخ</span><span>  {{$data['toDate']}}</span></h6>
                                     </p>
                                     
@@ -244,7 +244,7 @@
                                    
                                 </div>
                                
-								<div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
+								<div class="qrcode" style="text-align:left; margin-top:-60px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
 							   </div>
                          
                            
