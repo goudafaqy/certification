@@ -64,14 +64,7 @@
                                                 <td class="text-center">{{ $item->national_id }}</td>
                                                 <td class="text-center">@if($item->sex==0)أنثى @else ذكر  @endif</td>
                                                 <td class="text-center">
-                                                    @if(isset($item->courses)&&!empty($item->courses))    
-                                                       <select name="TraineeCourses" class="TraineeCourses">
-                                                           <option>أختر دورة للمعاينة</option>
-                                                            @foreach($item->courses as $course)
-                                                                <option value="{{$course->id}}:{{ $item->national_id }}">{{$course->name}}</option>
-                                                            @endforeach    
-                                                        <select>
-                                                    @endif        
+                                                    <a class="btn btn-primary"  class="TraineeCourse" href="#" data="{{$item->course}}:{{ $item->national_id }}"   title="معاينة"><i style="position: relative; top: -2px; right: -4px" class="fa fa-eye"></i></a>
                                                 </td>
                                                 <td class="text-center">                                                  
                                                     <a class="btn btn-info" href="{{route('trainees-update',['course' => $item->course ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
@@ -127,15 +120,16 @@
        $("iframe#showcert").attr('src',"");
     });
 
-    $('.TraineeCourses').change(function(){
-        var data=$(this).val();
+    $('.TraineeCourse').click(function(e){
+        e.preventDefault();
+        var data=$(this).attr('data');
         var data=data.split(':');
         var course_id=data[0];
         var nationa_id=data[1];
         var cert_url="http://jtc-certificate.com/public/view/"+nationa_id+"/"+course_id;
         $("iframe#showcert").attr('src',cert_url);
         $('#showcert').modal('show');
-
+        return false;
     });
 
 

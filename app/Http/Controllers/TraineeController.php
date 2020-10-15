@@ -19,20 +19,10 @@ class TraineeController extends Controller
     
     public function list($id){
         $course = Course::find($id);
-        $items = CourseUser::where('course',$id)->get();
-        $finalItems=array();
-        foreach($items as $k=>$item){
-          $courseuser = CourseUser::where('email',$item->email)->where('national_id',$item->national_id)->get();
-          foreach($courseuser as $c){
-            $i = Course::find($c->course);
-            if($i)
-            $item->courses[]=$i;
-        }
-        $finalItems[]=$item;
-        }
+        $items = CourseUser::where('course',$id)->get();       
         $route = route('trainees-add',['course'=>$id]);
 
-        return view('cp.trainees.list',['items'=>$finalItems,'course'=>$course,'route'=>$route]);
+        return view('cp.trainees.list',['items'=>$items,'course'=>$course,'route'=>$route]);
        
         
     }
