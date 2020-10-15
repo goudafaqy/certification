@@ -39,12 +39,8 @@ class MainController extends Controller
        return view('home',['courses'=>$courses,"national_id"=>$national_id]);
     }
     public function view($national_id,$course_id){
-        
-        
         $user = CourseUser::where('national_id', $national_id)->where('course', $course_id)->first();
         $course = Course::find($user->course);
-        $lastStatment=($course->form==1)? "بتاريخ ".$course->date:" فى الفترة من ".$course->fromDate. " إلى ".$course->toDate;
-
         $data = ['title' => $user->title,
                     'Trainee_name' => $user->name, 
                     'national_id'=>$this->enToAr($user->national_id),
@@ -57,11 +53,16 @@ class MainController extends Controller
                     'fromDate'=>$course->fromDate,
                     'toDate'=>$course->toDate,
                     'id'=>$course->id,
-                    'qrcode'=>" يشهد مركز التدريب العدلي بأن هذه الشهادة: قد منحت لـ".$user->title." / ".$user->name." وذلك لإكماله الدورة التدريبة: ".$course->name .$lastStatment
-                    
+                    'sex'=>$user->sex,                    
                     ]; 
-        return view('cert1',['data'=>$data]);
+                  //  dump($data);
+        $decideView="";
+        if(in_array($course->form,array(1,2)))
+          $decideView="cert12";
+        if(in_array($course->form,array(3,4)))
+          $decideView="cert34";
 
+        return view($decideView,['data'=>$data]);
     }
     public function print($national_id,$course_id){
 
@@ -84,7 +85,6 @@ class MainController extends Controller
 
         $user = CourseUser::where('national_id', $national_id)->where('course', $course_id)->first();
         $course = Course::find($user->course);
-        $lastStatment=($course->form==1)? "بتاريخ ".$course->date:" فى الفترة من ".$course->fromDate. " إلى ".$course->toDate;
 
         $data = ['title' => $user->title,
                     'Trainee_name' => $user->name, 
@@ -130,96 +130,40 @@ class MainController extends Controller
         $course->save();
         $request->request->add(['course_id' => $course->id]);
         Excel::import(new UsersImport,$request->file);
-        return back()->with('success', 'تم اضافة بيانات الدورة');
+
+        return redirect('/courses')->with('added', 'تم اضافة الدورة');
     }
 
-    	 /**
-     * Generate Full Certificates
-     */
-    public function generate($data=[])
-    {
-        if(empty($data)){
-            $data =[
-            'title' =>'فضيلة الشيخ',  
-            'name_ar' => 'محمد مهدي سعود الشهراني',
-            'national_id'=>'1005615685','course'=>3,
-            'date'=>'الاحد الموافق 25 محرم 1445',
-            'days'=>'ثلاثة أيام',
-            'hours'=>'ساعتين تدريبتين',
-            'course_name'=>'الصياغة القضائية النيابية' ];
+    public function importExcel($request){
+        // Get current data from items table
+        $titles = Item::lists('title')->toArray();
+    
+        if(Input::hasFile('file')){
+            $path = Input::file('file')->getRealPath();
+            $data = Excel::load($path, function($reader) {})->get();
+    
+            if(!empty($data) && $data->count()){
+                $insert = array();
+    
+                foreach ($data as $key => $value) {
+                    // Skip title previously added using in_array
+                    if (in_array($value->title, $titles))
+                        continue;
+    
+                      dump($value);
+
+                    //$insert[] = ['title' => $value->title, 'name' => $value->name];
+    
+                    // Add new title to array
+                    $titles[] = $value->title;
+                }
+    
+                if(!empty($insert)){
+                    DB::table('items')->insert($insert);
+                    return back()->with('success','done successfully');    
+                }
+            }
         }
-        $Arabic = new I18N_Arabic('Glyphs'); 
-        $nameAR = $Arabic->utf8Glyphs($data['name_ar']); 
-        $title = $Arabic->utf8Glyphs($data['title']); 
-        $hours = $Arabic->utf8Glyphs($data['hours']);
-        $course_name = $Arabic->utf8Glyphs($data['course_name']); 
-        $date = $Arabic->utf8Glyphs($data['date']); 
-		 $img = Image::make(public_path('images/certificat.jpeg')); 
-
-        // title
-        $img->text($title, 850, 235, function($font) {  
-            $font->file(public_path('fonts/Calibri.TTF'));  
-            $font->size(23);  
-            $font->color('#538d51');  
-            $font->align('center');  
-            $font->valign('bottom');  
-            $font->angle(0);  
-        });  
-		// Name
-        $img->text($nameAR, 580, 240, function($font) {  
-           $font->file(public_path('fonts/Calibri.TTF'));  
-           $font->size(25);  
-           $font->color('#538d51');  
-           $font->align('center');  
-           $font->valign('bottom');  
-           $font->angle(0);  
-       });  
-
-       
-
-	  // ID 
-	  $img->text($data['national_id'], 625, 268, function($font) {  
-		$font->file(public_path('fonts/arial.ttf'));  
-		$font->size(23);  
-		$font->color('#808080');  
-		$font->align('center');  
-		$font->valign('bottom');  
-		$font->angle(0);  
-      });  
-      // Hourse 
-	  $img->text($hours, 440, 335, function($font) {  
-		$font->file(public_path('fonts/arial.ttf'));  
-		$font->size(23);  
-		$font->color('#808080');  
-		$font->align('center');  
-		$font->valign('bottom');  
-		$font->angle(0);  
-      });  
-      // Course  
-	  $img->text($course_name, 570, 390, function($font) {  
-		$font->file(public_path('fonts/Droid-Naskh-Regular.ttf'));  
-		$font->size(25);  
-		$font->color('#e1b54b');  
-		$font->align('center');  
-		$font->valign('bottom');  
-		$font->angle(0);  
-      });  
-       // Date  
-	  $img->text($date, 350, 420, function($font) {  
-		$font->file(public_path('fonts/arial.ttf'));  
-		$font->size(25);  
-		$font->color('#808080');  
-		$font->align('center');  
-		$font->valign('bottom');  
-		$font->angle(0);  
-      });  
-      $fileName = "certifcate".time();
-      $img->save(public_path('uploads/certifcates/'.$fileName.'.jpeg'));  
-      $user = CourseUser::where('national_id',$data['national_id'])->where('course',$data['course'])->first();
-      $user->certifcate = 'uploads/certifcates/'.$fileName.'.jpeg';
-      $user->generated = 1;
-      $user->save();
-      sleep(5);
     }
     
     
@@ -233,7 +177,7 @@ class MainController extends Controller
         if(Auth::user()->role == 'admin'){
             $items = Course::all();
         }else{
-            $items = Course::where('created_by',Auth::user()->id)->get(); 
+            $items = Course::where('created_by',Auth::user()->id)->orderBy('')->get(); 
         }
         return view('cp.import_courses.list',['items'=>$items]);
     }

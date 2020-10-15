@@ -57,6 +57,7 @@ class TraineeController extends Controller
             $user->email =  $inputs['email'];
             $user->phone =  $inputs['phone'];
             $user->national_id =  $inputs['national_id'];
+            $user->sex =  $inputs['sex'];
             $user->course = $inputs['course'];
             $userId = $user->save();
             if($userId){
@@ -74,6 +75,7 @@ class TraineeController extends Controller
             $user->title=  $inputs['title'];
             $user->phone =  $inputs['phone'];
             $user->national_id =  $inputs['national_id'];
+            $user->sex =  $inputs['sex'];
             $user->course = $inputs['course'];
             $userId = $user->save();
             if($userId){

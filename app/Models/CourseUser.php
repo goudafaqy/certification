@@ -24,7 +24,7 @@ class CourseUser extends Authenticatable
         'email',
         'national_id',
         'title',
-        'phone',
+        'phone','sex',
         'course'
     ];
     public function details()

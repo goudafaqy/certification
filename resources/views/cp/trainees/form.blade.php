@@ -84,7 +84,23 @@
                                             </span>
                                         @enderror
                                         
-
+                                        <div class="form-group" >
+                                            <label for="sex"> الجنس</label>
+                                            <select  class="form-control @error('sex') is-invalid @enderror"  id="sex" name="sex">
+                                            @if($item->sex)
+                                                <option value="1" selected>ذكر</option>
+                                                <option value="0">أنثى</option>
+                                            @elseif($item->sex==0)   
+                                                <option value="1">ذكر</option>
+                                                <option value="0" selected>أنثى</option>
+                                            @endif   
+                                            </select>
+                                        </div>
+                                        @error('sex')
+                                            <span class="text-danger err-msg-email" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                       
 
                                        

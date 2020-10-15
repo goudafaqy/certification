@@ -81,13 +81,13 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
-            "searching": false ,
+            "searching": true ,
             "language": {
-                "lengthMenu": "عرض _MENU_ تصنيف في الصفحة الواحدة",
+                "lengthMenu": "عرض _MENU_ دورة في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواد",
                 "info": "الصفحة رقم _PAGE_ من _PAGES_",
                 "infoEmpty": "لا يوجد", 
-                "infoFiltered": "(نتيجة البحث من _MAX_ تصنيفات)",
+                "infoFiltered": "(نتيجة البحث من _MAX_ دورات)",
                 "search": "بحث  ",
                 "paginate": {
                     "next": "التالي",

@@ -1,113 +1,98 @@
 @include('cp.common.dashboard-header')
 @include('cp.common.sidebar', ['active' => ''])
+<style>
+    .error{
+        color:red !important;
+    }
+    .form-group{
+        font-size:16px;
+    }
+    form input[type="file"] {
+        display: block !important;
+    }
+    </style>
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="widget">
                     <div class="card">
-                        
                         <div class="widget-header">
                             <div class=" d-flex justify-content-between align-items-center">
-                             
-                            <h3 class="widget-title">اضافة دورة</h3>
-
+                                <h3 class="widget-title">إضافة دورة</h3>
                             </div>
-
                         </div>
-                        <div class="card-body" style="padding: 0 15px">
-                            <form id="add-classification-form" action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                
-                                <div class="row justify-content-center" >
-
-                                <div class="col-md-6" >
-                                        <div class="form-group" style="margin-top: 20px;">
-                                        <label for="form"> اختر النموذج</label>
-                                        <select  class="form-control" id="form" placeholder="اختر نموذج الشهادة" required name="form">
-                                            <option value="0">اختر النموذج</value>
-                                            <option value="1">نموذج شهادة الدورة التدريبية لليوم الواحد</value>
-                                            <option value="2">نموذج شهادة الدورة التدريبية من عدة أيام </value>
-                                        </select>
-                                        </div>
-                                        @error('form')
-                                            <span class="text-danger err-msg-form" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-
-                                </div>        
-                                <div class="col-md-6" >
-                                    <div class="form-group" style="margin-top: 20px;">
-                                        <label for="course">عنوان الدورة</label>
-                                        <input type="text" class="form-control @error('course') is-invalid @enderror" id="course" placeholder="" name="course" value="{{$item->course??''}}">
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="row justify-content-center" >
-                                    <div class="col-md-6">
-                                        <div class="form-group" >
-                                            <label for="date">تاريخ انعقاد الدورة بالهجرى</label>
-                                            <input type="text" class="form-control" id="date"  name="date"W>
-                                        </div>
-                                       
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group" >
-                                            <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
-                                            <input type="text" class="form-control" id="toDate"  name="toDate">
-                                        </div>
-                                       
-                                    </div>
-                                   
-
-                                  
-                                    
-                                    </div>
-                                    <div class="row justify-content-center" >
-                <div class="col-md-4 2">
-                        <div class="form-group" >
+                        <div class="card-body" style="padding: 10 15px">
+                            
+        <form action="{{ route('import') }}" method="POST" id="createform" enctype="multipart/form-data">
+            @csrf
+            <div class="row justify-content-right " >
+                 <div class="col-md-6" >
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="form"> اختر النموذج</label>
+                        <select  class="form-control" id="form" placeholder="اختر نموذج الشهادة" required name="form">
+                           <option value="0">اختر النموذج</option>
+                           <option value="1">نموذج شهادة الدورة التدريبية لليوم الواحد</option>
+                           <option value="2">نموذج شهادة الدورة التدريبية من عدة أيام </option>
+                           <option value="3">  نموذج شهادة الدورة التأهيلية</option>
+                           <option value="4">  نموذج شهادة الدورة التعريفية</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="course">عنوان الدورة</label>
+                        <input type="text" class="form-control" id="course"  placeholder="" name="course" >
+                    </div>
+                    <div class="form-group 1" style="margin-top: 20px;">
+                        <label for="date">تاريخ انعقاد الدورة بالهجرى</label>
+                        <input type="text" class="form-control" id="date"  name="date"W>
+                    </div>
+                    <div class="form-group 2 3 4" >
+                        <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
+                        <input type="text" class="form-control" id="fromDate"   name="fromDate">
+                    </div>
+                    <div class="form-group 2 3 4" >
+                        <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
+                        <input type="text" class="form-control" id="toDate"  name="toDate">
+                    </div>
+                    <div class="form-group 2 3 4" style="margin-top: 20px;">
                         <label for="hourse">مدة الدورة (الايام)</label>
                         <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
-                        </div>
-                    </div>   
-					<div class="col-md-4">
-                        <div class="form-group" >
-                        <label for="hourse">عدد ساعات الدورة</label>
-                        <input type="text" class="form-control @error('hourse') is-invalid @enderror" id="hours"  placeholder="" name="hours" required value="">
-                        </div>
-                    </div> 
-                   
-
-                    <div class="col-md-4" >
-                        <div class="form-group">
-                            <label for="file">ملف  اسماء المتدربيبن </label>
-                            <input type="file" class="form-control-file" id="true-image" name="file">
-                            <button class="btn btn-success" type="button" id="fake-image">{{__('app.Upload Source')}}</button>
-                        </div>
                     </div>
-
+                    <div class="form-group 1 2" style="margin-top: 20px;">
+                        <label for="hourse">عدد ساعات الدورة</label>
+                        <input type="text" class="form-control @error('hourse') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
+                    </div>
+                    <div class="">
+                        <label for="hourse">ملف  اسماء المتدربيبن</label>
+                        <input type="file"  name="file" class="btn btn-success"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                     </div>
                 </div>
-                                
+                <div class="col-md-6" >
+                    <div class="course-thumbnail">
+                        <img src="" id="formimg" class="attachment-full size-full wp-post-image img-fluid" style=" border-radius: 8px;">
+                    </div>
+                </div>
+                   
+            </div>
+            
 
-                                       
-                                       
-                                        <button style="width: 25%; margin-bottom: 50px; margin-top: 50px;" type="submit" class="btn btn-primary">{{__('app.Save & Send')}}</button>
+       
+            
+        <div class="row justify-content-center submit">
+            <div class="col-md-12" style="margin-top: 25px; text-align:center">
+              <button class="btn btn-primary" style="background-color:green"  type="submit" >حمل البيانات</button>
+            </div>
+        </div>
+           
+        </form>
 
-                                    </div>
-
-                                    
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 @include('cp.common.dashboard-footer')
 
 <script>
@@ -116,6 +101,7 @@
 	   	$('div.2').hide();
 	    $('div.1 input').removeAttr("required"); 
 	    $('div.2 input').removeAttr("required"); 
+        $('div.submit').hide();
    }
    $( document ).ready(function() { hide();
 	
@@ -160,11 +146,14 @@
      $('select#form').change(function(){
 		   $('div.1').hide();
 	   	  $('div.2').hide();
+             $('div.submit').show();
 		 var form=$(this).val();
+         var imgname=form+".jpg";
+         $('#formimg').attr('src',"{{asset('/')}}forms/"+imgname);
 		 if(form==0)
 			 alert("يرجى أختيار نموذج الشهادة");
 		 else {
-		   $('div.'+form).show();
+		   $('div.'+form).show(); 
 		  // $('div.'+form+' input').attr("required"); 
 		  if(form==2) {
 			  $('#hours').attr("type","number"); 
@@ -183,12 +172,9 @@
 	   $("form#createform").validate({
 		  rules:validationRules,messages:validationMessages,
           submitHandler: function(form) {
-          form.submit();
+            form.submit();
         }
       });
 	 
  });
- 
-
-  
    </script>

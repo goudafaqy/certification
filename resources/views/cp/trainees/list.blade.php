@@ -49,6 +49,7 @@
                                                 <th class="th-sm text-center">الاسم</th>
                                                 <th class="th-sm text-center">البريد الالكترونى</th>
                                                 <th class="th-sm text-center">رقم الهوية</th>
+                                                <th class="th-sm text-center">الجنس </th>
                                                 <th class="th-sm text-center">الاعدادت</th>
 
                                             </tr>
@@ -60,6 +61,12 @@
                                                 <td class="text-center">{{ $item->name }}</td>
                                                 <td class="text-center">{{ $item->email }}</td>
                                                 <td class="text-center">{{ $item->national_id }}</td>
+                                                <td class="text-center">
+                                                    @if($item->sex==0)
+                                                     أنثى
+                                                    @else 
+                                                    ذكر 
+                                                    @endif</td>
                                                 <td class="text-center">
                                                     <a class="btn btn-info" href="{{route('trainees-update',['course' => $item->course ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="{{route('delete-trainees',['course' => $item->course ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>

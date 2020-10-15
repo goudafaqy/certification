@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('site-assets/css/jquery.lineProgressbar.css') }}">
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
 
     <!-- End Style -->
 </head>
