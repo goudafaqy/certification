@@ -65,14 +65,13 @@
                                                 <td class="text-center">@if($item->sex==0)أنثى @else ذكر  @endif</td>
                                                 <td class="text-center">    
                                                        <select name="TraineeCourses" class="TraineeCourses">
+                                                           <option>أختر دورة للمعاينة</option>
                                                             @foreach($item->courses as $course)
                                                                 <option value="{{$course->id}}:{{ $item->national_id }}">{{$course->name}}</option>
                                                             @endforeach    
                                                         <select>
                                                 </td>
-                                                <td class="text-center">
-                                                    <!--http://jtc-certificate.com/public/view/1107474890/16-->
-                                                  
+                                                <td class="text-center">                                                  
                                                     <a class="btn btn-info" href="{{route('trainees-update',['course' => $item->course ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="{{route('delete-trainees',['course' => $item->course ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
@@ -90,10 +89,41 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade bd-example-modal-lg" id="showcert" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="showcertTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="showcertTitle">معاينة شهادة</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="background: #34405a;">
+            <div class="ui-input-container">
+                <div class="row justify-content-center">
+                   <div class="col-12">
+                            <iframe id="showcert" src="" height="550" width="760"></iframe>
+                   </div>
+                 </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="closebutton" data-dismiss="modal">اغلاق</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 @include('cp.common.dashboard-footer')
 
 <script>
     $(document).ready(function () {
+
+    $(document).on('hide.bs.modal',"#showcert", function () {
+       $("iframe#showcert").attr('src',"");
+    });
 
     $('.TraineeCourses').change(function(){
         var data=$(this).val();
@@ -101,7 +131,9 @@
         var course_id=data[0];
         var nationa_id=data[1];
         var cert_url="http://jtc-certificate.com/public/view/"+nationa_id+"/"+course_id;
-        window.open(cert_url,'_blank');
+        $("iframe#showcert").attr('src',cert_url);
+        $('#showcert').modal('show');
+
     });
 
 
