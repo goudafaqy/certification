@@ -45,16 +45,18 @@ class MainController extends Controller
                     'Trainee_name' => $user->name, 
                     'national_id'=>$this->enToAr($user->national_id),
                     'n_id' => $user->national_id,
-                    'date'=>$course->date,
-                    'days'=>$course->days,
-                    'hours'=>$course->hours,
                     'course_name'=>$course->name,
-                    'form'=>$course->form,
-                    'fromDate'=>$course->fromDate,
-                    'toDate'=>$course->toDate,
                     'id'=>$course->id,
-                    'sex'=>$user->sex,                    
+                    'sex'=>$user->sex, 
+                    'form'=>$course->form                   
                     ]; 
+
+        if(isset($course->date))      $data['date']=$course->date;
+        if(isset($course->days))      $data['days']=$course->days;
+        if(isset($course->hours))     $data['hours']=$course->hours;
+        if(isset($course->fromDate))  $data['fromDate']=$course->fromDate;
+        if(isset($course->toDate))  $data['toDate']=$course->toDate;
+
                   //  dump($data);
         $decideView="";
         if(in_array($course->form,array(1,2)))
