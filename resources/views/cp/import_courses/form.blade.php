@@ -59,8 +59,8 @@
                         <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
                     </div>
                     <div class="form-group 1 2 3" style="margin-top: 20px;">
-                        <label for="hourse">عدد ساعات الدورة</label>
-                        <input type="text" class="form-control @error('hourse') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
+                        <label for="hours">عدد ساعات الدورة</label>
+                        <input type="text" class="form-control @error('hours') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
                     </div>
                     <div class="">
                         <label for="file">ملف  اسماء المتدربيبن</label>
