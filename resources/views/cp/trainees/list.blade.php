@@ -50,6 +50,7 @@
                                                 <th class="th-sm text-center">البريد الالكترونى</th>
                                                 <th class="th-sm text-center">رقم الهوية</th>
                                                 <th class="th-sm text-center">الجنس </th>
+                                                <th class="th-sm text-center">معاينة الشهادة </th>
                                                 <th class="th-sm text-center">الاعدادت</th>
 
                                             </tr>
@@ -61,13 +62,17 @@
                                                 <td class="text-center">{{ $item->name }}</td>
                                                 <td class="text-center">{{ $item->email }}</td>
                                                 <td class="text-center">{{ $item->national_id }}</td>
+                                                <td class="text-center">@if($item->sex==0)أنثى @else ذكر  @endif</td>
+                                                <td class="text-center">    
+                                                       <select name="TraineeCourses" class="TraineeCourses">
+                                                            @foreach($item->courses as $course)
+                                                                <option value="{{$course->id}}:{{ $item->national_id }}">{{$course->name}}</option>
+                                                            @endforeach    
+                                                        <select>
+                                                </td>
                                                 <td class="text-center">
-                                                    @if($item->sex==0)
-                                                     أنثى
-                                                    @else 
-                                                    ذكر 
-                                                    @endif</td>
-                                                <td class="text-center">
+                                                    <!--http://jtc-certificate.com/public/view/1107474890/16-->
+                                                  
                                                     <a class="btn btn-info" href="{{route('trainees-update',['course' => $item->course ,'id' => $item->id])}}" data-toggle="tooltip" data-placement="top" title="تعديل"><i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a>
                                                     <a id="delete" href="{{route('delete-trainees',['course' => $item->course ,'id' => $item->id])}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="حذف"><i style="position: relative; top: -2px; right: -2px" class="fa fa-times"></i></a>
                                                 </td>
@@ -89,6 +94,18 @@
 
 <script>
     $(document).ready(function () {
+
+    $('.TraineeCourses').change(function(){
+        var data=$(this).val();
+        var data=data.split(':');
+        var course_id=data[0];
+        var nationa_id=data[1];
+        var cert_url="http://jtc-certificate.com/public/view/"+nationa_id+"/"+course_id;
+        window.open(cert_url,'_blank');
+    });
+
+
+
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
             "searching": false ,

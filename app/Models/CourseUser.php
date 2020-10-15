@@ -14,6 +14,7 @@ class CourseUser extends Authenticatable
      */
     protected $table = 'users_courses';
 
+    public $courses;
     /**
      * The attributes that are mass assignable.
      *
