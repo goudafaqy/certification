@@ -48,19 +48,19 @@
                     </div>
                     <div class="form-group 2 3 4" >
                         <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
-                        <input type="text" class="form-control" id="fromDate"   name="fromDate">
+                        <input type="text" class="form-control" id="fromDate"   name="fromDate" value="{{$course->fromDate}}">
                     </div>
                     <div class="form-group 2 3 4" >
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
-                        <input type="text" class="form-control" id="toDate"  name="toDate">
+                        <input type="text" class="form-control" id="toDate"  name="toDate" value="{{$course->toDate}}">
                     </div>
                     <div class="form-group 2 4" style="margin-top: 20px;">
                         <label for="days">مدة الدورة (الايام)</label>
-                        <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
+                        <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="{{$course->days}}">
                     </div>
                     <div class="form-group 1 2 3" style="margin-top: 20px;">
                         <label for="hours">عدد ساعات الدورة</label>
-                        <input type="text" class="form-control @error('hours') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
+                        <input type="text" class="form-control @error('hours') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="{{$course->hours}}">
                     </div>
                     <div class="">
                         <label for="file">ملف  اسماء المتدربيبن</label>
@@ -168,6 +168,9 @@
 			  validationRules=validateRulesForForm1;
 			  validationMessages=validationMessagesForFomr1;
 		  }
+          if(form==4) {
+            $('#days').attr("type","text"); 
+          }
 		  console.log([validationRules,validationMessages]);
 		 }		 
 	 });
