@@ -48,19 +48,19 @@
                     </div>
                     <div class="form-group 2 3 4" >
                         <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
-                        <input type="text" class="form-control" id="fromDate"   name="fromDate" value="{{$course->fromDate}}">
+                        <input type="text" class="form-control" id="fromDate"   name="fromDate">
                     </div>
                     <div class="form-group 2 3 4" >
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
-                        <input type="text" class="form-control" id="toDate"  name="toDate" value="{{$course->toDate}}">
+                        <input type="text" class="form-control" id="toDate"  name="toDate">
                     </div>
                     <div class="form-group 2 4" style="margin-top: 20px;">
-                        <label for="hourse">مدة الدورة (الايام)</label>
-                        <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="{{$course->days}}">
+                        <label for="days">مدة الدورة (الايام)</label>
+                        <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
                     </div>
                     <div class="form-group 1 2 3" style="margin-top: 20px;">
                         <label for="hourse">عدد ساعات الدورة</label>
-                        <input type="text" class="form-control @error('hourse') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="{{$course->hours}}">
+                        <input type="text" class="form-control @error('hourse') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
                     </div>
                     <div class="">
                         <label for="hourse">ملف  اسماء المتدربيبن</label>

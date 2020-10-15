@@ -54,16 +54,16 @@
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate">
                     </div>
-                    <div class="form-group 2 3 4" style="margin-top: 20px;">
-                        <label for="hourse">مدة الدورة (الايام)</label>
+                    <div class="form-group 2 4" style="margin-top: 20px;">
+                        <label for="days">مدة الدورة (الايام)</label>
                         <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
                     </div>
-                    <div class="form-group 1 2" style="margin-top: 20px;">
+                    <div class="form-group 1 2 3" style="margin-top: 20px;">
                         <label for="hourse">عدد ساعات الدورة</label>
                         <input type="text" class="form-control @error('hourse') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
                     </div>
                     <div class="">
-                        <label for="hourse">ملف  اسماء المتدربيبن</label>
+                        <label for="file">ملف  اسماء المتدربيبن</label>
                         <input type="file"  name="file" class="btn btn-success"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                      </div>
                 </div>
