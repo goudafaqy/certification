@@ -69,8 +69,9 @@ Route::prefix('courses')->group(function () {
     Route::get('add', 'MainController@add')->name('courses-add');
     Route::get('update/{id}', 'MainController@update')->name('courses-update');
     Route::post('save', 'MainController@create')->name('save-course');
+    Route::post('update', 'MainController@update')->name('update-course');
     Route::get('delete/{id}', 'MainController@delete')->name('delete-course');
-    Route::post('update', 'MainController@edit')->name('update-course');
+    Route::get('edit/{id}', 'MainController@edit')->name('edit-course');
 });
 
 
@@ -81,7 +82,7 @@ Route::prefix('trainees')->group(function () {
     Route::get('add/{course}', 'TraineeController@add')->name('trainees-add');
     Route::get('update/{id}', 'TraineeController@update')->name('trainees-update');
     Route::post('save', 'TraineeController@create')->name('save-trainees');
-    Route::get('delete/{id}/{course}', 'TraineeController@delete')->name('delete-trainees');
+    Route::get('delete/{id}', 'TraineeController@delete')->name('delete-trainees');
     Route::post('update', 'TraineeController@edit')->name('update-trainees');
 });
 

@@ -50,7 +50,7 @@
                                                 <th class="th-sm text-center">التاريخ</th>
                                                 <th class="th-sm text-center">بواسطة</th>
                                                 <th class="th-sm text-center">المتدربين</th>
-
+                                                <th class="th-sm text-center" colspan="2">الأجرأت</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -60,8 +60,9 @@
                                                 <td class="text-center">{{ $item->name }}</td>
                                                 <td class="text-center">{{ $item->date }}</td>
                                                 <td class="text-center">{{ (!empty($item->getUser)) ? $item->getUser->name :'-' }}</td>
-                                                <td class="text-center"><a href="{{ route('trainees-list',['course'=>$item->id])}}">المتدربين</a></td>
-                                                                             
+                                                <td class="text-center"><a href="{{ route('trainees-list',['course'=>$item->id])}}"><i style="position: relative; top: -2px; right: -4px" class="fa fa-users"></i></a></td>
+                                                <td class="text-center"><a class="btn btn-danger" id="delete" href="{{ route('delete-course',['id'=>$item->id])}}">حذف<i style="position: relative; top: -2px; right: -4px" class="fa fa-times"></i></a></td>
+                                                <td class="text-center"><a class="btn btn-info" href="{{ route('edit-course',['id'=>$item->id])}}">تعديل<i style="position: relative; top: -2px; right: -4px" class="fa fa-edit"></i></a></td>                             
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -81,13 +82,13 @@
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('#dtBasicExample').DataTable({
-            "searching": false ,
+            "searching": true ,
             "language": {
-                "lengthMenu": "عرض _MENU_ تصنيف في الصفحة الواحدة",
+                "lengthMenu": "عرض _MENU_ دورة في الصفحة الواحدة",
                 "zeroRecords": "لا يوجد مواد",
                 "info": "الصفحة رقم _PAGE_ من _PAGES_",
                 "infoEmpty": "لا يوجد", 
-                "infoFiltered": "(نتيجة البحث من _MAX_ تصنيفات)",
+                "infoFiltered": "(نتيجة البحث من _MAX_ دورات)",
                 "search": "بحث  ",
                 "paginate": {
                     "next": "التالي",

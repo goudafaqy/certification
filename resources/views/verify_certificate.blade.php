@@ -72,8 +72,14 @@ font-size:30px;
         <span class="font-40  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad">شهادة حضور</span>
         <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 25px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن هذه الشهادة </h4>
         <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 25px; font-family:AL-Mohanad"> <strong>قد منحت الى {{$data['Trainee_name']}}</strong> </h4>
-        <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 25px; font-family:AL-Mohanad"> وذلك لإكمال البرنامج التدريبي  <strong>  {{$data['course_name']}} </strong> </h4>
-        <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 22px; font-family:AL-Mohanad"> بتاريخ  <strong>  {{$data['date']}} </strong> </h4>
+        <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 25px; font-family:AL-Mohanad"> وذلك لإكمال   <strong>  {{$data['course_name']}} </strong> </h4>
+        <h4  class="center" style="color: grey;margin-bottom:1.5rem;font-size: 22px; font-family:AL-Mohanad">  
+        @if($data['form']==1)
+        بتاريخ  <strong>  {{$data['date']}} </strong>
+        @elseif(in_array($data['form'],array(2,3,4)))
+        فى الفترة من <strong>  {{$data['fromDate']}} </strong> الى<strong>  {{$data['toDate']}} </strong>
+        @endif
+        </h4>
         <span class="font-40   quebra_linha" style="color: #538d51;  font-family:AL-Mohanad;text-align:center"> <a  href="{{route('print',['national_id'=>$data['n_id'],'course' => $data['id'] ])}}" style="color: #538d51;  font-family:AL-Mohanad;text-align:center" >تحميل الشهادة</a></span>                
     </p>
     </div>

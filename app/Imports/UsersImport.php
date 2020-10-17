@@ -22,6 +22,7 @@ class UsersImport implements ToModel, WithStartRow
             'email'    =>   $row[2], 
             'phone' =>      $row[3],
             'national_id' =>   $row[4],
+            'sex' =>   $row[5],
             'course' =>request()->course_id
 
         ]);

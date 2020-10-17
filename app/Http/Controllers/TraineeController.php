@@ -17,10 +17,9 @@ class TraineeController extends Controller
   
 
     
-    public function list($id)
-    {
+    public function list($id){
         $course = Course::find($id);
-        $items = CourseUser::where('course',$id)->get();
+        $items = CourseUser::where('course',$id)->get();       
         $route = route('trainees-add',['course'=>$id]);
 
         return view('cp.trainees.list',['items'=>$items,'course'=>$course,'route'=>$route]);
@@ -57,7 +56,15 @@ class TraineeController extends Controller
             $user->email =  $inputs['email'];
             $user->phone =  $inputs['phone'];
             $user->national_id =  $inputs['national_id'];
+            $user->sex =  $inputs['sex'];
             $user->course = $inputs['course'];
+
+           
+
+            $check = CourseUser::where('course',$inputs['course'])->where('email',$inputs['email'])->where('national_id',$inputs['national_id'])->get();
+            if($check)
+            return redirect()->back()->with('deleted', 'البريد موجود بالفعل او رقم الهوية');
+
             $userId = $user->save();
             if($userId){
                 return redirect('trainees/'.$inputs['course'])->with('added', 'تمت إضافة المتدرب بنجاح');
@@ -74,6 +81,7 @@ class TraineeController extends Controller
             $user->title=  $inputs['title'];
             $user->phone =  $inputs['phone'];
             $user->national_id =  $inputs['national_id'];
+            $user->sex =  $inputs['sex'];
             $user->course = $inputs['course'];
             $userId = $user->save();
             if($userId){
@@ -87,11 +95,11 @@ class TraineeController extends Controller
     /**
      * Delete classification date ...
      */
-    public function delete($id,$course_id)
+    public function delete($id)
     {
         $result = CourseUser::where('id',$id)->delete();
         if($result){
-            return redirect('trainees/'.$course_id)->with('added', 'تمت حذف المتدرب بنجاح');
+            return redirect()->back()->with('added', 'تمت حذف المتدرب بنجاح');
 
         }
     }

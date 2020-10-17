@@ -14,6 +14,7 @@ class CourseUser extends Authenticatable
      */
     protected $table = 'users_courses';
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +25,7 @@ class CourseUser extends Authenticatable
         'email',
         'national_id',
         'title',
-        'phone',
+        'phone','sex',
         'course'
     ];
     public function details()
