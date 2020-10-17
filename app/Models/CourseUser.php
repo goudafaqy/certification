@@ -30,7 +30,7 @@ class CourseUser extends Authenticatable
     ];
     public function details()
     {
-        return $this->belongsTo('App\Models\Course','course');
+        return $this->hasOne('App\Models\Course','id','course');
     }
 
 }

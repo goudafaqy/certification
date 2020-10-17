@@ -29,6 +29,7 @@
             <div class="row justify-content-right " >
                  <div class="col-md-6" >
                     <div class="form-group" style="margin-top: 20px;">
+                    <input type="hidden" 
                         <label for="form"> اختر النموذج</label>
                         <select  class="form-control" id="form" placeholder="اختر نموذج الشهادة" required name="form">
                            <option value="0">اختر النموذج</option>

@@ -13,7 +13,9 @@
                             </div>
                         </div>
                         @foreach($courses as $course)
+                        @if(isset($course->details->id))
                         <div class="card-body" >
+                            
                             <div class="row">
                                
                                   
@@ -23,6 +25,7 @@
 
                             </div>
                         </div>
+                        @endif
                         @endforeach
 
                      
