@@ -216,8 +216,8 @@ margin-right:3rem;
                                         <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 32px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن</h4>
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{$data['title']}}<span > /  </span>{{$data['Trainee_name']}}</h5>
                                         <h5 class="" style="color: grey;text-align: center;margin-bottom:1.5rem;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
-                                    	<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر محاضرة تدريبية عن بعد بواقع   {{$data['hours']}} <span>وذلك بعنوان</span></h4>
-									
+                                        <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">قد حضر دورة تدريبية لمدة <span >  </span> <span>{{$data['days']}}</span> أيام بواقع <span >(</span> {{$data['hours']}}<span>)</span><span> ساعة تدريبية بعنوان</span></h4>
+                                         
                                     </p>
                                     
                                 </div>
@@ -225,10 +225,11 @@ margin-right:3rem;
                                 <div class="bottom-text center" style="padding-bottom:0rem;">
                                  
                                     <h6 style="color:#e1b54b;font-weight:bold;font-size:20px"><span style="text-align:center;color:#e1b54b;">  </span> <span style="color:#e1b54b;font-size:24px; font-family:AL-Mohanad"><span style="color:#e1b54b;font-size:24px;" >(</span>{{$data['course_name']}}<span style="color:#e1b54b;font-size:24px;">)</span></span></h6>
-                                    <h6 style="color: grey;padding-left:12rem;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span> </h6>
-									<span style="color: grey;font-size:24px;font-size: 30px ; font-family:AL-Mohanad">والله الموفق </span> 
+                                    <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey"> إلي</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
+                                    <span style="color: grey;font-size:24px;font-size: 30px ; font-family:AL-Mohanad">والله الموفق </span> 
                                     
                                 </div>
+                               
                                 <div class="row" style="margin: auto;width:780px; ">
                                     <div class="col-6">
                                         <div class="title2" style="margin-top:2rem;text-align: center;margin-right:5rem;color:grey">

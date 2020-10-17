@@ -35,6 +35,11 @@
     <!-- End Style -->
 </head>
 
+<style>
+    .alert{
+        text-align:center;
+    }
+</style>
 <body>
     <div class="wrapper">
         <header class="header-top" header-theme="">
