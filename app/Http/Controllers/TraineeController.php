@@ -62,7 +62,7 @@ class TraineeController extends Controller
            
 
             $check = CourseUser::where('course',$inputs['course'])->where('email',$inputs['email'])->where('national_id',$inputs['national_id'])->get();
-            if($check)
+            if(count($check)>0)
             return redirect()->back()->with('deleted', 'البريد موجود بالفعل او رقم الهوية');
 
             $userId = $user->save();
