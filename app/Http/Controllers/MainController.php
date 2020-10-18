@@ -131,8 +131,7 @@ class MainController extends Controller
 	    $course->toDate = $this->enToAr($request->toDate) ;
         $course->save();
         $request->request->add(['course_id' => $course->id]);
-       // Excel::import(new UsersImport,$request->file);
-
+        Excel::import(new UsersImport,$request->file);
         return redirect('/courses')->with('added', 'تم اضافة الدورة');
     }
 
@@ -165,7 +164,6 @@ class MainController extends Controller
     }
     public function edit($id){
         $course = Course::find($id);
-        //dd($course);
         return view('cp.import_courses.edit',['course'=>$course]);
     } 
     public function update(Request $request) 
@@ -184,7 +182,6 @@ class MainController extends Controller
         $course->save();
         $request->request->add(['course_id' => $course->id]);
         Excel::import(new UsersImport,$request->file);
-
         return redirect('/courses')->with('added', 'تم تعديل الدورة');
     }
 
