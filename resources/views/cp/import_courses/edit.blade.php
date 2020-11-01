@@ -73,9 +73,9 @@
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate" value="{{$course->toDate}}">
                     </div>
-                    <div class="form-group1 2 4" style="margin-top: 20px;">
+                    <div class="form-group 1 2 4" style="margin-top: 20px;">
                         <label for="days">مدة الدورة (الايام)</label>
-                        <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="{{$course->days}}">
+                        <input type="text" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="{{$course->days}}">
                     </div>
                     <div class="form-group 1 2 3 5" style="margin-top: 20px;">
                         <label for="hours">عدد ساعات الدورة</label>
@@ -178,18 +178,20 @@
 		   $('div.'+form).show(); 
 		  // $('div.'+form+' input').attr("required"); 
 		  if(form==2) {
-			  $('#hours').attr("type","number"); 
+			 // $('#hours').attr("type","number"); 
 			  validationRules=validateRulesForForm2;
 			  validationMessages=validationMessagesForFomr2;
 		  }
 		  if(form==1) {
-			  $('#hours').attr("type","text"); 
+			  //$('#hours').attr("type","text"); 
 			  validationRules=validateRulesForForm1;
 			  validationMessages=validationMessagesForFomr1;
 		  }
+          /*
           if(form==4) {
             $('#days').attr("type","text"); 
           }
+          */
 		  console.log([validationRules,validationMessages]);
 		 }		 
 	 });
