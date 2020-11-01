@@ -220,7 +220,7 @@ margin-right:3rem;
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{trim($data['title'])}}<span>/  </span>{{trim($data['Trainee_name'])}}</h5>
                                         <h5 class="" style="color: grey;text-align: center;margin-bottom:1.5rem;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
                                         @if($data['form']==1)
-											<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif {{trim($data['type'])}} لمدة <span></span> <span>{{$data['days']}}</span> عن بعد بواقع   {{$data['hours']}} <span>وذلك بعنوان</span></h4>
+											<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif {{trim($data['type'])}}  عن بعد لمدة  <span>{{$data['days']}}</span> بواقع   {{$data['hours']}} <span>وذلك بعنوان</span></h4>
 										@elseif($data['form']==2)
 										     <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">قد حضر@if($data['sex']==0)ت@endif {{trim($data['type'])}} لمدة <span></span> <span>{{$data['days']}}</span> أيام بواقع <span >(</span> {{$data['hours']}}<span>)</span><span> ساعة تدريبية بعنوان</span></h4>
                                         @endif 
