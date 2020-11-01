@@ -47,10 +47,10 @@
                                             <tr>
                                                 <th class="th-sm text-center">#</th>
                                                 <th class="th-sm text-center">اسم الدورة</th>
-                                                <th class="th-sm text-center">التاريخ</th>
+                                                <!--<th class="th-sm text-center">التاريخ</th>-->
                                                 <th class="th-sm text-center">بواسطة</th>
                                                 <th class="th-sm text-center">المتدربين</th>
-                                                <th class="th-sm text-center" colspan="2">الأجرأت</th>
+                                                <th class="th-sm text-center" colspan="2">الإجراءات</th>
                                             </tr>
                                         </thead>
                                         <tbody>
