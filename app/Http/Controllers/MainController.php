@@ -56,7 +56,7 @@ class MainController extends Controller
         if(isset($course->hours))     $data['hours']=$course->hours;
         if(isset($course->fromDate))  $data['fromDate']=$course->fromDate;
         if(isset($course->toDate))    $data['toDate']=$course->toDate;
-        if(isset($course->year))      $data['year'] = $this->enToAr($course->year) ;
+        if(isset($course->year))      $data['year'] = $this->enToAr($course->year);
         if(isset($course->type))      $data['type'] = $course->type ;
         if(isset($course->certification_title))   $data['certification_title'] = $course->certification_title ;
         if(isset($course->location))  $data['location'] = $course->location ;
@@ -129,7 +129,7 @@ class MainController extends Controller
         $course->days = $this->enToAr($request->days) ;
         $course->date = $this->enToAr($request->date) ;
         $course->form = $request->form ;
-        $course->year = $request->year ;
+        $course->year =  $this->enToAr($request->year) ;
         $course->type = $request->type ;
         $course->certification_title = $request->certification_title ;
         $course->location = $request->location ;
