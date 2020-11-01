@@ -222,7 +222,7 @@ margin-right:3rem;
                                         @if($data['form']==1)
 											<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif {{trim($data['type'])}} عن بعد بواقع   {{$data['hours']}} <span>وذلك بعنوان</span></h4>
 										@elseif($data['form']==2)
-										     <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">قد حضر {{trim($data['type'])}} لمدة <span >  </span> <span>{{$data['days']}}</span> أيام بواقع <span >(</span> {{$data['hours']}}<span>)</span><span> ساعة تدريبية بعنوان</span></h4>
+										     <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">قد حضر {{trim($data['type'])}} لمدة <span>  </span> <span>{{$data['days']}}</span> أيام بواقع <span >(</span> {{$data['hours']}}<span>)</span><span> ساعة تدريبية بعنوان</span></h4>
                                         @endif 
                                     </p>
                                     
@@ -232,9 +232,14 @@ margin-right:3rem;
                                  
                                     <h6 style="color:#e1b54b;font-weight:bold;font-size:20px"><span style="text-align:center;color:#e1b54b;">  </span> <span style="color:#e1b54b;font-size:24px; font-family:AL-Mohanad"><span style="color:#e1b54b;font-size:24px;" >(</span>{{$data['course_name']}}<span style="color:#e1b54b;font-size:24px;">)</span></span></h6>
                                      @if($data['form']==1)
-                                       <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة فى {{trim($data['location'])}} يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span>   @if(isset($data['year']))   خلال العام الدراسي   {{$data['year']}}   @endif</h6>
+                                       <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة 
+                                        @if(isset($data['location']))فى {{trim($data['location'])}} @endif
+                                        يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span>
+                                            @if(isset($data['year']))   خلال العام الدراسي   {{$data['year']}}   @endif</h6>
 									@elseif($data['form']==2)
-									   <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة فى {{trim($data['location'])}} خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey">إلى</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
+                                       <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة
+                                        @if(isset($data['location']))فى {{trim($data['location'])}} @endif
+                                         خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey">إلى</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
                                     @endif 
                                     
 									<span style="color: grey;font-size:24px;font-size: 30px ; font-family:AL-Mohanad">والله الموفق </span> 

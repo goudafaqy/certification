@@ -42,19 +42,19 @@
                         <label for="course">عنوان الدورة</label>
                         <input type="text" class="form-control" id="course"  placeholder="" name="course" >
                     </div>
-                    <div class="form-group" style="margin-top: 20px;">
+                    <div class="form-group 1 2" style="margin-top: 20px;">
                         <label for="certification_title">عنوان الشهادة</label>
                         <input type="text" class="form-control" id="certification_title"  placeholder="شهادة حضور / شهادة تدريب" name="certification_title" >
                     </div>
-                    <div class="form-group" style="margin-top: 20px;">
+                    <div class="form-group 1 2" style="margin-top: 20px;">
                         <label for="type">النوع </label>
                         <input type="text" class="form-control"  placeholder="البرنامج التدريبى/ محاضرة /دورة  " required id="type" name="type">
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
-                        <label for="location">المقامة ب </label>
+                        <label for="location 1 2">المقامة ب </label>
                         <input type="text" class="form-control" id="location"  placeholder="الرياض/ الدمام / جدة" name="location" >
                     </div>
-                    <div class="form-group 1" style="margin-top: 20px;">
+                    <div class="form-group 1 2" style="margin-top: 20px;">
                         <label for="year">   العام الدراسى</label>
                         <input type="text" class="form-control" id="year" placeholder="1442" name="year">
                     </div>
