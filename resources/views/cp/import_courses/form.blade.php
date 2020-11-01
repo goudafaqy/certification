@@ -50,8 +50,8 @@
                         <label for="type">النوع </label>
                         <input type="text" class="form-control"  placeholder="البرنامج التدريبى/ محاضرة /دورة  " required id="type" name="type">
                     </div>
-                    <div class="form-group" style="margin-top: 20px;">
-                        <label for="location 1 2">المقامة ب </label>
+                    <div class="form-group 1 2" style="margin-top: 20px;">
+                        <label for="location">المقامة ب </label>
                         <input type="text" class="form-control" id="location"  placeholder="الرياض/ الدمام / جدة" name="location" >
                     </div>
                     <div class="form-group 1 2" style="margin-top: 20px;">
