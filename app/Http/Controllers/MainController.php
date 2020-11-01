@@ -66,6 +66,8 @@ class MainController extends Controller
           $decideView="cert12";
         if(in_array($course->form,array(3,4)))
           $decideView="cert34";
+        if(in_array($course->form,array(5)))
+          $decideView="cert5";
 
         return view($decideView,['data'=>$data]);
     }

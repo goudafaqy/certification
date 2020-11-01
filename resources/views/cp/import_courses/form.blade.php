@@ -36,6 +36,7 @@
                            <option value="2">نموذج شهادة الدورة التدريبية من عدة أيام </option>
                            <option value="3">  نموذج شهادة الدورة التأهيلية</option>
                            <option value="4">  نموذج شهادة الدورة التعريفية</option>
+                           <option value="5">  نموذج البرنامج التدريبى</option>
                         </select>
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
@@ -48,7 +49,7 @@
                     </div>
                     <div class="form-group 1 2" style="margin-top: 20px;">
                         <label for="type">النوع </label>
-                        <input type="text" class="form-control"  placeholder="البرنامج التدريبى/ محاضرة /دورة  " required id="type" name="type">
+                        <input type="text" class="form-control"  placeholder="  محاضرة /دورة /البرنامج التدريبى " required id="type" name="type">
                     </div>
                     <div class="form-group 1 2" style="margin-top: 20px;">
                         <label for="location">المقامة ب </label>
@@ -70,7 +71,7 @@
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate">
                     </div>
-                    <div class="form-group 2 4" style="margin-top: 20px;">
+                    <div class="form-group1 2 4" style="margin-top: 20px;">
                         <label for="days">مدة الدورة (الايام)</label>
                         <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
                     </div>
