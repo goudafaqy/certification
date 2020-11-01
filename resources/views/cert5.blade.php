@@ -233,7 +233,7 @@ margin-right:3rem;
                                         @if(isset($data['year']))   خلال العام الدراسي   {{$data['year']}}   @endif</h6>
 								
                                         <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">
-                                            {{$data['hours']}}  بمجموع ساعة تدريبية  
+                                            بمجموع ({{$data['hours']}} ) ساعة تدريبية  
                                         </h6>
 									<span style="color: grey;font-size:24px;font-size: 30px ; font-family:AL-Mohanad">والله الموفق </span> 
                                     
