@@ -232,7 +232,7 @@ margin-right:3rem;
                                  
                                     <h6 style="color:#e1b54b;font-weight:bold;font-size:20px"><span style="text-align:center;color:#e1b54b;">  </span> <span style="color:#e1b54b;font-size:24px; font-family:AL-Mohanad"><span style="color:#e1b54b;font-size:24px;" >(</span>{{$data['course_name']}}<span style="color:#e1b54b;font-size:24px;">)</span></span></h6>
                                      @if($data['form']==1)
-                                       <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة فى {{trim($data['location'])}} يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span> </h6>
+                                       <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة فى {{trim($data['location'])}} يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span>   @if(isset($data['year']))   خلال العام الدراسي   {{$data['year']}}   @endif</h6>
 									@elseif($data['form']==2)
 									   <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة فى {{trim($data['location'])}} خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey">إلى</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
                                     @endif 
@@ -248,7 +248,7 @@ margin-right:3rem;
                                             margin-left: -89px;
                                             position: absolute;
                                             width: 230px;"> 
-                                            <h3 style="font-family:AL-Mohanad">مدير عام مركز التدريب العدلي</h3>
+                                            <h3 style="font-family:AL-Mohanad; font-size:1.3rem">مدير عام مركز التدريب العدلي</h3>
                                             <h4 style="font-family:AL-Mohanad">د.فارس بن محمد القرني</h4>
                                         </div>
                                      
