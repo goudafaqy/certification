@@ -71,7 +71,7 @@
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate">
                     </div>
-                    <div class="form-group1 2 4" style="margin-top: 20px;">
+                    <div class="form-group 1 2 4" style="margin-top: 20px;">
                         <label for="days">مدة الدورة (الايام)</label>
                         <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
                     </div>
