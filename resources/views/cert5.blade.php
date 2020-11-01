@@ -228,7 +228,7 @@ margin-right:3rem;
                                     <h6 style="color:#e1b54b;font-weight:bold;font-size:20px"><span style="text-align:center;color:#e1b54b;">  </span> <span style="color:#e1b54b;font-size:24px; font-family:AL-Mohanad"><span style="color:#e1b54b;font-size:24px;" >(</span>{{$data['course_name']}}<span style="color:#e1b54b;font-size:24px;">)</span></span></h6>
                               
                                        <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقام  
-                                        @if(isset($data['location']))ب {{trim($data['location'])}} @endif
+                                        @if(isset($data['location']))ب{{trim($data['location'])}} @endif
                                         </span>
                                         @if(isset($data['year']))   خلال العام الدراسي   {{$data['year']}}   @endif</h6>
 								
