@@ -214,7 +214,7 @@ margin-right:3rem;
                                 <div class="box" style="margin-top:-5rem;">
 									
                                     <p class="center">
-									   <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad">شهادة حضور</span>
+									   <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad">{{trim($data['certification_title'])}} </span>
                                   
                                         <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 32px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن</h4>
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{trim($data['title'])}}<span>/  </span>{{trim($data['Trainee_name'])}}</h5>
@@ -222,7 +222,7 @@ margin-right:3rem;
                                         @if($data['form']==1)
 											<h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">قد حضر@if($data['sex']==0)ت@endif محاضرة تدريبية عن بعد بواقع   {{$data['hours']}} <span>وذلك بعنوان</span></h4>
 										@elseif($data['form']==2)
-										     <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">قد حضر دورة تدريبية لمدة <span >  </span> <span>{{$data['days']}}</span> أيام بواقع <span >(</span> {{$data['hours']}}<span>)</span><span> ساعة تدريبية بعنوان</span></h4>
+										     <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 30px; font-family:AL-Mohanad">قد حضر {{trim($data['type'])}} لمدة <span >  </span> <span>{{$data['days']}}</span> أيام بواقع <span >(</span> {{$data['hours']}}<span>)</span><span> ساعة تدريبية بعنوان</span></h4>
                                         @endif 
                                     </p>
                                     
@@ -234,7 +234,7 @@ margin-right:3rem;
                                      @if($data['form']==1)
                                        <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span> </h6>
 									@elseif($data['form']==2)
-									   <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey">إلى</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
+									   <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة فى {{trim($data['location'])}} خلال الفترة من <span style="color:grey ; font-family:AL-Mohanad"> {{$data['fromDate']}} </span> <span style="color:grey">إلى</span><span style="color:grey">  {{$data['toDate']}}</span></h6>
                                     @endif 
                                     
 									<span style="color: grey;font-size:24px;font-size: 30px ; font-family:AL-Mohanad">والله الموفق </span> 

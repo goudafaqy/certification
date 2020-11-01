@@ -55,8 +55,11 @@ class MainController extends Controller
         if(isset($course->days))      $data['days']=$course->days;
         if(isset($course->hours))     $data['hours']=$course->hours;
         if(isset($course->fromDate))  $data['fromDate']=$course->fromDate;
-        if(isset($course->toDate))  $data['toDate']=$course->toDate;
-
+        if(isset($course->toDate))    $data['toDate']=$course->toDate;
+        if(isset($course->year))      $data['year'] = $course->year ;
+        if(isset($course->type))      $data['type'] = $course->type ;
+        if(isset($course->certification_title))   $data['certification_title'] = $course->certification_title ;
+        if(isset($course->location))  $data['location'] = $course->location ;
                   //  dump($data);
         $decideView="";
         if(in_array($course->form,array(1,2)))
@@ -126,6 +129,10 @@ class MainController extends Controller
         $course->days = $this->enToAr($request->days) ;
         $course->date = $this->enToAr($request->date) ;
         $course->form = $request->form ;
+        $course->year = $request->year ;
+        $course->type = $request->type ;
+        $course->certification_title = $request->certification_title ;
+        $course->location = $request->location ;
         $course->created_by = Auth::user()->id ;
 	    $course->fromDate = $this->enToAr($request->fromDate) ;
 	    $course->toDate = $this->enToAr($request->toDate) ;
@@ -167,15 +174,17 @@ class MainController extends Controller
         return view('cp.import_courses.edit',['course'=>$course]);
     } 
     public function update(Request $request) 
-    {
-
-        
+    {        
         $course = Course::find($request->course_id);
         $course->name = $request->course ;
         $course->hours = $this->enToAr($request->hours) ;
         $course->days = $this->enToAr($request->days) ;
         $course->date = $this->enToAr($request->date) ;
         $course->form = $request->form ;
+        $course->year = $request->year ;
+        $course->type = $request->type ;
+        $course->certification_title = $request->certification_title ;
+        $course->location = $request->location ;
         $course->created_by = Auth::user()->id ;
 	    $course->fromDate = $this->enToAr($request->fromDate) ;
 	    $course->toDate = $this->enToAr($request->toDate) ;
