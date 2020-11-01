@@ -47,15 +47,15 @@
                         <label for="certification_title">عنوان الشهادة</label>
                         <input type="text" class="form-control" id="certification_title"  placeholder="شهادة حضور / شهادة تدريب" name="certification_title" >
                     </div>
-                    <div class="form-group 1 2" style="margin-top: 20px;">
+                    <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="type">النوع </label>
                         <input type="text" class="form-control"  placeholder="  محاضرة /دورة /البرنامج التدريبى " required id="type" name="type">
                     </div>
-                    <div class="form-group 1 2" style="margin-top: 20px;">
+                    <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="location">المقامة ب </label>
-                        <input type="text" class="form-control" id="location"  placeholder="الرياض/ الدمام / جدة" name="location" >
+                        <input type="text" class="form-control" id="location"  placeholder="الرياض/ الدمام / مركز التدريب العدلى بالرياض" name="location" >
                     </div>
-                    <div class="form-group 1 2" style="margin-top: 20px;">
+                    <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="year">   العام الدراسى</label>
                         <input type="text" class="form-control" id="year" placeholder="1442" name="year">
                     </div>
@@ -75,7 +75,7 @@
                         <label for="days">مدة الدورة (الايام)</label>
                         <input type="number" class="form-control @error('days') is-invalid @enderror" id="days"  placeholder="" name="days"  value="">
                     </div>
-                    <div class="form-group 1 2 3" style="margin-top: 20px;">
+                    <div class="form-group 1 2 3 5" style="margin-top: 20px;">
                         <label for="hours">عدد ساعات الدورة</label>
                         <input type="text" class="form-control @error('hours') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
                     </div>
