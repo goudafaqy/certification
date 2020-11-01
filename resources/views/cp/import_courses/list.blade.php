@@ -58,7 +58,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                                 <td class="text-center">{{ $item->name }}</td>
-                                                <td class="text-center">{{ $item->date }}</td>
+                                               <!-- <td class="text-center">{{ $item->date }}</td>-->
                                                 <td class="text-center">{{ (!empty($item->getUser)) ? $item->getUser->name :'-' }}</td>
                                                 <td class="text-center"><a href="{{ route('trainees-list',['course'=>$item->id])}}"><i style="position: relative; top: -2px; right: -4px" class="fa fa-users"></i></a></td>
                                                 <td class="text-center"><a class="btn btn-danger" id="delete" href="{{ route('delete-course',['id'=>$item->id])}}">حذف<i style="position: relative; top: -2px; right: -4px" class="fa fa-times"></i></a></td>
