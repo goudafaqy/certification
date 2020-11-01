@@ -32,7 +32,7 @@
                         <label for="form"> اختر النموذج</label>
                         <select  class="form-control" id="form" placeholder="اختر نموذج الشهادة" required name="form">
                            <option value="0">اختر النموذج</option>
-                           <option value="1">نموذج شهادة الدورة التدريبية لليوم الواحد</option>
+                           <option value="1">نموذج شهادة دورة تدريبية عن بعد</option>
                            <option value="2">نموذج شهادة الدورة التدريبية من عدة أيام </option>
                            <option value="3">  نموذج شهادة الدورة التأهيلية</option>
                            <option value="4">  نموذج شهادة الدورة التعريفية</option>
