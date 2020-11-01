@@ -234,7 +234,7 @@ margin-right:3rem;
                                        <h6 style="color: grey;font-size:24px;padding-right:1rem;font-size: 28px">   المقامة 
                                         @if(isset($data['location']))فى {{trim($data['location'])}} @endif
                                         يوم : <span style="color:grey ; font-family:AL-Mohanad">{{$data['date']}} </span>
-                                            @if(isset($data['year']))   خلال العام الدراسي   {{$data['year']}}   @endif</h6>
+                                        </h6>
 									@elseif($data['form']==2)
                                        <h6 style="color: grey;font-size:24px;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة
                                         @if(isset($data['location']))فى {{trim($data['location'])}} @endif
