@@ -219,10 +219,10 @@ margin-right:3rem;
                                         <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 32px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن</h4>
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{trim($data['title'])}}<span>/  </span>{{trim($data['Trainee_name'])}}</h5>
                                         <h5 class="" style="color: grey;text-align: center;margin-bottom:1.5rem;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
-                                        <h4 class="center" style="color: grey;margin-bottom:1.5rem;font-size: 28px">
-                                            قد حضر@if($data['sex']==0)ت@endif {{trim($data['type'])}} 
-                                        <span style="color:#e1b54b;font-weight:bold;font-size:20px"><span style="text-align:center;color:#e1b54b;">  </span> <span style="color:#e1b54b;font-size:24px; font-family:AL-Mohanad"><span style="color:#e1b54b;font-size:24px;" >(</span>{{$data['course_name']}}<span style="color:#e1b54b;font-size:24px;">)</span></span></span>
-                                         </h4>
+                                        <h4 class="center">
+                                            <span style="color: grey;margin-bottom:1.5rem;font-size: 28px"> قد حضر@if($data['sex']==0)ت@endif {{trim($data['type'])}} </span>
+                                            <span style="color:#e1b54b;font-size:24px; font-family:AL-Mohanad">({{$data['course_name']}})</span>
+                                        </h4>
 
                                     </p>
                                 </div>
