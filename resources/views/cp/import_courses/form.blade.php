@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group 1 2" style="margin-top: 20px;">
                         <label for="certification_title">عنوان الشهادة</label>
-                        <input type="text" class="form-control" id="certification_title"  placeholder="شهادة حضور / شهادة تدريب" name="certification_title" >
+                        <input type="text" class="form-control" id="certification_title"  placeholder="شهادة حضور / شهادة تدريب"  required  name="certification_title" >
                     </div>
                     <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="type">النوع </label>
@@ -126,6 +126,7 @@
 		        form: "required",
 				course: "required",
 				file:"required",
+                certification_title :"required",
 		        hours:{required:true},
 				date:{required:true}
 	}	
@@ -134,7 +135,8 @@
 				course: "أدخل عنوان الدورة التدريبية",
 				file:"حمل ملف المتدربين",
 				hours:{required:"أدخل عدد ساعات الدورة"},
-				date:{required:"أدخل تاريخ انعقاد الدورة"},		
+				date:{required:"أدخل تاريخ انعقاد الدورة"},	
+                certification_title :{required:"أدخل عنوان الشهادة"},	
 	}	
 	var validateRulesForForm2={
 		        form: "required",
@@ -143,7 +145,8 @@
 		        hours:"required",
 				days:"required",
 				fromDate:"required",
-				toDate:"required"
+				toDate:"required",
+                certification_title :"required"
 	}		
 	
 	 var validationMessagesForFomr2= {
