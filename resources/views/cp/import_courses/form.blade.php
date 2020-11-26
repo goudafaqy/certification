@@ -37,6 +37,9 @@
                            <option value="3">  نموذج شهادة الدورة التأهيلية</option>
                            <option value="4">  نموذج شهادة الدورة التعريفية</option>
                            <option value="5">  نموذج البرنامج التدريبى</option>
+                           <option value="6">  نموذج مشهد إتمام برنامج التدريب التعاوني </option>
+
+                           
                         </select>
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
@@ -47,9 +50,9 @@
                         <label for="certification_title">عنوان الشهادة</label>
                         <input type="text" class="form-control" id="certification_title"  placeholder="شهادة حضور / شهادة تدريب"  required  name="certification_title" >
                     </div>
-                    <div class="form-group 1 2 5" style="margin-top: 20px;">
+                    <div class="form-group 1 2 5 6" style="margin-top: 20px;">
                         <label for="type">النوع </label>
-                        <input type="text" class="form-control"  placeholder="  محاضرة /دورة /البرنامج التدريبى " required id="type" name="type">
+                        <input type="text" class="form-control"  placeholder="  محاضرة /دورة /البرنامج التدريبى / مشهد إتمام  " required id="type" name="type">
                     </div>
                     <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="location">المقامة ب </label>
@@ -63,11 +66,11 @@
                         <label for="date">تاريخ انعقاد الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="date" placeholder="2 صفر 1442 هـ" name="date">
                     </div>
-                    <div class="form-group 2 3 4" >
+                    <div class="form-group 2 3 4 6" >
                         <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="fromDate"  placeholder="5 صفر 1442 هـ"  name="fromDate">
                     </div>
-                    <div class="form-group 2 3 4" >
+                    <div class="form-group 2 3 4 6" >
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate">
                     </div>

@@ -51,6 +51,8 @@ class MainController extends Controller
                     'form'=>$course->form                   
                     ]; 
 
+                
+
         if(isset($course->date))      $data['date']=$course->date;
         if(isset($course->days))      $data['days']=$course->days;
         if(isset($course->hours))     $data['hours']=$course->hours;
@@ -60,7 +62,7 @@ class MainController extends Controller
         if(isset($course->type))      $data['type'] = $course->type ;
         if(isset($course->certification_title))   $data['certification_title'] = $course->certification_title ;
         if(isset($course->location))  $data['location'] = $course->location ;
-                  //  dump($data);
+                
         $decideView="";
         if(in_array($course->form,array(1,2)))
           $decideView="cert12";
@@ -68,7 +70,9 @@ class MainController extends Controller
           $decideView="cert34";
         if(in_array($course->form,array(5)))
           $decideView="cert5";
-
+        if(in_array($course->form,array(6)))
+          $decideView="cert6";
+          
         return view($decideView,['data'=>$data]);
     }
     public function print($national_id,$course_id){
