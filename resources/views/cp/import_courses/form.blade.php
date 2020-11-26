@@ -50,7 +50,7 @@
                         <label for="certification_title">عنوان الشهادة</label>
                         <input type="text" class="form-control" id="certification_title"  placeholder="شهادة حضور / شهادة تدريب"  required  name="certification_title" >
                     </div>
-                    <div class="form-group 1 2 5 6" style="margin-top: 20px;">
+                    <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="type">النوع </label>
                         <input type="text" class="form-control"  placeholder="  محاضرة /دورة /البرنامج التدريبى / مشهد إتمام  " required id="type" name="type">
                     </div>

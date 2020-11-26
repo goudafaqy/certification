@@ -207,13 +207,13 @@
                                 <div class="box" style="margin-top:-3rem;">
 									
                                     <p class="center">
-									   <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad">{{$data['certification_title']}}</span>
+									   <!-- <span class="font-40 negrito  quebra_linha" style="color: #538d51;  font-family:AL-Mohanad">{{$data['certification_title']}}</span> -->
                                   
                                         <h4 class="center" style="color: grey;;font-size: 32px; font-family:AL-Mohanad">يشهد مركز التدريب العدلي  بأن</h4>
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{$data['title']}}<span >/  </span>{{$data['Trainee_name']}}</h5>
                                         <h5 class="" style="color: grey;text-align: center;;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
                                        	<h4 class="center" style="color: grey;;font-size: 28px">{{ (  $data['sex'] == 0  ? "أتمت" : "أتم" ) }} <span style="color:#e1b54b;font-size:24px;"> {{$data['course_name']}}   </span>  بمركز التدريب العدلي </h4>
-                                        <h4 style="color: grey;font-size: 28px;text-align: center; font-family:AL-Mohanad">المقامة خلال الفترة من <span> {{$data['fromDate']}} </span> <span> وحتى تاريخ</span><span>  {{$data['toDate']}}</span></h6>
+                                        <h4 style="color: grey;font-size: 28px;text-align: center; font-family:AL-Mohanad"> بالفترة من  <span> {{$data['fromDate']}} </span> <span> إلى   </span><span>  {{$data['toDate']}}</span></h6>
                                     </p>
                                     
                                 </div>
