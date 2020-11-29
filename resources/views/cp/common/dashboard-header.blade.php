@@ -51,6 +51,7 @@
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         
+                        <?php dd(session()->has('user')); ?>
                         @if(session()->has('user'))
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
