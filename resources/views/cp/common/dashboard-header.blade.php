@@ -54,7 +54,7 @@
                         @if(session()->has('user'))
                         <div class="dropdown">
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
-                              @if(session()->has('user')->sex == 1)
+                              @if(session()->has('user')['sex'] == 1)
                                 <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
                               @else  
                               <img class="avatar" src="{{asset('site-assets/images/avatarwoman.png')}}" alt="">
