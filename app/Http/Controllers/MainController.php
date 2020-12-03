@@ -52,7 +52,7 @@ class MainController extends Controller
                     ]; 
 
                 
-
+        $data['certification_title'] = '';
         if(isset($course->date))      $data['date']=$course->date;
         if(isset($course->days))      $data['days']=$course->days;
         if(isset($course->hours))     $data['hours']=$course->hours;
