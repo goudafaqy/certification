@@ -213,8 +213,7 @@
                                         <h5  style="color: #538d51;text-align: center;font-size:25px; font-family:AL-Mohanad">{{$data['title']}}<span >/  </span>{{$data['Trainee_name']}}</h5>
                                         <h5 class="" style="color: grey;text-align: center;;font-size: 27px; font-family:AL-Mohanad">هوية وطنية رقم <span> / </span>{{$data['national_id']}} </h5>
                                        	<h4 class="center" style="color: grey;;font-size: 28px">{{ (  $data['sex'] == 0  ? "أتمت" : "أتم" ) }} <span style="color:#e1b54b;font-size:24px;"> {{$data['course_name']}}   </span>  بمركز التدريب العدلي </h4>
-                                           <br>
-                                        <h4 class="center" > <span style="color:grey;font-size:24px; font-family:AL-Mohanad">  بالفترة من   {{$data['fromDate']}}  إلى     {{$data['toDate']}}</span></h4>
+                                        <h4 class="center" style="margin-top:15px" > <span style="color:grey;font-size:24px; font-family:AL-Mohanad">  بالفترة من   {{$data['fromDate']}}  إلى     {{$data['toDate']}}</span></h4>
                                     </p>
                                     
                                 </div>
