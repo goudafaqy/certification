@@ -38,11 +38,12 @@
                            <option value="4">  نموذج شهادة الدورة التعريفية</option>
                            <option value="5">  نموذج البرنامج التدريبى</option>
                            <option value="6">  نموذج مشهد إتمام برنامج التدريب التعاوني </option>
+                           <option value="7"> شهادة الاجتياز </option>
 
                            
                         </select>
                     </div>
-                    <div class="form-group" style="margin-top: 20px;">
+                    <div class="form-group 1 2 3 4 5 6" style="margin-top: 20px;">
                         <label for="course">عنوان الدورة</label>
                         <input type="text" class="form-control" id="course"  placeholder="" name="course" >
                     </div>
@@ -66,7 +67,7 @@
                         <label for="date">تاريخ انعقاد الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="date" placeholder="2 صفر 1442 هـ" name="date">
                     </div>
-                    <div class="form-group 2 3 4 6" >
+                    <div class="form-group 2 3 4 6 7" >
                         <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="fromDate"  placeholder="5 صفر 1442 هـ"  name="fromDate">
                     </div>
@@ -82,6 +83,17 @@
                         <label for="hours">عدد ساعات الدورة</label>
                         <input type="text" class="form-control @error('hours') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="">
                     </div>
+
+                    <!-- form 7  -->
+                    <div class="form-group 7" style="margin-top: 20px;">
+                        <label for="duration">مدة الدورة باللغة العربية</label>
+                        <input type="text" class="form-control @error('duration') is-invalid @enderror" id="duration"  placeholder="ثلات سنوات" name="duration"  value="">
+                    </div>
+                    <div class="form-group 7" style="margin-top: 20px;">
+                        <label for="duration_en">مدة الدورة باللغة الانجليزية</label>
+                        <input type="text" class="form-control @error('duration_en') is-invalid @enderror" id="duration_en"  placeholder="Three years" name="duration_en"  value="">
+                    </div>
+
                     <div class="">
                         <label for="file">ملف  اسماء المتدربيبن</label>
                         <input type="file"  name="file" class="btn btn-success"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">

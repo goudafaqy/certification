@@ -41,11 +41,14 @@ class MainController extends Controller
     public function view($national_id,$course_id){
         $user = CourseUser::where('national_id', $national_id)->where('course', $course_id)->first();
         $course = Course::find($user->course);
-        $data = ['title' => $user->title,
+        $data = [  'title' => $user->title,
                     'Trainee_name' => $user->name, 
+                    'Trainee_name_en' =>  (isset($user->name_en)) ? $user->name_en: '' ,
                     'national_id'=>$this->enToAr($user->national_id),
                     'n_id' => $user->national_id,
                     'course_name'=>$course->name,
+                    'duration'=>$course->duration,
+                    'duration_en'=>$course->duration_en,
                     'id'=>$course->id,
                     'sex'=>$user->sex, 
                     'form'=>$course->form                   
@@ -53,10 +56,13 @@ class MainController extends Controller
 
                 
         $data['certification_title'] = '';
-        if(isset($course->date))      $data['date']=$course->date;
-        if(isset($course->days))      $data['days']=$course->days;
-        if(isset($course->hours))     $data['hours']=$course->hours;
-        if(isset($course->fromDate))  $data['fromDate']=$course->fromDate;
+        $data['fromDate_en'] = '';
+        if(isset($course->date))         $data['date']=$course->date;
+        if(isset($course->days))         $data['days']=$course->days;
+        if(isset($course->hours))        $data['hours']=$course->hours;
+        if(isset($course->fromDate))     $data['fromDate']=$course->fromDate;
+        if(isset($course->fromDate_en))  $data['fromDate_en'] = $course->fromDate_en;
+
         if(isset($course->toDate))    $data['toDate']=$course->toDate;
         if(isset($course->year))      $data['year'] = $this->enToAr($course->year);
         if(isset($course->type))      $data['type'] = $course->type ;
@@ -72,6 +78,8 @@ class MainController extends Controller
           $decideView="cert5";
         if(in_array($course->form,array(6)))
           $decideView="cert6";
+        if(in_array($course->form,array(7)))
+          $decideView="cert7";
           
         return view($decideView,['data'=>$data]);
     }

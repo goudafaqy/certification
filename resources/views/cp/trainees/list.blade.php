@@ -126,7 +126,7 @@
         var data=data.split(':');
         var course_id=data[0];
         var nationa_id=data[1];
-        var cert_url="http://jtc-certificate.com/public/view/"+nationa_id+"/"+course_id;
+        var cert_url="http://localhost/certification/public/view/"+nationa_id+"/"+course_id;
         $("iframe#showcert").attr('src',cert_url);
         $('#showcert').modal('show');
         return false;
