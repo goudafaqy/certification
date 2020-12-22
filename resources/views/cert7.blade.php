@@ -247,8 +247,10 @@
                                         والمقام بمركز التدريب العدلى  لمدة {!!$data['duration']!!}‭  <br>
                                            تدريبية من تاريخ  {!!$data['fromDate']!!}‭ 
                                 </p>
-                                    
+                                <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" >  
+    
                                 </div>
+
                             </div>
                             
                                
@@ -257,11 +259,16 @@
 
                                 <div class="row" style="margin: auto;width:780px; ">
                                     <div class="col-12">
-                                        <div  style="text-align: center">
-                                            
+                                        <div  style="text-align: center;margin-bottom:50px">
                                             <h3 style="font-family:AL-Mohanad;font-size:25px ">مدير عام مركز التدريب العدلي</h3>
                                             <h3 style="font-family:AL-Mohanad;font-size:20px">Justice Training Center Director</h3>
-
+                                           <br> <br>
+                                            <img src="{{asset('site-assets/images/certificate/Signature2.png') }}" class="img-fluid" style="   
+											margin-top: -65px;
+                                            margin-left: -89px;
+                                            position: absolute;
+                                            width: 230px;"> 
+                                            <br> <br>
                                             <h4 style="font-family:AL-Mohanad;font-size:25px">د.فارس بن محمد القرني</h4>
                                             <h4 style="font-family:AL-Mohanad;font-size:20px">Dr. Faris M. Algarni</h4>
 
@@ -271,7 +278,7 @@
                                     
                                    
                                 </div>
-                                <br> <br>
+                                
 							   </div>
                          
                            
