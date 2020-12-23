@@ -72,7 +72,7 @@
                         <input type="text" class="form-control" id="fromDate"  placeholder="5 صفر 1442 هـ"  name="fromDate">
                     </div>
 
-                    <div class="form-group 2 3 4 6 7" >
+                    <div class="form-group 0 7" >
                         <label for="fromDate_en">تاريخ بداية الدورة باللغة الانجليزية</label>
                         <input type="text" class="form-control" id="fromDate_en"  placeholder="1442/5/15"  name="fromDate_en">
                     </div>
@@ -135,13 +135,15 @@
 <script>
    function hide(){
 	    $('div.1').hide();
-	   	$('div.2').hide();
+        $('div.2').hide();
+        $('div.7').hide();
 	    $('div.1 input').removeAttr("required"); 
 	    $('div.2 input').removeAttr("required"); 
         $('div.submit').hide();
    }
    $( document ).ready(function() { hide();
-	
+    
+    
 	var validateRulesForForm1={
 		        form: "required",
 				course: "required",
@@ -184,10 +186,13 @@
 	 var validationMessages= validationMessagesForFomr1;
 
      $('select#form').change(function(){
+         
 		   $('div.1').hide();
-	   	  $('div.2').hide();
-             $('div.submit').show();
-		 var form=$(this).val();
+	   	   $('div.2').hide();
+              $('div.7').hide();
+              $('div.submit').show();
+         var form=$(this).val();
+         
          var imgname=form+".jpg";
          $('#formimg').attr('src',"{{asset('/')}}forms/"+imgname);
 		 if(form==0)
