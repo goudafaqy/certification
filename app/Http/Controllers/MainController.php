@@ -139,6 +139,10 @@ class MainController extends Controller
 
         $course = new Course();
         $course->name = $request->course ;
+        if($request->form == 7){
+            $course->name = 'تأهيل المحامين المؤهل للحصول على ترخيص المحاماة' ;
+        }
+        
         $course->hours = $this->enToAr($request->hours) ;
         $course->days = $this->enToAr($request->days) ;
         $course->date = $this->enToAr($request->date) ;
@@ -148,7 +152,11 @@ class MainController extends Controller
         $course->certification_title = $request->certification_title ;
         $course->location = $request->location ;
         $course->created_by = Auth::user()->id ;
-	    $course->fromDate = $this->enToAr($request->fromDate) ;
+        $course->fromDate = $this->enToAr($request->fromDate) ;
+        $course->fromDate_en = isset($request->fromDate_en)?$request->fromDate_en:'' ;
+        $course->duration = isset($request->duration)?$request->duration:'' ;
+        $course->duration_en = isset($request->duration_en)?$request->duration_en:'' ;
+
 	    $course->toDate = $this->enToAr($request->toDate) ;
         $course->save();
         $request->request->add(['course_id' => $course->id]);

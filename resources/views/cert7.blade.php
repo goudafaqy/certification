@@ -268,7 +268,7 @@
                                             margin-left: -89px;
                                             position: absolute;
                                             width: 230px;"> 
-                                            <br> <br>
+                                            
                                             <h4 style="font-family:AL-Mohanad;font-size:25px">د.فارس بن محمد القرني</h4>
                                             <h4 style="font-family:AL-Mohanad;font-size:20px">Dr. Faris M. Algarni</h4>
 
