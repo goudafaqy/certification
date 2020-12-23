@@ -71,6 +71,11 @@
                         <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="fromDate"  placeholder="5 صفر 1442 هـ"  name="fromDate">
                     </div>
+
+                    <div class="form-group 2 3 4 6 7" >
+                        <label for="fromDate_en">تاريخ بداية الدورة باللغة الانجليزية</label>
+                        <input type="text" class="form-control" id="fromDate_en"  placeholder="1442/5/15"  name="fromDate_en">
+                    </div>
                     <div class="form-group 2 3 4 6" >
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate">
