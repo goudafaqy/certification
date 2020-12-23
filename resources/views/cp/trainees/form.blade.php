@@ -97,8 +97,8 @@
                                             <select  class="form-control @error('sex') is-invalid @enderror"  id="sex" name="sex">
                                             
                                             
-                                                <option value="1" {{$item->sex == 1 ? 'selected' :''}}>ذكر</option>
-                                                <option value="0" {{$item->sex == 0? 'selected' :''}}>أنثى</option>
+                                                <option value="1" {{ isset($item) && $item->sex == 1 ? 'selected' :''}}>ذكر</option>
+                                                <option value="0" {{isset($item) && $item->sex == 0? 'selected' :''}}>أنثى</option>
                                                
                                             </select>
                                         </div>
