@@ -242,10 +242,11 @@
                                 <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px">
                                       يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }}    <br>
                                       <strong> {{$data['Trainee_name']}} </strong> <br>
-                                       هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج 
+                                       هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
                                        {!!$data['course_name']!!}  
-                                        والمقام بمركز التدريب العدلي  لمدة {!!$data['duration']!!}‭  <br>
-                                           تدريبية من تاريخ  {!!$data['fromDate']!!}‭ 
+                                        والمقام   بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
+                                         <br>
+                                           تدريبية من تاريخ  {{ $data['fromDate'] }}
                                 </p>
                                 <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" >  
     
