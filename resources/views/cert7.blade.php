@@ -242,10 +242,10 @@
                                 <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px">
                                       يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }}    <br>
                                       <strong> {{$data['Trainee_name']}} </strong> <br>
-                                       هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
-                                       {!!$data['course_name']!!}  <br>
+                                       هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج 
+                                       {!!$data['course_name']!!}  
                                         والمقام بمركز التدريب العدلي  لمدة {!!$data['duration']!!}‭  <br>
-                                           
+                                           تدريبية من تاريخ  {!!$data['fromDate']!!}‭ 
                                 </p>
                                 <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" >  
     
@@ -273,11 +273,11 @@
                                             <h4 style="font-family:AL-Mohanad;font-size:20px">Dr. Faris M. Algarni</h4>
 
                                         </div>
-                                        <div class="qrcode" style="text-align:left; margin-top:-40px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
-   
+                                     
                                     </div>
                                     
-                                   
+                                    <div class="qrcode" style="text-align:left; margin-top:-50px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
+
                                 </div>
                                 
 							   </div>
