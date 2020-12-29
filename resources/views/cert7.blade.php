@@ -244,7 +244,7 @@
                                       <strong> {{$data['Trainee_name']}} </strong> <br>
                                        هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
                                        {!!$data['course_name']!!}  
-                                        والمقام   بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
+                                        والمقام  بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
                                          <br>
                                            تدريبية من تاريخ  {{ $data['fromDate'] }}
                                 </p>
@@ -277,7 +277,7 @@
                                      
                                     </div>
                                     
-                                    <div class="qrcode" style="text-align:left; margin-top:-50px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
+                                    <div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
 
                                 </div>
                                 
