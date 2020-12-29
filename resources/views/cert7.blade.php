@@ -244,8 +244,8 @@
                                       <strong> {{$data['Trainee_name']}} </strong> <br>
                                        هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
                                        {!!$data['course_name']!!}  <br>
-                                        والمقام بمركز التدريب العدلي  لمدة {!!$data['duration']!!}‭  
-                                           تدريبية من تاريخ  {!!$data['fromDate']!!}‭ 
+                                        والمقام بمركز التدريب العدلي  لمدة {!!$data['duration']!!}‭  <br>
+                                           
                                 </p>
                                 <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" >  
     
