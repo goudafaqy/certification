@@ -202,70 +202,64 @@
 
                            
 
-                            <div class="content-box" style="padding:2rem" id="result">
+                            <div class="content-box"  id="result">
                                <br> <br>
-                            <div class="row">
-                                
-                                <div class="col-2">
-                                   <img src="{{asset('site-assets/images/certificate/elem.png') }}"  class="float-left" width="150">
-                                </div>
-                                <div class="col-7">
-                                <br> 
-                                         <h4 class="center" style="color: #bd973b;font-size: 35px;font-weight:600; font-family:AL-Mohanad">شهادة اجتياز</h4>
-                                         <h5 class="center"  style="color: #538d51;text-align: center;font-size:16px; font-family:AL-Mohanad">Certification Completiion</h5>
-                                </div>
-                                <div class="col-3">
+                                <div class="row">
                                     
-                                        <img src="{{asset('site-assets/images/certificate/logo.png') }}" class="img-fluid" width="150">
-                                    
+                                    <div class="col-2">
+                                    <img src="{{asset('site-assets/images/certificate/elem.png') }}"  class="float-left" width="150">
+                                    </div>
+                                    <div class="col-7">
+                                    <br> 
+                                            <h4 class="center" style="color: #bd973b;font-size: 35px;font-weight:600; font-family:AL-Mohanad">شهادة اجتياز</h4>
+                                            <h5 class="center"  style="color: #538d51;text-align: center;font-size:16px; font-family:AL-Mohanad">Certification Completiion</h5>
+                                    </div>
+                                    <div class="col-3">
+                                        
+                                            <img src="{{asset('site-assets/images/certificate/logo.png') }}" class="img-fluid" width="150">
+                                        
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                
-                                <div class="col-5">
-                                    <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:17px">
-                                          Justice Training Center hereby, certifies that the trainee <br>
-                                                            <strong>{{$data['Trainee_name_en']}} </strong><br> 
-                                                            ID ({{$data['n_id']}}) has completed <br>
-                                                            lawyers training program that qualifies <br>
-                                                            for law licensing, held in Justice <br>
-                                                            Training Center for {!!$data['duration_en']!!}‭ starting from {!!$data['fromDate_en']!!}‭
-                                                            
-                                       
+                                <div class="row">
+                                    
+                                    <div class="col-5">
+                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:17px">
+                                            Justice Training Center hereby, certifies that the trainee <br>
+                                                                <strong>{{$data['Trainee_name_en']}} </strong><br> 
+                                                                ID ({{$data['n_id']}}) has completed <br>
+                                                                lawyers training program that qualifies <br>
+                                                                for law licensing, held in Justice <br>
+                                                                Training Center for {!!$data['duration_en']!!}‭ starting from {!!$data['fromDate_en']!!}‭
+                                                                
+                                        
+                                        </p>
+                                    </div>
+                                    <div class="col-1">
+                                            
+                                    </div>
+                                    <div class="col-6">
+                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px">
+                                        يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }}    <br>
+                                        <strong> {{$data['Trainee_name']}} </strong> <br>
+                                        هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
+                                        {!!$data['course_name']!!}  
+                                            والمقام  بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
+                                            <br>
+                                            تدريبية من تاريخ  {{ $data['fromDate'] }}
                                     </p>
-                                </div>
-                                <div class="col-1">
-                                         
-                                </div>
-                                <div class="col-6">
-                                <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px">
-                                      يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }}    <br>
-                                      <strong> {{$data['Trainee_name']}} </strong> <br>
-                                       هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
-                                       {!!$data['course_name']!!}  
-                                        والمقام  بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
-                                         <br>
-                                           تدريبية من تاريخ  {{ $data['fromDate'] }}
-                                </p>
-                                <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" >  
-    
-                                </div>
+                                    <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" >  
+        
+                                    </div>
 
-                            </div>
-                            
-                               
-                             
-                                
-
+                                </div>
                                 <div class="row" style="margin: auto;width:780px; ">
                                     <div class="col-12">
                                         <div  style="text-align: center;margin-bottom:50px">
                                             <h3 style="font-family:AL-Mohanad;font-size:25px ">مدير عام مركز التدريب العدلي</h3>
                                             <h3 style="font-family:AL-Mohanad;font-size:20px">Justice Training Center Director</h3>
-                                           <br> <br>
+                                        <br> <br>
                                             <img src="{{asset('site-assets/images/certificate/Signature2.png') }}" class="img-fluid" style="   
-											margin-top: -65px;
+                                            margin-top: -65px;
                                             margin-left: -89px;
                                             position: absolute;
                                             width: 230px;"> 
@@ -282,7 +276,7 @@
 
                                 </div>
                                 
-							   </div>
+							</div>
                          
                            
                              
