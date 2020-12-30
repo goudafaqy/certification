@@ -247,7 +247,7 @@
                                             <br>
                                             تدريبية من تاريخ  {{ $data['fromDate'] }}
                                     </p>
-                                    <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" style="margin-bottom:-80px" >  
+                                    <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" style="margin-bottom:-80px;position:absolute;right:10px;top:278px" >  
         
                                     </div>
 
