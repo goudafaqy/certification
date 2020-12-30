@@ -265,7 +265,7 @@
                                             
                                             <h4 style="font-family:AL-Mohanad;font-size:25px">د.فارس بن محمد القرني</h4>
                                             <h4 style="font-family:AL-Mohanad;font-size:20px">Dr. Faris M. Algarni</h4>
-                                            <div class="qrcode" style="text-align:left"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
+                                            <div class="qrcode" style="text-align:left;margin-bottom:100px"> {!! QrCode::color(28,97,20)->size(100)->generate(route('verificationCertificate',['national_id'=>$data['n_id'],'course' => $data['id'] ])); !!}</div>
 
                                         </div>
                                         
