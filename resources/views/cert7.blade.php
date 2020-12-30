@@ -256,7 +256,7 @@
                                         <div  style="text-align: center">
                                             <h3 style="font-family:AL-Mohanad;font-size:25px ">مدير عام مركز التدريب العدلي</h3>
                                             <h3 style="font-family:AL-Mohanad;font-size:20px">Justice Training Center Director</h3>
-                                        <br> <br>
+                                        
                                             <img src="{{asset('site-assets/images/certificate/Signature2.png') }}" class="img-fluid" style="   
                                             margin-left: -89px;
                                             position: absolute;
