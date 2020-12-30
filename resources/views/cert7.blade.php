@@ -195,7 +195,7 @@
                     <div class=" col-md-12 p-0 d-md-block d-lg-block">
                         <div class="bg2">
                             <div class="overlay"></div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 my-auto" style="margin: auto;display: table;overflow: hidden;">
+                            <div class="col-xl-12 col-lg-12 col-md-12 my-auto" style="display: table;overflow: hidden;">
                             <div class="certificado_conteudo ">
                                 <img src="{{asset('site-assets/images/certificate/background.jpg') }}" style="box-shadow: 1px 1px 5px 0px rgba(82, 82, 82, 0.75)">
                             </div>
