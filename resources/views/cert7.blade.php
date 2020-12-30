@@ -254,7 +254,7 @@
                                 </div>
                                 <div class="row" style="margin: auto;width:780px; ">
                                     <div class="col-12">
-                                        <div  style="text-align: center;margin-bottom:20px">
+                                        <div  style="text-align: center">
                                             <h3 style="font-family:AL-Mohanad;font-size:25px ">مدير عام مركز التدريب العدلي</h3>
                                             <h3 style="font-family:AL-Mohanad;font-size:20px">Justice Training Center Director</h3>
                                         <br> <br>
