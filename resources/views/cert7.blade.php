@@ -202,7 +202,7 @@
                            
 
                             <div class="content-box"  id="result">
-                               <br> 
+                                <br> 
                                 <div class="row">
                                     
                                     <div class="col-2">
