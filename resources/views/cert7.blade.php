@@ -194,7 +194,6 @@
                 <div class="row flex-row h-100">
                     <div class=" col-md-12 p-0 d-md-block d-lg-block">
                         <div class="bg2">
-                            <div class="overlay"></div>
                             <div class="col-xl-12 col-lg-12 col-md-12 my-auto" style="margin: auto;display: table;overflow: hidden;">
                             <div class="certificado_conteudo ">
                                 <img src="{{asset('site-assets/images/certificate/background.jpg') }}" style="box-shadow: 1px 1px 5px 0px rgba(82, 82, 82, 0.75)">
@@ -252,12 +251,12 @@
                                     </div>
 
                                 </div>
-                                <div class="row" >
+                                <div class="row" style="margin: auto;width:780px; ">
                                     <div class="col-12">
                                         <div  style="text-align: center">
                                             <h3 style="font-family:AL-Mohanad;font-size:25px ">مدير عام مركز التدريب العدلي</h3>
                                             <h3 style="font-family:AL-Mohanad;font-size:20px">Justice Training Center Director</h3>
-                                        <br> 
+                                        <br> <br>
                                             <img src="{{asset('site-assets/images/certificate/Signature2.png') }}" class="img-fluid" style="   
                                             margin-left: -89px;
                                             position: absolute;
