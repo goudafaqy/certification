@@ -22,6 +22,7 @@ class CourseUser extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'name_en',
         'email',
         'national_id',
         'title',

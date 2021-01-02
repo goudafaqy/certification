@@ -38,12 +38,23 @@
                                         @enderror
 
                                     
-                                    <div class="form-group">
+                                       <div class="form-group">
                                             <label for="name_ar">الإسم باللغة العربية</label>
                                             <input type="text" class="form-control @error('name_ar') is-invalid @enderror" value="{{$item->name??''}}" id="name" name="name">
                                         </div>
                                         @error('name_ar')
                                             <span class="text-danger err-msg-name_ar" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+
+                                        <div class="form-group">
+                                            <label for="name_ar">الإسم باللغة الانجليزية</label>
+                                            <input type="text" class="form-control" value="{{$item->name_en??''}}" id="name_en" name="name_en">
+                                        </div>
+                                        @error('name_en')
+                                            <span class="text-danger err-msg-name_en" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
