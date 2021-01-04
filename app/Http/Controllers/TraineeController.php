@@ -52,6 +52,8 @@ class TraineeController extends Controller
             $inputs = $request->input();
             $user = new CourseUser();
             $user->name =  $inputs['name'];
+            $user->name_en =  $inputs['name_en'];
+
             $user->title=  $inputs['title'];
             $user->email =  $inputs['email'];
             $user->phone =  $inputs['phone'];
@@ -77,6 +79,8 @@ class TraineeController extends Controller
             $inputs = $request->input();
             $user = CourseUser::find($inputs['id']);
             $user->name =  $inputs['name'];
+            $user->name_en =  $inputs['name_en'];
+
             $user->email =  $inputs['email'];
             $user->title=  $inputs['title'];
             $user->phone =  $inputs['phone'];
