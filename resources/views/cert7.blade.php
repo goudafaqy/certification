@@ -223,7 +223,7 @@
                                 <div class="row">
                                     
                                     <div class="col-5">
-                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:12px;text-align: justify;
+                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:8px;text-align: justify;
   text-align-last:justify; ">
                                                                 Justice Training Center hereby, certifies that the trainee  
                                                                 <strong >{{$data['Trainee_name_en']}} </strong> 
@@ -238,7 +238,7 @@
                                             
                                     </div>
                                     <div class="col-5">
-                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px;text-align: justify;
+                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:19px;margin-right:8px;text-align: justify;
   text-align-last:justify;">
                                         يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }} <br>   
                                         <strong style="width:100%"> <?php echo $data['Trainee_name']?> </strong> 
