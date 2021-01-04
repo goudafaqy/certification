@@ -38,7 +38,8 @@
                            <option value="3" @if($course->form==3) selected @endif>  نموذج شهادة الدورة التأهيلية</option>
                            <option value="4" @if($course->form==4) selected @endif>  نموذج شهادة الدورة التعريفية</option>
                            <option value="5" @if($course->form==5) selected @endif>  نموذج البرنامج التدريبى</option>
-
+                           <option value="6" @if($course->form==6) selected @endif>  نموذج مشهد إتمام برنامج التدريب التعاوني </option>
+                           <option value="7" @if($course->form==7) selected @endif> شهادة الاجتياز </option>
                         </select>
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
@@ -65,10 +66,15 @@
                         <label for="date">تاريخ انعقاد الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="date"  name="date" value="{{$course->date}}">
                     </div>
-                    <div class="form-group 2 3 4" >
+                    <div class="form-group 2 3 4 7" >
                         <label for="fromDate">تاريخ بداية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="fromDate"   name="fromDate" value="{{$course->fromDate}}">
                     </div>
+                    <div class="form-group 0 7" >
+                        <label for="fromDate_en">تاريخ بداية الدورة باللغة الانجليزية</label>
+                        <input type="text" class="form-control" id="fromDate_en"  placeholder="1442/5/15"  name="fromDate_en" value="{{$course->fromDate_en}}">
+                    </div>
+
                     <div class="form-group 2 3 4" >
                         <label for="toDate">تاريخ نهاية الدورة بالهجرى</label>
                         <input type="text" class="form-control" id="toDate"  name="toDate" value="{{$course->toDate}}">
@@ -81,6 +87,17 @@
                         <label for="hours">عدد ساعات الدورة</label>
                         <input type="text" class="form-control @error('hours') is-invalid @enderror" id="hours"  placeholder="" name="hours"  value="{{$course->hours}}">
                     </div>
+
+                     <!-- form 7  -->
+                     <div class="form-group 7" style="margin-top: 20px;">
+                        <label for="duration">مدة الدورة باللغة العربية</label>
+                        <input type="text" class="form-control @error('duration') is-invalid @enderror" id="duration"  placeholder="ثلات سنوات" name="duration"  value="{{$course->duration}}">
+                    </div>
+                    <div class="form-group 7" style="margin-top: 20px;">
+                        <label for="duration_en">مدة الدورة باللغة الانجليزية</label>
+                        <input type="text" class="form-control @error('duration_en') is-invalid @enderror" id="duration_en"  placeholder="Three years" name="duration_en"  value="{{$course->duration_en}}">
+                    </div>
+
                     <div class="">
                         <label for="file">ملف  اسماء المتدربيبن</label>
                         <input type="file"  name="file" class="btn btn-success"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">

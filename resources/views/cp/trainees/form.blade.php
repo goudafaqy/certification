@@ -98,7 +98,7 @@
                                             
                                             
                                                 <option value="1" {{ isset($item) && $item->sex == 1 ? 'selected' :''}}>ذكر</option>
-                                                <option value="0" {{isset($item) && $item->sex == 0? 'selected' :''}}>أنثى</option>
+                                                <option value="0" {{ isset($item) && $item->sex == 0 ? 'selected' :''}}>أنثى</option>
                                                
                                             </select>
                                         </div>
