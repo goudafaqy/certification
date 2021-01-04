@@ -238,11 +238,11 @@
                                             
                                     </div>
                                     <div class="col-6">
-                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px">
+                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px ;  text-align: justify;text-align-last:justify;">
                                         يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }}    <br>
-                                        <strong> {{$data['Trainee_name']}} </strong> <br>
-                                        هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
-                                        {!!$data['course_name']!!}  
+                                        <strong> {{$data['Trainee_name']}} </strong> 
+                                        هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج 
+                                         {!!$data['course_name']!!}  
                                             والمقام  بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
                                             <br>
                                             تدريبية من تاريخ  {{ $data['fromDate'] }}
