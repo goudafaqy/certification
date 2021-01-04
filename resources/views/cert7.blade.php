@@ -223,31 +223,28 @@
                                 <div class="row">
                                     
                                     <div class="col-5">
-                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:17px; text-align: justify;
-  text-align-last:justify;">
-                                            Justice Training Center hereby, certifies that the trainee <br>
-                                                                <strong>{{$data['Trainee_name_en']}} </strong><br> 
-                                                                ID ({{$data['n_id']}}) has completed <br>
-                                                                lawyers training program that qualifies <br>
-                                                                for law licensing, held in Justice <br>
-                                                                Training Center for {!!$data['duration_en']!!}‭ starting from {!!$data['fromDate_en']!!}‭
+                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:12px;text-align: justify;
+  text-align-last:justify; ">
+                                                                Justice Training Center hereby, certifies that the trainee  
+                                                                <strong >{{$data['Trainee_name_en']}} </strong> 
+                                                                ID ({{$data['n_id']}}) has completed lawyers training program 
+                                                                that qualifies for law licensing, held in Justice Training Center for   {{$data['duration_en']}}‭ starting from {{$data['fromDate_en']}}‭
+
                                                                 
-                                        
+                                                                
                                         </p>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                             
                                     </div>
-                                    <div class="col-6">
-                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px ; text-align: justify;
+                                    <div class="col-5">
+                                    <p  style="font-family:AL-Mohanad;text-align:right;font-size:20px;margin-right:8px;text-align: justify;
   text-align-last:justify;">
-                                        يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }}    <br>
-                                        <strong> {{$data['Trainee_name']}} </strong> <br>
-                                        هوية وطنية رقم ({{$data['national_id']}}) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج <br>
-                                         {!!$data['course_name']!!}  
-                                            والمقام  بمركز التدريب العدلي  لمدة {{ $data['duration'] }}‭  
-                                            <br>
-                                            تدريبية من تاريخ  {{ $data['fromDate'] }}
+                                        يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }} <br>   
+                                        <strong style="width:100%"> <?php echo $data['Trainee_name']?> </strong> 
+                                        هوية وطنية رقم (<?php echo $data['national_id']?>) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج 
+                                        <?php echo $data['course_name']?>  والمقام  بمركز التدريب العدلي  لمدة <?php echo $data['duration'] ?>
+                                            تدريبية من تاريخ  <?php echo $data['fromDate'] ?>
                                     </p>
                                     <img src="{{asset('site-assets/images/certificate/stamp.png') }}" class="img-fluid" width="150" style="margin-bottom:-80px;position:absolute;right:10px;top:278px" >  
         
