@@ -144,7 +144,7 @@
         $('div.{{$course->form}}').show();
 
    }
-   $(document).ready(function() { //hide();
+   $(document).ready(function() { hide();
     setTimeout(function(){ $('select#form').trigger('change'); }, 1000);
 
    
