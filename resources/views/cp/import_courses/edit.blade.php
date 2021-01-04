@@ -54,7 +54,7 @@
                         <label for="type">النوع </label>
                         <input type="text" class="form-control"  placeholder=" محاضرة /دورة /البرنامج التدريبى " required id="type" name="type" value="{{$course->type}}">
                     </div>
-                    <div class="form-group" style="margin-top: 20px;">
+                    <div class="form-group 1 2 5" style="margin-top: 20px;">
                         <label for="location 1 2 5">المقامة ب </label>
                         <input type="text" class="form-control" id="location"  placeholder="الرياض/ الدمام / جدة" name="location" value="{{$course->location}}">
                     </div>
@@ -144,7 +144,7 @@
         $('div.{{$course->form}}').show();
 
    }
-   $(document).ready(function() { hide();
+   $(document).ready(function() { //hide();
     setTimeout(function(){ $('select#form').trigger('change'); }, 1000);
 
    
