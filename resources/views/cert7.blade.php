@@ -223,7 +223,8 @@
                                 <div class="row">
                                     
                                     <div class="col-5">
-                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:17px">
+                                        <p  style="font-family:arial;text-align:left;font-size:16px;margin-left:17px; text-align: justify;
+  text-align-last:justify;">
                                             Justice Training Center hereby, certifies that the trainee <br>
                                                                 <strong>{{$data['Trainee_name_en']}} </strong><br> 
                                                                 ID ({{$data['n_id']}}) has completed <br>
