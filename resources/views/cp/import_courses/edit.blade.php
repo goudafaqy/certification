@@ -133,11 +133,16 @@
 
 <script>
    function hide(){
+       
 	    $('div.1').hide();
 	   	$('div.2').hide();
-	    $('div.1 input').removeAttr("required"); 
-	    $('div.2 input').removeAttr("required"); 
-        $('div.submit').hide();
+	   	$('div.3').hide();
+        $('div.4').hide();
+        $('div.5').hide();
+        $('div.6').hide();
+        $('div.7').hide();
+        $('div.{{$course->form}}').show();
+
    }
    $(document).ready(function() { //hide();
     setTimeout(function(){ $('select#form').trigger('change'); }, 1000);
@@ -184,8 +189,9 @@
 
      $('select#form').change(function(){
 		   $('div.1').hide();
-	   	  $('div.2').hide();
-             $('div.submit').show();
+	   	   $('div.2').hide();
+            $('div.5').hide();
+            $('div.submit').show();
 		 var form=$(this).val();
          var imgname=form+".jpg";
          $('#formimg').attr('src',"{{asset('/')}}forms/"+imgname);
