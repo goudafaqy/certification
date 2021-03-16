@@ -241,7 +241,7 @@
                                     <p  style="font-family:AL-Mohanad;text-align:right;font-size:19px;margin-right:8px;text-align: justify;
   text-align-last:justify;">
                                         يشهد مركز التدريب العدلي بأن  {{ (  $data['sex'] == 0  ? "المتدربة" : "المتدرب" ) }} <br>   
-                                        <strong > <?php echo $data['Trainee_name']?> </strong> 
+                                        <strong > <?php echo $data['Trainee_name']?> </strong> <br> 
                                         هوية وطنية رقم (<?php echo $data['national_id']?>) قد {{ (  $data['sex'] == 0  ? "اجتازت" : "اجتاز" ) }}  برنامج 
                                         <?php echo $data['course_name']?>  والمقام  بمركز التدريب العدلي  لمدة <?php echo $data['duration'] ?>
                                             تدريبية من تاريخ  <?php echo $data['fromDate'] ?>
