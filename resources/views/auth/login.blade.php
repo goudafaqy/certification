@@ -44,7 +44,7 @@
                                     <span class="login-form-title ">
 					</span>
                                     <div class="row">
-                                        <div class="col-md-7" style="border-left: 1px solid">
+                                        <div class="col-md-12" >
                                         @if (\Session::has('error'))
                                         <div class="alert alert-danger" style="text-align:center">
                                         {!! \Session::get('error') !!}
@@ -61,20 +61,20 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                 @enderror
-                                            </div>                                               
+                                            </div>
 
-                                       
 
-                                           
+
+
                                             <div style="text-align: center">
                                                 <button class="login-form-btn">
                                                     تسجيل الدخول
                                                 </button>
                                             </div>
-                                           
+
                                         </div>
 
-                                        <div class="col-md-5 jtc">
+                                      <!--  <div class="col-md-5 jtc">
 
                                             <div class=" d-flex justify-content-between">
                                                 <img src="{{asset('site-assets/images/student-avatar.png')}}">
@@ -82,7 +82,7 @@
 
                                             </div>
 
-                                        </div>
+                                        </div>-->
 
                                     </div>
 

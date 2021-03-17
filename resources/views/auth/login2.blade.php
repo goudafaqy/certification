@@ -41,7 +41,7 @@
                                         <img src="{{asset('site-assets/images/new-logo.png')}}">
                                         </a>
                                     </div>
-                                   
+
                                     <span class="login-form-title ">
 					            </span>
                                     <div class="row">
@@ -62,8 +62,8 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                 @enderror
-                                           
-                                            </div>    
+
+                                            </div>
 
 
 
@@ -72,7 +72,7 @@
                                                     <span class="input-group-text" id="basic-addon1"><i class="far fa-user"></i></span>
                                                 </div>
 
-                                               
+
 
                                                 <input id="password" required name="password" class="form-control input-login @error('password') is-invalid @enderror" value="{{ old('password') }}" type="password" placeholder="كلمة السر" autocomplete="national_id" autofocus>
                                                 @error('national_id')
@@ -80,9 +80,9 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                 @enderror
-                                            </div>                                                
+                                            </div>
 
-                                       
+
                                             <div class=" d-flex justify-content-between">
                                                 <div class="">
                                                 <label class="custom-control custom-checkbox">
@@ -90,17 +90,17 @@
                                                     <span class="custom-control-label">&nbsp;تذكرني</span>
                                                 </label>
                                             </div>
-                                                <div class="">
+                                               <!-- <div class="">
                                                     <a href="" class="forget">نسيت كلمة المرور ؟ </a>
-                                                </div>
+                                                </div>-->
                                             </div>
-                                           
+
                                             <div style="text-align: center">
                                                 <button class="login-form-btn">
                                                     تسجيل الدخول
                                                 </button>
                                             </div>
-                                           
+
                                         </div>
 
 

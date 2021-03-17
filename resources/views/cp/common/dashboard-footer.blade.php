@@ -1,28 +1,28 @@
-            
-            
+
+
             <footer class="footer" style="text-align: center;color: #fff;background: #359db0;">
                 <div class="w-100 clearfix">
-                    <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1442هـ | 2020 م </span>
+                    <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1442هـ | 2021 م </span>
                 </div>
             </footer>
-           
+
 
             <?php $events=\Session::get('events'); ?>
             @if(isset($events))
             <aside class="right-sidebar">
-                <div class="sidebar-chat" data-plugin="chat-sidebar"> 
+                <div class="sidebar-chat" data-plugin="chat-sidebar">
                     <div class="sidebar-chat-info">
                     </div>
                     <div class="event-list">
                         @foreach ($events as $key => $event )
                             <a href="javascript:void(0)" class="">
                                 <h4 class="event">
-                                    <span class="date"><i class="far fa-clock"></i> {{$event['start']}}</span> 
-                                    <span class="name"><i class="fas fa-award"></i>{{$event['title']}} </span> 
-                                    <span class="desc"><i class="far fa-file-alt"></i>{{$event['title']}}</span> 
+                                    <span class="date"><i class="far fa-clock"></i> {{$event['start']}}</span>
+                                    <span class="name"><i class="fas fa-award"></i>{{$event['title']}} </span>
+                                    <span class="desc"><i class="far fa-file-alt"></i>{{$event['title']}}</span>
                                 </h4>
                             </a>
-                        @endforeach  
+                        @endforeach
                     </div>
                 </div>
             </aside>
@@ -54,17 +54,17 @@
                     }
                 });
             </script>
-           
+
             <script>
 $('#chooseFile').bind('change', function () {
   var filename = $("#chooseFile").val();
   if (/^\s*$/.test(filename)) {
     $(".file-upload").removeClass('active');
-    $("#noFile").text("No file chosen..."); 
+    $("#noFile").text("No file chosen...");
   }
   else {
     $(".file-upload").addClass('active');
-    $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+    $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
   }
 });
 
