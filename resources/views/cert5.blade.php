@@ -206,7 +206,7 @@ margin-right:3rem;
                             <div class="certificado_conteudo ">
                                 <img src="{{asset('site-assets/images/certificate/background.jpg') }}" style="box-shadow: 1px 1px 5px 0px rgba(82, 82, 82, 0.75)">
                             </div>
-                            <div class="content-box" style="padding:2rem" id="result">
+                            <div class="content-box" style="padding:4rem;margin:2rem" id="result">
                                 <a class="center" href="#">
                                     <img src="{{asset('site-assets/images/certificate/logo.png') }}" class="img-fluid" width="150" style="margin-top:2rem;">
                                  

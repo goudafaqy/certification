@@ -38,13 +38,14 @@
                                     @csrf
                                     <div class="logo-centered">
                                         <a href="{{ url('/') }}">
-                                            <img src="{{asset('site-assets/images/new-logo.png')}}" class="" alt="">
+                                        <img src="{{asset('site-assets/images/new-logo.png')}}">
                                         </a>
                                     </div>
+                                   
                                     <span class="login-form-title ">
-					</span>
+					            </span>
                                     <div class="row">
-                                        <div class="col-md-7" style="border-left: 1px solid">
+                                        <div class="col-md-12">
                                         @if (\Session::has('error'))
                                         <div class="alert alert-danger" style="text-align:center">
                                         {!! \Session::get('error') !!}
@@ -82,7 +83,17 @@
                                             </div>                                                
 
                                        
-
+                                            <div class=" d-flex justify-content-between">
+                                                <div class="">
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option1">
+                                                    <span class="custom-control-label">&nbsp;تذكرني</span>
+                                                </label>
+                                            </div>
+                                                <div class="">
+                                                    <a href="" class="forget">نسيت كلمة المرور ؟ </a>
+                                                </div>
+                                            </div>
                                            
                                             <div style="text-align: center">
                                                 <button class="login-form-btn">
@@ -92,15 +103,6 @@
                                            
                                         </div>
 
-                                        <div class="col-md-5 jtc">
-
-                                            <div class=" d-flex justify-content-between">
-                                                <img src="{{asset('site-assets/images/student-avatar.png')}}">
-
-
-                                            </div>
-
-                                        </div>
 
                                     </div>
 

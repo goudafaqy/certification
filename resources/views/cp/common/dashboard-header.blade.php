@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>مركز التدريب العدلي | لوحة التحكم</title>
-    <link rel='icon' href="{{ asset('images/favicon.ico') }}" type='image/x-icon' />
+    <link rel='icon' href="{{ asset('images/favicon.png') }}" type='image/x-icon' />
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,7 +60,7 @@
                               <img class="avatar" src="{{asset('site-assets/images/avatarwoman.png')}}" alt="">
                               @endif
                                 
-                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ session()->get('user')->name }} <a  href="{{ route('logoutC') }}" > خروج  </a></span>
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ session()->get('user')->name }} <a  href="{{ route('logoutC') }}" style="color:#7f8889"> خروج  </a></span>
                                 
                             </a>
                         </div>
@@ -70,7 +70,7 @@
                             <a class="dropdown-toggle pub-ser" href="#" id="userDropdown" data-toggle="dropdown">
                                 <img class="avatar" src="{{asset('site-assets/images/avatarman.png')}}" alt="">
                                
-                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px">{{ Auth::user()->name }} <a  href="{{ route('logout_admin') }}" > خروج  </a></span>
+                                <span style="font-size: 11px; line-height: 4.6; padding:0px 10px;">{{ Auth::user()->name }} <a  href="{{ route('logout_admin') }}" style="color:#7f8889"> خروج  </a></span>
                                 
                             </a>
                         </div>

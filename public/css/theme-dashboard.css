@@ -1409,8 +1409,8 @@ a:hover, a:focus, a:active { outline: 0; text-decoration: none; color: #212121; 
 .btn-success:hover, .btn-success:focus, .btn-success.active { background-color: #28b97b; border: 1px solid #28b97b; color: #ffffff !important; }
 .btn-info { background-color: #11cdef; border: 1px solid #11cdef; }
 .btn-info:hover, .btn-info:focus, .btn-info.active { background-color: #0fb9d8; border: 1px solid #0fb9d8; color: #ffffff !important; }
-.btn-warning { background-color: #fb6340; border: 1px solid #fb6340; }
-.btn-warning:hover, .btn-warning:focus, .btn-warning.active { background-color: #fa4f27; border: 1px solid #fa4f27; color: #ffffff !important; }
+.btn-warning { background-color: #91999a; border: 1px solid #91999a; }
+.btn-warning:hover, .btn-warning:focus, .btn-warning.active { background-color: #339caf; border: 1px solid #339caf; color: #ffffff !important; }
 .btn-danger { background-color: #f5365c; border: 1px solid #f5365c; }
 .btn-danger:focus, .btn-danger:hover, .btn-danger.active { background-color: #f41e48; border: 1px solid #f41e48; color: #ffffff !important; }
 .btn-inverse { background-color: #4c5667; border: 1px solid #4c5667; }

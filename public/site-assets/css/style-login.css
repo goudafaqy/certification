@@ -29,7 +29,7 @@
 
    background: rgba(6, 12, 34, 0.8);
     background: rgb(1,24,42);
-    background: radial-gradient(circle, rgba(0,0,0,0.7) 0%, rgba(1, 24, 42,0.8) 54%, rgba(1, 24, 42,1) 99%);
+    background: radial-gradient(circle, rgb(4 38 44) 0%, rgb(8 80 94) 54%, rgb(5 66 77) 99%);
     
  left: 0;
     top: 0;
@@ -160,7 +160,9 @@ button:hover {
   padding: 30px 40px;
  
     background-image: url('../images/ba.jpg');
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgb(255 255 255 / 82%);
+    width: 550px;
+    margin: auto;
 }
 
 
@@ -195,7 +197,7 @@ line-height: 1.2;
 display: block;
 width: 100%;
 height: 45px;
-background: #34405a;
+background: #00839b;
 padding: 0 10px 0 10px;
 border: 0;
 
@@ -210,14 +212,12 @@ border-radius: 5px;
 .form-control::placeholder { color: #fff}
 
 .login-form .form-control:focus {
-padding-right: 5px;
-border-right: 5px solid #C3A37E;
-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
-    background: #34405a;
-    color: #fff;
-
-
-
+  padding-right: 5px;
+  border-right: 5px solid #d5bf71 !important;
+  box-shadow: 0px 0px 20px 2px rgb(0 0 0 / 7%);
+  background: #00839b !important;
+  color: #fff;
+  
 
 }
 .login-form .label {
@@ -232,9 +232,9 @@ box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
 .login-form .input-group .input-group-prepend .input-group-text {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: #2e3950;
-  border-color: #2e3950;
-  color: #C3A37E;
+  background-color: #00839b;
+  border-color: #00839b;
+  color: #d3bd6d;
   padding-right: 13px;
   height: 45px;
   font-size: 18px;
@@ -249,7 +249,7 @@ box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
   padding: 15px 25px;
   border-radius: 25px;
     margin: 10px 0px ;
-  background: #273044;
+  background: #00839b;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -261,7 +261,7 @@ box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.07);
 
 .login-form-btn:hover {
   color: #fff;
-    background:#C3A37E;
+    background:#cdb45b;
 }
 
 

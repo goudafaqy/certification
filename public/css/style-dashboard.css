@@ -82,7 +82,7 @@ body {
     border-bottom: 0;
     position: relative;
     background: #ebf0f3;
-    color: #252533;
+    color: #757f80;
     border-radius: 5px 5px 0 0;
 }
 
@@ -217,7 +217,7 @@ body {
 }
 
 .wrapper .page-wrap .app-sidebar.colored .sidebar-content .nav-container .navigation-main .nav-item a {
-    color: #283045;
+    color: #858e8f;
 }
 
 .wrapper .page-wrap .app-sidebar .sidebar-content .nav-container .navigation-main .nav-item.has-sub a::before {
@@ -577,13 +577,13 @@ a.social {
 }
 .wrapper .header-top .top-menu a.pub-ser .ik {
     font-size: 16px;
-    color: #000440;
+    color: #00839b;
     margin-left: 3px
 }
 
 .wrapper .header-top .top-menu a.pub-ser {
     font-size: 11px;
-    color: #000440;
+    color: #00839b;
     line-height: 3.7;
     text-decoration: none;
 
@@ -633,12 +633,12 @@ div.pub-ser2 {
 }
 
 .wrapper .page-wrap .app-sidebar.colored .sidebar-content .nav-container .navigation-main .nav-item a i {
-    color: #cfb177;
+    color: #00839b;
     float: right;
 }
 
 .wrapper .page-wrap .app-sidebar.colored .sidebar-content .nav-container .navigation-main .nav-item a:hover {
-    color: #cfb075;
+    color: #d1b966;
 }
 
 .wrapper .page-wrap .app-sidebar.colored .sidebar-content .nav-container .navigation-main .nav-item .submenu-content {
@@ -1770,7 +1770,7 @@ textarea {
 
 .btn-primary {
     border-radius: 5px;
-    background-color: #a58661;
+    background-color: #339caf;
     background-size: 200%;
     width: 200px;
     border: none;
@@ -1787,7 +1787,7 @@ textarea {
 }
 .courses-actions .btn-primary {
     border-radius: 5px;
-    background-color: #a58661;
+    background-color: #339caf;
     background-size: 200%;
     border: none;
     outline: none;
@@ -1806,7 +1806,7 @@ textarea {
 
 .btn-primaryy {
     border-radius: 5px;
-    background-color: #a58661;
+    background-color: #339caf;
     height: 45px;
     font-family: "ArbFONTS-PNU-Medium.ttf";
     border: none;
@@ -1823,8 +1823,8 @@ textarea {
 
 .btn-primary:hover,
 .btn-primary:focus {
-    border: 1px solid #a58661 !important;
-    background-color: #a58661 !important;
+    border: 1px solid #cfb65f !important;
+    background-color: #cfb65f !important;
     color: #FFF !important;
     outline: none !important;
 }
@@ -2244,7 +2244,7 @@ h3.p-header {
     width: 100%;
     background-repeat: no-repeat;
     height: 100%;
-    border-top: 7px solid #283045;
+    border-top: 7px solid #cdb459;
     padding-bottom: 17px;
     padding-top: 17px
 

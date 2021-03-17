@@ -8,7 +8,7 @@
     <div class="nav-container">
         <nav id="main-menu-navigation" class="navigation-main">
             <div class="nav-item">
-                <a href="{{ route('users-list') }}"><img src="{{ asset('images/training.png') }}" style="width: 22px">
+                <a href="{{ route('users-list') }}"><i class="fas fa-users"></i>
                     <span> مستخدمي النظام </span>
                 </a>
             </div>
@@ -20,7 +20,7 @@
     <div class="nav-container">
         <nav id="main-menu-navigation" class="navigation-main">
             <div class="nav-item">
-                <a href="{{ route('courses-list') }}"><img src="{{ asset('images/categories.png') }}" style="width: 22px">
+                <a href="{{ route('courses-list') }}"><i class="fas fa-laptop-code"></i>
                     <span> الدورات التدريبة </span>
                 </a>
 
@@ -31,7 +31,7 @@
  <div class="nav-container">
         <nav id="main-menu-navigation" class="navigation-main">
             <div class="nav-item">
-                <a href="{{ route('password') }}"><img src="{{ asset('images/categories.png') }}" style="width: 22px">
+                <a href="{{ route('password') }}"><i class="fas fa-unlock-alt"></i>
                     <span> تغيير كلمة السر </span>
                 </a>
 

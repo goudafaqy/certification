@@ -1,6 +1,6 @@
             
             
-            <footer class="footer" style="text-align: center; color:#fff;background:none">
+            <footer class="footer" style="text-align: center;color: #fff;background: #359db0;">
                 <div class="w-100 clearfix">
                     <span class="text-center;"> جميع الحقوق محفوظة © مركز التدريب العدلي 1442هـ | 2020 م </span>
                 </div>
